@@ -1,0 +1,3 @@
+This is a dll from gtk 2.14. It is installed by themes package only if the
+original third-party gtk installation didn't contain it.
+

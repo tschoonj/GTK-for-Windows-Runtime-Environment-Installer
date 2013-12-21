@@ -1,0 +1,194 @@
+
+You can find the latest version of this software at http://gtk-win.sourceforge.net.
+You may reach the packager (Alexander Shaduri) by email at ashaduri 'at' gmail.com
+
+The authors make NO WARRANTY or representation, either express or implied, with respect to this software, its quality, accuracy, merchantability, or fitness for a particular purpose.  This software is provided "AS IS", and you, its user, assume the entire risk as to its quality and accuracy.
+
+This package contains the following software (or pieces of it):
+
+GTK+ Preference tool from http://gtk-win.sourceforge.net.
+
+GTK+ theme engines and themes:
+
+Themes from gnome-themes 2.26.3 http://ftp.gnome.org/pub/gnome/sources/gnome-themes/2.26/
+	ClearlooksClassic (clearlooks engine)
+	ClearlooksTest (clearlooks engine)
+	Glider (glide engine)
+	Glossy (clearlooks engine)
+	HighContrast (accessibility theme, HighContrast (HC) engine)
+	HighContrastInverse (accessibility theme, HighContrast (HC) engine)
+	HighContrastLargePrint (accessibility theme, HighContrast (HC) engine)
+	HighContrastLargePrintInverse (accessibility theme, HighContrast (HC) engine)
+	Inverted (clearlooks engine)
+	LargePrint (accessibility theme, default engine)
+	LowContrast (accessibility theme, default engine)
+	LowContrastLargePrint (accessibility theme, default engine)
+	Simple (thinice engine)
+
+Themes from gnome-themes-extras 2.22.0 http://ftp.gnome.org/pub/gnome/sources/gnome-themes-extras/2.22/
+	Darklooks (clearlooks engine)
+	Unity (clearlooks engine)
+
+Themes from gnome-themes-extras 0.9 http://ftp.gnome.org/pub/gnome/sources/gnome-themes-extras/0.9/
+	Amaranth (smooth engine)
+	Gorilla (industrial engine)
+	Lush (smooth engine)
+	Nuvola (smooth engine)
+	Wasp (smooth engine)
+
+Anachron 0.1 http://www.gnome-look.org/content/show.php/anachron-engine?content=20370
+	AnachronAna
+
+Aurora 1.5.1 http://www.gnome-look.org/content/show.php/Aurora+Gtk+Engine?content=56438
+	Aurora
+
+Bluecurve 1.0.0 (aka Wonderland) http://download.fedora.redhat.com/pub/fedora/linux/development/source/SRPMS/bluecurve-gtk-themes-1.0.0-4.fc12.src.rpm
+	Bluecurve (Red Hat style)
+	Bluecurve-BerriesAndCream
+	Bluecurve-Gnome
+	Bluecurve-Grape
+	Bluecurve-Lime
+	Bluecurve-Slate
+	Bluecurve-Strawberry
+	Bluecurve-Tangerine
+
+Blueprint 0.9.20 http://dlc.sun.com/osol/jds/downloads/extras/
+	Blueprint
+	Blueprint-Green
+	Blueprint-Ice
+	Blueprint-Sand
+	Blueprint-no-color
+
+Candido 0.9.1 http://candido.berlios.de/pages/engine.php . The themes come from the same location.
+	Candido-Calm
+	Candido-Candy
+	Candido-DarkOrange
+	Candido-Hybrid
+	Candido-NeoGraphite
+
+CleanIce 2.4.1 http://sourceforge.net/projects/elysium-project/ . The themes come from Debian patches at http://packages.debian.org/unstable/graphics/gtk2-engines-cleanice .
+	Cleanice
+	Cleanice-Dark
+	Cleanice-Debian
+
+Clearlooks from gtk-engines 2.18.2 http://ftp.gnome.org/pub/GNOME/sources/gtk-engines/2.18/
+	Clearlooks
+
+Crux from gtk-engines 2.18.2 http://ftp.gnome.org/pub/GNOME/sources/gtk-engines/2.18/
+	Crux
+
+Dyndyn 0.1 http://dyndyn-engine.sourceforge.net/ . The themes come from the same location.
+	DyndynBlueGray
+	DyndynPinkGray
+
+Excelsior 4.1.0 http://www.gnome-look.org/content/show.php/Excelsior+(Engine)?content=76486
+	Xcl-aqua
+	Xcl-aqua-dark
+	Xcl-bubblegum
+	Xcl-bubblegum-dark
+	Xcl-clarius
+	Xcl-clarius-dark
+	Xcl-flat
+	Xcl-flat-dark
+	Xcl-inverted
+	Xcl-inverted-dark
+
+gFlat 0.3 http://www.gnome-look.org/content/show.php/gFlat+gtk+engine?content=39916
+	Gflat-graphite
+	Gflat-quicksilver
+
+Glide from gtk-engines 2.18.2 http://ftp.gnome.org/pub/GNOME/sources/gtk-engines/2.18/
+
+HighContrast (HC) from gtk-engines 2.18.2 http://ftp.gnome.org/pub/GNOME/sources/gtk-engines/2.18/
+
+Industrial from gtk-engines 2.18.2 http://ftp.gnome.org/pub/GNOME/sources/gtk-engines/2.18/
+	Industrial
+
+LighthouseBlue from gtk-engines-2.6.11, http://ftp.gnome.org/pub/GNOME/sources/gtk-engines/2.6/
+	LighthouseBlue
+
+Metal from gtk-engines-2.6.11, http://ftp.gnome.org/pub/GNOME/sources/gtk-engines/2.6/
+	Metal (Java Swing style)
+
+MagicChicken 1.1.1 http://packages.debian.org/source/sid/gtk2-engines-magicchicken
+	CortlandChicken (MacOS 9 style)
+	MagicChicken
+	OkayishChicken
+
+Mist from gtk-engines 2.18.2 http://ftp.gnome.org/pub/GNOME/sources/gtk-engines/2.18/
+	Mist
+
+Murrine 0.90.3 http://www.cimitan.com/pages/murrine.php . The themes come from http://packages.debian.org/sid/murrine-themes .
+	MurrinaAquaIsh
+	MurrinaAzul
+	MurrinaBleu
+	MurrinaBlue
+	MurrinaCandido
+	MurrinaCandy
+	MurrinaCappuccino
+	MurrinaChrome
+	MurrinaCream
+	MurrinaEalm
+	MurrinaFancyCandy
+	MurrinaGilouche
+	MurrinaLoveGray
+	MurrinaNeoGraphite
+	MurrinaVerdeOlivo
+	MurrineRounded
+	MurrineRoundedIcon
+	MurrineRoundedLessFramed
+	MurrineRoundedLessFramedIcon
+
+Nimbus 0.1.3 http://dlc.sun.com/osol/jds/downloads/extras/nimbus/
+	Nimbus
+	Nimbus-Dark
+	Nimbus-Light
+
+Nodoka 0.7.2 https://fedorahosted.org/nodoka/
+	Nodoka (FC8 theme)
+	Nodoka-Aqua
+	Nodoka-Gilouche
+	Nodoka-Looks
+	Nodoka-Midnight
+	Nodoka-Rounded
+	Nodoka-Silver
+	Nodoka-Squared
+
+Redmond95 from gtk-engines 2.18.2 http://ftp.gnome.org/pub/GNOME/sources/gtk-engines/2.18/
+	Redmond (Win9x style)
+
+Rezlooks 0.6 http://download.fedora.redhat.com/pub/fedora/linux/development/source/SRPMS/gtk-rezlooks-engine-0.6-9.fc12.src.rpm
+	Rezlooks-Gilouche
+	Rezlooks-Snow
+	Rezlooks-candy
+	Rezlooks-dark
+	Rezlooks-graphite
+
+Smooth 2.14.3 http://packages.debian.org/source/sid/gtk-smooth-engine . The themes come from smooth-themes 0.5.8 at http://packages.debian.org/sid/gtk-smooth-themes .
+	Delightfully-Smooth
+	G26
+	Smooth-Funky-Monkey
+	Smooth-Line
+	Smooth-Okayish
+	Smooth-Sea-Ice
+	Smooth-Tangerine-Dream
+	Smooth-Winter
+
+ThinIce from gtk-engines 2.18.2 http://ftp.gnome.org/pub/GNOME/sources/gtk-engines/2.18/
+	ThinIce
+
+Ubuntulooks 0.9.12 http://packages.ubuntu.com/karmic/gtk2-engines-ubuntulooks
+	Human (Ubuntu theme)
+
+XFCE 2.6.0 http://mocha.xfce.org/archive/xfce-4.6.1/src/
+	Xfce
+	Xfce-4.0
+	Xfce-4.2
+	Xfce-4.4
+	(many more themes are distributed with xfce-engine but not included here)
+
+Unless indicated otherwise, all themes come with their respective engine packages.
+
+You may obtain the respective sources at the URLs listed above.
+
+The combined package (engines, themes, GTK+ Preference Tool) is licensed under GNU GPLv2. See license_gpl.txt file for details.
