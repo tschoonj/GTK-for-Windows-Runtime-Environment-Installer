@@ -1,0 +1,59 @@
+
+Summary:		GTK2 theme and font selection utility
+Name:			gtk2_prefs
+Version:			@VERSION@
+Release:		1ash
+License:		GPL2
+Vendor:			Alexander Shaduri
+Source:			gtk2_prefs-%{version}.tar.bz2
+Url:				http://members.lycos.co.uk/alexv6
+Packager:		Alexander Shaduri <ashaduri '@' gmail.com>
+Group:			System/GUI/GNOME
+Requires:		gtk2 >= 2.4.0, glib2, libstdc++
+BuildRequires:	gtk2, gtk2-devel >= 2.4.0, pkgconfig, gcc-c++, libstdc++, libstdc++-devel, gcc-c++
+BuildRequires:	autoconf, automake, libtool
+BuildRoot:		%{_tmppath}/%{name}-%{version}-root
+
+%description
+A small utility to select themes and fonts for GTK+ version 2.
+
+
+%prep
+
+%setup -q
+
+./autogen.sh
+%configure
+
+%build
+# Setup for parallel builds
+numprocs=`egrep -c ^cpu[0-9]+ /proc/stat || :`
+if [ "$numprocs" = "0" ]; then
+  numprocs=1
+fi
+
+make -j$numprocs
+
+%install
+#make install-strip DESTDIR=$RPM_BUILD_ROOT
+%makeinstall
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%files
+%defattr(-,root,root)
+
+%attr(0755,root,root) %{_bindir}/gtk2_prefs
+# %doc %{_docdir}/gtk2_prefs-@VERSION@
+%doc AUTHORS ChangeLog README NEWS TODO
+
+
+%changelog
+* Mon May 30 2005 Alexander Shaduri <ashaduri '@' gmail.com>
+Minor improvements (based on Pascal Bleser's <guru@unixtech.be> package).
+
+* Tue Apr 19 2005 Alexander Shaduri <ashaduri '@' gmail.com>
+Initial package release.
+
+

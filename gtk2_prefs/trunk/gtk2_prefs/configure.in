@@ -1,0 +1,36 @@
+AC_INIT(configure.in)
+
+AM_CONFIG_HEADER(config.h)
+AM_INIT_AUTOMAKE(gtk2_prefs, 0.4.1)
+
+AC_LANG_CPLUSPLUS
+AC_PROG_CXX
+AM_PROG_LIBTOOL
+
+
+dnl ------------------------------
+pkg_modules="gtk+-2.0 >= 2.4.0"
+
+PKG_CHECK_MODULES(PACKAGE, [$pkg_modules])
+
+dnl AC_SUBST(PACKAGE_CFLAGS)
+dnl AC_SUBST(PACKAGE_LIBS)
+
+LIBS="$LIBS $PACKAGE_LIBS "
+CFLAGS="$CFLAGS $PACKAGE_CFLAGS "
+CXXFLAGS="$CXXFLAGS $PACKAGE_CFLAGS "
+
+dnl ------------------------------
+
+all_libraries="$all_libraries $LIBS $USER_LDFLAGS"
+all_includes="$all_includes $CXXFLAGS $USER_INCLUDES"
+
+AC_SUBST(all_includes)
+AC_SUBST(all_libraries)
+
+dnl ------------------------------
+
+AC_CONFIG_FILES([ gtk2_prefs.spec ])
+
+AC_OUTPUT(Makefile src/Makefile)
+
