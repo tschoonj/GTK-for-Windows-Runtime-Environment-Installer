@@ -1,0 +1,19 @@
+
+Version 0.4.1  08 Aug 2005
+	Ability to toggle between all users / current user.
+
+Version 0.4.0  30 May 2005
+	Redesign for better GNOME HIG compatibility (based on ideas by Christian Storgaard).
+	Added option for using theme default font.
+	Minor improvements in RPM spec file (based on Pascal Bleser's <guru@unixtech.be> package).
+	GTK >= 2.4.0 is required now.
+
+Version 0.3.2  19 Apr 2005
+	Added RPM spec file.
+
+Version 0.3.1  17 Jun 2004
+	Remove unneeded mingw dependancy for win32.
+
+Version 0.3.0  12 Jun 2004
+	GTK 2.4 compatibility
+
