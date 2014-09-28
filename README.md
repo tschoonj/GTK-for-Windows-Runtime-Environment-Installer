@@ -19,7 +19,7 @@ The included GTK+ dependencies were selected according to the flowchart used by 
 * [glib](http://ftp.gnome.org/pub/GNOME/sources/glib/) (2.42.0)
 * [gtk](http://ftp.gnome.org/pub/GNOME/sources/gtk+/) (2.24.24)
 * [harfbuzz](http://www.freedesktop.org/software/harfbuzz/release/) (0.9.35)
-* [libffi](ftp://sourceware.org/pub/libffi) (3.1)
+* [libffi](http://sourceware.org/libffi/) (3.1)
 * [libpng](http://sourceforge.net/project/showfiles.php?group_id=5624) (1.6.13)
 * [libxml2](http://xmlsoft.org/sources/) (2.9.1)
 * [pango](http://ftp.gnome.org/pub/GNOME/sources/pango/) (1.36.8)
