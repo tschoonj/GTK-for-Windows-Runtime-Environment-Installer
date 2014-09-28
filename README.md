@@ -5,7 +5,11 @@ This repository is a fork of the  [GTK+ for Windows Runtime Environment Installe
 by Alexander Shaduri.
 My efforts here will focus on creating a 64-bit version of the runtime that he has been providing so far, using up to date versions of GTK+ and its dependencies.
 
-Downloads can be found [here](http://lvserver.ugent.be/gtk-win64/).
+The installers can be found [here](http://lvserver.ugent.be/gtk-win64/).
+
+**[Keep in mind though that these packages are experimental. Binary compatibility between versions is not guaranteed!!!.](http://www.gtk.org/download/win64.php)** 
+
+Both for convencience as well as for increased reliability across installations, it is recommended for developers to compile and link against the GTK+ SDK that I used to create the installers. This SDK can also be obtained at the aforementioned url.
 
 The current release (gtk2-runtime-2.24.24-2014-09-28-ts-win64.exe) has been compiled using GCC 4.8.1 (MinGW-w64 installed from TDM-GCC).
 The included GTK+ dependencies were selected according to the flowchart used by [Hexchat](http://hexchat.github.io/gtk-win32/). The source tarballs can be obtained by clicking on the names of the dependencies in the following list:
@@ -32,4 +36,4 @@ For all other information regarding how to use the installer, the reader is kind
 Personally I use this installer in my [XMI-MSIM project](http://github.com/xmimsim). You may want to have a look at my Inno Setup ([new](https://github.com/tschoonj/xmimsim/blob/master/nsis/xmimsim.iss)) and NSIS ([old](https://github.com/tschoonj/xmimsim/blob/XMI-MSIM-4.0/nsis/xmimsim-win64.nsi.in)) based installers. 
 
 
-
+Tom Schoonjans
