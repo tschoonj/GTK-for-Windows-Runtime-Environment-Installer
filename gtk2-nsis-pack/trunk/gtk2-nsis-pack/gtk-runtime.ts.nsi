@@ -11,9 +11,9 @@
 ; should be installable side by side with this package.
 
 
-!define GTK_VERSION "2.22.1"
+!define GTK_VERSION "2.24.24"
 !define GTK_BIN_VERSION "2.10.0"
-!define PRODUCT_VERSION "${GTK_VERSION}-2014-02-01-ts-win64"
+!define PRODUCT_VERSION "${GTK_VERSION}-2014-09-28-ts-win64"
 !define PRODUCT_NAME "GTK2-Runtime Win64"
 !define PRODUCT_PUBLISHER "Tom Schoonjans"
 !define PRODUCT_WEB_SITE "http://gtk-win.sourceforge.net"
@@ -231,14 +231,13 @@ SectionIn 1 2 RO
 	; NOTE: If you add or remove any of these,
 	; be sure to do the same in the uninstall section.
 
-	File bin\libfreetype-6.dll  ; freetype is needed for ft2 pango backend
-	File bin\libintl-8.dll  ; gettext, needed by all i18n libs
 	File bin\libatk-1.0-0.dll  ; atk
 	File bin\libcairo-2.dll  ; cairo, needed by gtk
 	File bin\libcairo-gobject-2.dll  ; cairo. Doesn't seem to be required, but since we're distributing cairo...
 	File bin\libcairo-script-interpreter-2.dll  ; cairo. Doesn't seem to be required, but since we're distributing cairo...
-	File bin\libexpat-1.dll  ; fontconfig needs this
+	File bin\libffi-6.dll  ; libffi is required by glib 
 	File bin\libfontconfig-1.dll  ; fontconfig is needed for ft2 pango backend
+	File bin\libfreetype-6.dll  ; freetype is needed for ft2 pango backend
 	File bin\libgailutil-18.dll  ; from gtk
 	File bin\libgdk_pixbuf-2.0-0.dll  ; from gtk
 	File bin\libgdk-win32-2.0-0.dll  ; from gtk
@@ -248,11 +247,15 @@ SectionIn 1 2 RO
 	File bin\libgobject-2.0-0.dll  ; from glib
 	File bin\libgthread-2.0-0.dll  ; from glib
 	File bin\libgtk-win32-2.0-0.dll  ; gtk
+	File bin\libharfbuzz-0.dll  ; harfbuzz
+	File bin\libintl-8.dll  ; gettext, needed by all i18n libs
 	File bin\libpango-1.0-0.dll  ; pango, needed by gtk
 	File bin\libpangocairo-1.0-0.dll  ; pango, needed by gtk
 	File bin\libpangoft2-1.0-0.dll  ; pango, needed by gtk
 	File bin\libpangowin32-1.0-0.dll  ; pango, needed by gtk
-	File bin\libpng14-14.dll  ; for gdk_pixbuf loader.
+	File bin\libpixman-1-0.dll  ; libpixman, needed by cairo
+	File bin\libpng16-16.dll  ; for gdk_pixbuf loader.
+	File bin\libxml2-2.dll  ; fontconfig needs this
 	File bin\zlib1.dll  ; png and many others need this
 
 
@@ -557,14 +560,13 @@ Function un.DeleteDlls
 	Delete $LIB_INSTDIR\pango-querymodules.exe
 
 	; dlls
-	Delete $LIB_INSTDIR\libfreetype-6.dll  ; freetype is needed for ft2 pango backend
-	Delete $LIB_INSTDIR\libintl-8.dll  ; gettext, needed by all i18n libs
 	Delete $LIB_INSTDIR\libatk-1.0-0.dll  ; atk
 	Delete $LIB_INSTDIR\libcairo-2.dll  ; cairo, needed by gtk
 	Delete $LIB_INSTDIR\libcairo-gobject-2.dll  ; cairo. Doesn't seem to be required, but since we're distributing cairo...
 	Delete $LIB_INSTDIR\libcairo-script-interpreter-2.dll  ; cairo. Doesn't seem to be required, but since we're distributing cairo...
-	Delete $LIB_INSTDIR\libexpat-1.dll  ; fontconfig needs this
+	Delete $LIB_INSTDIR\libffi-6.dll  ; libffi is required by glib 
 	Delete $LIB_INSTDIR\libfontconfig-1.dll  ; fontconfig is needed for ft2 pango backend
+	Delete $LIB_INSTDIR\libfreetype-6.dll  ; freetype is needed for ft2 pango backend
 	Delete $LIB_INSTDIR\libgailutil-18.dll  ; from gtk
 	Delete $LIB_INSTDIR\libgdk_pixbuf-2.0-0.dll  ; from gtk
 	Delete $LIB_INSTDIR\libgdk-win32-2.0-0.dll  ; from gtk
@@ -574,11 +576,15 @@ Function un.DeleteDlls
 	Delete $LIB_INSTDIR\libgobject-2.0-0.dll  ; from glib
 	Delete $LIB_INSTDIR\libgthread-2.0-0.dll  ; from glib
 	Delete $LIB_INSTDIR\libgtk-win32-2.0-0.dll  ; gtk
+	Delete $LIB_INSTDIR\libharfbuzz-0.dll  ; harfbuzz
+	Delete $LIB_INSTDIR\libintl-8.dll  ; gettext, needed by all i18n libs
 	Delete $LIB_INSTDIR\libpango-1.0-0.dll  ; pango, needed by gtk
 	Delete $LIB_INSTDIR\libpangocairo-1.0-0.dll  ; pango, needed by gtk
 	Delete $LIB_INSTDIR\libpangoft2-1.0-0.dll  ; pango, needed by gtk
 	Delete $LIB_INSTDIR\libpangowin32-1.0-0.dll  ; pango, needed by gtk
-	Delete $LIB_INSTDIR\libpng14-14.dll  ; for gdk_pixbuf loader.
+	Delete $LIB_INSTDIR\libpixman-1-0.dll  ; libpixman, needed by cairo
+	Delete $LIB_INSTDIR\libpng16-16.dll  ; for gdk_pixbuf loader.
+	Delete $LIB_INSTDIR\libxml2-2.dll  ; fontconfig needs this
 	Delete $LIB_INSTDIR\zlib1.dll  ; png and many others need this
 
 
