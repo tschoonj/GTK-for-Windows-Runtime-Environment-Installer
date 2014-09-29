@@ -3,7 +3,7 @@ GTK+ for Windows Runtime Environment Installer
 
 This repository is a fork of the  [GTK+ for Windows Runtime Environment Installer](http://gtk-win.sourceforge.net) that was originally created
 by Alexander Shaduri.
-My efforts here will focus on creating a 64-bit version of the runtime that he has been providing so far, using up to date versions of GTK+ and its dependencies.
+My efforts here will focus on creating a **64-bit version** of the runtime that he has been providing so far, using up to date versions of GTK+ and its dependencies.
 
 The installers can be found [here](http://lvserver.ugent.be/gtk-win64/).
 
@@ -31,7 +31,7 @@ The included GTK+ dependencies were selected according to the flowchart used by 
 * [win-iconv](http://code.google.com/p/win-iconv/downloads/list) (0.0.6)
 * [zlib](http://www.zlib.net) (1.2.8)
 
-For all other information regarding how to use the installer, the reader is kindly referred to the [original website](http://gtk-win.sourceforge.net) of the GTK for Windows runtime environment installer.
+For all other information regarding how to use the installer, the reader is kindly referred to the [Alexander Shaduri's website](http://gtk-win.sourceforge.net) of the GTK for Windows runtime environment installer. The only difference with the installers found at this website is that mine DO NOT have the `compatdlls` option, but this should present no problems to any user.  
 
 Personally I use this installer in my [XMI-MSIM project](http://github.com/xmimsim). You may want to have a look at my Inno Setup ([new](https://github.com/tschoonj/xmimsim/blob/master/nsis/xmimsim.iss)) and NSIS ([old](https://github.com/tschoonj/xmimsim/blob/XMI-MSIM-4.0/nsis/xmimsim-win64.nsi.in)) based installers. 
 
