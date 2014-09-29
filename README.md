@@ -1,5 +1,5 @@
-GTK+ for Windows Runtime Environment Installer
-==============================================
+GTK+ for Windows Runtime Environment Installer: 64-bit
+======================================================
 
 This repository is a fork of the  [GTK+ for Windows Runtime Environment Installer](http://gtk-win.sourceforge.net) that was originally created
 by Alexander Shaduri.
