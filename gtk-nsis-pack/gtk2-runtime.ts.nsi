@@ -247,21 +247,28 @@ SectionIn 1 2 RO
 	File bin\libgdkmm-2.4-1.dll
 	File bin\libgio-2.0-0.dll  ; from glib
 	File bin\libglib-2.0-0.dll  ; glib
+	File bin\libglibmm-2.4-1.dll  ; glib
+	File bin\libgiomm-2.4-1.dll  ; glib
+	File bin\libsigc-2.0-0.dll
+	File bin\libglibmm_generate_extra_defs-2.4-1.dll  ; glib
 	File bin\libgmodule-2.0-0.dll  ; from glib
 	File bin\libgobject-2.0-0.dll  ; from glib
 	File bin\libgthread-2.0-0.dll  ; from glib
 	File bin\libgtk-win32-2.0-0.dll  ; gtk
 	File bin\libgtkmm-2.4-1.dll
+	File bin\libharfbuzz-0.dll
 	File bin\libintl-8.dll  ; gettext, needed by all i18n libs
 	File bin\libpango-1.0-0.dll  ; pango, needed by gtk
 	File bin\libpangocairo-1.0-0.dll  ; pango, needed by gtk
 	File bin\libpangowin32-1.0-0.dll  ; pango, needed by gtk
+	File bin\libpangoft2-1.0-0.dll  ; pango, needed by gtk
 	File bin\libpangomm-1.4-1.dll
 	File bin\libpixman-1-0.dll  ; libpixman, needed by cairo
 	File bin\libpng16-16.dll  ; for gdk_pixbuf loader.
 	File bin\libxml2-2.dll  ; fontconfig needs this
 	File bin\zlib1.dll  ; png and many others need this
 	File bin\libstdc++_64-6.dll
+	File bin\libgcc_s_seh_64-1.dll
 
 	; We install this into the same place as the DLLs to avoid any PATH manipulation.
 	SetOutPath "$LIB_INSTDIR"
@@ -586,21 +593,28 @@ Function un.DeleteDlls
 	Delete $LIB_INSTDIR\libgdkmm-2.4-1.dll
 	Delete $LIB_INSTDIR\libgio-2.0-0.dll  ; from glib
 	Delete $LIB_INSTDIR\libglib-2.0-0.dll  ; glib
+	Delete $LIB_INSTDIR\libglibmm-2.4-1.dll  ; glib
+	Delete $LIB_INSTDIR\libgiomm-2.4-1.dll  ; glib
+	Delete $LIB_INSTDIR\libsigc-2.0-0.dll  ; glib
+	Delete $LIB_INSTDIR\libglibmm_generate_extra_defs-2.4-1.dll  ; glib
 	Delete $LIB_INSTDIR\libgmodule-2.0-0.dll  ; from glib
 	Delete $LIB_INSTDIR\libgobject-2.0-0.dll  ; from glib
 	Delete $LIB_INSTDIR\libgthread-2.0-0.dll  ; from glib
 	Delete $LIB_INSTDIR\libgtk-win32-2.0-0.dll  ; gtk
 	Delete $LIB_INSTDIR\libgtkmm-2.4-1.dll
+	Delete $LIB_INSTDIR\libharfbuzz-0.dll
 	Delete $LIB_INSTDIR\libintl-8.dll  ; gettext, needed by all i18n libs
 	Delete $LIB_INSTDIR\libpango-1.0-0.dll  ; pango, needed by gtk
 	Delete $LIB_INSTDIR\libpangocairo-1.0-0.dll  ; pango, needed by gtk
 	Delete $LIB_INSTDIR\libpangowin32-1.0-0.dll  ; pango, needed by gtk
+	Delete $LIB_INSTDIR\libpangoft2-1.0-0.dll  ; pango, needed by gtk
 	Delete $LIB_INSTDIR\libpangomm-1.4-1.dll
 	Delete $LIB_INSTDIR\libpixman-1-0.dll  ; libpixman, needed by cairo
 	Delete $LIB_INSTDIR\libpng16-16.dll  ; for gdk_pixbuf loader.
 	Delete $LIB_INSTDIR\libxml2-2.dll  ; fontconfig needs this
 	Delete $LIB_INSTDIR\zlib1.dll  ; png and many others need this
 	Delete $LIB_INSTDIR\libstdc++_64-6.dll
+	Delete $LIB_INSTDIR\libgcc_s_seh_64-1.dll
 
 
 FunctionEnd
