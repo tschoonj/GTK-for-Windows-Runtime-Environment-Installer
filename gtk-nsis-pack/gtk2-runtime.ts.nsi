@@ -1,6 +1,7 @@
 
 ; NSIS2 Script for GTK2-Runtime
 ; by Alexander Shaduri <ashaduri 'at' gmail.com>.
+; modified by Tom Schoonjans <Tom.Schoonjans 'at' gmail.com>
 ; Compatible with NSIS Unicode 2.45.
 ; Public Domain
 
@@ -11,12 +12,12 @@
 ; should be installable side by side with this package.
 
 
-!define GTK_VERSION "2.24.24"
+!define GTK_VERSION "2.24.25"
 !define GTK_BIN_VERSION "2.10.0"
-!define PRODUCT_VERSION "${GTK_VERSION}-2014-09-28-ts-win64"
+!define PRODUCT_VERSION "${GTK_VERSION}-2015-01-21-ts-win64"
 !define PRODUCT_NAME "GTK2-Runtime Win64"
 !define PRODUCT_PUBLISHER "Tom Schoonjans"
-!define PRODUCT_WEB_SITE "http://gtk-win.sourceforge.net"
+!define PRODUCT_WEB_SITE "https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer"
 !define INSTALLER_OUTPUT_FILE "gtk2-runtime-${PRODUCT_VERSION}.exe"
 
 ;!define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\AppMainExe.exe"
@@ -232,43 +233,51 @@ SectionIn 1 2 RO
 	; be sure to do the same in the uninstall section.
 
 	File bin\libatk-1.0-0.dll  ; atk
+	File bin\libatkmm-1.6-1.dll  ; atk
 	File bin\libcairo-2.dll  ; cairo, needed by gtk
 	File bin\libcairo-gobject-2.dll  ; cairo. Doesn't seem to be required, but since we're distributing cairo...
 	File bin\libcairo-script-interpreter-2.dll  ; cairo. Doesn't seem to be required, but since we're distributing cairo...
+	File bin\libcairomm-1.0-1.dll
 	File bin\libffi-6.dll  ; libffi is required by glib 
 	File bin\libfontconfig-1.dll  ; fontconfig is needed for ft2 pango backend
 	File bin\libfreetype-6.dll  ; freetype is needed for ft2 pango backend
 	File bin\libgailutil-18.dll  ; from gtk
 	File bin\libgdk_pixbuf-2.0-0.dll  ; from gtk
 	File bin\libgdk-win32-2.0-0.dll  ; from gtk
+	File bin\libgdkmm-2.4-1.dll
 	File bin\libgio-2.0-0.dll  ; from glib
 	File bin\libglib-2.0-0.dll  ; glib
 	File bin\libgmodule-2.0-0.dll  ; from glib
 	File bin\libgobject-2.0-0.dll  ; from glib
 	File bin\libgthread-2.0-0.dll  ; from glib
 	File bin\libgtk-win32-2.0-0.dll  ; gtk
-	File bin\libharfbuzz-0.dll  ; harfbuzz
+	File bin\libgtkmm-2.4-1.dll
 	File bin\libintl-8.dll  ; gettext, needed by all i18n libs
 	File bin\libpango-1.0-0.dll  ; pango, needed by gtk
 	File bin\libpangocairo-1.0-0.dll  ; pango, needed by gtk
-	File bin\libpangoft2-1.0-0.dll  ; pango, needed by gtk
 	File bin\libpangowin32-1.0-0.dll  ; pango, needed by gtk
+	File bin\libpangomm-1.4-1.dll
 	File bin\libpixman-1-0.dll  ; libpixman, needed by cairo
 	File bin\libpng16-16.dll  ; for gdk_pixbuf loader.
 	File bin\libxml2-2.dll  ; fontconfig needs this
 	File bin\zlib1.dll  ; png and many others need this
-
+	File bin\libstdc++_64-6.dll
 
 	; We install this into the same place as the DLLs to avoid any PATH manipulation.
 	SetOutPath "$LIB_INSTDIR"
 	File bin\fc-cache.exe
+	File bin\fc-cat.exe
 	File bin\fc-list.exe
+	File bin\fc-match.exe
+	File bin\fc-pattern.exe
+	File bin\fc-query.exe
+	File bin\fc-scan.exe
+	File bin\fc-validate.exe
 	File bin\gdk-pixbuf-query-loaders.exe  ; from gdk_pixbuf
 	File bin\gspawn-win64-helper.exe
 	File bin\gspawn-win64-helper-console.exe
 	File bin\gtk-query-immodules-2.0.exe
 	File bin\gtk-update-icon-cache.exe
-	File bin\gtk-update-icon-cache.exe.manifest
 	File bin\pango-querymodules.exe
 	
 	
@@ -302,11 +311,9 @@ SectionIn 1 2 RO
 	SetOutPath "$INSTDIR\share\locale"
 	File share\locale\locale.alias  ; from gettext
 
-	; Default theme
+	SetOutPath "$INSTDIR\share\themes\Emacs"
+	File /r share\themes\Emacs\gtk-2.0-key
 	SetOutPath "$INSTDIR\share\themes"
-	; Why have two dirs with the same content? disable "Default".
-	; File /r share\themes\Default
-	File /r share\themes\Emacs
 	File /r share\themes\MS-Windows
 	File /r share\themes\Raleigh
 
@@ -316,7 +323,6 @@ SectionIn 1 2 RO
 	File license.txt
 	File license_gpl.txt
 	File license_lgpl.txt
-	File license_jpeg.txt
 	File license_png.txt
 	File license_zlib.txt
 	File gtk.ico  ; needed for "add/remove programs"
@@ -550,42 +556,51 @@ Function un.DeleteDlls
 
 	; bin stuff (they are in the same directory)
 	Delete $LIB_INSTDIR\fc-cache.exe
+	Delete $LIB_INSTDIR\fc-cat.exe
 	Delete $LIB_INSTDIR\fc-list.exe
+	Delete $LIB_INSTDIR\fc-match.exe
+	Delete $LIB_INSTDIR\fc-pattern.exe
+	Delete $LIB_INSTDIR\fc-query.exe
+	Delete $LIB_INSTDIR\fc-scan.exe
+	Delete $LIB_INSTDIR\fc-validate.exe
 	Delete $LIB_INSTDIR\gdk-pixbuf-query-loaders.exe
 	Delete $LIB_INSTDIR\gspawn-win64-helper.exe
 	Delete $LIB_INSTDIR\gspawn-win64-helper-console.exe
 	Delete $LIB_INSTDIR\gtk-query-immodules-2.0.exe
 	Delete $LIB_INSTDIR\gtk-update-icon-cache.exe
-	Delete $LIB_INSTDIR\gtk-update-icon-cache.exe.manifest
 	Delete $LIB_INSTDIR\pango-querymodules.exe
 
 	; dlls
 	Delete $LIB_INSTDIR\libatk-1.0-0.dll  ; atk
+	Delete $LIB_INSTDIR\libatkmm-1.6-1.dll  ; atk
 	Delete $LIB_INSTDIR\libcairo-2.dll  ; cairo, needed by gtk
 	Delete $LIB_INSTDIR\libcairo-gobject-2.dll  ; cairo. Doesn't seem to be required, but since we're distributing cairo...
 	Delete $LIB_INSTDIR\libcairo-script-interpreter-2.dll  ; cairo. Doesn't seem to be required, but since we're distributing cairo...
+	Delete $LIB_INSTDIR\libcairomm-1.0-1.dll
 	Delete $LIB_INSTDIR\libffi-6.dll  ; libffi is required by glib 
 	Delete $LIB_INSTDIR\libfontconfig-1.dll  ; fontconfig is needed for ft2 pango backend
 	Delete $LIB_INSTDIR\libfreetype-6.dll  ; freetype is needed for ft2 pango backend
 	Delete $LIB_INSTDIR\libgailutil-18.dll  ; from gtk
 	Delete $LIB_INSTDIR\libgdk_pixbuf-2.0-0.dll  ; from gtk
 	Delete $LIB_INSTDIR\libgdk-win32-2.0-0.dll  ; from gtk
+	Delete $LIB_INSTDIR\libgdkmm-2.4-1.dll
 	Delete $LIB_INSTDIR\libgio-2.0-0.dll  ; from glib
 	Delete $LIB_INSTDIR\libglib-2.0-0.dll  ; glib
 	Delete $LIB_INSTDIR\libgmodule-2.0-0.dll  ; from glib
 	Delete $LIB_INSTDIR\libgobject-2.0-0.dll  ; from glib
 	Delete $LIB_INSTDIR\libgthread-2.0-0.dll  ; from glib
 	Delete $LIB_INSTDIR\libgtk-win32-2.0-0.dll  ; gtk
-	Delete $LIB_INSTDIR\libharfbuzz-0.dll  ; harfbuzz
+	Delete $LIB_INSTDIR\libgtkmm-2.4-1.dll
 	Delete $LIB_INSTDIR\libintl-8.dll  ; gettext, needed by all i18n libs
 	Delete $LIB_INSTDIR\libpango-1.0-0.dll  ; pango, needed by gtk
 	Delete $LIB_INSTDIR\libpangocairo-1.0-0.dll  ; pango, needed by gtk
-	Delete $LIB_INSTDIR\libpangoft2-1.0-0.dll  ; pango, needed by gtk
 	Delete $LIB_INSTDIR\libpangowin32-1.0-0.dll  ; pango, needed by gtk
+	Delete $LIB_INSTDIR\libpangomm-1.4-1.dll
 	Delete $LIB_INSTDIR\libpixman-1-0.dll  ; libpixman, needed by cairo
 	Delete $LIB_INSTDIR\libpng16-16.dll  ; for gdk_pixbuf loader.
 	Delete $LIB_INSTDIR\libxml2-2.dll  ; fontconfig needs this
 	Delete $LIB_INSTDIR\zlib1.dll  ; png and many others need this
+	Delete $LIB_INSTDIR\libstdc++_64-6.dll
 
 
 FunctionEnd
