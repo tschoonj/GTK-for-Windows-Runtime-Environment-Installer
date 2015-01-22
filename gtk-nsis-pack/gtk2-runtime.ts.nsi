@@ -288,9 +288,9 @@ SectionIn 1 2 RO
 	File bin\pango-querymodules.exe
 	
 	
-	SetOutPath "$INSTDIR"
+	SetOutPath "$INSTDIR\etc"
 	SetOverwrite off
-	File /r etc  ; don't overwrite config files
+	File /r etc\gtk-2.0 
 	SetOverwrite On
 
 
@@ -328,10 +328,6 @@ SectionIn 1 2 RO
 	SetOutPath "$INSTDIR\gtk2-runtime"
 	; File gtk-postinstall.bat ; this file is generated now
 	File license.txt
-	File license_gpl.txt
-	File license_lgpl.txt
-	File license_png.txt
-	File license_zlib.txt
 	File gtk.ico  ; needed for "add/remove programs"
 
 
@@ -727,14 +723,14 @@ Section Uninstall
 	skip_config:
 
 
-	Delete "$INSTDIR\etc\fonts\fonts.conf"
-	RMDir "$INSTDIR\etc\fonts"  ; only if empty
-	Delete "$INSTDIR\etc\pango\pango.modules"
-	RMDir "$INSTDIR\etc\pango"  ; only if empty
+	;Delete "$INSTDIR\etc\fonts\fonts.conf"
+	;RMDir "$INSTDIR\etc\fonts"  ; only if empty
+	;Delete "$INSTDIR\etc\pango\pango.modules"
+	;RMDir "$INSTDIR\etc\pango"  ; only if empty
 	; Delete "$INSTDIR\etc\gtk-2.0\gdk-pixbuf.loaders"
-	Delete "$INSTDIR\etc\gtk-2.0\gtk.immodules"
+	;Delete "$INSTDIR\etc\gtk-2.0\gtk.immodules"
 	Delete "$INSTDIR\etc\gtk-2.0\gtkrc.default"
-	Delete "$INSTDIR\etc\gtk-2.0\im-multipress.conf"
+	;Delete "$INSTDIR\etc\gtk-2.0\im-multipress.conf"
 	RMDir "$INSTDIR\etc\gtk-2.0" ; only if empty
 	RMDir "$INSTDIR\etc" ; only if empty
 
