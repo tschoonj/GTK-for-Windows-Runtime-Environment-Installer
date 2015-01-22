@@ -199,8 +199,8 @@ FunctionEnd
 
 
 ;Description
-LangString DESC_SecCopyUI ${LANG_ENGLISH} "GTK2 Runtime"
-LangString TEXT_IO_TITLE ${LANG_ENGLISH} "GTK2 Runtime"
+LangString DESC_SecCopyUI ${LANG_ENGLISH} "GTK2 Runtime 64-bit"
+LangString TEXT_IO_TITLE ${LANG_ENGLISH} "GTK2 Runtime 64-bit"
 LangString TEXT_IO_SUBTITLE ${LANG_ENGLISH} "Additional options"
 
 
@@ -500,9 +500,9 @@ Section -post
 		WriteRegDWORD HKLM "${PRODUCT_UNINST_KEY}" "NoRepair" 1
 
 		; uninstall shortcut
-		CreateDirectory "$SMPROGRAMS\GTK2 Runtime"
-		CreateShortCut "$SMPROGRAMS\GTK2 Runtime\Uninstall GTK2 Runtime.lnk" "$INSTDIR\gtk2_runtime_uninst.exe" "" ""
-		WriteIniStr "$SMPROGRAMS\GTK2 Runtime\Go to the website.url" "InternetShortcut" "URL" "${PRODUCT_WEB_SITE}"
+		CreateDirectory "$SMPROGRAMS\GTK2 Runtime 64-bit"
+		CreateShortCut "$SMPROGRAMS\GTK2 Runtime 64-bit\Uninstall GTK2 Runtime.lnk" "$INSTDIR\gtk2_runtime_uninst.exe" "" ""
+		WriteIniStr "$SMPROGRAMS\GTK2 Runtime 64-bit\Go to the website.url" "InternetShortcut" "URL" "${PRODUCT_WEB_SITE}"
 
 
 		; Write $INSTDIR\gtk2-runtime\gtk2r-env.bat
@@ -532,6 +532,7 @@ var uninstall_option_translations  ; uninstall translations: yes, no (default)
 
 
 Function un.onInit
+	SetRegView 64
 	${GetOptions} "$CMDLINE" "/remove_config=" $uninstall_option_remove_config
 	${GetOptions} "$CMDLINE" "/sideeffects=" $uninstall_option_sideeffects
 	${GetOptions} "$CMDLINE" "/dllpath=" $uninstall_option_dllpath
@@ -651,9 +652,9 @@ Section Uninstall
 		; FIXME: Do we have this registry key?
 		; DeleteRegKey HKCU "Software\${PRODUCT_NAME}"
 
-		Delete "$SMPROGRAMS\GTK2 Runtime\Uninstall GTK2 Runtime.lnk"
-		Delete "$SMPROGRAMS\GTK2 Runtime\Go to the website.url"
-		RMDir "$SMPROGRAMS\GTK2 Runtime"  ; only if empty, theme selector may still be there
+		Delete "$SMPROGRAMS\GTK2 Runtime 64-bit\Uninstall GTK2 Runtime.lnk"
+		Delete "$SMPROGRAMS\GTK2 Runtime 64-bit\Go to the website.url"
+		RMDir "$SMPROGRAMS\GTK2 Runtime 64-bit"  ; only if empty, theme selector may still be there
 
 		; Remove GTK from $PATH
 		StrCmp $ADD_TO_PATH "0" un_nopath  ; Setting $PATH was not requested during installation
@@ -786,6 +787,10 @@ Section Uninstall
 		Delete "$INSTDIR\share\locale\$found_dir\LC_MESSAGES\glib20.mo"
 		Delete "$INSTDIR\share\locale\$found_dir\LC_MESSAGES\gtk20.mo"
 		Delete "$INSTDIR\share\locale\$found_dir\LC_MESSAGES\gtk20-properties.mo"
+		Delete "$INSTDIR\share\locale\$found_dir\LC_MESSAGES\gtk30.mo"
+		Delete "$INSTDIR\share\locale\$found_dir\LC_MESSAGES\gtk30-properties.mo"
+		Delete "$INSTDIR\share\locale\$found_dir\LC_MESSAGES\gettext-runtime.mo"
+		Delete "$INSTDIR\share\locale\$found_dir\LC_MESSAGES\gettext-tools.mo"
 
 		RmDir "$INSTDIR\share\locale\$found_dir\LC_MESSAGES"  ; only if empty
 		RmDir "$INSTDIR\share\locale\$found_dir"
@@ -796,8 +801,8 @@ Section Uninstall
 		find_lang_dir_done:
 		FindClose $find_handle_lang_dir
 
-		RMDir "$INSTDIR\share\locale"  ; only if empty, not to remove the other programs' translations
 	un_notranslations:
+	RMDir "$INSTDIR\share\locale"  ; only if empty, not to remove the other programs' translations
 
 
 	RMDir /r "$INSTDIR\share\themes\Raleigh"
