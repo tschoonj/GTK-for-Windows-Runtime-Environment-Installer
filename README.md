@@ -3,7 +3,7 @@ GTK+ for Windows Runtime Environment Installer: 64-bit
 
 This repository is a fork of the  [GTK+ for Windows Runtime Environment Installer](http://gtk-win.sourceforge.net) that was originally created
 by Alexander Shaduri.
-My efforts here will focus on creating a **64-bit version** of the Gtk2 runtime that he has been providing so far, using up to date versions of GTK+ and its dependencies. Recently I have also created a 64-bit **Gtk3 runtime package**. All packages now contain **Gtkmm** and its dependencies too.
+My efforts here will focus on creating a **64-bit version** of the GTK+-2 runtime that he has been providing so far, using up to date versions of GTK+ and its dependencies. Recently I have also created a 64-bit **GTK+-3 runtime package**. All packages now contain **Gtkmm** and its dependencies too. Since the GTK+ developers recently dropped support for stock icons (a mistake of epic proportions IMHO...), I added the Gnome icon theme to the GTK+-3 runtime, so you can still enjoy pretty filechooserdialogs etc!
 
 The installers can be found [here](http://lvserver.ugent.be/gtk-win64/).
 
@@ -24,11 +24,17 @@ The included GTK+ dependencies were selected according to the flowchart used by 
 * [gettext](http://ftp.gnu.org/pub/gnu/gettext/) (0.19.4)
 * [glib](http://ftp.gnome.org/pub/GNOME/sources/glib/) (2.42.1)
 * [glibmm](http://ftp.gnome.org/pub/GNOME/sources/glibmm/) (2.42.0)
+* [gnome-icon-theme](http://ftp.gnome.org/pub/GNOME/sources/gnome-icon-theme/) (3.12.0)
+* [gnome-icon-theme-extras](http://ftp.gnome.org/pub/GNOME/sources/gnome-icon-theme-extras/) (3.12.0)
+* [gnome-icon-theme-symbolic](http://ftp.gnome.org/pub/GNOME/sources/gnome-icon-theme-symbolic/) (3.12.0)
 * [gtk2](http://ftp.gnome.org/pub/GNOME/sources/gtk+/) (2.24.25)
 * [gtk3](http://ftp.gnome.org/pub/GNOME/sources/gtk+/) (3.14.7)
 * [gtkmm2](http://ftp.gnome.org/pub/GNOME/sources/gtkmm) (2.24.4)
 * [gtkmm3](http://ftp.gnome.org/pub/GNOME/sources/gtkmm) (3.14.0)
 * [harfbuzz](http://www.freedesktop.org/software/harfbuzz/release/) (0.9.37)
+* [hicolor-icon-theme](http://icon-theme.freedesktop.org/releases/) (0.14)
+* [icon-naming-utils](http://tango.freedesktop.org/releases/) (0.8.90)
+* [intltool](http://ftp.gnome.org/pub/gnome/sources/intltool/) (0.50.2)
 * [libffi](http://sourceware.org/libffi/) (3.2.1)
 * [libpng](http://sourceforge.net/project/showfiles.php?group_id=5624) (1.6.16)
 * [libsigc++](http://ftp.gnome.org/pub/GNOME/sources/libsigc++/) (2.4.0)
