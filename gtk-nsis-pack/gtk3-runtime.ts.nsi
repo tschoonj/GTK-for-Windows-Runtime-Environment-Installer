@@ -13,7 +13,7 @@
 
 !define GTK_VERSION "3.14.7"
 !define GTK_BIN_VERSION "3.0.0"
-!define PRODUCT_VERSION "${GTK_VERSION}-2015-01-21-ts-win64"
+!define PRODUCT_VERSION "${GTK_VERSION}-2015-01-27-ts-win64"
 !define PRODUCT_NAME "GTK3-Runtime Win64"
 !define PRODUCT_PUBLISHER "Tom Schoonjans"
 !define PRODUCT_WEB_SITE "https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer"
@@ -319,6 +319,11 @@ SectionIn 1 2 RO
 	SetOutPath "$INSTDIR\share\themes\Default"
 	File /r share\themes\Default\gtk-3.0
 
+	SetOutPath "$INSTDIR\share\glib-2.0"
+	File /r share\glib-2.0\schemas
+
+	SetOutPath "$INSTDIR\share"
+	File /r share\icons
 
 	SetOutPath "$INSTDIR\gtk3-runtime"
 	; File gtk-postinstall.bat ; this file is generated now
@@ -726,6 +731,7 @@ Section Uninstall
 	;Delete "$INSTDIR\etc\gtk-2.0\gtk.immodules"
 	;Delete "$INSTDIR\etc\gtk-2.0\gtkrc.default"
 	Delete "$INSTDIR\etc\gtk-3.0\im-multipress.conf"
+	Delete "$INSTDIR\etc\gtk-3.0\settings.ini"
 	RMDir "$INSTDIR\etc\gtk-3.0" ; only if empty
 	RMDir "$INSTDIR\etc" ; only if empty
 
@@ -798,6 +804,8 @@ Section Uninstall
 
 	RMDir /r "$INSTDIR\share\themes\Default"
 	RMDir /r "$INSTDIR\share\themes\Emacs"
+	RMDir /r "$INSTDIR\share\glib-2.0"
+	RMDir /r "$INSTDIR\share\icons"
 
 	RMDir "$INSTDIR\share\themes"  ; not forced
 	RMDir "$INSTDIR\share"  ; not forced
