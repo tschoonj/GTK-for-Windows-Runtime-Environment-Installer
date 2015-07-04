@@ -11,7 +11,7 @@ The installers can be found [here](http://lvserver.ugent.be/gtk-win64/).
 
 Both for convencience as well as for increased reliability across installations, it is recommended for developers to compile and link against the GTK+ SDK that I used to create the installers. This SDK can also be obtained at the aforementioned url.
 
-The current releases ([gtk2-runtime-2.24.28-2015-06-23-ts-win64.exe](http://lvserver.ugent.be/gtk-win64/gtk2-runtime/gtk2-runtime-2.24.28-2015-06-23-ts-win64.exe) and [gtk3-runtime-3.14.13-2015-06-23-ts-win64.exe](http://lvserver.ugent.be/gtk-win64/gtk3-runtime/gtk3-runtime-3.14.13-2015-06-23-ts-win64.exe)) have been compiled using GCC 4.9.2 (MinGW-w64 installed from TDM-GCC).
+The current releases ([gtk2-runtime-2.24.28-2015-07-03-ts-win64.exe](http://lvserver.ugent.be/gtk-win64/gtk2-runtime/gtk2-runtime-2.24.28-2015-07-03-ts-win64.exe) and [gtk3-runtime-3.14.13-2015-07-03-ts-win64.exe](http://lvserver.ugent.be/gtk-win64/gtk3-runtime/gtk3-runtime-3.14.13-2015-07-03-ts-win64.exe)) have been compiled using GCC 5.1.0 (MinGW-w64 installed from TDM-GCC). 
 The included GTK+ dependencies were selected according to the flowchart used by [Hexchat](http://hexchat.github.io/gtk-win32/). The source tarballs can be obtained by clicking on the names of the dependencies in the following list:
 
 * [adwaita icon theme](http://ftp.gnome.org/pub/GNOME/sources/adwaita-icon-theme/) (3.14.1)
