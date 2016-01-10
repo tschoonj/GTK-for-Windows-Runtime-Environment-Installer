@@ -12,9 +12,9 @@
 ; should be installable side by side with this package.
 
 
-!define GTK_VERSION "2.24.28"
+!define GTK_VERSION "2.24.29"
 !define GTK_BIN_VERSION "2.10.0"
-!define PRODUCT_VERSION "${GTK_VERSION}-2015-07-03-ts-win64"
+!define PRODUCT_VERSION "${GTK_VERSION}-2016-01-10-ts-win64"
 !define PRODUCT_NAME "GTK2-Runtime Win64"
 !define PRODUCT_PUBLISHER "Tom Schoonjans"
 !define PRODUCT_WEB_SITE "https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer"
@@ -289,7 +289,6 @@ SectionIn 1 2 RO
 	File bin\gspawn-win64-helper-console.exe
 	File bin\gtk-query-immodules-2.0.exe
 	File bin\gtk-update-icon-cache.exe
-	File bin\pango-querymodules.exe
 	
 	
 	SetOutPath "$INSTDIR\etc"
@@ -576,7 +575,6 @@ Function un.DeleteDlls
 	Delete $LIB_INSTDIR\gspawn-win64-helper-console.exe
 	Delete $LIB_INSTDIR\gtk-query-immodules-2.0.exe
 	Delete $LIB_INSTDIR\gtk-update-icon-cache.exe
-	Delete $LIB_INSTDIR\pango-querymodules.exe
 
 	; dlls
 	Delete $LIB_INSTDIR\libatk-1.0-0.dll  ; atk
@@ -858,7 +856,6 @@ Function WritePostInstall
 	Push $R9
 		FileOpen $R9 $R0 w
 		FileWrite $R9 "@echo off$\r$\n"
-		FileWrite $R9 "$\"$INSTDIR\bin\pango-querymodules.exe$\" > $\"$INSTDIR\etc\pango\pango.modules$\"$\r$\n"
 		FileWrite $R9 "rem $\"$INSTDIR\bin\gdk-pixbuf-query-loaders.exe$\" > $\"$INSTDIR\etc\gtk-2.0\gdk-pixbuf.loaders$\"$\r$\n"
 		FileWrite $R9 "$\"$INSTDIR\bin\gtk-query-immodules-2.0.exe$\" > $\"$INSTDIR\etc\gtk-2.0\gtk.immodules$\"$\r$\n"
 		FileWrite $R9 "rem $\"$INSTDIR\bin\gtk-update-icon-cache.exe$\"$\r$\n"

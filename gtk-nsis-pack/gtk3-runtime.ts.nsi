@@ -11,9 +11,9 @@
 ; Directory and package names: gtk3-runtime.
 
 
-!define GTK_VERSION "3.14.13"
+!define GTK_VERSION "3.18.6"
 !define GTK_BIN_VERSION "3.0.0"
-!define PRODUCT_VERSION "${GTK_VERSION}-2015-07-03-ts-win64"
+!define PRODUCT_VERSION "${GTK_VERSION}-2016-01-10-ts-win64"
 !define PRODUCT_NAME "GTK3-Runtime Win64"
 !define PRODUCT_PUBLISHER "Tom Schoonjans"
 !define PRODUCT_WEB_SITE "https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer"
@@ -237,6 +237,7 @@ SectionIn 1 2 RO
 	File bin\libcairo-gobject-2.dll  ; cairo. Doesn't seem to be required, but since we're distributing cairo...
 	File bin\libcairo-script-interpreter-2.dll  ; cairo. Doesn't seem to be required, but since we're distributing cairo...
 	File bin\libcairomm-1.0-1.dll
+	File bin\libepoxy-0.dll
 	File bin\libexslt-0.dll
 	File bin\libffi-6.dll  ; libffi is required by glib 
 	File bin\libfontconfig-1.dll  ; fontconfig is needed for ft2 pango backend
@@ -288,7 +289,6 @@ SectionIn 1 2 RO
 	File bin\gspawn-win64-helper-console.exe
 	File bin\gtk-query-immodules-3.0.exe
 	File bin\gtk-update-icon-cache.exe
-	File bin\pango-querymodules.exe
 	
 	
 	SetOutPath "$INSTDIR\etc"
@@ -576,7 +576,6 @@ Function un.DeleteDlls
 	Delete $LIB_INSTDIR\gspawn-win64-helper-console.exe
 	Delete $LIB_INSTDIR\gtk-query-immodules-3.0.exe
 	Delete $LIB_INSTDIR\gtk-update-icon-cache.exe
-	Delete $LIB_INSTDIR\pango-querymodules.exe
 
 	; dlls
 	Delete $LIB_INSTDIR\libatk-1.0-0.dll  ; atk
@@ -585,6 +584,7 @@ Function un.DeleteDlls
 	Delete $LIB_INSTDIR\libcairo-gobject-2.dll  ; cairo. Doesn't seem to be required, but since we're distributing cairo...
 	Delete $LIB_INSTDIR\libcairo-script-interpreter-2.dll  ; cairo. Doesn't seem to be required, but since we're distributing cairo...
 	Delete $LIB_INSTDIR\libcairomm-1.0-1.dll
+	Delete $LIB_INSTDIR\libepoxy-0.dll
 	Delete $LIB_INSTDIR\libexslt-0.dll
 	Delete $LIB_INSTDIR\libffi-6.dll  ; libffi is required by glib 
 	Delete $LIB_INSTDIR\libfontconfig-1.dll  ; fontconfig is needed for ft2 pango backend
@@ -860,7 +860,6 @@ Function WritePostInstall
 	Push $R9
 		FileOpen $R9 $R0 w
 		FileWrite $R9 "@echo off$\r$\n"
-		FileWrite $R9 "$\"$INSTDIR\bin\pango-querymodules.exe$\" > $\"$INSTDIR\etc\pango\pango.modules$\"$\r$\n"
 		FileWrite $R9 "rem $\"$INSTDIR\bin\gdk-pixbuf-query-loaders.exe$\" > $\"$INSTDIR\etc\gtk-3.0\gdk-pixbuf.loaders$\"$\r$\n"
 		FileWrite $R9 "$\"$INSTDIR\bin\gtk-query-immodules-3.0.exe$\" > $\"$INSTDIR\etc\gtk-3.0\gtk.immodules$\"$\r$\n"
 		FileWrite $R9 "rem $\"$INSTDIR\bin\gtk-update-icon-cache.exe$\"$\r$\n"
