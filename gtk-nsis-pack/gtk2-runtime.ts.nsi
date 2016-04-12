@@ -12,9 +12,9 @@
 ; should be installable side by side with this package.
 
 
-!define GTK_VERSION "2.24.29"
+!define GTK_VERSION "2.24.30"
 !define GTK_BIN_VERSION "2.10.0"
-!define PRODUCT_VERSION "${GTK_VERSION}-2016-01-10-ts-win64"
+!define PRODUCT_VERSION "${GTK_VERSION}-2016-04-09-ts-win64"
 !define PRODUCT_NAME "GTK2-Runtime Win64"
 !define PRODUCT_PUBLISHER "Tom Schoonjans"
 !define PRODUCT_WEB_SITE "https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer"
@@ -256,9 +256,12 @@ SectionIn 1 2 RO
 	File bin\libgobject-2.0-0.dll  ; from glib
 	File bin\libgthread-2.0-0.dll  ; from glib
 	File bin\libgtk-win32-2.0-0.dll  ; gtk
+	File bin\libgtksourceview-2.0-0.dll
 	File bin\libgtkmm-2.4-1.dll
+	File bin\libgtksourceviewmm-2.0-2.dll
 	File bin\libharfbuzz-0.dll
 	File bin\libintl-8.dll  ; gettext, needed by all i18n libs
+	File bin\iconv.dll
 	File bin\libjson-glib-1.0-0.dll  ; gettext, needed by all i18n libs
 	File bin\libpango-1.0-0.dll  ; pango, needed by gtk
 	File bin\libpangocairo-1.0-0.dll  ; pango, needed by gtk
@@ -268,11 +271,14 @@ SectionIn 1 2 RO
 	File bin\libpixman-1-0.dll  ; libpixman, needed by cairo
 	File bin\libpng16-16.dll  ; for gdk_pixbuf loader.
 	File bin\libxml++-2.6-2.dll  ; fontconfig needs this
+	File bin\libxml++-3.0-1.dll
+	File bin\libpcre-1.dll
 	File bin\libxml2-2.dll  ; fontconfig needs this
 	File bin\libxslt-1.dll  ; fontconfig needs this
 	File bin\zlib1.dll  ; png and many others need this
 	File bin\libstdc++_64-6.dll
 	File bin\libgcc_s_seh_64-1.dll
+	File bin\libwinpthread_64-1.dll
 
 	; We install this into the same place as the DLLs to avoid any PATH manipulation.
 	SetOutPath "$LIB_INSTDIR"
@@ -601,9 +607,12 @@ Function un.DeleteDlls
 	Delete $LIB_INSTDIR\libgobject-2.0-0.dll  ; from glib
 	Delete $LIB_INSTDIR\libgthread-2.0-0.dll  ; from glib
 	Delete $LIB_INSTDIR\libgtk-win32-2.0-0.dll  ; gtk
+	Delete $LIB_INSTDIR\libgtksourceview-2.0-0.dll
+	Delete $LIB_INSTDIR\libgtksourceviewmm-2.0-2.dll
 	Delete $LIB_INSTDIR\libgtkmm-2.4-1.dll
 	Delete $LIB_INSTDIR\libharfbuzz-0.dll
 	Delete $LIB_INSTDIR\libintl-8.dll  ; gettext, needed by all i18n libs
+	Delete $LIB_INSTDIR\iconv.dll
 	Delete $LIB_INSTDIR\libjson-glib-1.0-0.dll 
 	Delete $LIB_INSTDIR\libpango-1.0-0.dll  ; pango, needed by gtk
 	Delete $LIB_INSTDIR\libpangocairo-1.0-0.dll  ; pango, needed by gtk
@@ -615,9 +624,12 @@ Function un.DeleteDlls
 	Delete $LIB_INSTDIR\libxml2-2.dll  ; fontconfig needs this
 	Delete $LIB_INSTDIR\libxslt-1.dll  ; fontconfig needs this
 	Delete $LIB_INSTDIR\libxml++-2.6-2.dll  ; fontconfig needs this
+	Delete $LIB_INSTDIR\libxml++-3.0-1.dll
+	Delete $LIB_INSTDIR\libpcre-1.dll
 	Delete $LIB_INSTDIR\zlib1.dll  ; png and many others need this
 	Delete $LIB_INSTDIR\libstdc++_64-6.dll
 	Delete $LIB_INSTDIR\libgcc_s_seh_64-1.dll
+	Delete $LIB_INSTDIR\libwinpthread_64-1.dll
 
 
 FunctionEnd

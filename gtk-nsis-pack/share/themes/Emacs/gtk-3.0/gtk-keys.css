@@ -104,18 +104,18 @@
   bind "<ctrl>b" { "move-current" (parent) };
 }
 
-GtkEntry {
-  gtk-key-bindings: gtk-emacs-text-entry;
+entry {
+  -gtk-key-bindings: gtk-emacs-text-entry;
 }
 
-GtkTextView {
-  gtk-key-bindings: gtk-emacs-text-entry, gtk-emacs-text-view;
+textview {
+  -gtk-key-bindings: gtk-emacs-text-entry, gtk-emacs-text-view;
 }
 
-GtkTreeView {
-  gtk-key-bindings: gtk-emacs-tree-view;
+treeview {
+  -gtk-key-bindings: gtk-emacs-tree-view;
 }
 
 GtkMenuShell {
-  gtk-key-bindings: gtk-emacs-menu;
+  -gtk-key-bindings: gtk-emacs-menu;
 }
