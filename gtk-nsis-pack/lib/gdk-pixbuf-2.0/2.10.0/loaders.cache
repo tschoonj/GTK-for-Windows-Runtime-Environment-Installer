@@ -1,6 +1,13 @@
 # GdkPixbuf Image Loader Modules file
 # Automatically generated file, do not edit
-# Created by gdk-pixbuf-query-loaders.exe from gdk-pixbuf-2.31.1
+# Created by gdk-pixbuf-query-loaders.exe from gdk-pixbuf-2.35.4
 #
-# dynamic loading of modules not supported
+# LoaderDir = C:\Development\msys64\mingw64/lib/gdk-pixbuf-2.0/2.10.0/loaders
+#
+"C:/Development/msys64/mingw64/lib/gdk-pixbuf-2.0/2.10.0/loaders/libpixbufloader-svg.dll"
+"svg" 6 "gdk-pixbuf" "Scalable Vector Graphics" "LGPL"
+"image/svg+xml" "image/svg" "image/svg-xml" "image/vnd.adobe.svg+xml" "text/xml-svg" "image/svg+xml-compressed" ""
+"svg" "svgz" "svg.gz" ""
+" <svg" "*    " 100
+" <!DOCTYPE svg" "*             " 100
 

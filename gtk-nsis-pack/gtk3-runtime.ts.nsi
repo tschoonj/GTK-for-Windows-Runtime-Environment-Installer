@@ -231,60 +231,59 @@ SectionIn 1 2 RO
 	; NOTE: If you add or remove any of these,
 	; be sure to do the same in the uninstall section.
 
-	File bin\libatk-1.0-0.dll  ; atk
-	File bin\libatkmm-1.6-1.dll  ; atk
-	File bin\libcairo-2.dll  ; cairo, needed by gtk
-	File bin\libcairo-gobject-2.dll  ; cairo. Doesn't seem to be required, but since we're distributing cairo...
+	File bin\libatk-1.0-0.dll		; atk
+	File bin\libatkmm-1.6-1.dll		; atk
+	File bin\libcairo-2.dll			; cairo, needed by gtk
+	File bin\libcairo-gobject-2.dll	; cairo. Doesn't seem to be required, but since we're distributing cairo...
 	File bin\libcairo-script-interpreter-2.dll  ; cairo. Doesn't seem to be required, but since we're distributing cairo...
 	File bin\libcairomm-1.0-1.dll
 	File bin\libepoxy-0.dll
 	File bin\libexslt-0.dll
-	File bin\libffi-6.dll  ; libffi is required by glib 
-	File bin\libfontconfig-1.dll  ; fontconfig is needed for ft2 pango backend
-	File bin\libfreetype-6.dll  ; freetype is needed for ft2 pango backend
-	File bin\libgailutil-3-0.dll  ; from gtk
+	File bin\libffi-6.dll  			; libffi is required by glib2 
+	File bin\libfontconfig-1.dll	; fontconfig is needed for ft2 pango backend
+	File bin\libfreetype-6.dll		; freetype is needed for ft2 pango backend
+	File bin\libgailutil-3-0.dll	; from gtk
 	File bin\libgdk_pixbuf-2.0-0.dll  ; from gtk
-	File bin\libgdk-3-0.dll  ; from gtk
+	File bin\libgdk-3-0.dll  		; from gtk
 	File bin\libgdkmm-3.0-1.dll
-	File bin\libgio-2.0-0.dll  ; from glib
-	File bin\libglib-2.0-0.dll  ; glib
-	File bin\libglibmm-2.4-1.dll  ; glib
-	File bin\libgiomm-2.4-1.dll  ; glib
+	File bin\libgio-2.0-0.dll  		; from glib
+	File bin\libglib-2.0-0.dll  	; glib
+	File bin\libglibmm-2.4-1.dll  	; glib
+	File bin\libgiomm-2.4-1.dll  	; glib
 	File bin\libsigc-2.0-0.dll
 	File bin\libglibmm_generate_extra_defs-2.4-1.dll  ; glib
-	File bin\libgmodule-2.0-0.dll  ; from glib
-	File bin\libgobject-2.0-0.dll  ; from glib
-	File bin\libgthread-2.0-0.dll  ; from glib
+	File bin\libgmodule-2.0-0.dll	; from glib
+	File bin\libgobject-2.0-0.dll	; from glib
+	File bin\libgthread-2.0-0.dll	; from glib
 	File bin\libgtk-3-0.dll  ; gtk
 	File bin\libgtksourceview-3.0-1.dll
 	File bin\libgtksourceviewmm-3.0-0.dll
 	File bin\libgtkmm-3.0-1.dll
-	File bin\libharfbuzz-0.dll
-	File bin\libintl-8.dll  ; gettext, needed by all i18n libs
-	File bin\libiconv-2.dll
-	File bin\libjson-glib-1.0-0.dll  ; gettext, needed by all i18n libs
-	File bin\libpango-1.0-0.dll  ; pango, needed by gtk
+	File bin\libharfbuzz-0.dll 		; required by pango
+	File bin\libintl-8.dll  		; gettext, needed by all i18n libs
+	File bin\libiconv-2.dll			; required by fontconfig
+	File bin\libjson-glib-1.0-0.dll	; gettext, needed by all i18n libs
+	File bin\libpango-1.0-0.dll  	; pango, needed by gtk
 	File bin\libpangocairo-1.0-0.dll  ; pango, needed by gtk
 	File bin\libpangowin32-1.0-0.dll  ; pango, needed by gtk
-	File bin\libpangoft2-1.0-0.dll  ; pango, needed by gtk
+	File bin\libpangoft2-1.0-0.dll	; pango, needed by gtk
 	File bin\libpangomm-1.4-1.dll
-	File bin\libpixman-1-0.dll  ; libpixman, needed by cairo
-	File bin\libpng16-16.dll  ; for gdk_pixbuf loader.
+	File bin\libpixman-1-0.dll  	; libpixman, needed by cairo
+	File bin\libpng16-16.dll  		; required by gdk-pixbuf2
 	; File bin\libxml++-2.6-2.dll  ; fontconfig needs this
 	; File bin\libxml++-3.0-1.dll
-	File bin\libxml2-2.dll  ; fontconfig needs this
-	File bin\libxslt-1.dll  ; fontconfig needs this
-	File bin\libpcre-1.dll  ; fontconfig needs this
-	File bin\zlib1.dll  ; png and many others need this
-	File bin\libgtk-win32-2.0-0.dll
-	File bin\libgdk-win32-2.0-0.dll
-	File bin\libexpat-1.dll
-	File bin\libbz2-1.dll
-	File bin\libgraphite2.dll
-	File bin\librsvg-2-2.dll
-	File bin\libstdc++-6.dll
-	File bin\libgcc_s_seh-1.dll
-	File bin\libwinpthread-1.dll
+	File bin\libxml2-2.dll			; fontconfig needs this
+	File bin\libxslt-1.dll			; fontconfig needs this
+	File bin\libpcre-1.dll			; fontconfig needs this
+	File bin\zlib1.dll				; png and many others need this
+	File bin\libexpat-1.dll			; required by fontconfig
+	File bin\libbz2-1.dll			; required by fontconfig
+	File bin\libgraphite2.dll		; required by harfbuzz
+	File bin\librsvg-2-2.dll		; required by adwaita-icon-theme
+	File bin\libtiff-5.dll			; required by gdk-pixbuf2
+	File bin\libstdc++-6.dll		; standard MSYS2 library
+	File bin\libgcc_s_seh-1.dll		; standard MSYS2 library
+	File bin\libwinpthread-1.dll	; standard MSYS2 library
 
 	; We install this into the same place as the DLLs to avoid any PATH manipulation.
 	SetOutPath "$LIB_INSTDIR"
@@ -312,8 +311,8 @@ SectionIn 1 2 RO
 	SetOutPath "$INSTDIR\lib\gdk-pixbuf-2.0\2.10.0"
 	File lib\gdk-pixbuf-2.0\2.10.0\loaders.cache
 
-	; SetOutPath "$INSTDIR\lib\gdk-pixbuf-2.0\${GTK_BIN_VERSION}\loaders"
-	; File /r lib\gdk-pixbuf-2.0\${GTK_BIN_VERSION}\loaders
+	SetOutPath "$INSTDIR\lib\gdk-pixbuf-2.0\2.10.0\"
+	File /r lib\gdk-pixbuf-2.0\2.10.0\loaders
 
 	;SetOutPath "$INSTDIR\lib\gtk-3.0\${GTK_BIN_VERSION}"
 	; no longer in gtk as of 2.14.5.
@@ -322,10 +321,10 @@ SectionIn 1 2 RO
 	; File /r lib\gtk-2.0\${GTK_BIN_VERSION}\loaders
 
 	; wimp
-	;SetOutPath "$INSTDIR\lib\gtk-2.0\${GTK_BIN_VERSION}\engines"
-	;File lib\gtk-2.0\${GTK_BIN_VERSION}\engines\libwimp*.dll
+	; SetOutPath "$INSTDIR\lib\gtk-2.0\${GTK_BIN_VERSION}\engines"
+	; File lib\gtk-2.0\${GTK_BIN_VERSION}\engines\libwimp*.dll
 	; We install this, but other installers may not have it.
-	;File lib\gtk-2.0\${GTK_BIN_VERSION}\engines\libpixmap*.dll
+	; File lib\gtk-2.0\${GTK_BIN_VERSION}\engines\libpixmap*.dll
 
 	SetOutPath "$INSTDIR\share\locale"
 	File share\locale\locale.alias  ; from gettext
@@ -635,12 +634,11 @@ Function un.DeleteDlls
 	; Delete $LIB_INSTDIR\libxml++-2.6-2.dll  ; fontconfig needs this
 	; Delete $LIB_INSTDIR\libxml++-3.0-1.dll
 	Delete $LIB_INSTDIR\zlib1.dll  ; png and many others need this
-	Delete $LIB_INSTDIR\libgtk-win32-2.0-0.dll
-	Delete $LIB_INSTDIR\libgdk-win32-2.0-0.dll
 	Delete $LIB_INSTDIR\libexpat-1.dll
 	Delete $LIB_INSTDIR\libbz2-1.dll
 	Delete $LIB_INSTDIR\libgraphite2.dll
 	Delete $LIB_INSTDIR\librsvg-2-2.dll
+	Delete $LIB_INSTDIR\libtiff-5.dll
 	Delete $LIB_INSTDIR\libstdc++-6.dll
 	Delete $LIB_INSTDIR\libgcc_s_seh-1.dll
 	Delete $LIB_INSTDIR\libwinpthread-1.dll
@@ -777,7 +775,7 @@ Section Uninstall
 	;  RMDir /r "$INSTDIR\lib\pango"
 	
 	Delete "$INSTDIR\lib\gdk-pixbuf-2.0\2.10.0\loaders.cache"
-	; RMDir "$INSTDIR\lib\gdk-pixbuf-2.0\${GTK_BIN_VERSION}\loaders"  ; not forced
+	RMDir /r "$INSTDIR\lib\gdk-pixbuf-2.0\2.10.0\loaders"  ; not forced
 	RMDir "$INSTDIR\lib\gdk-pixbuf-2.0\2.10.0"  ; not forced
 	RMDir "$INSTDIR\lib\gdk-pixbuf-2.0"  ; not forced
 

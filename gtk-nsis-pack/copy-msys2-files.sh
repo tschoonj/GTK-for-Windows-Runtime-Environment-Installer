@@ -16,6 +16,7 @@ _ARCH="win64"
 
 test "${INSTALL_SRC_DIR}" = "." && INSTALL_SRC_DIR=${PWD}
 INSTALL_SRC_BIN="${INSTALL_SRC_DIR}"/bin
+INSTALL_SRC_LIB="${INSTALL_SRC_DIR}"/lib
 INSTALL_SRC_MSYS2_BIN=${INSTALL_SRC_MSYS2}/bin
 INSTALL_SRC_MSYS2_LIB=${INSTALL_SRC_MSYS2}/lib
 
@@ -85,12 +86,11 @@ cp $INSTALL_SRC_MSYS2_BIN/zlib1.dll $INSTALL_SRC_BIN
 
 # These six additional one seems to me that is needed for my test GTK app,
 # as I see mainly needed for fontconfig package and dlls 
-cp $INSTALL_SRC_MSYS2_BIN/libgtk-win32-2.0-0.dll $INSTALL_SRC_BIN
-cp $INSTALL_SRC_MSYS2_BIN/libgdk-win32-2.0-0.dll $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libexpat-1.dll $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libbz2-1.dll $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libgraphite2.dll $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/librsvg-2-2.dll $INSTALL_SRC_BIN
+cp $INSTALL_SRC_MSYS2_BIN/libtiff-5.dll $INSTALL_SRC_BIN
 
 # Standrard MSYS2 libraries
 cp $INSTALL_SRC_MSYS2_BIN/libstdc++-6.dll $INSTALL_SRC_BIN
@@ -112,7 +112,39 @@ cp $INSTALL_SRC_MSYS2_BIN/gspawn-win64-helper-console.exe $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/gtk-query-immodules-3.0.exe $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/gtk-update-icon-cache.exe $INSTALL_SRC_BIN
 
-# Should we also include libpixbufloader*. dll files under /lib/gdk-pixbuf-2.0, ie: libpixbufloader-svg.dll
+# Copy lib/gtk-2.0 folder 
+cd $INSTALL_SRC_MSYS2_LIB/gtk-2.0
+cp -r ./ $INSTALL_SRC_LIB/gtk-2.0
+# Delete static libraries
+find $INSTALL_SRC_LIB/gtk-2.0 -name *.dll.a -type f -delete
+
+# Copy lib/gdk-pixbuf-2.0 folder 
+cd $INSTALL_SRC_MSYS2_LIB/gdk-pixbuf-2.0
+cp -r ./ $INSTALL_SRC_LIB/gdk-pixbuf-2.0
+# Delete static libraries
+find $INSTALL_SRC_LIB/gdk-pixbuf-2.0 -name *.dll.a -type f -delete
+
+# Copy /share/locale/locale.alias
+cp $INSTALL_SRC_MSYS2/share/locale/locale.alias $INSTALL_SRC_DIR/share/locale
+
+# Copy /share/themes/default
+cp -r $INSTALL_SRC_MSYS2/share/themes/default/gtk-3.0 $INSTALL_SRC_DIR/share/themes/default/gtk-3.0
+
+# Copy /share/themes/emacs
+cp -r $INSTALL_SRC_MSYS2/share/themes/emacs/gtk-3.0 $INSTALL_SRC_DIR/share/themes/emacs/gtk-3.0
+
+# Copy /share/glib-2.0/schemas
+cp -r $INSTALL_SRC_MSYS2/share/glib-2.0/schemas $INSTALL_SRC_DIR/share/glib-2.0/schemas
+
+# Copy /share/icons
+cp -r $INSTALL_SRC_MSYS2/share/icons $INSTALL_SRC_DIR/share/icons
+
+# librsvg depends on:
+# gdk-pixbuf2  pango  libcroco
+
+# gdk-pixbuf2 package depends on the following:
+# glib2>=2.37.2  jasper libjpeg-turbo libpng  libtiff
+
 
 echo "Done with copying all binary relevant GTK files to the binary destination directory"
 echo "Now you can initiate the creation of the installer package with NSIS"
