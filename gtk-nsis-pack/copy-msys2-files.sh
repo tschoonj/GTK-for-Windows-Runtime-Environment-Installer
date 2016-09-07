@@ -128,16 +128,16 @@ find $INSTALL_SRC_LIB/gdk-pixbuf-2.0 -name *.dll.a -type f -delete
 cp $INSTALL_SRC_MSYS2/share/locale/locale.alias $INSTALL_SRC_DIR/share/locale
 
 # Copy /share/themes/default
-cp -r $INSTALL_SRC_MSYS2/share/themes/default/gtk-3.0 $INSTALL_SRC_DIR/share/themes/default/gtk-3.0
+cp -r $INSTALL_SRC_MSYS2/share/themes/default/gtk-3.0 $INSTALL_SRC_DIR/share/themes/default/
 
 # Copy /share/themes/emacs
-cp -r $INSTALL_SRC_MSYS2/share/themes/emacs/gtk-3.0 $INSTALL_SRC_DIR/share/themes/emacs/gtk-3.0
+cp -r $INSTALL_SRC_MSYS2/share/themes/emacs/gtk-3.0 $INSTALL_SRC_DIR/share/themes/emacs/
 
 # Copy /share/glib-2.0/schemas
-cp -r $INSTALL_SRC_MSYS2/share/glib-2.0/schemas $INSTALL_SRC_DIR/share/glib-2.0/schemas
+cp -r $INSTALL_SRC_MSYS2/share/glib-2.0/schemas $INSTALL_SRC_DIR/share/glib-2.0/
 
 # Copy /share/icons
-cp -r $INSTALL_SRC_MSYS2/share/icons $INSTALL_SRC_DIR/share/icons
+cp -r $INSTALL_SRC_MSYS2/share/icons $INSTALL_SRC_DIR/share/
 
 # librsvg depends on:
 # gdk-pixbuf2  pango  libcroco
