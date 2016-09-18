@@ -244,6 +244,8 @@ SectionIn 1 2 RO
 	File bin\libfreetype-6.dll		; freetype is needed for ft2 pango backend
 	File bin\libgailutil-3-0.dll	; from gtk
 	File bin\libgdk_pixbuf-2.0-0.dll  ; from gtk
+	File bin\liblzma-5.dll  		; from gtk
+	File bin\libcroco-0.6-3.dll		; from gtk
 	File bin\libgdk-3-0.dll  		; from gtk
 	File bin\libgdkmm-3.0-1.dll
 	File bin\libgio-2.0-0.dll  		; from glib
@@ -602,6 +604,8 @@ Function un.DeleteDlls
 	Delete $LIB_INSTDIR\libfreetype-6.dll  ; freetype is needed for ft2 pango backend
 	Delete $LIB_INSTDIR\libgailutil-3-0.dll  ; from gtk
 	Delete $LIB_INSTDIR\libgdk_pixbuf-2.0-0.dll  ; from gtk
+	Delete $LIB_INSTDIR\liblzma-5.dll  ; from gtk
+	Delete $LIB_INSTDIR\libcroco-0.6-3.dll  ; from gtk
 	Delete $LIB_INSTDIR\libgdk-3-0.dll  ; from gtk
 	Delete $LIB_INSTDIR\libgdkmm-3.0-1.dll
 	Delete $LIB_INSTDIR\libgio-2.0-0.dll  ; from glib
