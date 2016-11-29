@@ -1,9 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 
 # ---------------------------------------------------------------------------
 # Set default values to option vars
 # ---------------------------------------------------------------------------
-
+set -e
 INSTALL_SRC_DIR=$(dirname "$0")
 INSTALL_SRC_MSYS2="/mingw64/"
 _DATE=$(date +'%Y-%m-%d')
@@ -44,11 +44,14 @@ cp $INSTALL_SRC_MSYS2_BIN/libffi-6.dll  $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libfontconfig-1.dll $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libfreetype-6.dll  $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libgailutil-3-0.dll  $INSTALL_SRC_BIN
+cp $INSTALL_SRC_MSYS2_BIN/libgailutil-18.dll  $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libgdk_pixbuf-2.0-0.dll $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/liblzma-5.dll $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libcroco-0.6-3.dll $INSTALL_SRC_BIN
+cp $INSTALL_SRC_MSYS2_BIN/libgdk-win32-2.0-0.dll $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libgdk-3-0.dll $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libgdkmm-3.0-1.dll $INSTALL_SRC_BIN
+cp $INSTALL_SRC_MSYS2_BIN/libgdkmm-2.4-1.dll $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libgio-2.0-0.dll  $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libglib-2.0-0.dll  $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libglibmm-2.4-1.dll $INSTALL_SRC_BIN
@@ -59,9 +62,12 @@ cp $INSTALL_SRC_MSYS2_BIN/libgmodule-2.0-0.dll  $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libgobject-2.0-0.dll  $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libgthread-2.0-0.dll  $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libgtk-3-0.dll $INSTALL_SRC_BIN
+cp $INSTALL_SRC_MSYS2_BIN/libgtk-win32-2.0-0.dll $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libgtksourceview-3.0-1.dll $INSTALL_SRC_BIN
+cp $INSTALL_SRC_MSYS2_BIN/libgtksourceview-2.0-0.dll $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libgtksourceviewmm-3.0-0.dll $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libgtkmm-3.0-1.dll $INSTALL_SRC_BIN
+cp $INSTALL_SRC_MSYS2_BIN/libgtkmm-2.4-1.dll $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libharfbuzz-0.dll $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libintl-8.dll $INSTALL_SRC_BIN
 
@@ -78,8 +84,8 @@ cp $INSTALL_SRC_MSYS2_BIN/libpixman-1-0.dll $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libpng16-16.dll  $INSTALL_SRC_BIN
 
 # No need for this IMHO, at least fontconfig is not dependent on these
-# cp $INSTALL_SRC_MSYS2_BIN/libxml++-2.6-2.dll $INSTALL_SRC_BIN
-# cp $INSTALL_SRC_MSYS2_BIN/libxml++-3.0-1.dll $INSTALL_SRC_BIN
+cp $INSTALL_SRC_MSYS2_BIN/libxml++-2.6-2.dll $INSTALL_SRC_BIN
+cp $INSTALL_SRC_MSYS2_BIN/libxml++-3.0-1.dll $INSTALL_SRC_BIN
 
 cp $INSTALL_SRC_MSYS2_BIN/libxml2-2.dll $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libxslt-1.dll $INSTALL_SRC_BIN
@@ -111,6 +117,7 @@ cp $INSTALL_SRC_MSYS2_BIN/fc-validate.exe $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/gdk-pixbuf-query-loaders.exe $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/gspawn-win64-helper.exe $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/gspawn-win64-helper-console.exe $INSTALL_SRC_BIN
+cp $INSTALL_SRC_MSYS2_BIN/gtk-query-immodules-2.0.exe $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/gtk-query-immodules-3.0.exe $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/gtk-update-icon-cache.exe $INSTALL_SRC_BIN
 

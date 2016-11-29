@@ -11,9 +11,9 @@
 ; Directory and package names: gtk3-runtime.
 
 
-!define GTK_VERSION "3.20.2"
+!define GTK_VERSION "3.22.4"
 !define GTK_BIN_VERSION "3.0.0"
-!define PRODUCT_VERSION "${GTK_VERSION}-2016-09-05-ts-win64"
+!define PRODUCT_VERSION "${GTK_VERSION}-2016-11-29-ts-win64"
 !define PRODUCT_NAME "GTK3-Runtime Win64"
 !define PRODUCT_PUBLISHER "Tom Schoonjans"
 !define PRODUCT_WEB_SITE "https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer"
@@ -272,8 +272,8 @@ SectionIn 1 2 RO
 	File bin\libpangomm-1.4-1.dll
 	File bin\libpixman-1-0.dll  	; libpixman, needed by cairo
 	File bin\libpng16-16.dll  		; required by gdk-pixbuf2
-	; File bin\libxml++-2.6-2.dll  ; fontconfig needs this
-	; File bin\libxml++-3.0-1.dll
+	File bin\libxml++-2.6-2.dll  ; fontconfig needs this
+	File bin\libxml++-3.0-1.dll
 	File bin\libxml2-2.dll			; fontconfig needs this
 	File bin\libxslt-1.dll			; fontconfig needs this
 	File bin\libpcre-1.dll			; fontconfig needs this
@@ -350,8 +350,8 @@ SectionIn 1 2 RO
 
 	; this script updates some config files, but it's unsafe
 	; (gtk or pango may not work afterwards), so don't call it.
-	Push $INSTDIR\gtk3-runtime\gtk-postinstall.bat
-	Call WritePostInstall
+	; Push $INSTDIR\gtk3-runtime\gtk-postinstall.bat
+	; Call WritePostInstall
 	; update pango.modules, not working for now
 	; Exec '$INSTDIR\gtk2-runtime\gtk-postinstall.bat'
 
@@ -635,8 +635,8 @@ Function un.DeleteDlls
 	Delete $LIB_INSTDIR\libxslt-1.dll  ; fontconfig needs this
 	Delete $LIB_INSTDIR\libpcre-1.dll  ; fontconfig needs this
 	Delete $LIB_INSTDIR\libxml2-2.dll  ; fontconfig needs this
-	; Delete $LIB_INSTDIR\libxml++-2.6-2.dll  ; fontconfig needs this
-	; Delete $LIB_INSTDIR\libxml++-3.0-1.dll
+	Delete $LIB_INSTDIR\libxml++-2.6-2.dll  ; fontconfig needs this
+	Delete $LIB_INSTDIR\libxml++-3.0-1.dll
 	Delete $LIB_INSTDIR\zlib1.dll  ; png and many others need this
 	Delete $LIB_INSTDIR\libexpat-1.dll
 	Delete $LIB_INSTDIR\libbz2-1.dll

@@ -12,9 +12,9 @@
 ; should be installable side by side with this package.
 
 
-!define GTK_VERSION "2.24.30"
+!define GTK_VERSION "2.24.31"
 !define GTK_BIN_VERSION "2.10.0"
-!define PRODUCT_VERSION "${GTK_VERSION}-2016-04-09-ts-win64"
+!define PRODUCT_VERSION "${GTK_VERSION}-2016-11-29-ts-win64"
 !define PRODUCT_NAME "GTK2-Runtime Win64"
 !define PRODUCT_PUBLISHER "Tom Schoonjans"
 !define PRODUCT_WEB_SITE "https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer"
@@ -90,7 +90,7 @@ ShowUnInstDetails show
 ; Only useful for BZIP2 compression
 ReserveFile "nsi_pathpage.ini"
 ReserveFile "nsi_configpage.ini"
-ReserveFile "${NSISDIR}\Plugins\InstallOptions.dll"
+ReserveFile "${NSISDIR}\Plugins\x86-unicode\InstallOptions.dll"
 
 
 ; Pages to show during installation
@@ -258,10 +258,10 @@ SectionIn 1 2 RO
 	File bin\libgtk-win32-2.0-0.dll  ; gtk
 	File bin\libgtksourceview-2.0-0.dll
 	File bin\libgtkmm-2.4-1.dll
-	File bin\libgtksourceviewmm-2.0-2.dll
+	;File bin\libgtksourceviewmm-2.0-2.dll
 	File bin\libharfbuzz-0.dll
 	File bin\libintl-8.dll  ; gettext, needed by all i18n libs
-	File bin\iconv.dll
+	File bin\libiconv-2.dll
 	File bin\libjson-glib-1.0-0.dll  ; gettext, needed by all i18n libs
 	File bin\libpango-1.0-0.dll  ; pango, needed by gtk
 	File bin\libpangocairo-1.0-0.dll  ; pango, needed by gtk
@@ -276,9 +276,14 @@ SectionIn 1 2 RO
 	File bin\libxml2-2.dll  ; fontconfig needs this
 	File bin\libxslt-1.dll  ; fontconfig needs this
 	File bin\zlib1.dll  ; png and many others need this
-	File bin\libstdc++_64-6.dll
-	File bin\libgcc_s_seh_64-1.dll
-	File bin\libwinpthread_64-1.dll
+	File bin\libexpat-1.dll			; required by fontconfig
+	File bin\libbz2-1.dll			; required by fontconfig
+	File bin\libgraphite2.dll		; required by harfbuzz
+	File bin\librsvg-2-2.dll		; required by adwaita-icon-theme
+	File bin\libtiff-5.dll			; required by gdk-pixbuf2
+	File bin\libstdc++-6.dll
+	File bin\libgcc_s_seh-1.dll
+	File bin\libwinpthread-1.dll
 
 	; We install this into the same place as the DLLs to avoid any PATH manipulation.
 	SetOutPath "$LIB_INSTDIR"
@@ -306,8 +311,8 @@ SectionIn 1 2 RO
 	SetOutPath "$INSTDIR\lib\gdk-pixbuf-2.0\${GTK_BIN_VERSION}"
 	File lib\gdk-pixbuf-2.0\${GTK_BIN_VERSION}\loaders.cache
 
-	; SetOutPath "$INSTDIR\lib\gdk-pixbuf-2.0\${GTK_BIN_VERSION}\loaders"
-	; File /r lib\gdk-pixbuf-2.0\${GTK_BIN_VERSION}\loaders
+	SetOutPath "$INSTDIR\lib\gdk-pixbuf-2.0\${GTK_BIN_VERSION}\loaders"
+	File /r lib\gdk-pixbuf-2.0\${GTK_BIN_VERSION}\loaders
 
 	SetOutPath "$INSTDIR\lib\gtk-2.0\modules"
 	File /r lib\gtk-2.0\modules
@@ -342,8 +347,8 @@ SectionIn 1 2 RO
 
 	; this script updates some config files, but it's unsafe
 	; (gtk or pango may not work afterwards), so don't call it.
-	Push $INSTDIR\gtk2-runtime\gtk-postinstall.bat
-	Call WritePostInstall
+	;Push $INSTDIR\gtk2-runtime\gtk-postinstall.bat
+	;Call WritePostInstall
 	; update pango.modules, not working for now
 	; Exec '$INSTDIR\gtk2-runtime\gtk-postinstall.bat'
 
@@ -608,11 +613,11 @@ Function un.DeleteDlls
 	Delete $LIB_INSTDIR\libgthread-2.0-0.dll  ; from glib
 	Delete $LIB_INSTDIR\libgtk-win32-2.0-0.dll  ; gtk
 	Delete $LIB_INSTDIR\libgtksourceview-2.0-0.dll
-	Delete $LIB_INSTDIR\libgtksourceviewmm-2.0-2.dll
+	;Delete $LIB_INSTDIR\libgtksourceviewmm-2.0-2.dll
 	Delete $LIB_INSTDIR\libgtkmm-2.4-1.dll
 	Delete $LIB_INSTDIR\libharfbuzz-0.dll
 	Delete $LIB_INSTDIR\libintl-8.dll  ; gettext, needed by all i18n libs
-	Delete $LIB_INSTDIR\iconv.dll
+	Delete $LIB_INSTDIR\libiconv-2.dll
 	Delete $LIB_INSTDIR\libjson-glib-1.0-0.dll 
 	Delete $LIB_INSTDIR\libpango-1.0-0.dll  ; pango, needed by gtk
 	Delete $LIB_INSTDIR\libpangocairo-1.0-0.dll  ; pango, needed by gtk
@@ -627,9 +632,14 @@ Function un.DeleteDlls
 	Delete $LIB_INSTDIR\libxml++-3.0-1.dll
 	Delete $LIB_INSTDIR\libpcre-1.dll
 	Delete $LIB_INSTDIR\zlib1.dll  ; png and many others need this
-	Delete $LIB_INSTDIR\libstdc++_64-6.dll
-	Delete $LIB_INSTDIR\libgcc_s_seh_64-1.dll
-	Delete $LIB_INSTDIR\libwinpthread_64-1.dll
+	Delete $LIB_INSTDIR\libexpat-1.dll
+	Delete $LIB_INSTDIR\libbz2-1.dll
+	Delete $LIB_INSTDIR\libgraphite2.dll
+	Delete $LIB_INSTDIR\librsvg-2-2.dll
+	Delete $LIB_INSTDIR\libtiff-5.dll
+	Delete $LIB_INSTDIR\libstdc++-6.dll
+	Delete $LIB_INSTDIR\libgcc_s_seh-1.dll
+	Delete $LIB_INSTDIR\libwinpthread-1.dll
 
 
 FunctionEnd
@@ -762,7 +772,7 @@ Section Uninstall
 	;  RMDir /r "$INSTDIR\lib\pango"
 	
 	Delete "$INSTDIR\lib\gdk-pixbuf-2.0\${GTK_BIN_VERSION}\loaders.cache"
-	; RMDir "$INSTDIR\lib\gdk-pixbuf-2.0\${GTK_BIN_VERSION}\loaders"  ; not forced
+	RMDir /r "$INSTDIR\lib\gdk-pixbuf-2.0\${GTK_BIN_VERSION}\loaders"  ; not forced
 	RMDir "$INSTDIR\lib\gdk-pixbuf-2.0\${GTK_BIN_VERSION}"  ; not forced
 	RMDir "$INSTDIR\lib\gdk-pixbuf-2.0"  ; not forced
 
