@@ -131,7 +131,7 @@ find $INSTALL_SRC_LIB/gtk-2.0 -name *.dll.a -type f -delete
 cd $INSTALL_SRC_MSYS2_LIB/gdk-pixbuf-2.0
 cp -r ./ $INSTALL_SRC_LIB/gdk-pixbuf-2.0
 # Delete static libraries
-find $INSTALL_SRC_LIB/gdk-pixbuf-2.0 -name *.dll.a -type f -delete
+find $INSTALL_SRC_LIB/gdk-pixbuf-2.0 -name *.a -type f -delete
 
 # Copy /share/locale/locale.alias
 cp $INSTALL_SRC_MSYS2/share/locale/locale.alias $INSTALL_SRC_DIR/share/locale
