@@ -9,7 +9,7 @@ The installers can be found [here](http://lvserver.ugent.be/gtk-win64/).
 
 **[Keep in mind though that these packages are experimental. Binary compatibility between versions is not guaranteed!!!.](http://www.gtk.org/download/win64.php)** 
 
-The current releases ([gtk2-runtime-2.24.31-2017-02-20-ts-win64.exe](http://lvserver.ugent.be/gtk-win64/gtk2-runtime/gtk2-runtime-2.24.31-2017-02-20-ts-win64.exe) and [gtk3-runtime-3.22.8-2017-02-20-ts-win64.exe](http://lvserver.ugent.be/gtk-win64/gtk3-runtime/gtk3-runtime-3.22.8-2017-02-20-ts-win64.exe)) were obtained entirely from the excellent [MSYS2 project](www.msys2.org), and were **not** compiled by myself, as was the case for previous releases. Users who want to compile against this runtime are strongly encouraged to set up a MSYS2 installation themselves, and install the required packages (compiled with the mingw-w64-x86\_64 toolchain!!!).
+The current releases ([gtk2-runtime-2.24.31-2017-03-09-ts-win64.exe](http://lvserver.ugent.be/gtk-win64/gtk2-runtime/gtk2-runtime-2.24.31-2017-03-09-ts-win64.exe) and [gtk3-runtime-3.22.8-2017-03-09-ts-win64.exe](http://lvserver.ugent.be/gtk-win64/gtk3-runtime/gtk3-runtime-3.22.8-2017-03-09-ts-win64.exe)) were obtained entirely from the excellent [MSYS2 project](www.msys2.org), and were **not** compiled by myself, as was the case for previous releases. Users who want to compile against this runtime are strongly encouraged to set up a MSYS2 installation themselves, and install the required packages (compiled with the mingw-w64-x86\_64 toolchain!!!).
 
 The following packages are included in the current GTK+-2/3 installers
 
@@ -21,23 +21,23 @@ The following packages are included in the current GTK+-2/3 installers
 * [fontconfig](http://www.freedesktop.org/software/fontconfig/release/) (2.12.1)
 * [freetype](http://www.freetype.org/download.html) (2.7.1)
 * [gdk-pixbuf](http://ftp.gnome.org/pub/GNOME/sources/gdk-pixbuf/) (2.36.5)
-* [gettext](http://ftp.gnu.org/pub/gnu/gettext/) (0.19.8)
+* [gettext](http://ftp.gnu.org/pub/gnu/gettext/) (0.19.8.1)
 * [glib](http://ftp.gnome.org/pub/GNOME/sources/glib/) (2.50.3)
 * [glibmm](http://ftp.gnome.org/pub/GNOME/sources/glibmm/) (2.50.0)
 * [gtk2](http://ftp.gnome.org/pub/GNOME/sources/gtk+/) (2.24.31)
-* [gtk3](http://ftp.gnome.org/pub/GNOME/sources/gtk+/) (3.22.8)
+* [gtk3](http://ftp.gnome.org/pub/GNOME/sources/gtk+/) (3.22.9)
 * [gtkmm2](http://ftp.gnome.org/pub/GNOME/sources/gtkmm) (2.24.4)
 * [gtkmm3](http://ftp.gnome.org/pub/GNOME/sources/gtkmm) (3.22.0)
 * [gtksourceview2](http://ftp.gnome.org/pub/GNOME/sources/gtksourceview/) (2.10.5)
 * [gtksourceview3](http://ftp.gnome.org/pub/GNOME/sources/gtksourceview/) (3.20.4)
 * ~~[gtksourceviewmm2](http://ftp.gnome.org/pub/GNOME/sources/gtksourceviewmm/) (2.10.3)~~ (currently unavailable)
 * [gtksourceviewmm3](http://ftp.gnome.org/pub/GNOME/sources/gtksourceviewmm/) (3.18.0)
-* [harfbuzz](http://www.freedesktop.org/software/harfbuzz/release/) (1.3.4)
+* [harfbuzz](http://www.freedesktop.org/software/harfbuzz/release/) (1.4.4)
 * [hicolor-icon-theme](http://icon-theme.freedesktop.org/releases/) (0.15)
 * [json-glib](http://ftp.gnome.org/pub/gnome/sources/json-glib/) (1.2.2)
 * [libepoxy](https://github.com/anholt/libepoxy) (1.3.1)
 * [libffi](http://sourceware.org/libffi/) (3.2.1)
-* [libiconv](https://ftp.gnu.org/pub/gnu/libiconv/) (1.14)
+* [libiconv](https://ftp.gnu.org/pub/gnu/libiconv/) (1.15)
 * [libpng](http://sourceforge.net/project/showfiles.php?group_id=5624) (1.6.28)
 * [libsigc++](http://ftp.gnome.org/pub/GNOME/sources/libsigc++/) (2.10.0)
 * [libxml2](http://xmlsoft.org/sources/) (2.9.4)
