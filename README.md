@@ -5,11 +5,11 @@ This repository is a fork of the  [GTK+ for Windows Runtime Environment Installe
 by Alexander Shaduri.
 My efforts here will focus on creating a **64-bit version** of the GTK+-2 runtime that he has been providing so far, using up to date versions of GTK+ and its dependencies. Recently I have also created a 64-bit **GTK+-3 runtime package**. All packages now contain **Gtkmm** and its dependencies too. Since the GTK+ developers recently dropped support for stock icons (a mistake of epic proportions IMHO...), I added the Adwaita icon theme to the GTK+-3 runtime, so you can still enjoy pretty filechooserdialogs etc! I have also added a couple of commonly used libraries such as libxml++, libxslt and gtksourceview.
 
-The installers can be found [here](http://lvserver.ugent.be/gtk-win64/).
+The installers can be found in the [releases section](https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases).
 
 **[Keep in mind though that these packages are experimental. Binary compatibility between versions is not guaranteed!!!.](http://www.gtk.org/download/win64.php)** 
 
-The current releases ([gtk2-runtime-2.24.31-2017-03-09-ts-win64.exe](http://lvserver.ugent.be/gtk-win64/gtk2-runtime/gtk2-runtime-2.24.31-2017-03-09-ts-win64.exe) and [gtk3-runtime-3.22.8-2017-03-09-ts-win64.exe](http://lvserver.ugent.be/gtk-win64/gtk3-runtime/gtk3-runtime-3.22.8-2017-03-09-ts-win64.exe)) were obtained entirely from the excellent [MSYS2 project](www.msys2.org), and were **not** compiled by myself, as was the case for previous releases. Users who want to compile against this runtime are strongly encouraged to set up a MSYS2 installation themselves, and install the required packages (compiled with the mingw-w64-x86\_64 toolchain!!!).
+The current releases ([gtk2-runtime-2.24.31-2017-03-09-ts-win64.exe](https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases/download/2017-03-09/gtk2-runtime-2.24.31-2017-03-09-ts-win64.exe) and [gtk3-runtime-3.22.8-2017-03-09-ts-win64.exe](https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases/download/2017-03-09/gtk3-runtime-3.22.9-2017-03-09-ts-win64.exe)) were obtained entirely from the excellent [MSYS2 project](www.msys2.org), and were **not** compiled by myself, as was the case for releases made before 2017. Users who want to compile against this runtime are strongly encouraged to set up a MSYS2 installation themselves, and install the required packages (compiled with the mingw-w64-x86\_64 toolchain!!!).
 
 The following packages are included in the current GTK+-2/3 installers
 
