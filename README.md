@@ -9,36 +9,36 @@ The installers can be found in the [releases section](https://github.com/tschoon
 
 **[Keep in mind though that these packages are experimental. Binary compatibility between versions is not guaranteed!!!.](http://www.gtk.org/download/win64.php)** 
 
-The current releases ([gtk2-runtime-2.24.31-2017-03-09-ts-win64.exe](https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases/download/2017-03-09/gtk2-runtime-2.24.31-2017-03-09-ts-win64.exe) and [gtk3-runtime-3.22.8-2017-03-09-ts-win64.exe](https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases/download/2017-03-09/gtk3-runtime-3.22.9-2017-03-09-ts-win64.exe)) were obtained entirely from the excellent [MSYS2 project](www.msys2.org), and were **not** compiled by myself, as was the case for releases made before 2017. Users who want to compile against this runtime are strongly encouraged to set up a MSYS2 installation themselves, and install the required packages (compiled with the mingw-w64-x86\_64 toolchain!!!).
+The current releases ([gtk2-runtime-2.24.31-2017-04-05-ts-win64.exe](https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases/download/2017-04-05/gtk2-runtime-2.24.31-2017-04-05-ts-win64.exe) and [gtk3-runtime-3.22.10-2017-04-05-ts-win64.exe](https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases/download/2017-04-05/gtk3-runtime-3.22.10-2017-04-05-ts-win64.exe)) were obtained entirely from the excellent [MSYS2 project](www.msys2.org), and were **not** compiled by myself, as was the case for releases made before 2017. Users who want to compile against this runtime are strongly encouraged to set up a MSYS2 installation themselves, and install the required packages (compiled with the mingw-w64-x86\_64 toolchain!!!).
 
 The following packages are included in the current GTK+-2/3 installers
 
 * [adwaita icon theme](http://ftp.gnome.org/pub/GNOME/sources/adwaita-icon-theme/) (3.22.0)
-* [atk](http://ftp.gnome.org/pub/GNOME/sources/atk/) (2.22.0)
+* [atk](http://ftp.gnome.org/pub/GNOME/sources/atk/) (2.24.0)
 * [atkmm](http://ftp.gnome.org/pub/GNOME/sources/atkmm/) (2.24.2)
 * [cairo](http://cairographics.org/releases/) (1.15.4)
 * [cairomm](http://cairographics.org/releases/) (1.12.0)
 * [fontconfig](http://www.freedesktop.org/software/fontconfig/release/) (2.12.1)
 * [freetype](http://www.freetype.org/download.html) (2.7.1)
-* [gdk-pixbuf](http://ftp.gnome.org/pub/GNOME/sources/gdk-pixbuf/) (2.36.5)
+* [gdk-pixbuf](http://ftp.gnome.org/pub/GNOME/sources/gdk-pixbuf/) (2.36.6)
 * [gettext](http://ftp.gnu.org/pub/gnu/gettext/) (0.19.8.1)
-* [glib](http://ftp.gnome.org/pub/GNOME/sources/glib/) (2.50.3)
+* [glib](http://ftp.gnome.org/pub/GNOME/sources/glib/) (2.52.0)
 * [glibmm](http://ftp.gnome.org/pub/GNOME/sources/glibmm/) (2.50.0)
 * [gtk2](http://ftp.gnome.org/pub/GNOME/sources/gtk+/) (2.24.31)
-* [gtk3](http://ftp.gnome.org/pub/GNOME/sources/gtk+/) (3.22.9)
+* [gtk3](http://ftp.gnome.org/pub/GNOME/sources/gtk+/) (3.22.10)
 * [gtkmm2](http://ftp.gnome.org/pub/GNOME/sources/gtkmm) (2.24.4)
 * [gtkmm3](http://ftp.gnome.org/pub/GNOME/sources/gtkmm) (3.22.0)
 * [gtksourceview2](http://ftp.gnome.org/pub/GNOME/sources/gtksourceview/) (2.10.5)
 * [gtksourceview3](http://ftp.gnome.org/pub/GNOME/sources/gtksourceview/) (3.20.4)
 * ~~[gtksourceviewmm2](http://ftp.gnome.org/pub/GNOME/sources/gtksourceviewmm/) (2.10.3)~~ (currently unavailable)
 * [gtksourceviewmm3](http://ftp.gnome.org/pub/GNOME/sources/gtksourceviewmm/) (3.18.0)
-* [harfbuzz](http://www.freedesktop.org/software/harfbuzz/release/) (1.4.4)
+* [harfbuzz](http://www.freedesktop.org/software/harfbuzz/release/) (1.4.5)
 * [hicolor-icon-theme](http://icon-theme.freedesktop.org/releases/) (0.15)
-* [json-glib](http://ftp.gnome.org/pub/gnome/sources/json-glib/) (1.2.2)
-* [libepoxy](https://github.com/anholt/libepoxy) (1.3.1)
+* [json-glib](http://ftp.gnome.org/pub/gnome/sources/json-glib/) (1.2.8)
+* [libepoxy](https://github.com/anholt/libepoxy) (1.4.1)
 * [libffi](http://sourceware.org/libffi/) (3.2.1)
 * [libiconv](https://ftp.gnu.org/pub/gnu/libiconv/) (1.15)
-* [libpng](http://sourceforge.net/project/showfiles.php?group_id=5624) (1.6.28)
+* [libpng](http://sourceforge.net/project/showfiles.php?group_id=5624) (1.6.29)
 * [libsigc++](http://ftp.gnome.org/pub/GNOME/sources/libsigc++/) (2.10.0)
 * [libxml2](http://xmlsoft.org/sources/) (2.9.4)
 * [libxml++2](http://ftp.gnome.org/pub/GNOME/sources/libxml++/) (2.40.0)
