@@ -54,4 +54,10 @@ Personally I use this installer in my [XMI-MSIM project](http://github.com/xmims
 
 Those interested in scientific plotting using Gtkmm3 may want to have a look at my project [Gtkmm-PLplot](https://github.com/tschoonj/gtkmm-plplot). Documentation and examples can be found [here](http://tschoonj.github.io/gtkmm-plplot)
 
+If you have enjoyed using this project, please consider making a donation or buying something off my Amazon Wish list. 
+
+[![PayPal](https://cdn.rawgit.com/twolfson/paypal-github-button/1.0.0/dist/button.svg)](https://www.paypal.me/tomschoonjans/10)
+
+[![Amazon Wish list](http://manghammath.com/Link%20Icons%202015/Amazon_Wishlist.png)](http://amzn.eu/8ml3d0c)
+
 Tom Schoonjans
