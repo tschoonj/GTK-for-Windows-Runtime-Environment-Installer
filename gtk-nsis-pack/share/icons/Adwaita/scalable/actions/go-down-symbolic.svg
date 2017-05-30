@@ -11,7 +11,7 @@
       </cc:Work>
     </rdf:RDF>
   </metadata>
-  <sodipodi:namedview inkscape:bbox-nodes='true' inkscape:bbox-paths='true' bordercolor='#666666' borderopacity='1' inkscape:current-layer='layer12' inkscape:cx='1.3163266' inkscape:cy='-35.678' inkscape:document-units='px' gridtolerance='10' inkscape:guide-bbox='true' guidetolerance='10' id='namedview88' inkscape:object-nodes='true' inkscape:object-paths='false' objecttolerance='10' pagecolor='#3a3b39' inkscape:pageopacity='1' inkscape:pageshadow='2' showborder='false' showgrid='false' showguides='true' inkscape:snap-bbox='true' inkscape:snap-bbox-midpoints='false' inkscape:snap-global='false' inkscape:snap-grids='true' inkscape:snap-nodes='false' inkscape:snap-others='false' inkscape:snap-to-guides='true' inkscape:window-height='1376' inkscape:window-maximized='1' inkscape:window-width='2560' inkscape:window-x='0' inkscape:window-y='27' inkscape:zoom='4'>
+  <sodipodi:namedview inkscape:bbox-nodes='true' inkscape:bbox-paths='true' bordercolor='#666666' borderopacity='1' inkscape:current-layer='layer12' inkscape:cx='25.750874' inkscape:cy='27.7195' inkscape:document-units='px' gridtolerance='10' inkscape:guide-bbox='true' guidetolerance='10' id='namedview88' inkscape:object-nodes='true' inkscape:object-paths='false' objecttolerance='10' pagecolor='#3a3b39' inkscape:pageopacity='1' inkscape:pageshadow='2' showborder='false' showgrid='false' showguides='true' inkscape:snap-bbox='true' inkscape:snap-bbox-midpoints='false' inkscape:snap-global='false' inkscape:snap-grids='true' inkscape:snap-nodes='false' inkscape:snap-others='false' inkscape:snap-to-guides='true' inkscape:window-height='1376' inkscape:window-maximized='1' inkscape:window-width='2560' inkscape:window-x='0' inkscape:window-y='27' inkscape:zoom='8'>
     <inkscape:grid dotted='false' empspacing='2' enabled='true' id='grid4866' originx='60' originy='530' snapvisiblegridlinesonly='true' spacingx='1px' spacingy='1px' type='xygrid' visible='true'/>
   </sodipodi:namedview>
   <title id='title9167'>Gnome Symbolic Icon Theme</title>
@@ -30,6 +30,6 @@
   <g inkscape:groupmode='layer' id='g4953' inkscape:label='categories' style='display:inline' transform='translate(-181.0002,-747)'/>
   <g inkscape:groupmode='layer' id='layer12' inkscape:label='actions' style='display:inline' transform='translate(-181.0002,-747)'>
     
-    <path inkscape:connector-curvature='0' d='m 189.0002,759.4375 -5.71875,-5.7187 C 183.08558,753.5229 183.0002,753.2556 183.0002,753 v -1 h 1 c 0.25562,0 0.52288,0.085 0.71875,0.2813 l 4.28125,4.2812 4.28125,-4.2812 C 193.47732,752.0854 193.74458,752 194.0002,752 h 1 v 1 c 0,0.2556 -0.0854,0.5229 -0.28125,0.7188 z' id='path9926' sodipodi:nodetypes='ccscsccsscscc' style='display:inline;fill:#bebebe;fill-opacity:1;stroke:none'/>
+    <path inkscape:connector-curvature='0' d='m 189.0002,759.4375 -5.71875,-5.7187 C 183.08558,753.5229 183.0002,753.2556 183.0002,753 v -1 h 1 c 0.25562,0 0.52288,0.085 0.71875,0.2813 l 4.28125,4.2812 4.28125,-4.2812 C 193.47732,752.0854 193.74458,752 194.0002,752 h 1 v 1 c 0,0.2556 -0.0854,0.5229 -0.28125,0.7188 z' id='path9955' sodipodi:nodetypes='ccscsccsscscc' style='display:inline;fill:#bebebe;fill-opacity:1;stroke:none'/>
   </g>
 </svg>

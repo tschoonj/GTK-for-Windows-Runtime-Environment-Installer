@@ -10,36 +10,11 @@
 "ani" ""
 "RIFF    ACON" "    xxxx    " 100
 
-"lib\\gdk-pixbuf-2.0\\2.10.0\\loaders\\libpixbufloader-bmp.dll"
-"bmp" 5 "gdk-pixbuf" "BMP" "LGPL"
-"image/bmp" "image/x-bmp" "image/x-MS-bmp" ""
-"bmp" ""
-"BM" "" 100
-
-"lib\\gdk-pixbuf-2.0\\2.10.0\\loaders\\libpixbufloader-gif.dll"
-"gif" 4 "gdk-pixbuf" "GIF" "LGPL"
-"image/gif" ""
-"gif" ""
-"GIF8" "" 100
-
 "lib\\gdk-pixbuf-2.0\\2.10.0\\loaders\\libpixbufloader-icns.dll"
 "icns" 4 "gdk-pixbuf" "MacOS X icon" "GPL"
 "image/x-icns" ""
 "icns" ""
 "icns" "" 100
-
-"lib\\gdk-pixbuf-2.0\\2.10.0\\loaders\\libpixbufloader-ico.dll"
-"ico" 5 "gdk-pixbuf" "Windows icon" "LGPL"
-"image/x-icon" "image/x-ico" "image/x-win-bitmap" "image/vnd.microsoft.icon" "application/ico" "image/ico" "image/icon" "text/ico" ""
-"ico" "cur" ""
-"  \001   " "zz znz" 100
-"  \002   " "zz znz" 100
-
-"lib\\gdk-pixbuf-2.0\\2.10.0\\loaders\\libpixbufloader-jpeg.dll"
-"jpeg" 5 "gdk-pixbuf" "JPEG" "LGPL"
-"image/jpeg" ""
-"jpeg" "jpe" "jpg" ""
-"\377\330" "" 100
 
 "lib\\gdk-pixbuf-2.0\\2.10.0\\loaders\\libpixbufloader-pnm.dll"
 "pnm" 4 "gdk-pixbuf" "PNM/PBM/PGM/PPM" "LGPL"
@@ -76,14 +51,6 @@
 "  \003" "xz " 100
 "  \n" "xz " 100
 "  \v" "xz " 100
-
-"lib\\gdk-pixbuf-2.0\\2.10.0\\loaders\\libpixbufloader-tiff.dll"
-"tiff" 5 "gdk-pixbuf" "TIFF" "LGPL"
-"image/tiff" ""
-"tiff" "tif" ""
-"MM *" "  z " 100
-"II* " "   z" 100
-"II* \020   CR\002 " "   z zzz   z" 0
 
 "lib\\gdk-pixbuf-2.0\\2.10.0\\loaders\\libpixbufloader-xbm.dll"
 "xbm" 4 "gdk-pixbuf" "XBM" "LGPL"
