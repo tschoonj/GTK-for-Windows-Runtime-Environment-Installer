@@ -3,7 +3,7 @@ GTK+ for Windows Runtime Environment Installer: 64-bit
 
 This repository is a fork of the  [GTK+ for Windows Runtime Environment Installer](http://gtk-win.sourceforge.net) that was originally created
 by Alexander Shaduri.
-My efforts here will focus on creating a **64-bit version** of the GTK+-2 runtime that he has been providing so far, using up to date versions of GTK+ and its dependencies. Recently I have also created a 64-bit **GTK+-3 runtime package**. All packages now contain **Gtkmm** and its dependencies too. Since the GTK+ developers recently dropped support for stock icons (a mistake of epic proportions IMHO...), I added the Adwaita icon theme to the GTK+-3 runtime, so you can still enjoy pretty filechooserdialogs etc! I have also added a couple of commonly used libraries such as libxml++, libxslt and gtksourceview.
+My efforts here will focus on creating a **64-bit version** of the GTK+-2 runtime that he has been providing so far, using up to date versions of GTK+ and its dependencies. Recently I have also created a 64-bit **GTK+-3 runtime package**. All packages now contain **Gtkmm** and its dependencies too. Since the GTK+ developers recently dropped support for stock icons (a mistake of epic proportions IMHO...), I added the Adwaita icon theme to the GTK+-3 runtime, so you can still enjoy pretty filechooserdialogs etc! I have also added a couple of commonly used libraries such as libxml++, libxslt, gtksourceview, libsoup and sqlite.
 
 The installers can be found in the [releases section](https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases).
 
@@ -21,6 +21,7 @@ The following packages are included in the current GTK+-2/3 installers
 * [gdk-pixbuf](http://ftp.gnome.org/pub/GNOME/sources/gdk-pixbuf/) (2.36.6)
 * [gettext](http://ftp.gnu.org/pub/gnu/gettext/) (0.19.8.1)
 * [glib](http://ftp.gnome.org/pub/GNOME/sources/glib/) (2.52.3)
+* [glib-networking](http://ftp.gnome.org/pub/GNOME/sources/glib-networking/) (2.50.1)
 * [glibmm](http://ftp.gnome.org/pub/GNOME/sources/glibmm/) (2.50.0)
 * [gtk2](http://ftp.gnome.org/pub/GNOME/sources/gtk+/) (2.24.31)
 * [gtk3](http://ftp.gnome.org/pub/GNOME/sources/gtk+/) (3.22.18)
@@ -38,6 +39,7 @@ The following packages are included in the current GTK+-2/3 installers
 * [libiconv](https://ftp.gnu.org/pub/gnu/libiconv/) (1.15)
 * [libpng](http://sourceforge.net/project/showfiles.php?group_id=5624) (1.6.31)
 * [libsigc++](http://ftp.gnome.org/pub/GNOME/sources/libsigc++/) (2.10.0)
+* [libsoup](http://ftp.gnome.org/pub/GNOME/sources/libsoup/) (2.58.2)
 * [libxml2](http://xmlsoft.org/sources/) (2.9.4)
 * [libxml++2](http://ftp.gnome.org/pub/GNOME/sources/libxml++/) (2.40.0)
 * [libxml++3](http://ftp.gnome.org/pub/GNOME/sources/libxml++/) (3.0.0)
@@ -46,6 +48,7 @@ The following packages are included in the current GTK+-2/3 installers
 * [pangomm](http://ftp.gnome.org/pub/GNOME/sources/pangomm/) (2.40.0)
 * [pcre](ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/) (8.41)
 * [pixman](http://cairographics.org/releases/) (0.34.0)
+* [sqlite](https://www.sqlite.org) (3.20.0)
 * [zlib](http://www.zlib.net) (1.2.11)
 
 For all other information regarding how to use the installer, the reader is kindly referred to [Alexander Shaduri's website](http://gtk-win.sourceforge.net) of the GTK for Windows runtime environment installer. The only difference with the installers found at his website is that mine DO NOT have the `compatdlls` option, but this should present no problems to any user.  

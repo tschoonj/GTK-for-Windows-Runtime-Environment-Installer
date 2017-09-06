@@ -4,6 +4,7 @@
 # Set default values to option vars
 # ---------------------------------------------------------------------------
 set -e
+set -x
 INSTALL_SRC_DIR=$(dirname "$0")
 INSTALL_SRC_MSYS2="/mingw64/"
 _DATE=$(date +'%Y-%m-%d')
@@ -19,6 +20,8 @@ INSTALL_SRC_BIN="${INSTALL_SRC_DIR}"/bin
 INSTALL_SRC_LIB="${INSTALL_SRC_DIR}"/lib
 INSTALL_SRC_MSYS2_BIN=${INSTALL_SRC_MSYS2}/bin
 INSTALL_SRC_MSYS2_LIB=${INSTALL_SRC_MSYS2}/lib
+INSTALL_SRC_SSL="${INSTALL_SRC_DIR}"/ssl
+INSTALL_SRC_MSYS2_SSL=${INSTALL_SRC_MSYS2}/ssl
 
 # Create installer file name
 INSTALLER_FILENAME=gtk3-runtime-${_VERSION}-${_DATE}-${_ARCH}.msi
@@ -100,7 +103,20 @@ cp $INSTALL_SRC_MSYS2_BIN/libgraphite2.dll $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/librsvg-2-2.dll $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libtiff-5.dll $INSTALL_SRC_BIN
 
-# Standrard MSYS2 libraries
+# libsoup and its dependencies
+cp $INSTALL_SRC_MSYS2_BIN/libsoup-2.4-1.dll $INSTALL_SRC_BIN
+cp $INSTALL_SRC_MSYS2_BIN/libsoup-gnome-2.4-1.dll $INSTALL_SRC_BIN
+cp $INSTALL_SRC_MSYS2_BIN/libsqlite3-0.dll $INSTALL_SRC_BIN
+cp $INSTALL_SRC_MSYS2_BIN/libgnutls-30.dll $INSTALL_SRC_BIN
+cp $INSTALL_SRC_MSYS2_BIN/libgmp-10.dll $INSTALL_SRC_BIN
+cp $INSTALL_SRC_MSYS2_BIN/libhogweed-4.dll $INSTALL_SRC_BIN
+cp $INSTALL_SRC_MSYS2_BIN/libnettle-6.dll $INSTALL_SRC_BIN
+cp $INSTALL_SRC_MSYS2_BIN/libidn-11.dll $INSTALL_SRC_BIN
+cp $INSTALL_SRC_MSYS2_BIN/libp11-kit-0.dll $INSTALL_SRC_BIN
+cp $INSTALL_SRC_MSYS2_BIN/libtasn1-6.dll $INSTALL_SRC_BIN
+cp $INSTALL_SRC_MSYS2_BIN/libunistring-2.dll $INSTALL_SRC_BIN
+
+# Standard MSYS2 libraries
 cp $INSTALL_SRC_MSYS2_BIN/libstdc++-6.dll $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libgcc_s_seh-1.dll $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libwinpthread-1.dll $INSTALL_SRC_BIN
@@ -125,7 +141,7 @@ cp $INSTALL_SRC_MSYS2_BIN/gtk-update-icon-cache.exe $INSTALL_SRC_BIN
 cd $INSTALL_SRC_MSYS2_LIB/gtk-2.0
 cp -r ./ $INSTALL_SRC_LIB/gtk-2.0
 # Delete static libraries
-find $INSTALL_SRC_LIB/gtk-2.0 -name *.dll.a -type f -delete
+find $INSTALL_SRC_LIB/gtk-2.0 -name *.a -type f -delete
 
 # Copy lib/gdk-pixbuf-2.0 folder 
 cd $INSTALL_SRC_MSYS2_LIB/gdk-pixbuf-2.0
@@ -133,8 +149,16 @@ cp -r ./ $INSTALL_SRC_LIB/gdk-pixbuf-2.0
 # Delete static libraries
 find $INSTALL_SRC_LIB/gdk-pixbuf-2.0 -name *.a -type f -delete
 
+# Copy lib/gio/modules folder 
+cd $INSTALL_SRC_MSYS2_LIB/gio
+mkdir -p $INSTALL_SRC_LIB/gio
+cp -r modules $INSTALL_SRC_LIB/gio/
+# Delete static libraries
+find $INSTALL_SRC_LIB/gio/modules -name *.a -type f -delete
+
 # Copy /share/locale/locale.alias
-cp $INSTALL_SRC_MSYS2/share/locale/locale.alias $INSTALL_SRC_DIR/share/locale
+rm -r $INSTALL_SRC_DIR/share/locale
+cp -r $INSTALL_SRC_MSYS2/share/locale $INSTALL_SRC_DIR/share/
 
 # Copy /share/themes/default
 cp -r $INSTALL_SRC_MSYS2/share/themes/default/gtk-3.0 $INSTALL_SRC_DIR/share/themes/default/
@@ -147,6 +171,12 @@ cp -r $INSTALL_SRC_MSYS2/share/glib-2.0/schemas $INSTALL_SRC_DIR/share/glib-2.0/
 
 # Copy /share/icons
 cp -r $INSTALL_SRC_MSYS2/share/icons $INSTALL_SRC_DIR/share/
+
+# Copy SSL certificate bundle
+mkdir -p $INSTALL_SRC_SSL/certs
+cd $INSTALL_SRC_MSYS2_SSL/certs
+cp ca-bundle.crt ca-bundle.trust.crt $INSTALL_SRC_SSL/certs/
+
 
 # librsvg depends on:
 # gdk-pixbuf2  pango  libcroco

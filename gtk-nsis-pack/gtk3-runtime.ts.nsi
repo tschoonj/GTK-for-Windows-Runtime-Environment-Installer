@@ -13,7 +13,7 @@
 
 !define GTK_VERSION "3.22.18"
 !define GTK_BIN_VERSION "3.0.0"
-!define PRODUCT_VERSION "${GTK_VERSION}-2017-08-17-ts-win64"
+!define PRODUCT_VERSION "${GTK_VERSION}-2017-09-05-ts-win64"
 !define PRODUCT_NAME "GTK3-Runtime Win64"
 !define PRODUCT_PUBLISHER "Tom Schoonjans"
 !define PRODUCT_WEB_SITE "https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer"
@@ -286,6 +286,17 @@ SectionIn 1 2 RO
 	File bin\libstdc++-6.dll		; standard MSYS2 library
 	File bin\libgcc_s_seh-1.dll		; standard MSYS2 library
 	File bin\libwinpthread-1.dll	; standard MSYS2 library
+	File bin\libsoup-2.4-1.dll      ; libsoup
+	File bin\libsoup-gnome-2.4-1.dll      ; libsoup
+	File bin\libsqlite3-0.dll       ; libsoup dependency
+	File bin\libgnutls-30.dll       ; glib-networking dependency
+	File bin\libgmp-10.dll		; glib-networking dependency
+	File bin\libhogweed-4.dll       ; glib-networking dependency
+	File bin\libnettle-6.dll	; glib-networking dependency
+	File bin\libidn-11.dll		; glib-networking dependency
+	File bin\libp11-kit-0.dll	; glib-networking dependency
+	File bin\libtasn1-6.dll		; glib-networking dependency
+	File bin\libunistring-2.dll	; glib-networking dependency
 
 	; We install this into the same place as the DLLs to avoid any PATH manipulation.
 	SetOutPath "$LIB_INSTDIR"
@@ -315,6 +326,13 @@ SectionIn 1 2 RO
 
 	SetOutPath "$INSTDIR\lib\gdk-pixbuf-2.0\2.10.0\"
 	File /r lib\gdk-pixbuf-2.0\2.10.0\loaders
+
+	SetOutPath "$INSTDIR\lib\gio\modules"
+	File lib\gio\modules\libgiognutls.dll
+
+	SetOutPath "$INSTDIR\ssl\certs"
+	File ssl\certs\ca-bundle.crt
+	File ssl\certs\ca-bundle.trust.crt
 
 	;SetOutPath "$INSTDIR\lib\gtk-3.0\${GTK_BIN_VERSION}"
 	; no longer in gtk as of 2.14.5.
@@ -646,6 +664,17 @@ Function un.DeleteDlls
 	Delete $LIB_INSTDIR\libstdc++-6.dll
 	Delete $LIB_INSTDIR\libgcc_s_seh-1.dll
 	Delete $LIB_INSTDIR\libwinpthread-1.dll
+	Delete $LIB_INSTDIR\libsoup-2.4-1.dll      ; libsoup
+	Delete $LIB_INSTDIR\libsoup-gnome-2.4-1.dll      ; libsoup
+	Delete $LIB_INSTDIR\libsqlite3-0.dll       ; libsoup dependency
+	Delete $LIB_INSTDIR\libgnutls-30.dll       ; glib-networking dependency
+	Delete $LIB_INSTDIR\libgmp-10.dll		; glib-networking dependency
+	Delete $LIB_INSTDIR\libhogweed-4.dll       ; glib-networking dependency
+	Delete $LIB_INSTDIR\libnettle-6.dll	; glib-networking dependency
+	Delete $LIB_INSTDIR\libidn-11.dll		; glib-networking dependency
+	Delete $LIB_INSTDIR\libp11-kit-0.dll	; glib-networking dependency
+	Delete $LIB_INSTDIR\libtasn1-6.dll		; glib-networking dependency
+	Delete $LIB_INSTDIR\libunistring-2.dll	; glib-networking dependency
 
 
 FunctionEnd
@@ -784,7 +813,9 @@ Section Uninstall
 	RMDir "$INSTDIR\lib\gdk-pixbuf-2.0"  ; not forced
 
 
-	;RMDir /r "$INSTDIR\lib\gtk-2.0\modules"
+	Delete "$INSTDIR\lib\gio\modules\libgiognutls.dll"
+	RMDir "$INSTDIR\lib\gio\modules"
+	RMDir "$INSTDIR\lib\gio"
 
 	; no longer in gtk as of 2.14.5
 	;RMDir /r "$INSTDIR\lib\gtk-3.0\${GTK_BIN_VERSION}\immodules"
