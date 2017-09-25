@@ -7,33 +7,33 @@ My efforts here will focus on creating a **64-bit version** of the GTK+-2 runtim
 
 The installers can be found in the [releases section](https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases).
 
-The current releases ([gtk2-runtime-2.24.31-2017-08-17-ts-win64.exe](https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases/download/2017-08-17/gtk2-runtime-2.24.31-2017-08-17-ts-win64.exe) and [gtk3-runtime-3.22.19-2017-09-11-ts-win64.exe](https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases/download/2017-09-11/gtk3-runtime-3.22.19-2017-09-11-ts-win64.exe)) were obtained entirely from the excellent [MSYS2 project](www.msys2.org), and were **not** compiled by myself, as was the case for releases made before 2017. Users who want to compile against this runtime are strongly encouraged to set up a MSYS2 installation themselves, and install the required packages (compiled with the mingw-w64-x86\_64 toolchain!!!).
+The current releases ([gtk2-runtime-2.24.31-2017-09-25-ts-win64.exe](https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases/download/2017-09-25/gtk2-runtime-2.24.31-2017-09-25-ts-win64.exe) and [gtk3-runtime-3.22.19-2017-09-25-ts-win64.exe](https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases/download/2017-09-25/gtk3-runtime-3.22.21-2017-09-25-ts-win64.exe)) were obtained entirely from the excellent [MSYS2 project](www.msys2.org), and were **not** compiled by myself, as was the case for releases made before 2017. Users who want to compile against this runtime are strongly encouraged to set up a MSYS2 installation themselves, and install the required packages (compiled with the mingw-w64-x86\_64 toolchain!!!).
 
 The following packages are included in the current GTK+-2/3 installers
 
-* [adwaita icon theme](http://ftp.gnome.org/pub/GNOME/sources/adwaita-icon-theme/) (3.24.0)
+* [adwaita icon theme](http://ftp.gnome.org/pub/GNOME/sources/adwaita-icon-theme/) (3.26.0)
 * [atk](http://ftp.gnome.org/pub/GNOME/sources/atk/) (2.24.0)
-* [atkmm](http://ftp.gnome.org/pub/GNOME/sources/atkmm/) (2.24.2)
+* [atkmm](http://ftp.gnome.org/pub/GNOME/sources/atkmm/) (2.26.0)
 * [cairo](http://cairographics.org/releases/) (1.15.6)
 * [cairomm](http://cairographics.org/releases/) (1.12.0)
-* [fontconfig](http://www.freedesktop.org/software/fontconfig/release/) (2.12.4)
-* [freetype](http://www.freetype.org/download.html) (2.8)
-* [gdk-pixbuf](http://ftp.gnome.org/pub/GNOME/sources/gdk-pixbuf/) (2.36.9)
+* [fontconfig](http://www.freedesktop.org/software/fontconfig/release/) (2.12.5)
+* [freetype](http://www.freetype.org/download.html) (2.8.1)
+* [gdk-pixbuf](http://ftp.gnome.org/pub/GNOME/sources/gdk-pixbuf/) (2.36.10)
 * [gettext](http://ftp.gnu.org/pub/gnu/gettext/) (0.19.8.1)
-* [glib](http://ftp.gnome.org/pub/GNOME/sources/glib/) (2.52.3)
-* [glib-networking](http://ftp.gnome.org/pub/GNOME/sources/glib-networking/) (2.50.1)
+* [glib](http://ftp.gnome.org/pub/GNOME/sources/glib/) (2.54.0)
+* [glib-networking](http://ftp.gnome.org/pub/GNOME/sources/glib-networking/) (2.54.0)
 * [glibmm](http://ftp.gnome.org/pub/GNOME/sources/glibmm/) (2.50.0)
 * [gtk2](http://ftp.gnome.org/pub/GNOME/sources/gtk+/) (2.24.31)
-* [gtk3](http://ftp.gnome.org/pub/GNOME/sources/gtk+/) (3.22.19)
+* [gtk3](http://ftp.gnome.org/pub/GNOME/sources/gtk+/) (3.22.21)
 * [gtkmm2](http://ftp.gnome.org/pub/GNOME/sources/gtkmm) (2.24.4)
 * [gtkmm3](http://ftp.gnome.org/pub/GNOME/sources/gtkmm) (3.22.0)
 * [gtksourceview2](http://ftp.gnome.org/pub/GNOME/sources/gtksourceview/) (2.10.5)
 * [gtksourceview3](http://ftp.gnome.org/pub/GNOME/sources/gtksourceview/) (3.24.3)
 * ~~[gtksourceviewmm2](http://ftp.gnome.org/pub/GNOME/sources/gtksourceviewmm/) (2.10.3)~~ (currently unavailable)
 * [gtksourceviewmm3](http://ftp.gnome.org/pub/GNOME/sources/gtksourceviewmm/) (3.18.0)
-* [harfbuzz](http://www.freedesktop.org/software/harfbuzz/release/) (1.5.0)
+* [harfbuzz](http://www.freedesktop.org/software/harfbuzz/release/) (1.5.1)
 * [hicolor-icon-theme](http://icon-theme.freedesktop.org/releases/) (0.15)
-* [json-glib](http://ftp.gnome.org/pub/gnome/sources/json-glib/) (1.2.8)
+* [json-glib](http://ftp.gnome.org/pub/gnome/sources/json-glib/) (1.4.2)
 * [libepoxy](https://github.com/anholt/libepoxy) (1.4.3)
 * [libffi](http://sourceware.org/libffi/) (3.2.1)
 * [libiconv](https://ftp.gnu.org/pub/gnu/libiconv/) (1.15)
