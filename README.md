@@ -1,6 +1,8 @@
 GTK+ for Windows Runtime Environment Installer: 64-bit
 ======================================================
 
+[![PayPal](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/tomschoonjans/10)   [![Amazon Wish list](https://img.shields.io/badge/Amazon-Wishlist-green.svg)](http://amzn.eu/8ml3d0c)
+
 This repository is a fork of the  [GTK+ for Windows Runtime Environment Installer](http://gtk-win.sourceforge.net) that was originally created
 by Alexander Shaduri.
 My efforts here will focus on creating a **64-bit version** of the GTK+-2 runtime that he has been providing so far, using up to date versions of GTK+ and its dependencies. Recently I have also created a 64-bit **GTK+-3 runtime package**. All packages now contain **Gtkmm** and its dependencies too. Since the GTK+ developers recently dropped support for stock icons (a mistake of epic proportions IMHO...), I added the Adwaita icon theme to the GTK+-3 runtime, so you can still enjoy pretty filechooserdialogs etc! I have also added a couple of commonly used libraries such as libxml++, libxslt, gtksourceview, libsoup and sqlite.
@@ -58,9 +60,5 @@ Personally I use this installer in my [XMI-MSIM project](http://github.com/xmims
 Those interested in scientific plotting using Gtkmm3 may want to have a look at my project [Gtkmm-PLplot](https://github.com/tschoonj/gtkmm-plplot). Documentation and examples can be found [here](http://tschoonj.github.io/gtkmm-plplot)
 
 If you have enjoyed using this project, please consider making a donation or buying something off my Amazon Wish list. 
-
-[![PayPal](https://cdn.rawgit.com/twolfson/paypal-github-button/1.0.0/dist/button.svg)](https://www.paypal.me/tomschoonjans/10)
-
-[![Amazon Wish list](http://manghammath.com/Link%20Icons%202015/Amazon_Wishlist.png)](http://amzn.eu/8ml3d0c)
 
 Tom Schoonjans
