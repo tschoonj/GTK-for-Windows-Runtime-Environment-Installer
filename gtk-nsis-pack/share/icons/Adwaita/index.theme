@@ -346,104 +346,120 @@ Type=Fixed
 Context=Actions
 Size=256
 MinSize=56
-MaxSize=512
+MaxSize=256
 Type=Scalable
 
 [256x256/apps]
 Context=Applications
 Size=256
 MinSize=56
-MaxSize=512
+MaxSize=256
 Type=Scalable
 
 [256x256/categories]
 Context=Categories
 Size=256
 MinSize=56
-MaxSize=512
+MaxSize=256
 Type=Scalable
 
 [256x256/devices]
 Context=Devices
 Size=256
 MinSize=56
-MaxSize=512
+MaxSize=256
 Type=Scalable
 
 [256x256/emblems]
 Context=Emblems
 Size=256
 MinSize=56
-MaxSize=512
+MaxSize=256
 Type=Scalable
 
 [256x256/emotes]
 Context=Emotes
 Size=256
 MinSize=56
-MaxSize=512
+MaxSize=256
 Type=Scalable
 
 [256x256/mimetypes]
 Context=MimeTypes
 Size=256
 MinSize=56
-MaxSize=512
+MaxSize=256
 Type=Scalable
 
 [256x256/places]
 Context=Places
 Size=256
 MinSize=56
-MaxSize=512
+MaxSize=256
 Type=Scalable
 
 [256x256/status]
 Context=Status
 Size=256
 MinSize=56
-MaxSize=512
+MaxSize=256
 Type=Scalable
 
 [512x512/actions]
 Context=Actions
 Size=512
-Type=Fixed
+MinSize=56
+MaxSize=512
+Type=Scalable
 
 [512x512/apps]
 Context=Applications
 Size=512
-Type=Fixed
+MinSize=56
+MaxSize=512
+Type=Scalable
 
 [512x512/categories]
 Context=Categories
 Size=512
-Type=Fixed
+MinSize=56
+MaxSize=512
+Type=Scalable
 
 [512x512/devices]
 Context=Devices
 Size=512
-Type=Fixed
+MinSize=56
+MaxSize=512
+Type=Scalable
 
 [512x512/emblems]
 Context=Emblems
 Size=512
-Type=Fixed
+MinSize=56
+MaxSize=512
+Type=Scalable
 
 [512x512/mimetypes]
 Context=MimeTypes
 Size=512
-Type=Fixed
+MinSize=56
+MaxSize=512
+Type=Scalable
 
 [512x512/places]
 Context=Places
 Size=512
-Type=Fixed
+MinSize=56
+MaxSize=512
+Type=Scalable
 
 [512x512/status]
 Context=Status
 Size=512
-Type=Fixed
+MinSize=56
+MaxSize=512
+Type=Scalable
 
 [scalable/actions]
 Context=Actions
