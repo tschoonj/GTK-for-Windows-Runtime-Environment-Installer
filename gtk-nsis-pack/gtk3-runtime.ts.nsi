@@ -11,9 +11,9 @@
 ; Directory and package names: gtk3-runtime.
 
 
-!define GTK_VERSION "3.22.26"
+!define GTK_VERSION "3.22.28"
 !define GTK_BIN_VERSION "3.0.0"
-!define PRODUCT_VERSION "${GTK_VERSION}-2018-01-18-ts-win64"
+!define PRODUCT_VERSION "${GTK_VERSION}-2018-02-20-ts-win64"
 !define PRODUCT_NAME "GTK3-Runtime Win64"
 !define PRODUCT_PUBLISHER "Tom Schoonjans"
 !define PRODUCT_WEB_SITE "https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer"
@@ -816,6 +816,11 @@ Section Uninstall
 	Delete "$INSTDIR\lib\gio\modules\libgiognutls.dll"
 	RMDir "$INSTDIR\lib\gio\modules"
 	RMDir "$INSTDIR\lib\gio"
+
+	Delete "$INSTDIR\ssl\certs\ca-bundle.crt"
+	Delete "$INSTDIR\ssl\certs\ca-bundle.trust.crt"
+	RMDir "$INSTDIR\ssl\certs"
+	RMDir "$INSTDIR\ssl"
 
 	; no longer in gtk as of 2.14.5
 	;RMDir /r "$INSTDIR\lib\gtk-3.0\${GTK_BIN_VERSION}\immodules"

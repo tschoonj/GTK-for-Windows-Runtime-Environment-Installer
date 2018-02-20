@@ -9,7 +9,7 @@ My efforts here will focus on creating a **64-bit version** of the GTK+-2 runtim
 
 The installers can be found in the [releases section](https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases).
 
-The current releases ([gtk2-runtime-2.24.32-2018-01-18-ts-win64.exe](https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases/download/2018-01-18/gtk2-runtime-2.24.32-2018-01-18-ts-win64.exe) and [gtk3-runtime-3.22.26-2018-01-18-ts-win64.exe](https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases/download/2018-01-18/gtk3-runtime-3.22.26-2018-01-18-ts-win64.exe)) were obtained entirely from the excellent [MSYS2 project](www.msys2.org), and were **not** compiled by myself, as was the case for releases made before 2017. Users who want to compile against this runtime are strongly encouraged to set up a MSYS2 installation themselves, and install the required packages (compiled with the mingw-w64-x86\_64 toolchain!!!).
+The current releases ([gtk2-runtime-2.24.32-2018-02-20-ts-win64.exe](https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases/download/2018-02-20/gtk2-runtime-2.24.32-2018-02-20-ts-win64.exe) and [gtk3-runtime-3.22.28-2018-02-20-ts-win64.exe](https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases/download/2018-02-20/gtk3-runtime-3.22.28-2018-02-20-ts-win64.exe)) were obtained entirely from the excellent [MSYS2 project](www.msys2.org), and were **not** compiled by myself, as was the case for releases made before 2017. Users who want to compile against this runtime are strongly encouraged to set up a MSYS2 installation themselves, and install the required packages (compiled with the mingw-w64-x86\_64 toolchain!!!).
 
 The following packages are included in the current GTK+-2/3 installers
 
@@ -22,18 +22,18 @@ The following packages are included in the current GTK+-2/3 installers
 * [freetype](http://www.freetype.org/download.html) (2.9)
 * [gdk-pixbuf](http://ftp.gnome.org/pub/GNOME/sources/gdk-pixbuf/) (2.36.11)
 * [gettext](http://ftp.gnu.org/pub/gnu/gettext/) (0.19.8.1)
-* [glib](http://ftp.gnome.org/pub/GNOME/sources/glib/) (2.54.2)
+* [glib](http://ftp.gnome.org/pub/GNOME/sources/glib/) (2.54.3)
 * [glib-networking](http://ftp.gnome.org/pub/GNOME/sources/glib-networking/) (2.54.1)
 * [glibmm](http://ftp.gnome.org/pub/GNOME/sources/glibmm/) (2.54.1)
 * [gtk2](http://ftp.gnome.org/pub/GNOME/sources/gtk+/) (2.24.32)
-* [gtk3](http://ftp.gnome.org/pub/GNOME/sources/gtk+/) (3.22.26)
+* [gtk3](http://ftp.gnome.org/pub/GNOME/sources/gtk+/) (3.22.28)
 * [gtkmm2](http://ftp.gnome.org/pub/GNOME/sources/gtkmm) (2.24.4)
 * [gtkmm3](http://ftp.gnome.org/pub/GNOME/sources/gtkmm) (3.22.0)
 * [gtksourceview2](http://ftp.gnome.org/pub/GNOME/sources/gtksourceview/) (2.10.5)
 * [gtksourceview3](http://ftp.gnome.org/pub/GNOME/sources/gtksourceview/) (3.24.6)
 * ~~[gtksourceviewmm2](http://ftp.gnome.org/pub/GNOME/sources/gtksourceviewmm/) (2.10.3)~~ (currently unavailable)
-* [gtksourceviewmm3](http://ftp.gnome.org/pub/GNOME/sources/gtksourceviewmm/) (3.18.0)
-* [harfbuzz](http://www.freedesktop.org/software/harfbuzz/release/) (1.7.4)
+* [gtksourceviewmm3](http://ftp.gnome.org/pub/GNOME/sources/gtksourceviewmm/) (3.21.3)
+* [harfbuzz](http://www.freedesktop.org/software/harfbuzz/release/) (1.7.5)
 * [hicolor-icon-theme](http://icon-theme.freedesktop.org/releases/) (0.15)
 * [json-glib](http://ftp.gnome.org/pub/gnome/sources/json-glib/) (1.4.2)
 * [libepoxy](https://github.com/anholt/libepoxy) (1.4.3)
@@ -42,7 +42,7 @@ The following packages are included in the current GTK+-2/3 installers
 * [libpng](http://sourceforge.net/project/showfiles.php?group_id=5624) (1.6.34)
 * [librsvg](http://ftp.gnome.org/pub/GNOME/sources/librsvg/) (2.40.20)
 * [libsigc++](http://ftp.gnome.org/pub/GNOME/sources/libsigc++/) (2.10.0)
-* [libsoup](http://ftp.gnome.org/pub/GNOME/sources/libsoup/) (2.60.2)
+* [libsoup](http://ftp.gnome.org/pub/GNOME/sources/libsoup/) (2.60.3)
 * [libxml2](http://xmlsoft.org/sources/) (2.9.7)
 * [libxml++2](http://ftp.gnome.org/pub/GNOME/sources/libxml++/) (2.40.0)
 * [libxml++3](http://ftp.gnome.org/pub/GNOME/sources/libxml++/) (3.0.0)
