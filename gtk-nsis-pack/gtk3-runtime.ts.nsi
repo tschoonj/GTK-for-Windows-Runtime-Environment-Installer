@@ -13,7 +13,7 @@
 
 !define GTK_VERSION "3.22.28"
 !define GTK_BIN_VERSION "3.0.0"
-!define PRODUCT_VERSION "${GTK_VERSION}-2018-02-20-ts-win64"
+!define PRODUCT_VERSION "${GTK_VERSION}-2018-03-12-ts-win64"
 !define PRODUCT_NAME "GTK3-Runtime Win64"
 !define PRODUCT_PUBLISHER "Tom Schoonjans"
 !define PRODUCT_WEB_SITE "https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer"
@@ -272,6 +272,8 @@ SectionIn 1 2 RO
 	File bin\libpangomm-1.4-1.dll
 	File bin\libpixman-1-0.dll  	; libpixman, needed by cairo
 	File bin\libpng16-16.dll  		; required by gdk-pixbuf2
+	File bin\libjpeg-8.dll  		; required by gdk-pixbuf2
+	File bin\libjasper-4.dll  		; required by gdk-pixbuf2
 	File bin\libxml++-2.6-2.dll  ; fontconfig needs this
 	File bin\libxml++-3.0-1.dll
 	File bin\libxml2-2.dll			; fontconfig needs this
@@ -650,6 +652,8 @@ Function un.DeleteDlls
 	Delete $LIB_INSTDIR\libpangomm-1.4-1.dll
 	Delete $LIB_INSTDIR\libpixman-1-0.dll  ; libpixman, needed by cairo
 	Delete $LIB_INSTDIR\libpng16-16.dll  ; for gdk_pixbuf loader.
+	Delete $LIB_INSTDIR\libjasper-4.dll  ; for gdk_pixbuf loader.
+	Delete $LIB_INSTDIR\libjpeg-8.dll  ; for gdk_pixbuf loader.
 	Delete $LIB_INSTDIR\libxslt-1.dll  ; fontconfig needs this
 	Delete $LIB_INSTDIR\libpcre-1.dll  ; fontconfig needs this
 	Delete $LIB_INSTDIR\libxml2-2.dll  ; fontconfig needs this

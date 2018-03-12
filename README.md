@@ -9,7 +9,7 @@ My efforts here will focus on creating a **64-bit version** of the GTK+-2 runtim
 
 The installers can be found in the [releases section](https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases).
 
-The current releases ([gtk2-runtime-2.24.32-2018-02-20-ts-win64.exe](https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases/download/2018-02-20/gtk2-runtime-2.24.32-2018-02-20-ts-win64.exe) and [gtk3-runtime-3.22.28-2018-02-20-ts-win64.exe](https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases/download/2018-02-20/gtk3-runtime-3.22.28-2018-02-20-ts-win64.exe)) were obtained entirely from the excellent [MSYS2 project](www.msys2.org), and were **not** compiled by myself, as was the case for releases made before 2017. Users who want to compile against this runtime are strongly encouraged to set up a MSYS2 installation themselves, and install the required packages (compiled with the mingw-w64-x86\_64 toolchain!!!).
+The current releases ([gtk2-runtime-2.24.32-2018-03-12-ts-win64.exe](https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases/download/2018-03-12/gtk2-runtime-2.24.32-2018-03-12-ts-win64.exe) and [gtk3-runtime-3.22.28-2018-03-12-ts-win64.exe](https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases/download/2018-03-12/gtk3-runtime-3.22.28-2018-03-12-ts-win64.exe)) were obtained entirely from the excellent [MSYS2 project](www.msys2.org), and were **not** compiled by myself, as was the case for releases made before 2017. Users who want to compile against this runtime are strongly encouraged to set up a MSYS2 installation themselves, and install the required packages (compiled with the mingw-w64-x86\_64 toolchain!!!).
 
 The following packages are included in the current GTK+-2/3 installers
 
@@ -36,7 +36,7 @@ The following packages are included in the current GTK+-2/3 installers
 * [harfbuzz](http://www.freedesktop.org/software/harfbuzz/release/) (1.7.5)
 * [hicolor-icon-theme](http://icon-theme.freedesktop.org/releases/) (0.15)
 * [json-glib](http://ftp.gnome.org/pub/gnome/sources/json-glib/) (1.4.2)
-* [libepoxy](https://github.com/anholt/libepoxy) (1.4.3)
+* [libepoxy](https://github.com/anholt/libepoxy) (1.5.0)
 * [libffi](http://sourceware.org/libffi/) (3.2.1)
 * [libiconv](https://ftp.gnu.org/pub/gnu/libiconv/) (1.15)
 * [libpng](http://sourceforge.net/project/showfiles.php?group_id=5624) (1.6.34)

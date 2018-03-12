@@ -14,7 +14,7 @@
 
 !define GTK_VERSION "2.24.32"
 !define GTK_BIN_VERSION "2.10.0"
-!define PRODUCT_VERSION "${GTK_VERSION}-2018-02-20-ts-win64"
+!define PRODUCT_VERSION "${GTK_VERSION}-2018-03-12-ts-win64"
 !define PRODUCT_NAME "GTK2-Runtime Win64"
 !define PRODUCT_PUBLISHER "Tom Schoonjans"
 !define PRODUCT_WEB_SITE "https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer"
@@ -270,6 +270,9 @@ SectionIn 1 2 RO
 	File bin\libpangomm-1.4-1.dll
 	File bin\libpixman-1-0.dll  ; libpixman, needed by cairo
 	File bin\libpng16-16.dll  ; for gdk_pixbuf loader.
+	File bin\libjasper-4.dll  ; for gdk_pixbuf loader.
+	File bin\libjpeg-8.dll  ; for gdk_pixbuf loader.
+	File bin\libtiff-5.dll  ; for gdk_pixbuf loader.
 	File bin\libxml++-2.6-2.dll  ; fontconfig needs this
 	File bin\libxml++-3.0-1.dll
 	File bin\libpcre-1.dll
@@ -280,7 +283,8 @@ SectionIn 1 2 RO
 	File bin\libbz2-1.dll			; required by fontconfig
 	File bin\libgraphite2.dll		; required by harfbuzz
 	File bin\librsvg-2-2.dll		; required by adwaita-icon-theme
-	File bin\libtiff-5.dll			; required by gdk-pixbuf2
+	File bin\libcroco-0.6-3.dll		; required by adwaita-icon-theme
+	File bin\liblzma-5.dll		; required by adwaita-icon-theme
 	File bin\libstdc++-6.dll
 	File bin\libgcc_s_seh-1.dll
 	File bin\libwinpthread-1.dll
@@ -626,6 +630,9 @@ Function un.DeleteDlls
 	Delete $LIB_INSTDIR\libpangomm-1.4-1.dll
 	Delete $LIB_INSTDIR\libpixman-1-0.dll  ; libpixman, needed by cairo
 	Delete $LIB_INSTDIR\libpng16-16.dll  ; for gdk_pixbuf loader.
+	Delete $LIB_INSTDIR\libjasper-4.dll  ; for gdk_pixbuf loader.
+	Delete $LIB_INSTDIR\libjpeg-8.dll  ; for gdk_pixbuf loader.
+	Delete $LIB_INSTDIR\libtiff-5.dll  ; for gdk_pixbuf loader.
 	Delete $LIB_INSTDIR\libxml2-2.dll  ; fontconfig needs this
 	Delete $LIB_INSTDIR\libxslt-1.dll  ; fontconfig needs this
 	Delete $LIB_INSTDIR\libxml++-2.6-2.dll  ; fontconfig needs this
@@ -636,7 +643,8 @@ Function un.DeleteDlls
 	Delete $LIB_INSTDIR\libbz2-1.dll
 	Delete $LIB_INSTDIR\libgraphite2.dll
 	Delete $LIB_INSTDIR\librsvg-2-2.dll
-	Delete $LIB_INSTDIR\libtiff-5.dll
+	Delete $LIB_INSTDIR\libcroco-0.6-3.dll
+	Delete $LIB_INSTDIR\liblzma-5.dll
 	Delete $LIB_INSTDIR\libstdc++-6.dll
 	Delete $LIB_INSTDIR\libgcc_s_seh-1.dll
 	Delete $LIB_INSTDIR\libwinpthread-1.dll
