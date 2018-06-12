@@ -14,7 +14,7 @@
 
 !define GTK_VERSION "2.24.32"
 !define GTK_BIN_VERSION "2.10.0"
-!define PRODUCT_VERSION "${GTK_VERSION}-2018-03-12-ts-win64"
+!define PRODUCT_VERSION "${GTK_VERSION}-2018-06-12-ts-win64"
 !define PRODUCT_NAME "GTK2-Runtime Win64"
 !define PRODUCT_PUBLISHER "Tom Schoonjans"
 !define PRODUCT_WEB_SITE "https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer"
@@ -242,6 +242,7 @@ SectionIn 1 2 RO
 	File bin\libffi-6.dll  ; libffi is required by glib 
 	File bin\libfontconfig-1.dll  ; fontconfig is needed for ft2 pango backend
 	File bin\libfreetype-6.dll  ; freetype is needed for ft2 pango backend
+	File bin\libfribidi-0.dll  ; fribidi is needed for pango 
 	File bin\libgailutil-18.dll  ; from gtk
 	File bin\libgdk_pixbuf-2.0-0.dll  ; from gtk
 	File bin\libgdk-win32-2.0-0.dll  ; from gtk
@@ -311,6 +312,7 @@ SectionIn 1 2 RO
 	File /r etc\gtk-2.0 
 	SetOverwrite On
 
+	File /r etc\fonts
 
 	SetOutPath "$INSTDIR\lib\gdk-pixbuf-2.0\${GTK_BIN_VERSION}"
 	File lib\gdk-pixbuf-2.0\${GTK_BIN_VERSION}\loaders.cache
@@ -602,6 +604,7 @@ Function un.DeleteDlls
 	Delete $LIB_INSTDIR\libffi-6.dll  ; libffi is required by glib 
 	Delete $LIB_INSTDIR\libfontconfig-1.dll  ; fontconfig is needed for ft2 pango backend
 	Delete $LIB_INSTDIR\libfreetype-6.dll  ; freetype is needed for ft2 pango backend
+	Delete $LIB_INSTDIR\libfribidi-0.dll
 	Delete $LIB_INSTDIR\libgailutil-18.dll  ; from gtk
 	Delete $LIB_INSTDIR\libgdk_pixbuf-2.0-0.dll  ; from gtk
 	Delete $LIB_INSTDIR\libgdk-win32-2.0-0.dll  ; from gtk
@@ -759,14 +762,10 @@ Section Uninstall
 	skip_config:
 
 
-	;Delete "$INSTDIR\etc\fonts\fonts.conf"
-	;RMDir "$INSTDIR\etc\fonts"  ; only if empty
-	;Delete "$INSTDIR\etc\pango\pango.modules"
-	;RMDir "$INSTDIR\etc\pango"  ; only if empty
-	; Delete "$INSTDIR\etc\gtk-2.0\gdk-pixbuf.loaders"
-	;Delete "$INSTDIR\etc\gtk-2.0\gtk.immodules"
+	Delete "$INSTDIR\etc\fonts\fonts.conf"
+	RMDir /r "$INSTDIR\etc\fonts\conf.d"
+	RMDir "$INSTDIR\etc\fonts"  ; only if empty
 	Delete "$INSTDIR\etc\gtk-2.0\gtkrc.default"
-	;Delete "$INSTDIR\etc\gtk-2.0\im-multipress.conf"
 	RMDir "$INSTDIR\etc\gtk-2.0" ; only if empty
 	RMDir "$INSTDIR\etc" ; only if empty
 

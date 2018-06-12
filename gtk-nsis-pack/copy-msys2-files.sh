@@ -22,6 +22,8 @@ INSTALL_SRC_MSYS2_BIN=${INSTALL_SRC_MSYS2}/bin
 INSTALL_SRC_MSYS2_LIB=${INSTALL_SRC_MSYS2}/lib
 INSTALL_SRC_SSL="${INSTALL_SRC_DIR}"/ssl
 INSTALL_SRC_MSYS2_SSL=${INSTALL_SRC_MSYS2}/ssl
+INSTALL_SRC_ETC="${INSTALL_SRC_DIR}"/etc
+INSTALL_SRC_MSYS2_ETC=${INSTALL_SRC_MSYS2}/etc
 
 # Create installer file name
 INSTALLER_FILENAME=gtk3-runtime-${_VERSION}-${_DATE}-${_ARCH}.msi
@@ -46,6 +48,7 @@ cp $INSTALL_SRC_MSYS2_BIN/libexslt-0.dll $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libffi-6.dll  $INSTALL_SRC_BIN 
 cp $INSTALL_SRC_MSYS2_BIN/libfontconfig-1.dll $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libfreetype-6.dll  $INSTALL_SRC_BIN
+cp $INSTALL_SRC_MSYS2_BIN/libfribidi-0.dll  $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libgailutil-3-0.dll  $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libgailutil-18.dll  $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libgdk_pixbuf-2.0-0.dll $INSTALL_SRC_BIN
@@ -178,6 +181,11 @@ cp -r $INSTALL_SRC_MSYS2/share/icons $INSTALL_SRC_DIR/share/
 mkdir -p $INSTALL_SRC_SSL/certs
 cd $INSTALL_SRC_MSYS2_SSL/certs
 cp ca-bundle.crt ca-bundle.trust.crt $INSTALL_SRC_SSL/certs/
+
+# Copy fontconfig stuff (see issue #14)
+mkdir -p $INSTALL_SRC_ETC/fonts
+cd $INSTALL_SRC_MSYS2_ETC/fonts
+cp -a * $INSTALL_SRC_ETC/fonts/
 
 
 # librsvg depends on:

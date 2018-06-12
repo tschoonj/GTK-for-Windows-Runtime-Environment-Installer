@@ -1,8 +1,8 @@
 # GdkPixbuf Image Loader Modules file
 # Automatically generated file, do not edit
-# Created by gdk-pixbuf-query-loaders.exe from gdk-pixbuf-2.36.11
+# Created by gdk-pixbuf-query-loaders.exe from gdk-pixbuf-2.36.12
 #
-# LoaderDir = C:\msys64\mingw64/lib/gdk-pixbuf-2.0/2.10.0/loaders
+# LoaderDir = C:\msys64\mingw64\lib\gdk-pixbuf-2.0\2.10.0\loaders
 #
 "lib\\gdk-pixbuf-2.0\\2.10.0\\loaders\\libpixbufloader-ani.dll"
 "ani" 4 "gdk-pixbuf" "Windows animated cursor" "LGPL"

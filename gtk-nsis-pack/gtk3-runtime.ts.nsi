@@ -11,9 +11,9 @@
 ; Directory and package names: gtk3-runtime.
 
 
-!define GTK_VERSION "3.22.28"
+!define GTK_VERSION "3.22.30"
 !define GTK_BIN_VERSION "3.0.0"
-!define PRODUCT_VERSION "${GTK_VERSION}-2018-03-12-ts-win64"
+!define PRODUCT_VERSION "${GTK_VERSION}-2018-06-12-ts-win64"
 !define PRODUCT_NAME "GTK3-Runtime Win64"
 !define PRODUCT_PUBLISHER "Tom Schoonjans"
 !define PRODUCT_WEB_SITE "https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer"
@@ -242,6 +242,7 @@ SectionIn 1 2 RO
 	File bin\libffi-6.dll  			; libffi is required by glib2 
 	File bin\libfontconfig-1.dll	; fontconfig is needed for ft2 pango backend
 	File bin\libfreetype-6.dll		; freetype is needed for ft2 pango backend
+	File bin\libfribidi-0.dll  ; fribidi is needed for pango 
 	File bin\libgailutil-3-0.dll	; from gtk
 	File bin\libgdk_pixbuf-2.0-0.dll  ; from gtk
 	File bin\liblzma-5.dll  		; from gtk
@@ -321,6 +322,7 @@ SectionIn 1 2 RO
 	SetOverwrite off
 	File /r etc\gtk-3.0 
 	SetOverwrite On
+	File /r etc\fonts
 
 
 	SetOutPath "$INSTDIR\lib\gdk-pixbuf-2.0\2.10.0"
@@ -622,6 +624,7 @@ Function un.DeleteDlls
 	Delete $LIB_INSTDIR\libffi-6.dll  ; libffi is required by glib 
 	Delete $LIB_INSTDIR\libfontconfig-1.dll  ; fontconfig is needed for ft2 pango backend
 	Delete $LIB_INSTDIR\libfreetype-6.dll  ; freetype is needed for ft2 pango backend
+	Delete $LIB_INSTDIR\libfribidi-0.dll
 	Delete $LIB_INSTDIR\libgailutil-3-0.dll  ; from gtk
 	Delete $LIB_INSTDIR\libgdk_pixbuf-2.0-0.dll  ; from gtk
 	Delete $LIB_INSTDIR\liblzma-5.dll  ; from gtk
@@ -790,13 +793,9 @@ Section Uninstall
 	skip_config:
 
 
-	;Delete "$INSTDIR\etc\fonts\fonts.conf"
-	;RMDir "$INSTDIR\etc\fonts"  ; only if empty
-	;Delete "$INSTDIR\etc\pango\pango.modules"
-	;RMDir "$INSTDIR\etc\pango"  ; only if empty
-	; Delete "$INSTDIR\etc\gtk-2.0\gdk-pixbuf.loaders"
-	;Delete "$INSTDIR\etc\gtk-2.0\gtk.immodules"
-	;Delete "$INSTDIR\etc\gtk-2.0\gtkrc.default"
+	Delete "$INSTDIR\etc\fonts\fonts.conf"
+	RMDir /r "$INSTDIR\etc\fonts\conf.d"
+	RMDir "$INSTDIR\etc\fonts"  ; only if empty
 	Delete "$INSTDIR\etc\gtk-3.0\im-multipress.conf"
 	Delete "$INSTDIR\etc\gtk-3.0\settings.ini"
 	RMDir "$INSTDIR\etc\gtk-3.0" ; only if empty
