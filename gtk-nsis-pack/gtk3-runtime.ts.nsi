@@ -13,7 +13,7 @@
 
 !define GTK_VERSION "3.22.30"
 !define GTK_BIN_VERSION "3.0.0"
-!define PRODUCT_VERSION "${GTK_VERSION}-2018-06-12-ts-win64"
+!define PRODUCT_VERSION "${GTK_VERSION}-2018-08-01-ts-win64"
 !define PRODUCT_NAME "GTK3-Runtime Win64"
 !define PRODUCT_PUBLISHER "Tom Schoonjans"
 !define PRODUCT_WEB_SITE "https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer"

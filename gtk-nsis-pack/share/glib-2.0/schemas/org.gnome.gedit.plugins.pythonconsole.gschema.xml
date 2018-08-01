@@ -1,0 +1,30 @@
+<schemalist>
+  <schema gettext-domain="gedit" id="org.gnome.gedit.plugins.pythonconsole" path="/org/gnome/gedit/plugins/pythonconsole/">
+    <key name="command-color" type="s">
+      <default>'#314e6c'</default>
+      <summary>Command Color Text</summary>
+      <description>The command color text</description>
+    </key>
+    <key name="error-color" type="s">
+      <default>'#990000'</default>
+      <summary>Error Color Text</summary>
+      <description>The error color text</description>
+    </key>
+    <key name="use-system-font" type="b">
+      <default>true</default>
+      <summary>Whether to use the system font</summary>
+      <description>
+        If true, the terminal will use the desktop-global standard
+        font if it’s monospace (and the most similar font it can
+        come up with otherwise).
+      </description>
+    </key>
+    <key name="font" type="s">
+      <default>'Monospace 10'</default>
+      <summary>Font</summary>
+      <description>
+        A Pango font name. Examples are “Sans 12” or “Monospace Bold 14”.
+      </description>
+    </key>
+  </schema>
+</schemalist>

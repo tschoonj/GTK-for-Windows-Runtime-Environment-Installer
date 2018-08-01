@@ -1,0 +1,19 @@
+<schemalist>
+  <schema gettext-domain="gedit" id="org.gnome.gedit.plugins.time" path="/org/gnome/gedit/plugins/time/">
+    <key name="prompt-type" enum="org.gnome.gedit.plugins.time.GeditTimePluginPromptType">
+      <default>'prompt-selected-format'</default>
+      <summary>Prompt Type</summary>
+      <description>If the user should be prompted for a format or if the selected or custom format should be used.</description>
+    </key>
+    <key name="selected-format" type="s">
+      <default>'%c'</default>
+      <summary>Selected Format</summary>
+      <description>The selected format used when inserting the date/time.</description>
+    </key>
+    <key name="custom-format" type="s">
+      <default>'%d/%m/%Y %H:%M:%S'</default>
+      <summary>Custom Format</summary>
+      <description>The custom format used when inserting the date/time.</description>
+    </key>
+  </schema>
+</schemalist>
