@@ -11,9 +11,9 @@
 ; Directory and package names: gtk3-runtime.
 
 
-!define GTK_VERSION "3.22.30"
+!define GTK_VERSION "3.24.0"
 !define GTK_BIN_VERSION "3.0.0"
-!define PRODUCT_VERSION "${GTK_VERSION}-2018-08-01-ts-win64"
+!define PRODUCT_VERSION "${GTK_VERSION}-2018-09-13-ts-win64"
 !define PRODUCT_NAME "GTK3-Runtime Win64"
 !define PRODUCT_PUBLISHER "Tom Schoonjans"
 !define PRODUCT_WEB_SITE "https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer"
@@ -280,6 +280,8 @@ SectionIn 1 2 RO
 	File bin\libxml2-2.dll			; fontconfig needs this
 	File bin\libxslt-1.dll			; fontconfig needs this
 	File bin\libpcre-1.dll			; fontconfig needs this
+	File bin\libthai-0.dll			; fontconfig needs this
+	File bin\libdatrie-1.dll			; fontconfig needs this
 	File bin\zlib1.dll				; png and many others need this
 	File bin\libexpat-1.dll			; required by fontconfig
 	File bin\libbz2-1.dll			; required by fontconfig
@@ -659,6 +661,8 @@ Function un.DeleteDlls
 	Delete $LIB_INSTDIR\libjpeg-8.dll  ; for gdk_pixbuf loader.
 	Delete $LIB_INSTDIR\libxslt-1.dll  ; fontconfig needs this
 	Delete $LIB_INSTDIR\libpcre-1.dll  ; fontconfig needs this
+	Delete $LIB_INSTDIR\libthai-0.dll  ; fontconfig needs this
+	Delete $LIB_INSTDIR\libdatrie-1.dll  ; fontconfig needs this
 	Delete $LIB_INSTDIR\libxml2-2.dll  ; fontconfig needs this
 	Delete $LIB_INSTDIR\libxml++-2.6-2.dll  ; fontconfig needs this
 	Delete $LIB_INSTDIR\libxml++-3.0-1.dll

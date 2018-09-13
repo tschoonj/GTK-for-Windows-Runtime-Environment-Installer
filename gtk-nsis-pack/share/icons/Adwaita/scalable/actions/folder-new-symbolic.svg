@@ -1,36 +1,6 @@
-<?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
-<svg xmlns:cc='http://creativecommons.org/ns#' xmlns:dc='http://purl.org/dc/elements/1.1/' sodipodi:docname='folder-new-symbolic.svg' inkscape:export-filename='/home/sam/dev/RESOURCES/gnome-icon-theme-symbolic/src/gnome-stencils.png' inkscape:export-xdpi='90' inkscape:export-ydpi='90' height='16' id='svg7384' xmlns:inkscape='http://www.inkscape.org/namespaces/inkscape' xmlns:osb='http://www.openswatchbook.org/uri/2009/osb' xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#' xmlns:sodipodi='http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd' xmlns:svg='http://www.w3.org/2000/svg' version='1.1' inkscape:version='0.92pre3 r' viewBox='0 0 16.00034 16' width='16.00034' xmlns='http://www.w3.org/2000/svg'>
-  <metadata id='metadata90'>
-    <rdf:RDF>
-      <cc:Work rdf:about=''>
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type rdf:resource='http://purl.org/dc/dcmitype/StillImage'/>
-        <dc:title>Gnome Symbolic Icon Theme</dc:title>
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-  <sodipodi:namedview inkscape:bbox-nodes='true' inkscape:bbox-paths='true' bordercolor='#666666' borderopacity='1' inkscape:current-layer='layer12' inkscape:cx='174.36091' inkscape:cy='542.82126' inkscape:document-units='px' gridtolerance='10' inkscape:guide-bbox='true' guidetolerance='10' id='namedview88' inkscape:object-nodes='true' inkscape:object-paths='false' objecttolerance='10' pagecolor='#3a3b39' inkscape:pageopacity='1' inkscape:pageshadow='2' showborder='false' showgrid='false' showguides='true' inkscape:snap-bbox='true' inkscape:snap-bbox-midpoints='false' inkscape:snap-global='true' inkscape:snap-grids='true' inkscape:snap-nodes='true' inkscape:snap-others='false' inkscape:snap-to-guides='true' inkscape:window-height='1016' inkscape:window-maximized='1' inkscape:window-width='1920' inkscape:window-x='0' inkscape:window-y='27' inkscape:zoom='1'>
-    <inkscape:grid dotted='false' empspacing='2' enabled='true' id='grid4866' originx='-59.99986' originy='510' snapvisiblegridlinesonly='true' spacingx='1px' spacingy='1px' type='xygrid' visible='true'/>
-  </sodipodi:namedview>
-  <title id='title9167'>Gnome Symbolic Icon Theme</title>
-  <defs id='defs7386'>
-    <linearGradient gradientTransform='matrix(-2.7365795,0.28202934,-0.18908311,-0.99988321,239.54008,-879.45557)' id='linearGradient19282' osb:paint='solid'>
-      <stop id='stop19284' offset='0' style='stop-color:#666666;stop-opacity:1;'/>
-    </linearGradient>
-  </defs>
-  <g inkscape:groupmode='layer' id='layer9' inkscape:label='status' style='display:inline' transform='translate(-301.00006,-727)'/>
-  <g inkscape:groupmode='layer' id='layer10' inkscape:label='devices' style='display:inline' transform='translate(-301.00006,-727)'/>
-  <g inkscape:groupmode='layer' id='layer11' inkscape:label='apps' transform='translate(-301.00006,-727)'/>
-  <g inkscape:groupmode='layer' id='layer13' inkscape:label='places' style='display:inline' transform='translate(-301.00006,-727)'/>
-  <g inkscape:groupmode='layer' id='layer14' inkscape:label='mimetypes' transform='translate(-301.00006,-727)'/>
-  <g inkscape:groupmode='layer' id='layer15' inkscape:label='emblems' style='display:inline' transform='translate(-301.00006,-727)'/>
-  <g inkscape:groupmode='layer' id='g71291' inkscape:label='emotes' style='display:inline' transform='translate(-301.00006,-727)'/>
-  <g inkscape:groupmode='layer' id='g4953' inkscape:label='categories' style='display:inline' transform='translate(-301.00006,-727)'/>
-  <g inkscape:groupmode='layer' id='layer12' inkscape:label='actions' style='display:inline' transform='translate(-301.00006,-727)'>
-    <path inkscape:connector-curvature='0' d='M 313.0002,736.0032 V 738 h -2 v 1.9967 h 2 v 1.9967 h 2 v -1.9967 h 2 V 738 h -2 v -1.9968 z' id='path7307' style='display:inline;fill:#bebebe;fill-opacity:1;stroke:none'/>
-    
-    <path inkscape:connector-curvature='0' d='m 303.0002,728 c -0.83333,0 -1.52527,0.56422 -1.76953,1.05273 C 300.98641,729.54125 301.0002,730 301.0002,730 v 10 c 0,0.83333 0.56422,1.52527 1.05273,1.76953 0.48852,0.24426 0.94727,0.23047 0.94727,0.23047 h 6 c 0,0 1,0 1,-1 0,-1 -1,-1 -1,-1 h -6 v -10 h 4.58594 l 2,2 h 5.41406 v 2 c 0,1 1,1 1,1 0,0 1,0 1,-1 v -2 c 0,0 0.0138,-0.45875 -0.23047,-0.94727 C 316.52547,730.56422 315.83353,730 315.0002,730 h -4.58594 l -2,-2 z' id='path9166-8' sodipodi:nodetypes='sccscccccccccccccccsccs' style='color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#bebebe;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate'/>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16">
+    <g fill="#474747">
+        <path d="M12 9.003V11h-2v1.997h2v1.996h2v-1.996h2V11h-2V9.003z"/>
+        <path d="M2 1C1.167 1 .475 1.564.23 2.053-.013 2.54 0 3 0 3v10c0 .833.564 1.525 1.053 1.77.488.244.947.23.947.23h6s1 0 1-1-1-1-1-1H2V3h4.586l2 2H14v2c0 1 1 1 1 1s1 0 1-1V5s.014-.459-.23-.947C15.525 3.564 14.833 3 14 3H9.414l-2-2z" style="line-height:normal;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000;text-transform:none;text-orientation:mixed;shape-padding:0;isolation:auto;mix-blend-mode:normal" color="#000" font-weight="400" font-family="sans-serif" white-space="normal" overflow="visible" fill-rule="evenodd"/>
+    </g>
 </svg>

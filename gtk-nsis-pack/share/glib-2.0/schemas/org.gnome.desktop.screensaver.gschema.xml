@@ -95,7 +95,7 @@
       </description>
     </key>
     <key name="picture-uri" type="s">
-      <default>'file:///mingw64/share/backgrounds/gnome/adwaita-lock.jpg'</default>
+      <default>'file:///mingw64/share/backgrounds/gnome/adwaita-timed.xml'</default>
       <summary>Picture URI</summary>
       <description>
         URI to use for the background image. Note that the backend only supports

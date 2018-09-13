@@ -14,7 +14,7 @@
 
 !define GTK_VERSION "2.24.32"
 !define GTK_BIN_VERSION "2.10.0"
-!define PRODUCT_VERSION "${GTK_VERSION}-2018-08-01-ts-win64"
+!define PRODUCT_VERSION "${GTK_VERSION}-2018-09-13-ts-win64"
 !define PRODUCT_NAME "GTK2-Runtime Win64"
 !define PRODUCT_PUBLISHER "Tom Schoonjans"
 !define PRODUCT_WEB_SITE "https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer"
@@ -277,6 +277,8 @@ SectionIn 1 2 RO
 	File bin\libxml++-2.6-2.dll  ; fontconfig needs this
 	File bin\libxml++-3.0-1.dll
 	File bin\libpcre-1.dll
+	File bin\libthai-0.dll
+	File bin\libdatrie-1.dll
 	File bin\libxml2-2.dll  ; fontconfig needs this
 	File bin\libxslt-1.dll  ; fontconfig needs this
 	File bin\zlib1.dll  ; png and many others need this
@@ -641,6 +643,8 @@ Function un.DeleteDlls
 	Delete $LIB_INSTDIR\libxml++-2.6-2.dll  ; fontconfig needs this
 	Delete $LIB_INSTDIR\libxml++-3.0-1.dll
 	Delete $LIB_INSTDIR\libpcre-1.dll
+	Delete $LIB_INSTDIR\libthai-0.dll
+	Delete $LIB_INSTDIR\libdatrie-1.dll
 	Delete $LIB_INSTDIR\zlib1.dll  ; png and many others need this
 	Delete $LIB_INSTDIR\libexpat-1.dll
 	Delete $LIB_INSTDIR\libbz2-1.dll

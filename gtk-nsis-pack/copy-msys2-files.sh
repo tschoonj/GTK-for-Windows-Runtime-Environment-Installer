@@ -88,6 +88,8 @@ cp $INSTALL_SRC_MSYS2_BIN/libpangoft2-1.0-0.dll $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libpangomm-1.4-1.dll $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libpixman-1-0.dll $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libpng16-16.dll  $INSTALL_SRC_BIN
+cp $INSTALL_SRC_MSYS2_BIN/libthai-0.dll  $INSTALL_SRC_BIN
+cp $INSTALL_SRC_MSYS2_BIN/libdatrie-1.dll  $INSTALL_SRC_BIN
 
 # No need for this IMHO, at least fontconfig is not dependent on these
 cp $INSTALL_SRC_MSYS2_BIN/libxml++-2.6-2.dll $INSTALL_SRC_BIN

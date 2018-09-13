@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16">
+    <g fill="#2e3436">
+        <path d="M5.1 0a1 1 0 0 0-.707.293l-4.1 4.1A1 1 0 0 0 0 5.1v5.8a1 1 0 0 0 .293.707l4.1 4.1A1 1 0 0 0 5.1 16h3.894a1 1 0 1 0 0-2H5.516L2 10.484V5.516L5.516 2h4.968L14 5.514l-.006 3.484a1 1 0 1 0 2 .004l.006-3.9a1 1 0 0 0-.293-.71l-4.1-4.099A1 1 0 0 0 10.9 0z" style="line-height:normal;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000;text-transform:none;text-orientation:mixed;shape-padding:0;isolation:auto;mix-blend-mode:normal" color="#000" font-weight="400" font-family="sans-serif" white-space="normal" overflow="visible" opacity=".35"/>
+        <path d="M6.994 4h2v3l-.25 2H7.275l-.28-2zm1 5.75a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5z" style="line-height:normal;-inkscape-font-specification:Sans;text-indent:0;text-align:start;text-decoration-line:none;text-transform:none;marker:none" color="#000" font-weight="400" font-family="Sans" overflow="visible" opacity=".35"/>
+        <path d="M10.994 11h1.375l1.125 1.094L14.588 11h1.406v1.469L14.9 13.53l1.094 1.063V16h-1.437l-1.063-1.063L12.432 16h-1.438v-1.406l1.063-1.063-1.063-1.062z" style="marker:none" color="#bebebe" overflow="visible"/>
+    </g>
+</svg>
