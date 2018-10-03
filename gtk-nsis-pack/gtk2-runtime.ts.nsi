@@ -14,7 +14,7 @@
 
 !define GTK_VERSION "2.24.32"
 !define GTK_BIN_VERSION "2.10.0"
-!define PRODUCT_VERSION "${GTK_VERSION}-2018-09-13-ts-win64"
+!define PRODUCT_VERSION "${GTK_VERSION}-2018-10-03-ts-win64"
 !define PRODUCT_NAME "GTK2-Runtime Win64"
 !define PRODUCT_PUBLISHER "Tom Schoonjans"
 !define PRODUCT_WEB_SITE "https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer"
@@ -319,7 +319,7 @@ SectionIn 1 2 RO
 	SetOutPath "$INSTDIR\lib\gdk-pixbuf-2.0\${GTK_BIN_VERSION}"
 	File lib\gdk-pixbuf-2.0\${GTK_BIN_VERSION}\loaders.cache
 
-	SetOutPath "$INSTDIR\lib\gdk-pixbuf-2.0\${GTK_BIN_VERSION}\loaders"
+	SetOutPath "$INSTDIR\lib\gdk-pixbuf-2.0\${GTK_BIN_VERSION}\"
 	File /r lib\gdk-pixbuf-2.0\${GTK_BIN_VERSION}\loaders
 
 	SetOutPath "$INSTDIR\lib\gtk-2.0\modules"
