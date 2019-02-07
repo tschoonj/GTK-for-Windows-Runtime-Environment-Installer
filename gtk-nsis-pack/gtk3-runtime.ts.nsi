@@ -11,9 +11,9 @@
 ; Directory and package names: gtk3-runtime.
 
 
-!define GTK_VERSION "3.24.2"
+!define GTK_VERSION "3.24.4"
 !define GTK_BIN_VERSION "3.0.0"
-!define PRODUCT_VERSION "${GTK_VERSION}-2018-12-19-ts-win64"
+!define PRODUCT_VERSION "${GTK_VERSION}-2019-02-07-ts-win64"
 !define PRODUCT_NAME "GTK3-Runtime Win64"
 !define PRODUCT_PUBLISHER "Tom Schoonjans"
 !define PRODUCT_WEB_SITE "https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer"
@@ -298,10 +298,11 @@ SectionIn 1 2 RO
 	File bin\libgmp-10.dll		; glib-networking dependency
 	File bin\libhogweed-4.dll       ; glib-networking dependency
 	File bin\libnettle-6.dll	; glib-networking dependency
-	File bin\libidn2-0.dll		; glib-networking dependency
+	File bin\libidn2-4.dll		; glib-networking dependency
 	File bin\libp11-kit-0.dll	; glib-networking dependency
 	File bin\libtasn1-6.dll		; glib-networking dependency
 	File bin\libunistring-2.dll	; glib-networking dependency
+	File bin\libproxy-1.dll	; glib-networking dependency
 
 	; We install this into the same place as the DLLs to avoid any PATH manipulation.
 	SetOutPath "$LIB_INSTDIR"
@@ -335,6 +336,8 @@ SectionIn 1 2 RO
 
 	SetOutPath "$INSTDIR\lib\gio\modules"
 	File lib\gio\modules\libgiognutls.dll
+	File lib\gio\modules\libgiognomeproxy.dll
+	File lib\gio\modules\libgiolibproxy.dll
 
 	SetOutPath "$INSTDIR\ssl\certs"
 	File ssl\certs\ca-bundle.crt
@@ -682,10 +685,11 @@ Function un.DeleteDlls
 	Delete $LIB_INSTDIR\libgmp-10.dll		; glib-networking dependency
 	Delete $LIB_INSTDIR\libhogweed-4.dll       ; glib-networking dependency
 	Delete $LIB_INSTDIR\libnettle-6.dll	; glib-networking dependency
-	Delete $LIB_INSTDIR\libidn2-0.dll		; glib-networking dependency
+	Delete $LIB_INSTDIR\libidn2-4.dll		; glib-networking dependency
 	Delete $LIB_INSTDIR\libp11-kit-0.dll	; glib-networking dependency
 	Delete $LIB_INSTDIR\libtasn1-6.dll		; glib-networking dependency
 	Delete $LIB_INSTDIR\libunistring-2.dll	; glib-networking dependency
+	Delete $LIB_INSTDIR\libproxy-1.dll	; glib-networking dependency
 
 
 FunctionEnd
@@ -821,6 +825,8 @@ Section Uninstall
 
 
 	Delete "$INSTDIR\lib\gio\modules\libgiognutls.dll"
+	Delete "$INSTDIR\lib\gio\modules\libgiognomeproxy.dll"
+	Delete "$INSTDIR\lib\gio\modules\libgiolibproxy.dll"
 	RMDir "$INSTDIR\lib\gio\modules"
 	RMDir "$INSTDIR\lib\gio"
 
