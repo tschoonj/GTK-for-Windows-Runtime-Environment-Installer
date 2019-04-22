@@ -1,7 +1,8 @@
 GTK+ for Windows Runtime Environment Installer: 64-bit
 ======================================================
 
-[![PayPal](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/tomschoonjans/10)   [![Amazon Wish list](https://img.shields.io/badge/Amazon-Wishlist-green.svg)](http://amzn.eu/8ml3d0c)
+[![Github Downloads All Releases](https://img.shields.io/github/downloads/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/total.svg)](https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases)
+   [![PayPal](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/tomschoonjans/10)   [![Amazon Wish list](https://img.shields.io/badge/Amazon-Wishlist-green.svg)](http://amzn.eu/8ml3d0c)
 
 This repository is a fork of the  [GTK+ for Windows Runtime Environment Installer](http://gtk-win.sourceforge.net) that was originally created
 by Alexander Shaduri.
