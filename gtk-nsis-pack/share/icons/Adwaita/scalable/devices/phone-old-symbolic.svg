@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   width="16.000172"
+   version="1.1"
+   style="enable-background:new"
+   id="svg7384"
+   height="16.00005">
+  <metadata
+     id="metadata90">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Gnome Symbolic Icons</dc:title>
+        <cc:license
+           rdf:resource="http://creativecommons.org/licenses/by-sa/4.0/" />
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/by-sa/4.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#Notice" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#Attribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#ShareAlike" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <title
+     id="title8473">Gnome Symbolic Icons</title>
+  <defs
+     id="defs7386" />
+  <g
+     transform="translate(-311.99701,-347.99998)"
+     id="layer1" />
+  <g
+     transform="translate(-311.99701,-347.99998)"
+     id="layer7" />
+  <g
+     transform="translate(-311.99701,-347.99998)"
+     id="layer6" />
+  <g
+     transform="translate(-311.99701,-347.99998)"
+     id="layer5" />
+  <g
+     transform="translate(-311.99701,-347.99998)"
+     id="layer9" />
+  <g
+     transform="translate(-311.99701,-347.99998)"
+     id="layer2">
+    <path
+       d="m 315.99805,348 c -1.00916,0.005 -1,1 -1,1 v 12 c 0,0.006 0.002,0.01 0.002,0.0156 v 0.13672 c 0,1.02342 0.85663,1.84766 1.91992,1.84766 h 5.1582 c 1.06324,0 1.91993,-0.82424 1.91993,-1.84766 v -8.15234 c 0,-1.02342 -0.93671,-2 -2,-2 h -5 v -2 c 0,0 -0.009,-0.99447 -1,-1 z m 1.7539,5 h 3.4961 c 0.41622,0 0.75195,0.33573 0.75195,0.75195 v 1.4961 C 322,355.66427 321.66427,356 321.24805,356 h -3.4961 C 317.33573,356 317,355.66427 317,355.24805 v -1.4961 C 317,353.33573 317.33573,353 317.75195,353 Z M 317.5,358 h 1.14258 c 0.277,0 0.5,0.223 0.5,0.5 0,0.277 -0.223,0.5 -0.5,0.5 H 317.5 c -0.277,0 -0.5,-0.223 -0.5,-0.5 0,-0.277 0.223,-0.5 0.5,-0.5 z m 2.85742,0 H 321.5 c 0.277,0 0.5,0.223 0.5,0.5 0,0.277 -0.223,0.5 -0.5,0.5 h -1.14258 c -0.277,0 -0.5,-0.223 -0.5,-0.5 0,-0.277 0.223,-0.5 0.5,-0.5 z M 317.5,360 h 1.14258 c 0.277,0 0.5,0.223 0.5,0.5 0,0.277 -0.223,0.5 -0.5,0.5 H 317.5 c -0.277,0 -0.5,-0.223 -0.5,-0.5 0,-0.277 0.223,-0.5 0.5,-0.5 z m 2.85742,0 H 321.5 c 0.277,0 0.5,0.223 0.5,0.5 0,0.277 -0.223,0.5 -0.5,0.5 h -1.14258 c -0.277,0 -0.5,-0.223 -0.5,-0.5 0,-0.277 0.223,-0.5 0.5,-0.5 z"
+       id="path3793"
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#2e3436;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;enable-background:accumulate" />
+  </g>
+  <g
+     transform="translate(-311.99701,-347.99998)"
+     id="layer8" />
+  <g
+     transform="translate(-311.99701,-347.99998)"
+     id="layer3" />
+  <g
+     transform="translate(-311.99701,-347.99998)"
+     id="layer4" />
+  <g
+     transform="translate(-311.99701,-411.99998)"
+     id="layer10" />
+</svg>

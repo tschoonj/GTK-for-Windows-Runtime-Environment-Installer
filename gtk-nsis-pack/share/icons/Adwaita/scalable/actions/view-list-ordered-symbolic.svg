@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16">
+    <g fill="#2e3436">
+        <path d="M7.494 4h7c.277 0 .5.223.5.5v1c0 .277-.223.5-.5.5h-7a.499.499 0 0 1-.5-.5v-1c0-.277.223-.5.5-.5zM7.494 10h7c.277 0 .5.223.5.5v1c0 .277-.223.5-.5.5h-7a.499.499 0 0 1-.5-.5v-1c0-.277.223-.5.5-.5z" style="marker:none"/>
+        <path d="M2.996 3h1.998v4h-2V5h-1l.002-1z" style="marker:none" color="#000" overflow="visible"/>
+        <path style="line-height:1.25;-inkscape-font-specification:'Cantarell Ultra-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" d="M1.975 13h4.019v-1h-2c1.5-.5 1.777-1.299 1.832-1.791.089-.806-.896-1.52-1.897-1.513-.74.005-1.305.242-1.935.804l.5 1c.9-.59 1.838-1.05 1.865-.304.02.536-1.865.804-2.384 1.835z" font-weight="800" font-family="Cantarell" letter-spacing="0" word-spacing="0"/>
+    </g>
+</svg>
