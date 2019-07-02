@@ -41,7 +41,7 @@
       <summary>Number of days to remember recently used files for</summary>
       <description>Recently used files will be remembered for this many days.
         If set to 0, recent files will not be remembered; if set to -1, they
-        will be retained indefinitively.</description>
+        will be retained indefinitely.</description>
     </key>
     <key name="remember-app-usage" type="b">
       <default>true</default>
@@ -58,6 +58,21 @@
       <default>false</default>
       <summary>Send reports of technical problems to the vendor</summary>
       <description>If TRUE, anonymized reports will be sent automatically to the vendor.</description>
+    </key>
+    <key name="disable-microphone" type="b">
+      <default>false</default>
+      <summary>Don’t allow applications to access the microphone</summary>
+      <description>If TRUE, applications should not use the microphone.</description>
+    </key>
+    <key name="disable-camera" type="b">
+      <default>false</default>
+      <summary>Don’t allow applications to access the camera</summary>
+      <description>If TRUE, applications should not use the camera.</description>
+    </key>
+    <key name="disable-sound-output" type="b">
+      <default>false</default>
+      <summary>Don’t allow applications to output sound</summary>
+      <description>If TRUE, applications should not make sound.</description>
     </key>
   </schema>
 </schemalist>

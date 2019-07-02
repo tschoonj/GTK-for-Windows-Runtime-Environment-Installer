@@ -332,12 +332,12 @@
       <summary>Move window to center of screen</summary>
     </key>
     <key name="switch-input-source" type="as">
-      <default><![CDATA[['<Super>space']]]></default>
+      <default><![CDATA[['<Super>space','XF86Keyboard']]]></default>
       <summary>Switch input source</summary>
       <description>Binding to select the next input source</description>
     </key>
     <key name="switch-input-source-backward" type="as">
-      <default><![CDATA[['<Shift><Super>space']]]></default>
+      <default><![CDATA[['<Shift><Super>space','<Shift>XF86Keyboard']]]></default>
       <summary>Switch input source backward</summary>
       <description>Binding to select the previous input source</description>
     </key>

@@ -1,0 +1,20 @@
+<schemalist>
+  <schema gettext-domain="gedit" id="org.gnome.gedit.plugins.externaltools" path="/org/gnome/gedit/plugins/externaltools/">
+    <key name="use-system-font" type="b">
+      <default>true</default>
+      <summary>Whether to use the system font</summary>
+      <description>
+        If true, the external tools will use the desktop-global standard
+        font if it’s monospace (and the most similar font it can
+        come up with otherwise).
+      </description>
+    </key>
+    <key name="font" type="s">
+      <default>'Monospace 10'</default>
+      <summary>Font</summary>
+      <description>
+        A Pango font name. Examples are “Sans 12” or “Monospace Bold 14”.
+      </description>
+    </key>
+  </schema>
+</schemalist>

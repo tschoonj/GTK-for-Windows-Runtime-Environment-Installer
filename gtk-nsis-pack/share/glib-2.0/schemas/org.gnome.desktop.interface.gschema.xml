@@ -149,14 +149,14 @@
       </description>
     </key>
     <key name="document-font-name" type="s">
-      <default>'Sans 11'</default>
+      <default>'Cantarell 11'</default>
       <summary>Document font</summary>
       <description>
         Name of the default font used for reading documents.
       </description>
     </key>
     <key name="monospace-font-name" type="s">
-      <default>'Monospace 11'</default>
+      <default>'Source Code Pro 10'</default>
       <summary>Monospace font</summary>
       <description>
         Name of a monospaced (fixed-width) font for use in locations like
@@ -215,14 +215,14 @@
       </description>
     </key>
     <key name="clock-show-date" type="b">
-      <default>false</default>
+      <default>true</default>
       <summary>Show date in clock</summary>
       <description>
         If true, display date in the clock, in addition to time.
       </description>
     </key>
     <key name="clock-show-weekday" type="b">
-      <default>true</default>
+      <default>false</default>
       <summary>Show weekday in clock</summary>
       <description>
         If true, display weekday in the clock, in addition to time.

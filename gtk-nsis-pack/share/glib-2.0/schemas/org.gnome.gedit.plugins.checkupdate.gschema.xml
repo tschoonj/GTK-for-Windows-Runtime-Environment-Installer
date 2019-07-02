@@ -1,0 +1,10 @@
+<schemalist>
+  <schema gettext-domain="gedit" id="org.gnome.gedit.plugins.checkupdate" path="/org/gnome/gedit/plugins/checkupdate/">
+    <key name="ignore-version" type="s">
+      <default>''</default>
+      <summary>Version to Ignore</summary>
+      <!-- This is releated to the next gedit version to be released -->
+      <description>Version to ignore until a newer version is released.</description>
+    </key>
+  </schema>
+</schemalist>

@@ -102,10 +102,10 @@
     </key>
   </schema>
   <schema id="org.gnome.desktop.peripherals.tablet">
-    <key name="display" type="as">
+    <key name="output" type="as">
       <default>["", "", ""]</default>
       <summary>Drawing tablet mapping</summary>
-      <description>EDID information of the monitor the tablet is mapped to. Must be in the format [vendor, product, serial]. ["","",""] disables mapping.</description>
+      <description>EDID information of the output the tablet is mapped to. Must be in the format [vendor, product, serial]. ["","",""] relies on automatic mapping.</description>
     </key>
     <key name="mapping" enum="org.gnome.desktop.GDesktopTabletMapping">
       <default>'absolute'</default>
@@ -168,10 +168,10 @@
     </key>
   </schema>
   <schema id="org.gnome.desktop.peripherals.touchscreen">
-    <key name="display" type="as">
+    <key name="output" type="as">
       <default>["", "", ""]</default>
-      <summary>Touchscreen display mapping</summary>
-      <description>EDID information of the monitor the touchscreen is mapped to. Must be in the format [vendor, product, serial]. ["","",""] disables mapping.</description>
+      <summary>Touchscreen output mapping</summary>
+      <description>EDID information of the output the touchscreen is mapped to. Must be in the format [vendor, product, serial]. ["","",""] relies on automatic mapping.</description>
     </key>
   </schema>
   <schema id="org.gnome.desktop.peripherals.trackball" path="/org/gnome/desktop/peripherals/trackball/">

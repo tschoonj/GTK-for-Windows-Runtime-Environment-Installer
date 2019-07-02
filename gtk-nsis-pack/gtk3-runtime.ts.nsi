@@ -11,9 +11,9 @@
 ; Directory and package names: gtk3-runtime.
 
 
-!define GTK_VERSION "3.24.8"
+!define GTK_VERSION "3.24.9"
 !define GTK_BIN_VERSION "3.0.0"
-!define PRODUCT_VERSION "${GTK_VERSION}-2019-04-26-ts-win64"
+!define PRODUCT_VERSION "${GTK_VERSION}-2019-07-02-ts-win64"
 !define PRODUCT_NAME "GTK3-Runtime Win64"
 !define PRODUCT_PUBLISHER "Tom Schoonjans"
 !define PRODUCT_WEB_SITE "https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer"
@@ -297,8 +297,8 @@ SectionIn 1 2 RO
 	File bin\libpsl-5.dll       ; libsoup dependency
 	File bin\libgnutls-30.dll       ; glib-networking dependency
 	File bin\libgmp-10.dll		; glib-networking dependency
-	File bin\libhogweed-4.dll       ; glib-networking dependency
-	File bin\libnettle-6.dll	; glib-networking dependency
+	File bin\libhogweed-5.dll       ; glib-networking dependency
+	File bin\libnettle-7.dll	; glib-networking dependency
 	File bin\libidn2-0.dll		; glib-networking dependency
 	File bin\libp11-kit-0.dll	; glib-networking dependency
 	File bin\libtasn1-6.dll		; glib-networking dependency
@@ -685,8 +685,8 @@ Function un.DeleteDlls
 	Delete $LIB_INSTDIR\libpsl-5.dll       ; libsoup dependency
 	Delete $LIB_INSTDIR\libgnutls-30.dll       ; glib-networking dependency
 	Delete $LIB_INSTDIR\libgmp-10.dll		; glib-networking dependency
-	Delete $LIB_INSTDIR\libhogweed-4.dll       ; glib-networking dependency
-	Delete $LIB_INSTDIR\libnettle-6.dll	; glib-networking dependency
+	Delete $LIB_INSTDIR\libhogweed-5.dll       ; glib-networking dependency
+	Delete $LIB_INSTDIR\libnettle-7.dll	; glib-networking dependency
 	Delete $LIB_INSTDIR\libidn2-0.dll		; glib-networking dependency
 	Delete $LIB_INSTDIR\libp11-kit-0.dll	; glib-networking dependency
 	Delete $LIB_INSTDIR\libtasn1-6.dll		; glib-networking dependency
