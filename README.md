@@ -10,7 +10,7 @@ My efforts here will focus on creating a **64-bit version** of the GTK+-2 runtim
 
 The installers can be found in the [releases section](https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases).
 
-The current releases ([gtk2-runtime-2.24.32-2019-07-02-ts-win64.exe](https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases/download/2019-07-02/gtk2-runtime-2.24.32-2019-07-02-ts-win64.exe) and [gtk3-runtime-3.24.9-2019-07-02-ts-win64.exe](https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases/download/2019-07-02/gtk3-runtime-3.24.9-2019-07-02-ts-win64.exe)) were obtained entirely from the excellent [MSYS2 project](https://www.msys2.org), and were **not** compiled by myself, as was the case for releases made before 2017. Users who want to compile against this runtime are strongly encouraged to set up a MSYS2 installation themselves, and install the required packages (compiled with the mingw-w64-x86\_64 toolchain!!!).
+The current releases ([gtk2-runtime-2.24.32-2019-08-05-ts-win64.exe](https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases/download/2019-08-05/gtk2-runtime-2.24.32-2019-08-05-ts-win64.exe) and [gtk3-runtime-3.24.10-2019-08-05-ts-win64.exe](https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases/download/2019-08-05/gtk3-runtime-3.24.10-2019-08-05-ts-win64.exe)) were obtained entirely from the excellent [MSYS2 project](https://www.msys2.org), and were **not** compiled by myself, as was the case for releases made before 2017. Users who want to compile against this runtime are strongly encouraged to set up a MSYS2 installation themselves, and install the required packages (compiled with the mingw-w64-x86\_64 toolchain!!!).
 
 The following packages are included in the current GTK+-2/3 installers
 
@@ -20,14 +20,14 @@ The following packages are included in the current GTK+-2/3 installers
 * [cairo](http://cairographics.org/releases/) (1.16.0)
 * [cairomm](http://cairographics.org/releases/) (1.12.2)
 * [fontconfig](http://www.freedesktop.org/software/fontconfig/release/) (2.13.1)
-* [freetype](http://www.freetype.org/download.html) (2.10.0)
+* [freetype](http://www.freetype.org/download.html) (2.10.1)
 * [gdk-pixbuf](http://ftp.gnome.org/pub/GNOME/sources/gdk-pixbuf/) (2.38.1)
 * [gettext](http://ftp.gnu.org/pub/gnu/gettext/) (0.19.8.1)
 * [glib](http://ftp.gnome.org/pub/GNOME/sources/glib/) (2.60.4)
 * [glib-networking](http://ftp.gnome.org/pub/GNOME/sources/glib-networking/) (2.60.3)
 * [glibmm](http://ftp.gnome.org/pub/GNOME/sources/glibmm/) (2.60.0)
 * [gtk2](http://ftp.gnome.org/pub/GNOME/sources/gtk+/) (2.24.32)
-* [gtk3](http://ftp.gnome.org/pub/GNOME/sources/gtk+/) (3.24.9)
+* [gtk3](http://ftp.gnome.org/pub/GNOME/sources/gtk+/) (3.24.10)
 * [gtkmm2](http://ftp.gnome.org/pub/GNOME/sources/gtkmm) (2.24.5)
 * [gtkmm3](http://ftp.gnome.org/pub/GNOME/sources/gtkmm) (3.24.1)
 * [gtksourceview2](http://ftp.gnome.org/pub/GNOME/sources/gtksourceview/) (2.10.5)
@@ -52,7 +52,7 @@ The following packages are included in the current GTK+-2/3 installers
 * [pangomm](http://ftp.gnome.org/pub/GNOME/sources/pangomm/) (2.42.0)
 * [pcre](ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/) (8.43)
 * [pixman](http://cairographics.org/releases/) (0.38.4)
-* [sqlite](https://www.sqlite.org) (3.28.0)
+* [sqlite](https://www.sqlite.org) (3.29.0)
 * [zlib](http://www.zlib.net) (1.2.11)
 
 For all other information regarding how to use the installer, the reader is kindly referred to [Alexander Shaduri's website](http://gtk-win.sourceforge.net) of the GTK for Windows runtime environment installer. The only difference with the installers found at his website is that mine DO NOT have the `compatdlls` option, but this should present no problems to any user.  
