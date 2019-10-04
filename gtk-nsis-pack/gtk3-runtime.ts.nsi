@@ -11,9 +11,9 @@
 ; Directory and package names: gtk3-runtime.
 
 
-!define GTK_VERSION "3.24.10"
+!define GTK_VERSION "3.24.11"
 !define GTK_BIN_VERSION "3.0.0"
-!define PRODUCT_VERSION "${GTK_VERSION}-2019-08-05-ts-win64"
+!define PRODUCT_VERSION "${GTK_VERSION}-2019-10-04-ts-win64"
 !define PRODUCT_NAME "GTK3-Runtime Win64"
 !define PRODUCT_PUBLISHER "Tom Schoonjans"
 !define PRODUCT_WEB_SITE "https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer"
@@ -304,6 +304,9 @@ SectionIn 1 2 RO
 	File bin\libtasn1-6.dll		; glib-networking dependency
 	File bin\libunistring-2.dll	; glib-networking dependency
 	File bin\libproxy-1.dll	; glib-networking dependency
+	File bin\libpeas-1.0-0.dll	; libpeas
+	File bin\libpeas-gtk-1.0-0.dll	; libpeas
+	File bin\libgirepository-1.0-1.dll	; gobject-introspection
 
 	; We install this into the same place as the DLLs to avoid any PATH manipulation.
 	SetOutPath "$LIB_INSTDIR"
@@ -339,6 +342,9 @@ SectionIn 1 2 RO
 	File lib\gio\modules\libgiognutls.dll
 	File lib\gio\modules\libgiognomeproxy.dll
 	File lib\gio\modules\libgiolibproxy.dll
+
+	SetOutPath "$INSTDIR\lib"
+	File /r lib\girepository-1.0
 
 	SetOutPath "$INSTDIR\ssl\certs"
 	File ssl\certs\ca-bundle.crt
@@ -692,6 +698,9 @@ Function un.DeleteDlls
 	Delete $LIB_INSTDIR\libtasn1-6.dll		; glib-networking dependency
 	Delete $LIB_INSTDIR\libunistring-2.dll	; glib-networking dependency
 	Delete $LIB_INSTDIR\libproxy-1.dll	; glib-networking dependency
+	Delete $LIB_INSTDIR\libpeas-1.0-0.dll	
+	Delete $LIB_INSTDIR\libpeas-gtk-1.0-0.dll
+	Delete $LIB_INSTDIR\libgirepository-1.0-1.dll
 
 
 FunctionEnd
@@ -831,6 +840,8 @@ Section Uninstall
 	Delete "$INSTDIR\lib\gio\modules\libgiolibproxy.dll"
 	RMDir "$INSTDIR\lib\gio\modules"
 	RMDir "$INSTDIR\lib\gio"
+
+	RMDir /r "$INSTDIR\lib\girepository-1.0"
 
 	Delete "$INSTDIR\ssl\certs\ca-bundle.crt"
 	Delete "$INSTDIR\ssl\certs\ca-bundle.trust.crt"

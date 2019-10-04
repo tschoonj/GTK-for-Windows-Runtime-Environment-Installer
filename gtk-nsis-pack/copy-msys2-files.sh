@@ -125,6 +125,11 @@ cp $INSTALL_SRC_MSYS2_BIN/libunistring-2.dll $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libproxy-1.dll $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libpsl-5.dll $INSTALL_SRC_BIN
 
+# libpeas
+cp $INSTALL_SRC_MSYS2_BIN/libpeas-1.0-0.dll $INSTALL_SRC_BIN
+cp $INSTALL_SRC_MSYS2_BIN/libpeas-gtk-1.0-0.dll $INSTALL_SRC_BIN
+cp $INSTALL_SRC_MSYS2_BIN/libgirepository-1.0-1.dll $INSTALL_SRC_BIN
+
 # Standard MSYS2 libraries
 cp $INSTALL_SRC_MSYS2_BIN/libstdc++-6.dll $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libgcc_s_seh-1.dll $INSTALL_SRC_BIN
@@ -164,6 +169,11 @@ mkdir -p $INSTALL_SRC_LIB/gio
 cp -r modules $INSTALL_SRC_LIB/gio/
 # Delete static libraries
 find $INSTALL_SRC_LIB/gio/modules -name *.a -type f -delete
+
+# Copy lib/girepository-1.0 folder 
+cd $INSTALL_SRC_MSYS2_LIB/girepository-1.0
+mkdir -p $INSTALL_SRC_LIB/girepository-1.0
+cp -r *typelib $INSTALL_SRC_LIB/girepository-1.0/
 
 # Copy /share/locale/locale.alias
 rm -r $INSTALL_SRC_DIR/share/locale
