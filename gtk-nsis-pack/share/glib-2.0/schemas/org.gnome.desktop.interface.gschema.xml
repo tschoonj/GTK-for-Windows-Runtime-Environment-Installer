@@ -228,6 +228,14 @@
         If true, display weekday in the clock, in addition to time.
       </description>
     </key>
+    <key name="enable-hot-corners" type="b">
+      <default>true</default>
+      <summary>Enable hot corners</summary>
+      <description>
+        If true, the activities overview can be accessed by moving the
+        mouse to the top-left corner.
+      </description>
+    </key>
     <key name="show-battery-percentage" type="b">
       <default>false</default>
       <summary>Show battery percentage</summary>
@@ -240,6 +248,22 @@
       <summary>Enable the primary paste selection</summary>
       <description>
         If true, gtk+ uses the primary paste selection, usually triggered by a middle mouse button click.
+      </description>
+    </key>
+    <key name="overlay-scrolling" type="b">
+      <default>true</default>
+      <summary>Allow overlay scrolling</summary>
+      <description>
+        Whether scrollbars should be overlayed as indicators. Depending
+        on input devices in use, permanent scrollbars may still be
+        displayed.
+      </description>
+    </key>
+    <key name="locate-pointer" type="b">
+      <default>false</default>
+      <summary>Highlights the current location of the pointer.</summary>
+      <description>
+        If true, pressing a key will highlight the current pointer location on screen.
       </description>
     </key>
   </schema>

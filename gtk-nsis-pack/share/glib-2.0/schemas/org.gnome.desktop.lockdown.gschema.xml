@@ -71,5 +71,13 @@
         and removing users, as well as changing other users settings.
       </description>
     </key>
+    <key name="mount-removable-storage-devices-as-read-only" type="b">
+      <default>false</default>
+      <summary>Mount removable storage devices as read-only</summary>
+      <description>
+        Prevent users from writing or modifying files on removable storage
+        devices (i.e. flash disks, mobile phones, cameras).
+      </description>
+    </key>
   </schema>
 </schemalist>

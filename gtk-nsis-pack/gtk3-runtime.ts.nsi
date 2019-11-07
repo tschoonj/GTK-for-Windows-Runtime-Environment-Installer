@@ -11,9 +11,9 @@
 ; Directory and package names: gtk3-runtime.
 
 
-!define GTK_VERSION "3.24.11"
+!define GTK_VERSION "3.24.12"
 !define GTK_BIN_VERSION "3.0.0"
-!define PRODUCT_VERSION "${GTK_VERSION}-2019-10-04-ts-win64"
+!define PRODUCT_VERSION "${GTK_VERSION}-2019-11-07-ts-win64"
 !define PRODUCT_NAME "GTK3-Runtime Win64"
 !define PRODUCT_PUBLISHER "Tom Schoonjans"
 !define PRODUCT_WEB_SITE "https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer"
@@ -295,6 +295,8 @@ SectionIn 1 2 RO
 	File bin\libsoup-gnome-2.4-1.dll      ; libsoup
 	File bin\libsqlite3-0.dll       ; libsoup dependency
 	File bin\libpsl-5.dll       ; libsoup dependency
+	File bin\libbrotlidec.dll       ; libsoup dependency
+	File bin\libbrotlicommon.dll       ; libsoup dependency
 	File bin\libgnutls-30.dll       ; glib-networking dependency
 	File bin\libgmp-10.dll		; glib-networking dependency
 	File bin\libhogweed-5.dll       ; glib-networking dependency
@@ -310,6 +312,7 @@ SectionIn 1 2 RO
 
 	; We install this into the same place as the DLLs to avoid any PATH manipulation.
 	SetOutPath "$LIB_INSTDIR"
+	File bin\gdbus.exe
 	File bin\fc-cache.exe
 	File bin\fc-cat.exe
 	File bin\fc-list.exe
@@ -610,6 +613,7 @@ Function un.DeleteDlls
 	un_no_dll_append:
 
 	; bin stuff (they are in the same directory)
+	Delete $LIB_INSTDIR\gdbus.exe
 	Delete $LIB_INSTDIR\fc-cache.exe
 	Delete $LIB_INSTDIR\fc-cat.exe
 	Delete $LIB_INSTDIR\fc-list.exe
@@ -689,6 +693,8 @@ Function un.DeleteDlls
 	Delete $LIB_INSTDIR\libsoup-gnome-2.4-1.dll      ; libsoup
 	Delete $LIB_INSTDIR\libsqlite3-0.dll       ; libsoup dependency
 	Delete $LIB_INSTDIR\libpsl-5.dll       ; libsoup dependency
+	Delete $LIB_INSTDIR\libbrotlidec.dll       ; libsoup dependency
+	Delete $LIB_INSTDIR\libbrotlicommon.dll       ; libsoup dependency
 	Delete $LIB_INSTDIR\libgnutls-30.dll       ; glib-networking dependency
 	Delete $LIB_INSTDIR\libgmp-10.dll		; glib-networking dependency
 	Delete $LIB_INSTDIR\libhogweed-5.dll       ; glib-networking dependency

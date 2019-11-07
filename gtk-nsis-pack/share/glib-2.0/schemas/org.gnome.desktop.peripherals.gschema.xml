@@ -60,6 +60,11 @@
       <summary>Click method</summary>
       <description>How to generate software-emulated buttons, either disabled (“none”), through specific areas (“areas”), number of fingers (“fingers”) or left as hardware default (“default”).</description>
     </key>
+    <key name="middle-click-emulation" type="b">
+      <default>false</default>
+      <summary>Emulate middle click</summary>
+      <description>Set this to TRUE to enable middle click during simultaneous left and right click.</description>
+    </key>
   </schema>
   <schema id="org.gnome.desktop.peripherals.keyboard" path="/org/gnome/desktop/peripherals/keyboard/">
     <key name="repeat" type="b">
@@ -76,6 +81,16 @@
       <default>500</default>
       <summary>Initial Key Repeat Delay</summary>
       <description>Initial key repeat delay in milliseconds.</description>
+    </key>
+    <key name="remember-numlock-state" type="b">
+      <default>true</default>
+      <summary>Remember NumLock state</summary>
+      <description>When set to true, GNOME will remember the state of the NumLock LED between sessions.</description>
+    </key>
+    <key name="numlock-state" type="b">
+      <default>false</default>
+      <summary>NumLock state</summary>
+      <description>The remembered state of the NumLock LED.</description>
     </key>
   </schema>
   <schema id="org.gnome.desktop.peripherals.mouse" path="/org/gnome/desktop/peripherals/mouse/">
@@ -99,6 +114,11 @@
       <default>'default'</default>
       <summary>Acceleration profile</summary>
       <description>Acceleration profile used for connected mice. The acceleration profile can be set to either default (“default”) which uses the default acceleration profile for each device, flat (“flat”), which accelerates by a device specific constant factor derived from the configured pointer speed, or adaptive (“adaptive”) which adapts the acceleration depending on the mouse movement. If a mouse doesn’t support the configured profile, “default” will be used.</description>
+    </key>
+    <key name="middle-click-emulation" type="b">
+      <default>false</default>
+      <summary>Emulate middle click</summary>
+      <description>Set this to TRUE to enable middle click during simultaneous left and right click.</description>
     </key>
   </schema>
   <schema id="org.gnome.desktop.peripherals.tablet">
@@ -184,6 +204,11 @@
       <default>'default'</default>
       <summary>Acceleration profile</summary>
       <description>Acceleration profile used for the trackball. The acceleration profile can be set to either default (“default”) which uses the default acceleration profile, flat (“flat”), which accelerates by a device specific constant factor derived from the configured speed, or adaptive (“adaptive”) which adapts the acceleration depending on the movement. If the trackball doesn’t support the configured profile, “default” will be used.</description>
+    </key>
+    <key name="middle-click-emulation" type="b">
+      <default>false</default>
+      <summary>Emulate middle click</summary>
+      <description>Set this to TRUE to enable middle click during simultaneous left and right click.</description>
     </key>
   </schema>
 </schemalist>

@@ -1,0 +1,9 @@
+<schemalist>
+  <schema gettext-domain="gedit" id="org.gnome.gedit.plugins.spell" path="/org/gnome/gedit/plugins/spell/">
+    <key name="highlight-misspelled" type="b">
+      <default>false</default>
+      <summary>Highlight misspelled words</summary>
+      <description>Default setting for highlight misspelled words.</description>
+    </key>
+  </schema>
+</schemalist>
