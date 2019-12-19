@@ -11,9 +11,9 @@
 ; Directory and package names: gtk3-runtime.
 
 
-!define GTK_VERSION "3.24.12"
+!define GTK_VERSION "3.24.13"
 !define GTK_BIN_VERSION "3.0.0"
-!define PRODUCT_VERSION "${GTK_VERSION}-2019-11-07-ts-win64"
+!define PRODUCT_VERSION "${GTK_VERSION}-2019-12-19-ts-win64"
 !define PRODUCT_NAME "GTK3-Runtime Win64"
 !define PRODUCT_PUBLISHER "Tom Schoonjans"
 !define PRODUCT_WEB_SITE "https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer"
@@ -345,6 +345,9 @@ SectionIn 1 2 RO
 	File lib\gio\modules\libgiognutls.dll
 	File lib\gio\modules\libgiognomeproxy.dll
 	File lib\gio\modules\libgiolibproxy.dll
+
+	SetOutPath "$INSTDIR\lib\libpeas-1.0\loaders"
+	File lib\libpeas-1.0\loaders\libpython3loader.dll
 
 	SetOutPath "$INSTDIR\lib"
 	File /r lib\girepository-1.0
@@ -846,6 +849,10 @@ Section Uninstall
 	Delete "$INSTDIR\lib\gio\modules\libgiolibproxy.dll"
 	RMDir "$INSTDIR\lib\gio\modules"
 	RMDir "$INSTDIR\lib\gio"
+
+	Delete "$INSTDIR\lib\libpeas-1.0\loaders\libpython3loader.dll"
+	RMDir "$INSTDIR\lib\libpeas-1.0\loaders"
+	RMDir "$INSTDIR\lib\libpeas-1.0"
 
 	RMDir /r "$INSTDIR\lib\girepository-1.0"
 

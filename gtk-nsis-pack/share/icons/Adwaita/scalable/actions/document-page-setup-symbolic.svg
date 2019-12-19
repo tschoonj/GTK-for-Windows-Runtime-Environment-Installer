@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16">
-    <g fill="#474747">
-        <path d="M3 1a1 1 0 0 0-1 1v2a1 1 0 1 0 2 0V3h5.586L12 5.414V10a1 1 0 1 0 2 0V5a1 1 0 0 0-.293-.707l-3-3A1 1 0 0 0 10 1zm0 13a1 1 0 1 0 0 2h10a1 1 0 1 0 0-2zM2 5.734V13h12.11zm2 3.532L6.89 11H4z" style="line-height:normal;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000;text-transform:none;text-orientation:mixed;shape-padding:0;isolation:auto;mix-blend-mode:normal" color="#000" font-weight="400" font-family="sans-serif" white-space="normal" overflow="visible" fill-rule="evenodd"/>
+    <g fill="#2e3436">
+        <path d="M3 1a1 1 0 00-1 1v2a1 1 0 102 0V3h5.586L12 5.414V10a1 1 0 102 0V5a1 1 0 00-.293-.707l-3-3A1 1 0 0010 1zm0 13a1 1 0 100 2h10a1 1 0 100-2zM2 5.734V13h12.11zm2 3.532L6.89 11H4z" style="line-height:normal;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000;text-transform:none;text-orientation:mixed;white-space:normal;shape-padding:0;isolation:auto;mix-blend-mode:normal;solid-color:#000;solid-opacity:1" color="#000" font-weight="400" font-family="sans-serif" overflow="visible" fill-rule="evenodd"/>
         <path d="M2 14h1v1H2zM13 14h1v1h-1z"/>
     </g>
 </svg>

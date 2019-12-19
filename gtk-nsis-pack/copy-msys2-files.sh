@@ -131,6 +131,8 @@ cp $INSTALL_SRC_MSYS2_BIN/libpsl-5.dll $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libpeas-1.0-0.dll $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libpeas-gtk-1.0-0.dll $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libgirepository-1.0-1.dll $INSTALL_SRC_BIN
+mkdir -p $INSTALL_SRC_LIB/libpeas-1.0/loaders
+cp $INSTALL_SRC_MSYS2_LIB/libpeas-1.0/loaders/libpython3loader.dll $INSTALL_SRC_LIB/libpeas-1.0/loaders
 
 # Standard MSYS2 libraries
 cp $INSTALL_SRC_MSYS2_BIN/libstdc++-6.dll $INSTALL_SRC_BIN
