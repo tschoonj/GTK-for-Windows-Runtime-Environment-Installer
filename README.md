@@ -10,7 +10,7 @@ My efforts here will focus on creating a **64-bit version** of the GTK+-2 runtim
 
 The installers can be found in the [releases section](https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases).
 
-The current releases ([gtk2-runtime-2.24.32-2019-12-19-ts-win64.exe](https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases/download/2019-12-19/gtk2-runtime-2.24.32-2019-12-19-ts-win64.exe) and [gtk3-runtime-3.24.13-2019-12-19-ts-win64.exe](https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases/download/2019-12-19/gtk3-runtime-3.24.13-2019-12-19-ts-win64.exe)) were obtained entirely from the excellent [MSYS2 project](https://www.msys2.org), and were **not** compiled by myself, as was the case for releases made before 2017. Users who want to compile against this runtime are strongly encouraged to set up a MSYS2 installation themselves, and install the required packages (compiled with the mingw-w64-x86\_64 toolchain!!!).
+The current releases ([gtk2-runtime-2.24.32-2020-02-21-ts-win64.exe](https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases/download/2020-02-21/gtk2-runtime-2.24.32-2020-02-21-ts-win64.exe) and [gtk3-runtime-3.24.14-2020-02-21-ts-win64.exe](https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases/download/2020-02-21/gtk3-runtime-3.24.14-2020-02-21-ts-win64.exe)) were obtained entirely from the excellent [MSYS2 project](https://www.msys2.org), and were **not** compiled by myself, as was the case for releases made before 2017. Users who want to compile against this runtime are strongly encouraged to set up a MSYS2 installation themselves, and install the required packages (compiled with the mingw-w64-x86\_64 toolchain!!!).
 
 The following packages are included in the current GTK+-2/3 installers
 
@@ -23,19 +23,19 @@ The following packages are included in the current GTK+-2/3 installers
 * [freetype](http://www.freetype.org/download.html) (2.10.1)
 * [gdk-pixbuf](http://ftp.gnome.org/pub/GNOME/sources/gdk-pixbuf/) (2.40.0)
 * [gettext](http://ftp.gnu.org/pub/gnu/gettext/) (0.19.8.1)
-* [glib](http://ftp.gnome.org/pub/GNOME/sources/glib/) (2.62.2)
+* [glib](http://ftp.gnome.org/pub/GNOME/sources/glib/) (2.62.4)
 * [glib-networking](http://ftp.gnome.org/pub/GNOME/sources/glib-networking/) (2.62.2)
 * [glibmm](http://ftp.gnome.org/pub/GNOME/sources/glibmm/) (2.62.0)
 * [gobject-introspection](http://ftp.gnome.org/pub/GNOME/sources/gobject-introspection/) (1.62.0)
 * [gtk2](http://ftp.gnome.org/pub/GNOME/sources/gtk+/) (2.24.32)
-* [gtk3](http://ftp.gnome.org/pub/GNOME/sources/gtk+/) (3.24.13)
+* [gtk3](http://ftp.gnome.org/pub/GNOME/sources/gtk+/) (3.24.14)
 * [gtkmm2](http://ftp.gnome.org/pub/GNOME/sources/gtkmm) (2.24.5)
 * [gtkmm3](http://ftp.gnome.org/pub/GNOME/sources/gtkmm) (3.24.2)
 * [gtksourceview2](http://ftp.gnome.org/pub/GNOME/sources/gtksourceview/) (2.10.5)
 * [gtksourceview3](http://ftp.gnome.org/pub/GNOME/sources/gtksourceview/) (3.24.11)
 * ~~[gtksourceviewmm2](http://ftp.gnome.org/pub/GNOME/sources/gtksourceviewmm/) (2.10.3)~~ (currently unavailable)
 * [gtksourceviewmm3](http://ftp.gnome.org/pub/GNOME/sources/gtksourceviewmm/) (3.21.3)
-* [harfbuzz](http://www.freedesktop.org/software/harfbuzz/release/) (2.6.2)
+* [harfbuzz](http://www.freedesktop.org/software/harfbuzz/release/) (2.6.4)
 * [hicolor-icon-theme](http://icon-theme.freedesktop.org/releases/) (0.17)
 * [json-glib](http://ftp.gnome.org/pub/gnome/sources/json-glib/) (1.4.4)
 * [libepoxy](https://github.com/anholt/libepoxy) (1.5.4)
@@ -54,7 +54,7 @@ The following packages are included in the current GTK+-2/3 installers
 * [pangomm](http://ftp.gnome.org/pub/GNOME/sources/pangomm/) (2.42.0)
 * [pcre](ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/) (8.43)
 * [pixman](http://cairographics.org/releases/) (0.38.4)
-* [sqlite](https://www.sqlite.org) (3.30.1)
+* [sqlite](https://www.sqlite.org) (3.31.0)
 * [zlib](http://www.zlib.net) (1.2.11)
 
 For all other information regarding how to use the installer, the reader is kindly referred to [Alexander Shaduri's website](http://gtk-win.sourceforge.net) of the GTK for Windows runtime environment installer. The only difference with the installers found at his website is that mine DO NOT have the `compatdlls` option, but this should present no problems to any user.  
