@@ -1,6 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16">
-    <g color="#bebebe" fill="#474747">
-        <path d="M13.266 10.476l2.189-2.475H16v5.004h-.534zM7 7h5c.554 0 1 .446 1 1v5c0 .554-.446 1-1 1H7c-.554 0-1-.446-1-1V8c0-.554.446-1 1-1z" style="marker:none" overflow="visible"/>
-        <path d="M4 1.994c-.554 0-1 .446-1 1v5.008c0 .554.446 1 1 1h.998V8c0-1.05.952-2.007 2.002-2.002h3V2.994c0-.554-.446-1-1-1zm-4 1.01v5.005h.48l2.254-2.587L.611 3.003z" style="marker:none" overflow="visible" opacity=".5"/>
-    </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><g color="#bebebe" fill="#474747"><path d="M13.266 10.476l2.189-2.475H16v5.004h-.534zM7 7h5c.554 0 1 .446 1 1v5c0 .554-.446 1-1 1H7c-.554 0-1-.446-1-1V8c0-.554.446-1 1-1z" style="marker:none" overflow="visible"/><path d="M4 1.994c-.554 0-1 .446-1 1v5.008c0 .554.446 1 1 1h.998V8c0-1.05.952-2.007 2.002-2.002h3V2.994c0-.554-.446-1-1-1zm-4 1.01v5.005h.48l2.254-2.587L.611 3.003z" style="marker:none" overflow="visible" opacity=".5"/></g></svg>

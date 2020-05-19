@@ -11,9 +11,9 @@
 ; Directory and package names: gtk3-runtime.
 
 
-!define GTK_VERSION "3.24.14"
+!define GTK_VERSION "3.24.18"
 !define GTK_BIN_VERSION "3.0.0"
-!define PRODUCT_VERSION "${GTK_VERSION}-2020-02-21-ts-win64"
+!define PRODUCT_VERSION "${GTK_VERSION}-2020-05-19-ts-win64"
 !define PRODUCT_NAME "GTK3-Runtime Win64"
 !define PRODUCT_PUBLISHER "Tom Schoonjans"
 !define PRODUCT_WEB_SITE "https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer"
@@ -29,7 +29,6 @@
 ; AddToPath and friends should work with all users
 !define ALL_USERS
 
-!include nsi_env_var_update.nsh  ; EnvVar* functions
 !include "FileFunc.nsh"  ; GetOptions
 !include "x64.nsh"
 !include "LogicLib.nsh"
@@ -53,6 +52,7 @@ Name "${PRODUCT_NAME}"  ;  ${PRODUCT_VERSION}
 ; Output File Name
 OutFile "${INSTALLER_OUTPUT_FILE}"
 
+Unicode true
 
 ; The Default Installation Directory
 InstallDir "$PROGRAMFILES64\${PRODUCT_NAME}"
@@ -239,7 +239,7 @@ SectionIn 1 2 RO
 	File bin\libcairomm-1.0-1.dll
 	File bin\libepoxy-0.dll
 	File bin\libexslt-0.dll
-	File bin\libffi-6.dll  			; libffi is required by glib2 
+	File bin\libffi-7.dll  			; libffi is required by glib2 
 	File bin\libfontconfig-1.dll	; fontconfig is needed for ft2 pango backend
 	File bin\libfreetype-6.dll		; freetype is needed for ft2 pango backend
 	File bin\libfribidi-0.dll  ; fribidi is needed for pango 
@@ -299,8 +299,8 @@ SectionIn 1 2 RO
 	File bin\libbrotlicommon.dll       ; libsoup dependency
 	File bin\libgnutls-30.dll       ; glib-networking dependency
 	File bin\libgmp-10.dll		; glib-networking dependency
-	File bin\libhogweed-5.dll       ; glib-networking dependency
-	File bin\libnettle-7.dll	; glib-networking dependency
+	File bin\libhogweed-6.dll       ; glib-networking dependency
+	File bin\libnettle-8.dll	; glib-networking dependency
 	File bin\libidn2-0.dll		; glib-networking dependency
 	File bin\libp11-kit-0.dll	; glib-networking dependency
 	File bin\libtasn1-6.dll		; glib-networking dependency
@@ -509,10 +509,8 @@ Section -post
 		StrCpy $ADD_TO_PATH "1"
 		; Push $LIB_INSTDIR
 		; Call AddToPath  ; add $LIB_INSTDIR to system $PATH
-		Push $0  ; result PATH
-		${EnvVarUpdate} $0 "PATH" "A" "HKLM" "$LIB_INSTDIR" ; Append
-		Pop $0
-		; MessageBox MB_ICONINFORMATION|MB_OK "$LIB_INSTDIR added to path"
+		EnVar::SetHKLM
+		EnVar::AddValue "PATH" "$LIB_INSTDIR"
 		goto goto_set_path_exit
 	goto_set_path_no:
 		StrCpy $ADD_TO_PATH "0"
@@ -640,7 +638,7 @@ Function un.DeleteDlls
 	Delete $LIB_INSTDIR\libcairomm-1.0-1.dll
 	Delete $LIB_INSTDIR\libepoxy-0.dll
 	Delete $LIB_INSTDIR\libexslt-0.dll
-	Delete $LIB_INSTDIR\libffi-6.dll  ; libffi is required by glib 
+	Delete $LIB_INSTDIR\libffi-7.dll  ; libffi is required by glib 
 	Delete $LIB_INSTDIR\libfontconfig-1.dll  ; fontconfig is needed for ft2 pango backend
 	Delete $LIB_INSTDIR\libfreetype-6.dll  ; freetype is needed for ft2 pango backend
 	Delete $LIB_INSTDIR\libfribidi-0.dll
@@ -700,8 +698,8 @@ Function un.DeleteDlls
 	Delete $LIB_INSTDIR\libbrotlicommon.dll       ; libsoup dependency
 	Delete $LIB_INSTDIR\libgnutls-30.dll       ; glib-networking dependency
 	Delete $LIB_INSTDIR\libgmp-10.dll		; glib-networking dependency
-	Delete $LIB_INSTDIR\libhogweed-5.dll       ; glib-networking dependency
-	Delete $LIB_INSTDIR\libnettle-7.dll	; glib-networking dependency
+	Delete $LIB_INSTDIR\libhogweed-6.dll       ; glib-networking dependency
+	Delete $LIB_INSTDIR\libnettle-8.dll	; glib-networking dependency
 	Delete $LIB_INSTDIR\libidn2-0.dll		; glib-networking dependency
 	Delete $LIB_INSTDIR\libp11-kit-0.dll	; glib-networking dependency
 	Delete $LIB_INSTDIR\libtasn1-6.dll		; glib-networking dependency
@@ -754,10 +752,8 @@ Section Uninstall
 		StrCmp $ADD_TO_PATH "0" un_nopath  ; Setting $PATH was not requested during installation
 		; Push $LIB_INSTDIR
 		; Call un.RemoveFromPath
-		Push $0  ; result PATH
-		${un.EnvVarUpdate} $0 "PATH" "R" "HKLM" "$LIB_INSTDIR" ; remove
-		Pop $0
-		; MessageBox MB_OK "$LIB_INSTDIR removed from PATH" /SD IDOK
+		EnVar::SetHKLM
+		EnVar::DeleteValue "PATH" "$LIB_INSTDIR"
 		un_nopath:
 
 		; $DLL_DIR_NAME is from the registry here

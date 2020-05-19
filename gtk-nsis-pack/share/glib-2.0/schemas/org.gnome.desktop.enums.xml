@@ -144,6 +144,10 @@
     <value nick="flat" value="1"/>
     <value nick="adaptive" value="2"/>
   </enum>
+<enum id="org.gnome.desktop.GDesktopUsbProtection">
+    <value nick="lockscreen" value="0"/>
+    <value nick="always" value="1"/>
+  </enum>
 </schemalist>
 
 <!-- Generated data ends here -->

@@ -14,7 +14,7 @@
 
 !define GTK_VERSION "2.24.32"
 !define GTK_BIN_VERSION "2.10.0"
-!define PRODUCT_VERSION "${GTK_VERSION}-2020-02-21-ts-win64"
+!define PRODUCT_VERSION "${GTK_VERSION}-2020-05-19-ts-win64"
 !define PRODUCT_NAME "GTK2-Runtime Win64"
 !define PRODUCT_PUBLISHER "Tom Schoonjans"
 !define PRODUCT_WEB_SITE "https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer"
@@ -30,7 +30,6 @@
 ; AddToPath and friends should work with all users
 !define ALL_USERS
 
-!include nsi_env_var_update.nsh  ; EnvVar* functions
 !include "FileFunc.nsh"  ; GetOptions
 !include "x64.nsh"
 !include "LogicLib.nsh"
@@ -54,6 +53,7 @@ Name "${PRODUCT_NAME}"  ;  ${PRODUCT_VERSION}
 ; Output File Name
 OutFile "${INSTALLER_OUTPUT_FILE}"
 
+Unicode true
 
 ; The Default Installation Directory
 InstallDir "$PROGRAMFILES64\${PRODUCT_NAME}"
@@ -239,9 +239,11 @@ SectionIn 1 2 RO
 	File bin\libcairo-script-interpreter-2.dll  ; cairo. Doesn't seem to be required, but since we're distributing cairo...
 	File bin\libcairomm-1.0-1.dll
 	File bin\libexslt-0.dll
-	File bin\libffi-6.dll  ; libffi is required by glib 
+	File bin\libffi-7.dll  ; libffi is required by glib 
 	File bin\libfontconfig-1.dll  ; fontconfig is needed for ft2 pango backend
 	File bin\libfreetype-6.dll  ; freetype is needed for ft2 pango backend
+	File bin\libbrotlidec.dll  ; brotli is needed for freetype
+	File bin\libbrotlicommon.dll  ; brotli is needed for freetype
 	File bin\libfribidi-0.dll  ; fribidi is needed for pango 
 	File bin\libgailutil-18.dll  ; from gtk
 	File bin\libgdk_pixbuf-2.0-0.dll  ; from gtk
@@ -474,9 +476,8 @@ Section -post
 		StrCpy $ADD_TO_PATH "1"
 		; Push $LIB_INSTDIR
 		; Call AddToPath  ; add $LIB_INSTDIR to system $PATH
-		Push $0  ; result PATH
-		${EnvVarUpdate} $0 "PATH" "A" "HKLM" "$LIB_INSTDIR" ; Append
-		Pop $0
+		EnVar::SetHKLM
+		EnVar::AddValue "PATH" "$LIB_INSTDIR"
 		; MessageBox MB_ICONINFORMATION|MB_OK "$LIB_INSTDIR added to path"
 		goto goto_set_path_exit
 	goto_set_path_no:
@@ -603,9 +604,11 @@ Function un.DeleteDlls
 	Delete $LIB_INSTDIR\libcairo-script-interpreter-2.dll  ; cairo. Doesn't seem to be required, but since we're distributing cairo...
 	Delete $LIB_INSTDIR\libcairomm-1.0-1.dll
 	Delete $LIB_INSTDIR\libexslt-0.dll
-	Delete $LIB_INSTDIR\libffi-6.dll  ; libffi is required by glib 
+	Delete $LIB_INSTDIR\libffi-7.dll  ; libffi is required by glib 
 	Delete $LIB_INSTDIR\libfontconfig-1.dll  ; fontconfig is needed for ft2 pango backend
 	Delete $LIB_INSTDIR\libfreetype-6.dll  ; freetype is needed for ft2 pango backend
+	Delete $LIB_INSTDIR\libbrotlidec.dll
+	Delete $LIB_INSTDIR\libbrotlicommon.dll
 	Delete $LIB_INSTDIR\libfribidi-0.dll
 	Delete $LIB_INSTDIR\libgailutil-18.dll  ; from gtk
 	Delete $LIB_INSTDIR\libgdk_pixbuf-2.0-0.dll  ; from gtk
@@ -699,10 +702,8 @@ Section Uninstall
 		StrCmp $ADD_TO_PATH "0" un_nopath  ; Setting $PATH was not requested during installation
 		; Push $LIB_INSTDIR
 		; Call un.RemoveFromPath
-		Push $0  ; result PATH
-		${un.EnvVarUpdate} $0 "PATH" "R" "HKLM" "$LIB_INSTDIR" ; remove
-		Pop $0
-		; MessageBox MB_OK "$LIB_INSTDIR removed from PATH" /SD IDOK
+		EnVar::SetHKLM
+		EnVar::DeleteValue "PATH" "$LIB_INSTDIR"
 		un_nopath:
 
 		; $DLL_DIR_NAME is from the registry here

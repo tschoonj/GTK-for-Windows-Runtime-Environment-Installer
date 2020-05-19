@@ -1,7 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16">
-    <g fill="#474747">
-        <path d="M2 2c-.524 0-1 .476-1 1v10c0 .524.476 1 1 1h3v-2s-1.993-.021-2 0V4h11v8h-1v2h2c.52 0 1-.435 1-1V3c0-.467-.437-1-1-1z" style="line-height:normal;-inkscape-font-specification:Sans;text-indent:0;text-align:start;text-decoration-line:none;text-transform:none;marker:none" color="#000" font-weight="400" font-family="Sans" overflow="visible"/>
-        <path d="M12 8.063a3 3 0 0 1-6 0 3 3 0 1 1 6 0z"/>
-        <path d="M8 9l-2 7h1l2-2 2 2h1l-2-7" fill-rule="evenodd"/>
-    </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><g fill="#474747"><path d="M2 2c-.524 0-1 .476-1 1v10c0 .524.476 1 1 1h3v-2s-1.993-.021-2 0V4h11v8h-1v2h2c.52 0 1-.435 1-1V3c0-.467-.437-1-1-1z" style="line-height:normal;-inkscape-font-specification:Sans;text-indent:0;text-align:start;text-decoration-line:none;text-transform:none;marker:none" color="#000" font-weight="400" font-family="Sans" overflow="visible"/><path d="M12 8.063a3 3 0 01-6 0 3 3 0 116 0z"/><path d="M8 9l-2 7h1l2-2 2 2h1l-2-7" fill-rule="evenodd"/></g></svg>

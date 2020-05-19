@@ -1,4 +1,4 @@
-#include "hello-world-gtk2.h"
+#include "hello-world-gtk.h"
 #include <iostream>
 #include <vector>
 #include <gtksourceviewmm/languagemanager.h>

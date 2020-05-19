@@ -1,6 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16">
-    <g color="#bebebe" fill="#474747">
-        <path d="M2.969 1A1.984 1.984 0 0 0 1 2.969V12.438l.313.28L3 14.407V3h10v10h-2v2h2.031A1.984 1.984 0 0 0 15 13.031V2.97A1.984 1.984 0 0 0 13.031 1z" style="line-height:normal;-inkscape-font-specification:sans-serif;text-indent:0;text-align:start;text-decoration-line:none;text-transform:none;marker:none" font-weight="400" font-size="xx-small" font-family="sans-serif" overflow="visible"/>
-        <path d="M5 9c-.554 0-1 .446-1 1v4c0 .554.446 1 1 1h4c.554 0 1-.446 1-1v-4c0-.554-.446-1-1-1zm0 1h2v4H5z" style="marker:none" overflow="visible"/>
-    </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><g color="#bebebe" fill="#474747"><path d="M2.969 1A1.984 1.984 0 001 2.969v9.469l.313.28L3 14.407V3h10v10h-2v2h2.031A1.984 1.984 0 0015 13.031V2.97A1.984 1.984 0 0013.031 1z" style="line-height:normal;-inkscape-font-specification:sans-serif;text-indent:0;text-align:start;text-decoration-line:none;text-transform:none;marker:none" font-weight="400" font-size="xx-small" font-family="sans-serif" overflow="visible"/><path d="M5 9c-.554 0-1 .446-1 1v4c0 .554.446 1 1 1h4c.554 0 1-.446 1-1v-4c0-.554-.446-1-1-1zm0 1h2v4H5z" style="marker:none" overflow="visible"/></g></svg>

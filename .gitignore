@@ -3,3 +3,4 @@ gtk2-runtime*-ts-win64*exe
 gtk3-runtime*-ts-win64*exe
 *.swp
 /.vscode
+hello-world-gtkmm3.exe
