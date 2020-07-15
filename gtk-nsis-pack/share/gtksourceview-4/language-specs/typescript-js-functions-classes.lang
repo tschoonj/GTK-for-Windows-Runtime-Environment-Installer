@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+ This file is part of GtkSourceView
+
+ Author: Jeffery To <jeffery.to@gmail.com>
+ Copyright (C) 2019 Jeffery To <jeffery.to@gmail.com>
+
+ GtkSourceView is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public
+ License as published by the Free Software Foundation; either
+ version 2.1 of the License, or (at your option) any later version.
+
+ GtkSourceView is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
+
+-->
+<language id="typescript-js-fn" name="TypeScript JavaScript Function and Class Additions" version="2.0" _section="Script" hidden="true">
+  <!-- from js:identifier-char -->
+  <keyword-char-class>[\p{L}\p{Nl}\x{1885}-\x{1886}\x{2118}\x{212E}\x{309B}-\x{309C}\p{Mn}\p{Mc}\p{Nd}\p{Pc}\x{00B7}\x{0387}\x{1369}-\x{1371}\x{19DA}$\x{200C}\x{200D}]</keyword-char-class>
+
+  <definitions>
+
+    <!--
+         See typescript.lang for general notes, naming conventions, etc.
+    -->
+
+
+    <!-- # Accessibility modifier -->
+
+    <context id="_accessibility-modifier" style-ref="js:keyword" once-only="true">
+      <keyword>private</keyword>
+      <keyword>protected</keyword>
+      <keyword>public</keyword>
+    </context> <!-- /_accessibility-modifier -->
+
+    <context id="_ordered-accessibility-modifier" once-only="true">
+      <start>\%{js:before-next-token}</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context ref="_accessibility-modifier"/>
+      </include>
+    </context> <!-- /_ordered-accessibility-modifier -->
+
+
+    <!-- # Function expression -->
+
+    <!-- <CallSignature> / <ParameterList> -->
+    <!-- replaces js-fn:_function-parameters-content -->
+    <context id="function-parameters-content">
+      <include>
+        <!-- decorators are valid for class declaration methods only -->
+        <context ref="typescript:ordered-decorators"/>
+        <!-- accessibility modifiers are valid for class
+             expression/declaration constructors only -->
+        <context ref="_ordered-accessibility-modifier"/>
+        <context ref="js:ordered-rest-syntax"/>
+        <context ref="js:ordered-assignment-target"/>
+        <context ref="typescript:ordered-optional-modifier"/>
+        <context ref="typescript:ordered-type-annotation"/>
+        <context ref="js:ordered-default-value-assignment"/>
+      </include>
+    </context> <!-- /function-parameters-content -->
+
+    <!-- replaces js-fn:_function-first-parameter -->
+    <context id="function-first-parameter" once-only="true">
+      <start>\%{js:before-next-token}</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context ref="js:embedded-lang-hooks"/>
+        <context ref="js:comments"/>
+
+        <context id="_function-first-parameter-content">
+          <include>
+            <!-- decorators are valid for class declaration methods only -->
+            <context ref="typescript:ordered-decorators"/>
+            <!-- accessibility modifiers are valid for class
+                 expression/declaration constructors only -->
+            <context ref="_ordered-accessibility-modifier"/>
+            <context ref="js:ordered-rest-syntax"/>
+            <!-- this parameters are valid for class
+                 expression/declaration methods only -->
+            <context ref="typescript:ordered-this-parameter-or-assignment-target"/>
+            <context ref="typescript:ordered-optional-modifier"/>
+            <context ref="typescript:ordered-type-annotation"/>
+            <context ref="js:ordered-default-value-assignment"/>
+          </include>
+        </context> <!-- /_function-first-parameter-content -->
+
+      </include>
+    </context> <!-- /function-first-parameter -->
+
+    <!-- <FunctionExpression> (Modified) (part of) /
+         <CallSignature> /
+         <FunctionDeclaration> (Modified) (part of) -->
+    <!-- replaces js-fn:_function-expression-content -->
+    <context id="function-expression-content">
+      <include>
+        <context ref="js-fn:_ordered-function-expression-async-keyword"/>
+        <context ref="js-fn:_ordered-function-expression-function-keyword"/>
+        <context ref="js:ordered-generator-modifier"/>
+        <context ref="js:ordered-identifier"/>
+        <context ref="typescript-type-gen:ordered-type-parameters-list"/>
+        <context ref="js-fn:_ordered-function-parameters-list"/>
+        <context ref="typescript:ordered-type-annotation"/>
+        <context ref="js-fn:_last-function-body"/>
+      </include>
+    </context> <!-- /function-expression-content -->
+
+
+    <!-- # Method definition -->
+
+    <!-- ensure type annotation for functions:
+           method(): 'type' { ... }
+         doesn't conflict with object literal property value:
+           property: 'value'
+    -->
+
+    <context id="_function-parameters-list-and-type-annotation" once-only="true">
+      <start>(?=\()</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context ref="js:comments"/>
+
+        <context id="_function-parameters-list-and-type-annotation-content">
+          <include>
+            <context ref="js-fn:_ordered-function-parameters-list" style-ref="js:function-expression"/>
+            <context ref="typescript:ordered-type-annotation"/>
+          </include>
+        </context> <!-- /_function-parameters-list-and-type-annotation-content -->
+
+      </include>
+    </context> <!-- /_function-parameters-list-and-type-annotation -->
+
+    <context id="_ordered-function-parameters-list-and-type-annotation" once-only="true">
+      <start>\%{js:before-next-token}</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context ref="_function-parameters-list-and-type-annotation"/>
+      </include>
+    </context> <!-- /_ordered-function-parameters-list-and-type-annotation -->
+
+    <!-- replaces js-fn:_method-definition-content -->
+    <context id="method-definition-content">
+      <include>
+        <context ref="js-fn:_ordered-method-definition-modifier"/>
+        <context ref="js:ordered-generator-modifier"/>
+        <context ref="js-lit:ordered-property-name"/>
+        <!-- technically, only class members can be marked as optional,
+             not object members -->
+        <context ref="typescript:ordered-optional-modifier"/>
+        <!-- technically, only class properties can be marked as
+             definitely assigned, not object members -->
+        <!-- also, optional modifier and definitely assignment
+             assertion cannot both be specified -->
+        <context ref="typescript:ordered-definite-assignment-assertion"/>
+        <context ref="typescript-type-gen:ordered-type-parameters-list"/>
+        <context ref="_ordered-function-parameters-list-and-type-annotation"/>
+        <context ref="js-fn:_last-function-body" style-ref="js:function-expression"/>
+      </include>
+    </context> <!-- /method-definition-content -->
+
+
+    <!-- # Class expression -->
+
+    <!-- ## Class expression keyword -->
+
+    <context id="_class-expression-abstract-keyword" style-ref="js:keyword">
+      <keyword>abstract</keyword>
+    </context> <!-- /_class-expression-abstract-keyword -->
+
+    <context id="_ordered-class-expression-abstract-keyword" once-only="true">
+      <start>\%{js:before-next-token}</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context ref="_class-expression-abstract-keyword"/>
+      </include>
+    </context> <!-- /_ordered-class-expression-abstract-keyword -->
+
+    <context id="_class-expression-class-keyword" style-ref="js:keyword">
+      <keyword>class</keyword>
+    </context> <!-- /_class-expression-class-keyword -->
+
+    <context id="_ordered-class-expression-class-keyword" once-only="true">
+      <start>\%{js:before-next-token}</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context ref="_class-expression-class-keyword"/>
+      </include>
+    </context> <!-- /_ordered-class-expression-class-keyword -->
+
+    <!-- ## Class optional name -->
+
+    <!-- replaces js-fn:_class-optional-name-content -->
+    <context id="class-optional-name-content">
+      <include>
+
+        <context id="_choice-class-optional-name-ignore-implements" end-parent="true">
+          <start>(?=\%[implements\%])</start>
+          <end>\%{def:always-match}</end>
+        </context> <!-- /_choice-class-optional-name-ignore-implements -->
+
+        <context ref="js-fn:_class-optional-name-content" original="true"/>
+      </include>
+    </context> <!-- /class-optional-name-content -->
+
+    <!-- ## Class extends clause -->
+
+    <!-- replaces js-fn:_class-extends-clause-content -->
+    <context id="class-extends-clause-content">
+      <include>
+        <context ref="js-fn:_class-extends-clause-content" original="true"/>
+        <context ref="typescript-type-gen:ordered-type-arguments-list"/>
+      </include>
+    </context> <!-- /class-extends-clause-content -->
+
+    <!-- ## Class implements clause -->
+
+    <context id="_class-implements-clause" once-only="true">
+      <start>\%[implements\%]</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="typescript:type-keyword"/>
+        <context ref="js:comments"/>
+
+        <context id="_class-implements-clause-content">
+          <include>
+            <context ref="typescript:type-reference-list"/>
+          </include>
+        </context> <!-- /_class-implements-clause-content -->
+
+      </include>
+    </context> <!-- /_class-implements-clause -->
+
+    <context id="_ordered-class-implements-clause" once-only="true">
+      <start>\%{js:before-next-token}</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context ref="_class-implements-clause"/>
+      </include>
+    </context> <!-- /_ordered-class-implements-clause -->
+
+    <!-- ## Class body -->
+
+    <context id="_class-body-member-modifier" once-only="true">
+      <start>\%{js:before-next-token}</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context ref="js:comments"/>
+
+        <context id="_class-body-member-modifier-content">
+          <include>
+
+            <context id="_class-body-member-modifier-keywords" style-ref="js:keyword">
+              <keyword>abstract</keyword>
+              <keyword>declare</keyword>
+              <keyword>readonly</keyword>
+            </context> <!-- /_class-body-member-modifier-keywords -->
+
+          </include>
+        </context> <!-- /_class-body-member-modifier-content -->
+
+      </include>
+    </context> <!-- /_class-body-member-modifier -->
+
+    <context id="_ordered-class-body-member-modifier" once-only="true">
+      <start>\%{js:before-next-token}</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context ref="_class-body-member-modifier"/>
+      </include>
+    </context> <!-- /_ordered-class-body-member-modifier -->
+
+    <context id="_choice-class-body-index-member" end-parent="true">
+      <start>(?=\[)</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context ref="js:comments"/>
+
+        <context id="_class-body-index-member-content">
+          <include>
+            <context ref="typescript-type-lit:ordered-index-property"/>
+            <context ref="typescript:ordered-type-annotation"/>
+          </include>
+        </context> <!-- /_class-body-index-member-content -->
+
+      </include>
+    </context> <!-- /_choice-class-body-index-member -->
+
+    <context id="_choice-class-body-property-or-method-member" end-parent="true">
+      <start>\%{js:before-next-token}</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context ref="js:comments"/>
+
+        <context id="_class-body-property-or-method-member-content">
+          <include>
+            <context ref="js-fn:ordered-method-definition"/>
+            <!-- method-definition has a type-annotation, but it is tied
+                 to function-parameters-list -->
+            <context ref="typescript:ordered-type-annotation"/>
+            <context ref="js:ordered-default-value-assignment"/>
+          </include>
+        </context> <!-- /_class-body-property-or-method-member-content -->
+
+      </include>
+    </context> <!-- /_choice-class-body-property-or-method-member -->
+
+    <!-- replaces js-fn:_class-body-member-content -->
+    <context id="class-body-member-content">
+      <include>
+        <!-- only "readonly" applies to index members
+             but these all need to be here because of ordering -->
+        <context ref="_ordered-accessibility-modifier"/>
+        <!-- "static" must precede "readonly" -->
+        <context ref="js-fn:_ordered-class-body-member-modifier"/>
+        <context ref="_ordered-class-body-member-modifier"/>
+        <context ref="_choice-class-body-index-member"/>
+        <context ref="_choice-class-body-property-or-method-member"/>
+      </include>
+    </context> <!-- /class-body-member-content -->
+
+    <!-- replaces js-fn:_class-body-content -->
+    <context id="class-body-content">
+      <include>
+        <context ref="typescript:decorators"/>
+        <context ref="js-fn:_class-body-content" original="true"/>
+      </include>
+    </context> <!-- /class-body-content -->
+
+    <!-- ## Class expression -->
+
+    <!-- replaces js-fn:_class-expression-content -->
+    <context id="class-expression-content">
+      <include>
+        <context ref="_ordered-class-expression-abstract-keyword"/>
+        <context ref="_ordered-class-expression-class-keyword"/>
+        <context ref="js-fn:_ordered-class-optional-name"/>
+        <context ref="typescript-type-gen:ordered-type-parameters-list"/>
+        <context ref="js-fn:_ordered-class-extends-clause"/>
+        <context ref="_ordered-class-implements-clause"/>
+        <context ref="js-fn:_last-class-body"/>
+      </include>
+    </context> <!-- /class-expression-content -->
+
+    <!-- <ClassExpression> / <ClassDeclaration> -->
+    <!-- replaces js-fn:choice-class-expression -->
+    <context id="choice-class-expression" style-ref="js:class-expression" end-parent="true">
+      <start>(?=\%{typescript:class-expression-keyword})</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context ref="js:comments"/>
+        <context ref="js-fn:_class-expression-content"/>
+      </include>
+    </context> <!-- /choice-class-expression -->
+
+    <!-- replaces js-fn:_class-expression-required-name-content -->
+    <context id="class-expression-required-name-content">
+      <include>
+        <context ref="_ordered-class-expression-abstract-keyword"/>
+        <context ref="_ordered-class-expression-class-keyword"/>
+        <context ref="js:ordered-identifier"/>
+        <context ref="typescript-type-gen:ordered-type-parameters-list"/>
+        <context ref="js-fn:_ordered-class-extends-clause"/>
+        <context ref="_ordered-class-implements-clause"/>
+        <context ref="js-fn:_last-class-body"/>
+      </include>
+    </context> <!-- /class-expression-required-name-content -->
+
+    <!-- <ClassExpression> / <ClassDeclaration> -->
+    <!-- replaces js-fn:choice-class-expression-required-name -->
+    <context id="choice-class-expression-required-name" style-ref="js:class-expression" end-parent="true">
+      <start>(?=\%{typescript:class-expression-keyword})</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context ref="js:comments"/>
+        <context ref="js-fn:_class-expression-required-name-content"/>
+      </include>
+    </context> <!-- /choice-class-expression-required-name -->
+
+  </definitions>
+</language>

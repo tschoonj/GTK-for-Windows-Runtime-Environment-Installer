@@ -1,8 +1,7 @@
 #include "hello-world-gtk.h"
 #include <iostream>
 #include <vector>
-#include <gtksourceviewmm/languagemanager.h>
-#include <gtksourceviewmm/init.h>
+#include <gtksourceview/gtksource.h>
 #include <json-glib/json-glib.h>
 #include <libpeas/peas.h>
 #include <libsoup/soup.h>
@@ -19,11 +18,9 @@ HelloWorld::HelloWorld()
 
   xmlpp::Document doc;
 
-  Gsv::init();	
-  Glib::RefPtr<Gsv::LanguageManager> language_manager =
-                                                Gsv::LanguageManager::create();
-  std::vector<std::string> langs = language_manager->get_language_ids ();
-  std::cout << "number of languages found: " << langs.size () << std::endl;
+  GtkSourceLanguageManager *language_manager = gtk_source_language_manager_get_default();
+  const gchar * const *ids = gtk_source_language_manager_get_language_ids(language_manager);
+  std::cout << "number of languages found: " << g_strv_length((gchar **) ids) << std::endl;
 
 
   // Sets the border width of the window.

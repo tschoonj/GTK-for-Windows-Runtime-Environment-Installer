@@ -11,9 +11,9 @@
 ; Directory and package names: gtk3-runtime.
 
 
-!define GTK_VERSION "3.24.18"
+!define GTK_VERSION "3.24.20"
 !define GTK_BIN_VERSION "3.0.0"
-!define PRODUCT_VERSION "${GTK_VERSION}-2020-05-19-ts-win64"
+!define PRODUCT_VERSION "${GTK_VERSION}-2020-07-15-ts-win64"
 !define PRODUCT_NAME "GTK3-Runtime Win64"
 !define PRODUCT_PUBLISHER "Tom Schoonjans"
 !define PRODUCT_WEB_SITE "https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer"
@@ -233,6 +233,7 @@ SectionIn 1 2 RO
 
 	File bin\libatk-1.0-0.dll		; atk
 	File bin\libatkmm-1.6-1.dll		; atk
+	File bin\libssp-0.dll			; needed by cairo
 	File bin\libcairo-2.dll			; cairo, needed by gtk
 	File bin\libcairo-gobject-2.dll	; cairo. Doesn't seem to be required, but since we're distributing cairo...
 	File bin\libcairo-script-interpreter-2.dll  ; cairo. Doesn't seem to be required, but since we're distributing cairo...
@@ -260,6 +261,7 @@ SectionIn 1 2 RO
 	File bin\libgthread-2.0-0.dll	; from glib
 	File bin\libgtk-3-0.dll  ; gtk
 	File bin\libgtksourceview-3.0-1.dll
+	File bin\libgtksourceview-4-0.dll
 	File bin\libgtksourceviewmm-3.0-0.dll
 	File bin\libgtkmm-3.0-1.dll
 	File bin\libharfbuzz-0.dll 		; required by pango
@@ -381,6 +383,12 @@ SectionIn 1 2 RO
 
 	SetOutPath "$INSTDIR\share"
 	File /r share\icons
+
+	SetOutPath "$INSTDIR\share"
+	File /r share\gtksourceview-3.0
+
+	SetOutPath "$INSTDIR\share"
+	File /r share\gtksourceview-4
 
 	SetOutPath "$INSTDIR\gtk3-runtime"
 	; File gtk-postinstall.bat ; this file is generated now
@@ -636,6 +644,7 @@ Function un.DeleteDlls
 	Delete $LIB_INSTDIR\libcairo-gobject-2.dll  ; cairo. Doesn't seem to be required, but since we're distributing cairo...
 	Delete $LIB_INSTDIR\libcairo-script-interpreter-2.dll  ; cairo. Doesn't seem to be required, but since we're distributing cairo...
 	Delete $LIB_INSTDIR\libcairomm-1.0-1.dll
+	Delete $LIB_INSTDIR\libssp-0.dll
 	Delete $LIB_INSTDIR\libepoxy-0.dll
 	Delete $LIB_INSTDIR\libexslt-0.dll
 	Delete $LIB_INSTDIR\libffi-7.dll  ; libffi is required by glib 
@@ -659,6 +668,7 @@ Function un.DeleteDlls
 	Delete $LIB_INSTDIR\libgthread-2.0-0.dll  ; from glib
 	Delete $LIB_INSTDIR\libgtk-3-0.dll  ; gtk
 	Delete $LIB_INSTDIR\libgtksourceview-3.0-1.dll  ; gtk
+	Delete $LIB_INSTDIR\libgtksourceview-4-0.dll  ; gtk
 	Delete $LIB_INSTDIR\libgtksourceviewmm-3.0-0.dll  ; gtk
 	Delete $LIB_INSTDIR\libgtkmm-3.0-1.dll
 	Delete $LIB_INSTDIR\libharfbuzz-0.dll
@@ -912,6 +922,8 @@ Section Uninstall
 	RMDir /r "$INSTDIR\share\themes\Emacs"
 	RMDir /r "$INSTDIR\share\glib-2.0"
 	RMDir /r "$INSTDIR\share\icons"
+	RMDir /r "$INSTDIR\share\gtksourceview-3.0"
+	RMDir /r "$INSTDIR\share\gtksourceview-4"
 
 	RMDir "$INSTDIR\share\themes"  ; not forced
 	RMDir "$INSTDIR\share"  ; not forced

@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+ This file is part of GtkSourceView
+
+ Author: Scott Martin <scott@coffeeblack.org>
+ Copyright (C) 2004 Scott Martin <scott@coffeeblack.org>
+ Copyright (C) 2005 Stef Walter (formerly Nate Nielsen) <stef@memberwebs.com>
+ Copyright (C) 2005-2007 Marco Barisione <barisione@gmail.com>
+ Copyright (C) 2005-2007 Emanuele Aina
+ Copyright (C) 2019 Jeffery To <jeffery.to@gmail.com>
+
+ GtkSourceView is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public
+ License as published by the Free Software Foundation; either
+ version 2.1 of the License, or (at your option) any later version.
+
+ GtkSourceView is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
+
+-->
+<language id="js-fn" name="JavaScript Functions and Classes" version="2.0" _section="Script" hidden="true">
+  <!-- from js:identifier-char -->
+  <keyword-char-class>[\p{L}\p{Nl}\x{1885}-\x{1886}\x{2118}\x{212E}\x{309B}-\x{309C}\p{Mn}\p{Mc}\p{Nd}\p{Pc}\x{00B7}\x{0387}\x{1369}-\x{1371}\x{19DA}$\x{200C}\x{200D}]</keyword-char-class>
+
+  <definitions>
+
+    <!--
+         See javascript.lang for general notes, naming conventions, etc.
+    -->
+
+
+    <!-- # Function expression
+
+         function () { return; }
+         function fn([x, y], z = 3, ...rest) { return x + y + z; }
+    -->
+
+    <!-- ## Function expression keyword -->
+
+    <context id="_function-expression-async-keyword" style-ref="js:keyword">
+      <keyword>async</keyword>
+    </context> <!-- /_function-expression-async-keyword -->
+
+    <context id="_ordered-function-expression-async-keyword" once-only="true">
+      <start>\%{js:before-next-token}</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context ref="_function-expression-async-keyword"/>
+      </include>
+    </context> <!-- /_ordered-function-expression-async-keyword -->
+
+    <context id="_function-expression-function-keyword" style-ref="js:keyword">
+      <keyword>function</keyword>
+    </context> <!-- /_function-expression-function-keyword -->
+
+    <context id="_ordered-function-expression-function-keyword" once-only="true">
+      <start>\%{js:before-next-token}</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context ref="_function-expression-function-keyword"/>
+      </include>
+    </context> <!-- /_ordered-function-expression-function-keyword -->
+
+    <!-- ## Function parameters list -->
+
+    <context id="_function-parameters-content">
+      <include>
+        <context ref="js:ordered-rest-syntax"/>
+        <context ref="js:ordered-assignment-target"/>
+        <context ref="js:ordered-default-value-assignment"/>
+      </include>
+    </context> <!-- /_function-parameters-content -->
+
+    <context id="_function-parameters-list" once-only="true">
+      <start>\(</start>
+      <end>\)</end>
+      <include>
+        <context ref="js:embedded-lang-hooks"/>
+        <context ref="js:comments"/>
+
+        <context id="_function-parameters-list-content">
+          <include>
+
+            <context id="_function-first-parameter" once-only="true">
+              <start>\%{js:before-next-token}</start>
+              <end>\%{js:before-next-token}</end>
+              <include>
+                <context ref="js:embedded-lang-hooks"/>
+                <context ref="js:comments"/>
+                <context ref="_function-parameters-content"/>
+              </include>
+            </context> <!-- /_function-first-parameter -->
+
+            <context id="_function-parameters">
+              <start>,</start>
+              <end>\%{js:before-next-token}</end>
+              <include>
+                <context ref="js:embedded-lang-hooks"/>
+                <context ref="js:comments"/>
+                <context ref="_function-parameters-content"/>
+              </include>
+            </context> <!-- /_function-parameters -->
+
+          </include>
+        </context> <!-- /_function-parameters-list-content -->
+
+      </include>
+    </context> <!-- /_function-parameters-list -->
+
+    <context id="_ordered-function-parameters-list" once-only="true">
+      <start>\%{js:before-next-token}</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context ref="_function-parameters-list"/>
+      </include>
+    </context> <!-- /_ordered-function-parameters-list -->
+
+    <!-- ## Function body -->
+
+    <!-- <FunctionBody> -->
+    <context id="_choice-function-body" end-parent="true">
+      <start>{</start>
+      <end>}</end>
+      <include>
+        <context ref="js:embedded-lang-hooks"/>
+        <context ref="js:comments"/>
+
+        <context id="_function-body-content">
+          <include>
+            <context ref="js-st:directives"/>
+            <context ref="js-st:statements"/>
+          </include>
+        </context> <!-- /_function-body-content -->
+
+      </include>
+    </context> <!-- /_choice-function-body -->
+
+    <context id="_last-function-body" end-parent="true">
+      <start>\%{js:before-next-token}</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context ref="_choice-function-body"/>
+      </include>
+    </context> <!-- /_last-function-body -->
+
+    <!-- ## Function expression -->
+
+    <!-- <FunctionExpression> / <FunctionDeclaration> -->
+    <context id="choice-function-expression" style-ref="js:function-expression" end-parent="true">
+      <start>(?=\%{js:function-expression-keyword})</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context ref="js:embedded-lang-hooks"/>
+        <context ref="js:comments"/>
+
+        <context id="_function-expression-content">
+          <include>
+            <context ref="_ordered-function-expression-async-keyword"/>
+            <context ref="_ordered-function-expression-function-keyword"/>
+            <context ref="js:ordered-generator-modifier"/>
+            <context ref="js:ordered-identifier"/>
+            <context ref="_ordered-function-parameters-list"/>
+            <context ref="_last-function-body"/>
+          </include>
+        </context> <!-- /_function-expression-content -->
+
+      </include>
+    </context> <!-- /choice-function-expression -->
+
+
+    <!-- # Arrow function
+
+         x => -x;
+         (x, y) => x + y
+         ({ a: x, b: y = 2}) => { return x + y; }
+    -->
+
+    <context id="_arrow-function-body" once-only="true">
+      <start>\%{js:before-next-token}</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context ref="js:embedded-lang-hooks"/>
+        <context ref="js:comments"/>
+
+        <context id="_arrow-function-body-content">
+          <include>
+            <context ref="_choice-function-body"/>
+            <context ref="js-expr:choice-expression-without-comma"/>
+          </include>
+        </context> <!-- /_arrow-function-body-content -->
+
+      </include>
+    </context> <!-- /_arrow-function-body -->
+
+    <!-- <ArrowFunction> -->
+    <!-- parenthesized arrow function parameters matched by grouping
+         context -->
+    <context id="arrow-functions" style-ref="js:function-expression">
+      <start>=&gt;</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context ref="js:embedded-lang-hooks"/>
+        <context ref="js:comments"/>
+
+        <context id="_arrow-function-content">
+          <include>
+            <context ref="_arrow-function-body"/>
+          </include>
+        </context> <!-- /_arrow-function-content -->
+
+      </include>
+    </context> <!-- /arrow-functions -->
+
+
+    <!-- # Method definition
+
+         {
+           method() { ... },
+           get prop() { return this._prop; },
+           set prop(v) { this._prop = v; }
+         }
+    -->
+
+    <context id="_method-definition-modifier" once-only="true">
+      <start>\%{js:before-next-token}</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context ref="js:embedded-lang-hooks"/>
+        <context ref="js:comments"/>
+
+        <context id="_method-definition-modifier-content">
+          <include>
+
+            <context id="_choice-method-definition-modifier-keyword" style-ref="js:keyword" end-parent="true">
+              <keyword>get</keyword>
+              <keyword>set</keyword>
+            </context> <!-- /_choice-method-definition-modifier-keyword -->
+
+            <!-- ES2017, cannot be followed by line terminator -->
+            <context id="_choice-async-method-definition-modifier-keyword" style-ref="js:keyword" end-parent="true">
+              <match extended="true">
+                \%[ async \%]
+                (?=
+                  \%{js:optional-whitespace-or-comments}
+                  (?:
+                    \%{js:identifier-start} |
+                    \%{js:generator-modifier}
+                  )
+                )
+              </match>
+            </context> <!-- /_choice-async-method-definition-modifier-keyword -->
+
+          </include>
+        </context> <!-- /_method-definition-modifier-content -->
+
+      </include>
+    </context> <!-- /_method-definition-modifier -->
+
+    <context id="_ordered-method-definition-modifier" once-only="true">
+      <start>\%{js:before-next-token}</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context ref="_method-definition-modifier"/>
+      </include>
+    </context> <!-- /_ordered-method-definition-modifier -->
+
+    <!-- <MethodDefinition> -->
+    <context id="_method-definition" once-only="true">
+      <start>\%{js:before-next-token}</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context ref="js:embedded-lang-hooks"/>
+        <context ref="js:comments"/>
+
+        <context id="_method-definition-content">
+          <include>
+            <context ref="_ordered-method-definition-modifier"/>
+            <context ref="js:ordered-generator-modifier"/>
+            <context ref="js-lit:ordered-property-name"/>
+            <context ref="_ordered-function-parameters-list" style-ref="js:function-expression"/>
+            <context ref="_last-function-body" style-ref="js:function-expression"/>
+          </include>
+        </context> <!-- /_method-definition-content -->
+
+      </include>
+    </context> <!-- /_method-definition -->
+
+    <context id="ordered-method-definition" once-only="true">
+      <start>\%{js:before-next-token}</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context ref="_method-definition"/>
+      </include>
+    </context> <!-- /ordered-method-definition -->
+
+
+    <!-- # Class expression
+
+         class Foo extends Bar {
+           constructor() { ... }
+           methodA() { ... }
+           static methodB() { ... }
+         }
+    -->
+
+    <!-- ## Class optional name -->
+
+    <context id="_class-optional-name" once-only="true">
+      <start>\%{js:before-next-token}</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context ref="js:embedded-lang-hooks"/>
+        <context ref="js:comments"/>
+
+        <context id="_class-optional-name-content">
+          <include>
+
+            <context id="_choice-class-optional-name-ignore-extends" end-parent="true">
+              <start>(?=\%[extends\%])</start>
+              <end>\%{def:always-match}</end>
+            </context> <!-- /_choice-class-optional-name-ignore-extends -->
+
+            <context ref="js:choice-identifier"/>
+          </include>
+        </context> <!-- /_class-optional-name-content -->
+
+      </include>
+    </context> <!-- /_class-optional-name -->
+
+    <context id="_ordered-class-optional-name" once-only="true">
+      <start>\%{js:before-next-token}</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context ref="_class-optional-name"/>
+      </include>
+    </context> <!-- /_ordered-class-optional-name -->
+
+    <!-- ## Class extends clause -->
+
+    <context id="_class-extends-clause" once-only="true">
+      <start>\%[extends\%]</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="js:keyword"/>
+        <context ref="js:embedded-lang-hooks"/>
+        <context ref="js:comments"/>
+
+        <context id="_class-extends-clause-content">
+          <include>
+            <context ref="js-expr:lhs-expression"/>
+          </include>
+        </context> <!-- /_class-extends-clause-content -->
+
+      </include>
+    </context> <!-- /_class-extends-clause -->
+
+    <context id="_ordered-class-extends-clause" once-only="true">
+      <start>\%{js:before-next-token}</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context ref="_class-extends-clause"/>
+      </include>
+    </context> <!-- /_ordered-class-extends-clause -->
+
+    <!-- ## Class body -->
+
+    <context id="_class-body-member-modifier" once-only="true">
+      <start>\%{js:before-next-token}</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context ref="js:embedded-lang-hooks"/>
+        <context ref="js:comments"/>
+
+        <context id="_class-body-member-modifier-content">
+          <include>
+
+            <context id="_choice-class-body-member-modifier-keyword" style-ref="js:keyword" end-parent="true">
+              <keyword>static</keyword>
+            </context> <!-- /_choice-class-body-member-modifier-keyword -->
+
+          </include>
+        </context> <!-- /_class-body-member-modifier-content -->
+
+      </include>
+    </context> <!-- /_class-body-member-modifier -->
+
+    <context id="_ordered-class-body-member-modifier" once-only="true">
+      <start>\%{js:before-next-token}</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context ref="_class-body-member-modifier"/>
+      </include>
+    </context> <!-- /_ordered-class-body-member-modifier -->
+
+    <context id="_class-body-members">
+      <start>\%{js:before-next-token}</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context ref="js:embedded-lang-hooks"/>
+        <context ref="js:comments"/>
+
+        <context id="_class-body-member-content">
+          <include>
+            <context ref="_ordered-class-body-member-modifier"/>
+            <context ref="ordered-method-definition"/>
+          </include>
+        </context> <!-- /_class-body-member-content -->
+
+      </include>
+    </context> <!-- /_class-body-members -->
+
+    <context id="_class-body" once-only="true">
+      <start>{</start>
+      <end>}</end>
+      <include>
+        <context ref="js:embedded-lang-hooks"/>
+        <context ref="js:comments"/>
+
+        <context id="_class-body-content">
+          <include>
+            <context ref="_class-body-members"/>
+          </include>
+        </context> <!-- /_class-body-content -->
+
+      </include>
+    </context> <!-- /_class-body -->
+
+    <context id="_last-class-body" end-parent="true">
+      <start>\%{js:before-next-token}</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context ref="_class-body"/>
+      </include>
+    </context> <!-- /_last-class-body -->
+
+    <!-- ## Class expression -->
+
+    <!-- <ClassExpression> / <ClassDeclaration> -->
+    <context id="choice-class-expression" style-ref="js:class-expression" end-parent="true">
+      <start>\%{js:class-expression-keyword}</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="js:keyword"/>
+        <context ref="js:embedded-lang-hooks"/>
+        <context ref="js:comments"/>
+
+        <context id="_class-expression-content">
+          <include>
+            <context ref="_ordered-class-optional-name"/>
+            <context ref="_ordered-class-extends-clause"/>
+            <context ref="_last-class-body"/>
+          </include>
+        </context> <!-- /_class-expression-content -->
+
+      </include>
+    </context> <!-- /choice-class-expression -->
+
+    <!-- <ClassExpression> / <ClassDeclaration> -->
+    <context id="choice-class-expression-required-name" style-ref="js:class-expression" end-parent="true">
+      <start>\%{js:class-expression-keyword}</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="js:keyword"/>
+        <context ref="js:embedded-lang-hooks"/>
+        <context ref="js:comments"/>
+
+        <context id="_class-expression-required-name-content">
+          <include>
+            <context ref="js:ordered-identifier"/>
+            <context ref="_ordered-class-extends-clause"/>
+            <context ref="_last-class-body"/>
+          </include>
+        </context> <!-- /_class-expression-required-name-content -->
+
+      </include>
+    </context> <!-- /choice-class-expression-required-name -->
+
+  </definitions>
+</language>

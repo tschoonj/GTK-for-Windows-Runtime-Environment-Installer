@@ -14,7 +14,7 @@
 
 !define GTK_VERSION "2.24.32"
 !define GTK_BIN_VERSION "2.10.0"
-!define PRODUCT_VERSION "${GTK_VERSION}-2020-05-19-ts-win64"
+!define PRODUCT_VERSION "${GTK_VERSION}-2020-07-15-ts-win64"
 !define PRODUCT_NAME "GTK2-Runtime Win64"
 !define PRODUCT_PUBLISHER "Tom Schoonjans"
 !define PRODUCT_WEB_SITE "https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer"
@@ -234,6 +234,7 @@ SectionIn 1 2 RO
 
 	File bin\libatk-1.0-0.dll  ; atk
 	File bin\libatkmm-1.6-1.dll  ; atk
+	File bin\libssp-0.dll  ; needed by cairo
 	File bin\libcairo-2.dll  ; cairo, needed by gtk
 	File bin\libcairo-gobject-2.dll  ; cairo. Doesn't seem to be required, but since we're distributing cairo...
 	File bin\libcairo-script-interpreter-2.dll  ; cairo. Doesn't seem to be required, but since we're distributing cairo...
@@ -603,6 +604,7 @@ Function un.DeleteDlls
 	Delete $LIB_INSTDIR\libcairo-gobject-2.dll  ; cairo. Doesn't seem to be required, but since we're distributing cairo...
 	Delete $LIB_INSTDIR\libcairo-script-interpreter-2.dll  ; cairo. Doesn't seem to be required, but since we're distributing cairo...
 	Delete $LIB_INSTDIR\libcairomm-1.0-1.dll
+	Delete $LIB_INSTDIR\libssp-0.dll
 	Delete $LIB_INSTDIR\libexslt-0.dll
 	Delete $LIB_INSTDIR\libffi-7.dll  ; libffi is required by glib 
 	Delete $LIB_INSTDIR\libfontconfig-1.dll  ; fontconfig is needed for ft2 pango backend

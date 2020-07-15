@@ -43,6 +43,7 @@ cp $INSTALL_SRC_MSYS2_BIN/libcairo-2.dll $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libcairo-gobject-2.dll  $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libcairo-script-interpreter-2.dll $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libcairomm-1.0-1.dll $INSTALL_SRC_BIN
+cp $INSTALL_SRC_MSYS2_BIN/libssp-0.dll $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libepoxy-0.dll $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libexslt-0.dll $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libffi-7.dll  $INSTALL_SRC_BIN 
@@ -70,6 +71,7 @@ cp $INSTALL_SRC_MSYS2_BIN/libgthread-2.0-0.dll  $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libgtk-3-0.dll $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libgtk-win32-2.0-0.dll $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libgtksourceview-3.0-1.dll $INSTALL_SRC_BIN
+cp $INSTALL_SRC_MSYS2_BIN/libgtksourceview-4-0.dll $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libgtksourceview-2.0-0.dll $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libgtksourceviewmm-3.0-0.dll $INSTALL_SRC_BIN
 cp $INSTALL_SRC_MSYS2_BIN/libgtkmm-3.0-1.dll $INSTALL_SRC_BIN
@@ -179,6 +181,12 @@ find $INSTALL_SRC_LIB/gio/modules -name *.a -type f -delete
 cd $INSTALL_SRC_MSYS2_LIB/girepository-1.0
 mkdir -p $INSTALL_SRC_LIB/girepository-1.0
 cp -r *typelib $INSTALL_SRC_LIB/girepository-1.0/
+
+# copy gtksourceview data files
+rm -rf $INSTALL_SRC_DIR/share/gtksourceview-3.0
+rm -rf $INSTALL_SRC_DIR/share/gtksourceview-4
+cp -r $INSTALL_SRC_MSYS2/share/gtksourceview-3.0 $INSTALL_SRC_DIR/share/
+cp -r $INSTALL_SRC_MSYS2/share/gtksourceview-4 $INSTALL_SRC_DIR/share/
 
 # Copy /share/locale/locale.alias
 rm -r $INSTALL_SRC_DIR/share/locale
