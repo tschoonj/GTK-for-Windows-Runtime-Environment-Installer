@@ -1,6 +1,6 @@
 # GdkPixbuf Image Loader Modules file
 # Automatically generated file, do not edit
-# Created by gdk-pixbuf-query-loaders from gdk-pixbuf-2.40.0
+# Created by gdk-pixbuf-query-loaders from gdk-pixbuf-2.42.0
 #
 # LoaderDir = C:\msys64\mingw64\lib\gdk-pixbuf-2.0\2.10.0\loaders
 #
@@ -34,13 +34,6 @@
 "ico" "cur" ""
 "  \001   " "zz znz" 100
 "  \002   " "zz znz" 100
-
-"lib\\gdk-pixbuf-2.0\\2.10.0\\loaders\\libpixbufloader-jasper.dll"
-"jpeg2000" 4 "gdk-pixbuf" "JPEG 2000" "LGPL"
-"image/jp2" "image/jpeg2000" "image/jpx" ""
-"jp2" "jpc" "jpx" "j2k" "jpf" ""
-"    jP" "!!!!  " 100
-"\377O\377Q" "" 100
 
 "lib\\gdk-pixbuf-2.0\\2.10.0\\loaders\\libpixbufloader-jpeg.dll"
 "jpeg" 5 "gdk-pixbuf" "JPEG" "LGPL"

@@ -111,6 +111,13 @@
         Name of the default font used by gtk+.
       </description>
     </key>
+    <key name="avatar-directories" type="as">
+      <default>[]</default>
+      <summary>Directories with avatar faces</summary>
+      <description>
+        Directories to override the default avatar faces installed by gnome-control-center.
+      </description>
+    </key>
     <key name="text-scaling-factor" type="d">
       <range min="0.5" max="3.0"/>
       <default>1.0</default>

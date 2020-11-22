@@ -11,7 +11,7 @@
         window (left click), resize the window  (middle click), or show the
         window menu (right click). The middle and right click operations may
         be swapped using the “resize-with-right-button” key. Modifier is
-        expressed as <![CDATA["<Alt>"]]> or <![CDATA["<Super>"]]> for example.
+        expressed as <![CDATA[“<Alt>”]]> or <![CDATA[“<Super>”]]> for example.
     </description>
     </key>
     <key name="resize-with-right-button" type="b">

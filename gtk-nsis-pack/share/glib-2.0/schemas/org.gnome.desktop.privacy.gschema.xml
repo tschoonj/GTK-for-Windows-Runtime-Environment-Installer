@@ -75,18 +75,19 @@
       <description>If TRUE, applications should not make sound.</description>
     </key>
     <key name="usb-protection" type="b">
-      <default>false</default>
+      <default>true</default>
       <summary>Whether to protect USB devices</summary>
-      <description>If TRUE, USB devices will be protected as configured in
-        the key usb-protection-level.
+      <description>If the USBGuard service is present and this setting is
+        enabled, USB devices will be protected as configured in the
+        usb-protection-level setting.
       </description>
     </key>
     <key name="usb-protection-level" enum="org.gnome.desktop.GDesktopUsbProtection">
       <default>'lockscreen'</default>
       <summary>When USB devices should be rejected</summary>
       <description>
-        If set to "lockscreen", only when the lock screen is present new USB devices will
-        be rejected; if set to "always", all new USB devices will always be rejected.
+        If set to “lockscreen”, only when the lock screen is present new USB devices will
+        be rejected; if set to “always”, all new USB devices will always be rejected.
       </description>
     </key>
   </schema>

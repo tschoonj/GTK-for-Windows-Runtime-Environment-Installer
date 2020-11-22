@@ -29,10 +29,20 @@
       <summary>Enable mouse clicks with touchpad</summary>
       <description>Set this to TRUE to be able to send mouse clicks by tapping on the touchpad.</description>
     </key>
+    <key name="tap-button-map" enum="org.gnome.desktop.GDesktopTouchpadTapButtonMap">
+      <default>'default'</default>
+      <summary>Tap Button Map</summary>
+      <description>Defines the mapping between the number of fingers and touchpad buttons. The default is to have a 1, 2 and 3 finger tap to map to the left, right and middle button ("lrm"), respectively.</description>
+    </key>
     <key name="tap-and-drag" type="b">
       <default>true</default>
       <summary>Enable tap-and-drag with touchpad</summary>
       <description>Set this to TRUE to be able to start a drag by tapping and immediately moving the finger that’s now pressed on the touchpad.</description>
+    </key>
+    <key name="tap-and-drag-lock" type="b">
+      <default>false</default>
+      <summary>Enable tap-and-drag-lock with touchpad</summary>
+      <description>Set this to TRUE to lock the dragging process within a short timeout when the finger is lifted on the touchpad and the tap-and-drag setting is enabled.</description>
     </key>
     <key name="send-events" enum="org.gnome.desktop.GDesktopDeviceSendEvents">
       <default>'enabled'</default>

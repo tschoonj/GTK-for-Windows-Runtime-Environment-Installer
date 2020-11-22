@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16">
+    <g fill="#2e3436">
+        <path d="m 198,248 v 0.99805 0.002 3.58594 l -1.29297,-1.29297 A 1,1 0 0 0 196,251 h -1 V 251.9707 252 a 1,1 0 0 0 0.29297,0.70703 L 197.58594,255 h 4.82812 l 1.29297,-1.29297 a 1.0001,1.0001 0 0 0 0,-1.41406 l -4,-4 A 1.0001,1.0001 0 0 0 199.0293,248 1.0001,1.0001 0 0 0 199,248 Z m 2,3.41406 L 201.58594,253 200,254.58594 Z M 195,260 v 1 h 0.9707 a 1,1 0 0 0 0.0293,0 1,1 0 0 0 0.70703,-0.29297 L 197.41406,260 Z m 3,0 v 3 1 h 1 a 1.0001,1.0001 0 0 0 0.70703,-0.29297 L 203.41406,260 h -2.82812 L 200,260.58594 V 260 Z" style="line-height:normal;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000;text-transform:none;text-orientation:mixed;white-space:normal;shape-padding:0;isolation:auto;mix-blend-mode:normal;solid-color:#000;solid-opacity:1" color="#000" font-weight="400" font-family="sans-serif" overflow="visible" opacity=".35" transform="translate(-192 -248)"/>
+        <path d="m 192,256 h 16 v 3 h -16 z" transform="translate(-192 -248)"/>
+    </g>
+</svg>

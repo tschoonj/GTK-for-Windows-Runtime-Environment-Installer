@@ -117,6 +117,11 @@
     <value nick="areas" value="2"/>
     <value nick="fingers" value="3"/>
   </enum>
+<enum id="org.gnome.desktop.GDesktopTouchpadTapButtonMap">
+    <value nick="default" value="0"/>
+    <value nick="lrm" value="1"/>
+    <value nick="lmr" value="2"/>
+  </enum>
 <enum id="org.gnome.desktop.GDesktopDeviceSendEvents">
     <value nick="enabled" value="0"/>
     <value nick="disabled" value="1"/>

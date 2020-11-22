@@ -1,0 +1,4 @@
+libgiognomeproxy.dll: gio-proxy-resolver
+libgiognutls.dll: gio-tls-backend
+libgiolibproxy.dll: gio-proxy-resolver
+libgioopenssl.dll: gio-tls-backend

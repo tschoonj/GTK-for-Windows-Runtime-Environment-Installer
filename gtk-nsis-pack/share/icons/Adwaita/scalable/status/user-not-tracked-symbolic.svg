@@ -1,3 +1,84 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16">
-    <path d="M1.531.469L.47 1.53l14 14 1.062-1.062z" fill="#2e3436"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   width="16"
+   version="1.1"
+   style="enable-background:new"
+   id="svg7384"
+   height="16.000645">
+  <metadata
+     id="metadata90">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Gnome Symbolic Icons</dc:title>
+        <cc:license
+           rdf:resource="http://creativecommons.org/licenses/by-sa/4.0/" />
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/by-sa/4.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#Notice" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#Attribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#ShareAlike" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <title
+     id="title8473">Gnome Symbolic Icons</title>
+  <defs
+     id="defs7386" />
+  <g
+     transform="translate(-332,-291.99935)"
+     id="layer10" />
+  <g
+     transform="translate(-332,-227.99935)"
+     id="layer1">
+    <path
+       d="m 338.70508,228 a 0.50005,0.50005 0 0 0 -0.4375,0.64062 l 0.42578,1.54297 c -0.42482,0.10963 -0.83882,0.26265 -1.23828,0.45703 l -1.02149,-1.76562 a 0.50005,0.50005 0 0 0 -0.45703,-0.25586 0.50005,0.50005 0 0 0 -0.41015,0.75781 l 1.01757,1.75782 c -0.0779,0.05 -0.14853,0.10958 -0.2246,0.16211 l -2.82813,-2.82813 -1.06055,1.06055 14,14 1.06055,-1.06055 -2.69531,-2.69531 C 346.75295,238.06527 348,236 348,236 c 0,0 -0.52469,-0.86941 -1.41016,-1.94531 l 0.76368,-0.76367 a 0.50005,0.50005 0 0 0 -0.36329,-0.85743 0.50005,0.50005 0 0 0 -0.34375,0.15039 l -0.7207,0.72071 c -0.20029,-0.21829 -0.41092,-0.42651 -0.63476,-0.64453 l 1.10351,-1.41407 a 0.50005,0.50005 0 0 0 -0.41601,-0.8125 0.50005,0.50005 0 0 0 -0.37305,0.19727 l -1.05078,1.34375 c -0.25997,-0.21874 -0.52743,-0.4303 -0.8086,-0.62695 l 1.07227,-1.73828 a 0.50005,0.50005 0 0 0 -0.45117,-0.76758 0.50005,0.50005 0 0 0 -0.39844,0.24218 l -1.07617,1.73829 c -0.3637,-0.1997 -0.73969,-0.3706 -1.12696,-0.50391 l 0.57032,-1.64648 A 0.50005,0.50005 0 0 0 341.875,228 a 0.50005,0.50005 0 0 0 -0.48242,0.34375 l -0.59766,1.7207 C 340.53347,230.02295 340.26823,230 340,230 c -0.10545,0 -0.20804,0.0187 -0.3125,0.0254 l -0.45508,-1.65039 a 0.50005,0.50005 0 0 0 -0.47656,-0.375 0.50005,0.50005 0 0 0 -0.0508,0 z M 340,232 c 3.86599,0 6,4 6,4 0,0 -0.79592,1.48605 -2.29102,2.64648 l -1.13281,-1.13281 C 342.83878,237.06794 343,236.55479 343,236 c 0,-1.65685 -1.34315,-3 -3,-3 -0.55479,0 -1.06794,0.16122 -1.51367,0.42383 l -0.88086,-0.88086 C 338.30839,232.21468 339.10741,232 340,232 Z m -6.99023,0.43359 c -0.45469,-0.0125 -0.68858,0.53942 -0.36329,0.85743 l 0.76368,0.76367 C 332.52469,235.13059 332,236 332,236 c 0,0 3.58172,6 8,6 0.88494,0 1.73354,-0.24784 2.5293,-0.63281 l -1.47852,-1.47852 C 340.71469,239.9542 340.36779,240 340,240 c -3.86599,0 -6,-4 -6,-4 0,0 0.48113,-0.87041 1.36523,-1.79688 l -1.09765,-1.0957 c -0.0632,0.0653 -0.13216,0.13057 -0.19336,0.19727 l -0.7207,-0.72071 c -0.0907,-0.0929 -0.21399,-0.14639 -0.34375,-0.15039 z m 6.49804,1.39258 c 0.37409,0 0.68164,0.31016 0.68164,0.69727 0,0.16771 -0.0663,0.31822 -0.16211,0.4414 l -0.96289,-0.96289 c 0.12039,-0.10641 0.27318,-0.17578 0.44336,-0.17578 z m -2.49219,2.02735 C 337.01324,235.9031 337,235.9499 337,236 c 0,1.65685 1.34315,3 3,3 0.0508,0 0.0982,-0.0136 0.14844,-0.0156 z"
+       id="path16978"
+       style="fill:#2e3436;fill-opacity:1;stroke:none" />
+  </g>
+  <g
+     transform="translate(-332,-291.99935)"
+     id="layer11" />
+  <g
+     transform="translate(-332,-227.99935)"
+     id="layer7" />
+  <g
+     transform="translate(-332,-227.99935)"
+     id="layer6" />
+  <g
+     transform="translate(-332,-227.99935)"
+     id="layer5" />
+  <g
+     transform="translate(-332,-227.99935)"
+     id="layer9" />
+  <g
+     transform="translate(-332,-227.99935)"
+     id="layer2" />
+  <g
+     transform="translate(-332,-227.99935)"
+     id="layer8" />
+  <g
+     transform="translate(-332,-227.99935)"
+     id="layer3" />
+  <g
+     transform="translate(-332,-227.99935)"
+     id="layer4" />
 </svg>
