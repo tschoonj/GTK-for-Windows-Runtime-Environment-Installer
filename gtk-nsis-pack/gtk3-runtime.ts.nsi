@@ -11,9 +11,9 @@
 ; Directory and package names: gtk3-runtime.
 
 
-!define GTK_VERSION "3.24.23"
+!define GTK_VERSION "3.24.24"
 !define GTK_BIN_VERSION "3.0.0"
-!define PRODUCT_VERSION "${GTK_VERSION}-2020-11-22-ts-win64"
+!define PRODUCT_VERSION "${GTK_VERSION}-2021-01-30-ts-win64"
 !define PRODUCT_NAME "GTK3-Runtime Win64"
 !define PRODUCT_PUBLISHER "Tom Schoonjans"
 !define PRODUCT_WEB_SITE "https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer"
