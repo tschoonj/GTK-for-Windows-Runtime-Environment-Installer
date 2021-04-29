@@ -4,7 +4,7 @@
  This file is part of GtkSourceView
 
  Author: Jeffery To <jeffery.to@gmail.com>
- Copyright (C) 2019 Jeffery To <jeffery.to@gmail.com>
+ Copyright (C) 2019-2020 Jeffery To <jeffery.to@gmail.com>
 
  GtkSourceView is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
@@ -88,7 +88,7 @@
   </styles>
 
   <!-- from js:identifier-char -->
-  <keyword-char-class>[\p{L}\p{Nl}\x{1885}-\x{1886}\x{2118}\x{212E}\x{309B}-\x{309C}\p{Mn}\p{Mc}\p{Nd}\p{Pc}\x{00B7}\x{0387}\x{1369}-\x{1371}\x{19DA}$\x{200C}\x{200D}]</keyword-char-class>
+  <keyword-char-class>(?!\x{2E2F})[\p{L}\p{Nl}\x{1885}-\x{1886}\x{2118}\x{212E}\x{309B}-\x{309C}\p{Mn}\p{Mc}\p{Nd}\p{Pc}\x{00B7}\x{0387}\x{1369}-\x{1371}\x{19DA}$\x{200C}\x{200D}]</keyword-char-class>
 
   <definitions>
 
@@ -98,7 +98,7 @@
          https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md
          https://www.typescriptlang.org/
 
-         Supported level: TypeScript 3.7
+         Supported level: TypeScript 3.9
 
          Naming conventions described in javascript.lang
     -->
@@ -111,27 +111,129 @@
           so we move the definitions of these regexes here
     -->
 
-    <define-regex id="import-meta-object-keyword-suffix" extended="true">
-      (?:
-        \%{js:optional-whitespace-or-comments}
-        \.
-        \%{js:optional-whitespace-or-comments}
-        meta \%]
-      )
-    </define-regex> <!-- /import-meta-object-keyword-suffix -->
+    <define-regex id="abstract-keyword" extended="true">
+      \%{js:keyword-start} abstract \%{js:keyword-end}
+    </define-regex> <!-- /abstract-keyword -->
+
+    <define-regex id="any-keyword" extended="true">
+      \%{js:keyword-start} any \%{js:keyword-end}
+    </define-regex> <!-- /any-keyword -->
+
+    <define-regex id="asserts-keyword" extended="true">
+      \%{js:keyword-start} asserts \%{js:keyword-end}
+    </define-regex> <!-- /asserts-keyword -->
+
+    <define-regex id="bigint-keyword" extended="true">
+      \%{js:keyword-start} bigint \%{js:keyword-end}
+    </define-regex> <!-- /bigint-keyword -->
+
+    <define-regex id="boolean-keyword" extended="true">
+      \%{js:keyword-start} boolean \%{js:keyword-end}
+    </define-regex> <!-- /boolean-keyword -->
+
+    <define-regex id="declare-keyword" extended="true">
+      \%{js:keyword-start} declare \%{js:keyword-end}
+    </define-regex> <!-- /declare-keyword -->
+
+    <define-regex id="enum-keyword" extended="true">
+      \%{js:keyword-start} enum \%{js:keyword-end}
+    </define-regex> <!-- /enum-keyword -->
+
+    <define-regex id="global-keyword" extended="true">
+      \%{js:keyword-start} global \%{js:keyword-end}
+    </define-regex> <!-- /global-keyword -->
+
+    <define-regex id="implements-keyword" extended="true">
+      \%{js:keyword-start} implements \%{js:keyword-end}
+    </define-regex> <!-- /implements-keyword -->
+
+    <define-regex id="infer-keyword" extended="true">
+      \%{js:keyword-start} infer \%{js:keyword-end}
+    </define-regex> <!-- /infer-keyword -->
+
+    <define-regex id="interface-keyword" extended="true">
+      \%{js:keyword-start} interface \%{js:keyword-end}
+    </define-regex> <!-- /interface-keyword -->
+
+    <define-regex id="is-keyword" extended="true">
+      \%{js:keyword-start} is \%{js:keyword-end}
+    </define-regex> <!-- /is-keyword -->
+
+    <define-regex id="keyof-keyword" extended="true">
+      \%{js:keyword-start} keyof \%{js:keyword-end}
+    </define-regex> <!-- /keyof-keyword -->
+
+    <define-regex id="module-keyword" extended="true">
+      \%{js:keyword-start} module \%{js:keyword-end}
+    </define-regex> <!-- /module-keyword -->
+
+    <define-regex id="namespace-keyword" extended="true">
+      \%{js:keyword-start} namespace \%{js:keyword-end}
+    </define-regex> <!-- /namespace-keyword -->
+
+    <define-regex id="never-keyword" extended="true">
+      \%{js:keyword-start} never \%{js:keyword-end}
+    </define-regex> <!-- /never-keyword -->
+
+    <define-regex id="number-keyword" extended="true">
+      \%{js:keyword-start} number \%{js:keyword-end}
+    </define-regex> <!-- /number-keyword -->
+
+    <define-regex id="object-keyword" extended="true">
+      \%{js:keyword-start} object \%{js:keyword-end}
+    </define-regex> <!-- /object-keyword -->
+
+    <define-regex id="private-keyword" extended="true">
+      \%{js:keyword-start} private \%{js:keyword-end}
+    </define-regex> <!-- /private-keyword -->
+
+    <define-regex id="protected-keyword" extended="true">
+      \%{js:keyword-start} protected \%{js:keyword-end}
+    </define-regex> <!-- /protected-keyword -->
+
+    <define-regex id="public-keyword" extended="true">
+      \%{js:keyword-start} public \%{js:keyword-end}
+    </define-regex> <!-- /public-keyword -->
+
+    <define-regex id="readonly-keyword" extended="true">
+      \%{js:keyword-start} readonly \%{js:keyword-end}
+    </define-regex> <!-- /readonly-keyword -->
+
+    <define-regex id="require-keyword" extended="true">
+      \%{js:keyword-start} require \%{js:keyword-end}
+    </define-regex> <!-- /require-keyword -->
+
+    <define-regex id="string-keyword" extended="true">
+      \%{js:keyword-start} string \%{js:keyword-end}
+    </define-regex> <!-- /string-keyword -->
+
+    <define-regex id="symbol-keyword" extended="true">
+      \%{js:keyword-start} symbol \%{js:keyword-end}
+    </define-regex> <!-- /symbol-keyword -->
+
+    <define-regex id="type-keyword" extended="true">
+      \%{js:keyword-start} type \%{js:keyword-end}
+    </define-regex> <!-- /type-keyword -->
+
+    <define-regex id="undefined-keyword" extended="true">
+      \%{js:keyword-start} undefined \%{js:keyword-end}
+    </define-regex> <!-- /undefined-keyword -->
+
+    <define-regex id="unique-keyword" extended="true">
+      \%{js:keyword-start} unique \%{js:keyword-end}
+    </define-regex> <!-- /unique-keyword -->
+
+    <define-regex id="unknown-keyword" extended="true">
+      \%{js:keyword-start} unknown \%{js:keyword-end}
+    </define-regex> <!-- /unknown-keyword -->
 
     <!-- no line terminator allowed between "abstract" and "class"
          technically, there can be abstract class declarations but not
          abstract class expressions -->
     <define-regex id="class-expression-keyword" extended="true">
-      (?:
-        (?:
-          \%[ abstract \%]
-          \%{js:optional-whitespace-or-comments}
-        )?
-        \%[ class \%]
-      )
-    </define-regex> <!-- / -->
+      (?: \%{abstract-keyword} \%{js:optional-whitespace-or-comments} )?
+      \%{js:class-keyword}
+    </define-regex> <!-- /class-expression-keyword -->
 
     <context id="js-ordered-string" once-only="true">
       <start>\%{js:before-next-token}</start>
@@ -141,33 +243,84 @@
       </include>
     </context> <!-- /js-ordered-string -->
 
-    <!-- ## @ts-ignore comment pragma
+    <!-- ## @ts-ignore / @ts-expect-error comment pragma
 
          // @ts-ignore
+         /* @ts-expect-error some reasons */
+
+         can be at the start of a double- or triple-slash comment
+         https://github.com/microsoft/TypeScript/blob/3c49fb0d9ffb67fd645835589d66687b4fb7543a/src/compiler/scanner.ts#L275
+
+         can also be on the last line of a multi-line comment
+         https://github.com/microsoft/TypeScript/blob/3c49fb0d9ffb67fd645835589d66687b4fb7543a/src/compiler/scanner.ts#L280
+
+         in both cases, the pragma should be at the start of the
+         line/comment, but in practice there can be code before the
+         comment (on the same line)
+
+         also the regexes don't test for a word break, so any characters
+         can immediately follow the pragmas
     -->
 
-    <!-- can be double- or triple-slash
-         pragma must be at start of comment
-         technically, must be at the start of the line
-         https://github.com/microsoft/TypeScript/blob/e82d0af554d96738b2e8c7f9027e53ac8bc31007/src/compiler/program.ts#L2
-    -->
-    <context id="_ts-ignore-comment-pragmas" style-ref="js:directive" end-at-line-end="true" class="comment">
-      <start extended="true">
-        ///? \%{js:whitespace}* @ts-ignore \%]
-      </start>
-      <include>
-        <context ref="js:_comment-content"/>
-      </include>
-    </context> <!-- /_ts-ignore-comment-pragmas -->
+    <define-regex id="_ts-ignore-comment-pragma" extended="true">
+      @ (?: ts-expect-error | ts-ignore )
+    </define-regex> <!-- /_ts-ignore-comment-pragma -->
 
-    <context id="_ts-ignore-comment-pragmas-no-extend-parent" style-ref="js:directive" end-at-line-end="true" class="comment" extend-parent="false">
+    <context id="_ts-ignore-comment-pragma" style-ref="js:directive" class="no-spell-check" once-only="true">
+      <match>\%{_ts-ignore-comment-pragma}</match>
+    </context> <!-- /_ts-ignore-comment-pragma -->
+
+    <context id="_ts-ignore-comment-pragma-single-line-comments" style-ref="js:directive" end-at-line-end="true" class-disabled="no-spell-check" class="comment">
       <start extended="true">
-        ///? \%{js:whitespace}* @ts-ignore \%]
+        // (?= /? \s* \%{_ts-ignore-comment-pragma} )
       </start>
       <include>
-        <context ref="js:_comment-content"/>
+        <context ref="_ts-ignore-comment-pragma"/>
+        <context ref="js:_single-line-comment-content"/>
       </include>
-    </context> <!-- /_ts-ignore-comment-pragmas-no-extend-parent -->
+    </context> <!-- /_ts-ignore-comment-pragma-single-line-comments -->
+
+    <context id="_ts-ignore-comment-pragma-single-line-comments-no-extend-parent" style-ref="js:directive" end-at-line-end="true" class-disabled="no-spell-check" class="comment" extend-parent="false">
+      <start extended="true">
+        // (?= /? \s* \%{_ts-ignore-comment-pragma} )
+      </start>
+      <include>
+        <context ref="_ts-ignore-comment-pragma"/>
+        <context ref="js:_single-line-comment-content"/>
+      </include>
+    </context> <!-- /_ts-ignore-comment-pragma-single-line-comments-no-extend-parent -->
+
+    <context id="_ts-ignore-comment-pragmas-multiline-comments" style-ref="js:directive" class-disabled="no-spell-check" class="comment">
+      <start extended="true">
+        /\* (?= /* \** \s* \%{_ts-ignore-comment-pragma} .*? \*/ )
+      </start>
+      <end>\*/</end>
+      <include>
+        <context ref="_ts-ignore-comment-pragma"/>
+        <context ref="_multiline-comment-content"/>
+      </include>
+    </context> <!-- /_ts-ignore-comment-pragmas-multiline-comments -->
+
+    <context id="_ts-ignore-comment-pragmas-multiline-comments-no-extend-parent" style-ref="js:directive" class-disabled="no-spell-check" class="comment" extend-parent="false">
+      <start extended="true">
+        /\* (?= /* \** \s* \%{_ts-ignore-comment-pragma} .*? \*/ )
+      </start>
+      <end>\*/</end>
+      <include>
+        <context ref="_ts-ignore-comment-pragma"/>
+        <context ref="_multiline-comment-content"/>
+      </include>
+    </context> <!-- /_ts-ignore-comment-pragmas-multiline-comments-no-extend-parent -->
+
+    <context id="_ts-ignore-comment-pragma-multiline-comment-last-line" once-only="true">
+      <start extended="true">
+        ^ \s* /* \** \s* (?= \%{_ts-ignore-comment-pragma} .*? \*/ )
+      </start>
+      <end>\%{def:always-match}</end>
+      <include>
+        <context ref="_ts-ignore-comment-pragma"/>
+      </include>
+    </context> <!-- /_ts-ignore-comment-pragma-multiline-comment-last-line -->
 
     <!-- ## @ts-nocheck comment pragma
 
@@ -175,42 +328,63 @@
 
          can only be preceded by comments or other triple-slash
          directives (i.e. at the top of a file)
-         appears to be case-insensitive (cannot find code reference though)
+         case-insensitive ("i" modifier on regex)
+         https://github.com/microsoft/TypeScript/blob/3c49fb0d9ffb67fd645835589d66687b4fb7543a/src/services/classifier.ts#L768
     -->
 
-    <context id="_ts-nocheck-comment-pragmas" style-ref="js:directive" end-at-line-end="true" class="comment">
+    <define-regex id="_ts-nocheck-comment-pragma" case-sensitive="false" extended="true">
+      @ts-nocheck (?! \S )
+    </define-regex> <!-- /_ts-nocheck-comment-pragma -->
+
+    <context id="_ts-nocheck-comment-pragma-comments" style-ref="js:directive" end-at-line-end="true" class-disabled="no-spell-check" class="comment">
       <start case-sensitive="false" extended="true">
-        ///? \s* @ts-nocheck \%]
+        // (?= /? \s* \%{_ts-nocheck-comment-pragma} )
       </start>
       <include>
-        <context ref="js:_comment-content"/>
+
+        <context id="_ts-nocheck-comment-pragma" class="no-spell-check" once-only="true">
+          <match>\%{_ts-nocheck-comment-pragma}</match>
+        </context> <!-- /_ts-nocheck-comment-pragma -->
+
+        <context ref="js:_single-line-comment-content"/>
       </include>
-    </context> <!-- /_ts-nocheck-comment-pragmas -->
+    </context> <!-- /_ts-nocheck-comment-pragma-comments -->
 
     <!-- ## Triple-slash directive
 
-         /// <reference path="..."
+         /// <reference path="..." />
 
          can only be preceded by comments or other triple-slash
          directives (i.e. at the top of a file)
-         appears to be case-insensitive
-         https://github.com/microsoft/TypeScript/blob/ef0cca7d12a320bc98cefebbf4d391de36003149/src/services/classifier.ts#L768
+         case-insensitive ("i" modifier on regex)
+         https://github.com/microsoft/TypeScript/blob/3c49fb0d9ffb67fd645835589d66687b4fb7543a/src/services/classifier.ts#L768
     -->
 
-    <context id="_triple-slash-directives" style-ref="js:directive" end-at-line-end="true" class="comment">
-      <start case-sensitive="false" extended="true">
-        /// \%{js:whitespace}* &lt;
-        (
-          amd-module |
-          amd-dependency |
-          reference
-        )
-        \%{js:whitespace}
+    <define-regex id="_triple-slash-directive" case-sensitive="false" extended="true">
+      &lt;
+      (?: amd-module | amd-dependency | reference )
+      (?&gt;
+        (?:
+          \s+ |
+          (?&lt;= \s ) [\w-]+ \s* = \s* (?: '[^']*' | "[^"]*" )
+        )*
+      )
+      /&gt;
+    </define-regex> <!-- /_triple-slash-directive -->
+
+    <context id="_triple-slash-directive-comments" style-ref="js:directive" end-at-line-end="true" class-disabled="no-spell-check" class="comment">
+      <start extended="true">
+        /// (?= \s* \%{_triple-slash-directive} )
       </start>
       <include>
-        <context ref="js:_comment-content"/>
+
+        <context id="_triple-slash-directive" class="no-spell-check" once-only="true">
+          <match>\%{_triple-slash-directive}</match>
+        </context> <!-- /_triple-slash-directive -->
+
+        <context ref="js:_single-line-comment-content"/>
       </include>
-    </context> <!-- /_triple-slash-directives -->
+    </context> <!-- /_triple-slash-directive-comments -->
 
     <!-- ## Namespace name
 
@@ -225,7 +399,7 @@
 
     <!-- <NamespaceName> -->
     <context id="choice-namespace-name" end-parent="true">
-      <start>(?=\%{js:identifier-start})</start>
+      <start>\%{js:identifier-container-start}</start>
       <end>\%{def:always-match}</end>
       <include>
         <!-- no comments here -->
@@ -263,10 +437,36 @@
       </include>
     </context> <!-- /ordered-namespace-name -->
 
+    <!-- ## Private identifier (stage 3 proposal)
+
+         #identifier
+    -->
+
+    <!-- <PrivateIdentifier> -->
+    <context id="choice-private-identifier" end-parent="true">
+      <start>#(?=\%{js:identifier-start})</start>
+      <end>\%{def:always-match}</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="js:identifier"/>
+        <!-- no comments here -->
+        <!-- do not extend the context by matching comments, which may
+             lead to multiple identifiers -->
+        <context ref="js:_identifier-name-content"/>
+      </include>
+    </context> <!-- /choice-private-identifier -->
+
+    <context id="ordered-private-identifier" once-only="true">
+      <start>\%{js:before-next-token}</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context ref="choice-private-identifier"/>
+      </include>
+    </context> <!-- /ordered-private-identifier -->
+
     <!-- ## Constructor modifier -->
 
     <context id="constructor-modifier" style-ref="type-keyword" once-only="true">
-      <keyword>new</keyword>
+      <match>\%{js:new-keyword}</match>
     </context> <!-- /constructor-modifier -->
 
     <context id="ordered-constructor-modifier" once-only="true">
@@ -316,44 +516,44 @@
       </include>
     </context> <!-- /ordered-definite-assignment-assertion -->
 
-    <!-- ## this parameter or assignment target -->
+    <!-- ## this parameter or binding -->
 
-    <context id="_this-parameter-or-assignment-target" once-only="true">
+    <context id="_this-parameter-or-binding" once-only="true">
       <start>\%{js:before-next-token}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context ref="js:comments"/>
 
-        <context id="_this-parameter-or-assignment-target-content">
+        <context id="_this-parameter-or-binding-content">
           <include>
 
             <context id="_choice-this-parameter" style-ref="js:keyword" end-parent="true">
-              <keyword>this</keyword>
+              <match>\%{js:this-keyword}</match>
             </context> <!-- /_choice-this-parameter -->
 
-            <context id="_js-choice-assignment-target" end-parent="true">
+            <context id="_js-choice-binding" end-parent="true">
               <start>\%{js:before-next-token}</start>
               <end>\%{js:before-next-token}</end>
               <include>
                 <context ref="js:embedded-lang-hooks"/>
                 <context ref="js:comments"/>
-                <context ref="js:_assignment-target-content"/>
+                <context ref="js:_binding-content"/>
               </include>
-            </context> <!-- /_js-choice-assignment-target -->
+            </context> <!-- /_js-choice-binding -->
 
           </include>
-        </context> <!-- /_this-parameter-or-assignment-target-content -->
+        </context> <!-- /_this-parameter-or-binding-content -->
 
       </include>
-    </context> <!-- /_this-parameter-or-assignment-target -->
+    </context> <!-- /_this-parameter-or-binding -->
 
-    <context id="ordered-this-parameter-or-assignment-target" once-only="true">
+    <context id="ordered-this-parameter-or-binding" once-only="true">
       <start>\%{js:before-next-token}</start>
       <end>\%{js:before-next-token}</end>
       <include>
-        <context ref="_this-parameter-or-assignment-target"/>
+        <context ref="_this-parameter-or-binding"/>
       </include>
-    </context> <!-- /ordered-this-parameter-or-assignment-target -->
+    </context> <!-- /ordered-this-parameter-or-binding -->
 
     <!-- ## Decorators
 
@@ -415,7 +615,7 @@
         </context> <!-- /_decorator-dot-property-accessor-content -->
 
       </include>
-    </context>
+    </context> <!-- /_decorator-dot-property-accessors -->
 
     <context id="decorators" style-ref="decorator">
       <start>@</start>
@@ -450,6 +650,8 @@
     <!-- ## Type name -->
 
     <context id="_built-in-library-types" style-ref="built-in-library-type">
+      <prefix>\%{js:keyword-start}</prefix>
+      <suffix>\%{js:keyword-end}</suffix>
       <keyword>Exclude</keyword>
       <keyword>Extract</keyword>
       <keyword>InstanceType</keyword>
@@ -467,6 +669,7 @@
 
     <context id="_choice-type-name-identifier-only" end-parent="true">
       <start extended="true">
+        (?&lt;! \%{js:identifier-char} )
         (?= (?&gt; \%{js:identifier} ) (?! \. ) )
       </start>
       <end>\%{def:always-match}</end>
@@ -485,7 +688,7 @@
     </context> <!-- /_choice-type-name-identifier-only -->
 
     <context id="_type-name" end-parent="true">
-      <start>(?=\%{js:identifier-start})</start>
+      <start>\%{js:identifier-container-start}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <!-- no comments here -->
@@ -552,7 +755,7 @@
     </context> <!-- /_ordered-import-type-trailing-dot -->
 
     <context id="_import-type" once-only="true">
-      <start>\%[import\%]</start>
+      <start>\%{js:import-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="type-keyword"/>
@@ -580,7 +783,7 @@
 
     <!-- <TypeReference> -->
     <context id="choice-type-reference" end-parent="true">
-      <start>(?=\%{js:identifier-start})</start>
+      <start>\%{js:identifier-container-start}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context ref="js:comments"/>
@@ -692,7 +895,6 @@
     <context id="unknown-context-error-workaround">
       <include>
         <context ref="typescript-js-lit:choice-number"/>
-        <context ref="typescript-js-val:global-values"/>
         <context ref="typescript-js-fn:function-parameters-content"/>
         <context ref="typescript-js-expr:grouping-item-content"/>
         <context ref="typescript-js-st:class-declarations"/>
@@ -705,32 +907,43 @@
 
     <!-- ## General -->
 
+    <context id="_multiline-comment-content">
+      <include>
+        <context ref="_ts-ignore-comment-pragma-multiline-comment-last-line"/>
+        <context ref="js:_multiline-comment-content" original="true"/>
+      </include>
+    </context> <!-- /_multiline-comment-content -->
+
     <context id="_comments">
       <include>
-        <context ref="_ts-ignore-comment-pragmas"/>
+        <context ref="_ts-ignore-comment-pragma-single-line-comments"/>
+        <context ref="_ts-ignore-comment-pragmas-multiline-comments"/>
         <context ref="js:comments" original="true"/>
       </include>
     </context> <!-- /_comments -->
 
     <context id="_comments-no-extend-parent">
       <include>
-        <context ref="_ts-ignore-comment-pragmas-no-extend-parent"/>
+        <context ref="_ts-ignore-comment-pragma-single-line-comments-no-extend-parent"/>
+        <context ref="_ts-ignore-comment-pragmas-multiline-comments-no-extend-parent"/>
         <context ref="js:comments-no-extend-parent" original="true"/>
       </include>
     </context> <!-- /_comments-no-extend-parent -->
 
+    <replace id="js:_multiline-comment-content" ref="_multiline-comment-content"/>
     <replace id="js:comments" ref="_comments"/>
     <replace id="js:comments-no-extend-parent" ref="_comments-no-extend-parent"/>
 
 
     <!-- ## Literals -->
 
+    <!-- ### Number -->
+
     <replace id="js-lit:choice-number" ref="typescript-js-lit:choice-number"/>
 
+    <!-- ### Object literal -->
 
-    <!-- ## Values -->
-
-    <replace id="js-val:global-values" ref="typescript-js-val:global-values"/>
+    <replace id="js-lit:_choice-object-literal-keyword-named-property-or-method" ref="typescript-js-lit:choice-object-literal-keyword-named-property-or-method"/>
 
 
     <!-- ## Functions and classes -->
@@ -743,7 +956,7 @@
 
     <!-- ### Method definition -->
 
-    <replace id="js-fn:_method-definition-content" ref="typescript-js-fn:method-definition-content"/>
+    <replace id="js-fn:choice-method-definition" ref="typescript-js-fn:choice-method-definition"/>
 
     <!-- ### Class expression -->
 
@@ -769,6 +982,8 @@
 
     <!-- ### Post-primary expression -->
 
+    <replace id="js-expr:_dot-property-accessor-content" ref="typescript-js-expr:dot-property-accessor-content"/>
+    <replace id="js-expr:_optional-chain-content" ref="typescript-js-expr:optional-chain-content"/>
     <replace id="js-expr:_post-primary-expression" ref="typescript-js-expr:post-primary-expression"/>
 
     <!-- ### Pre-LHS expression -->
@@ -806,16 +1021,15 @@
     <!-- ### Import declaration -->
 
     <replace id="js-mod:_import-default-content" ref="typescript-js-mod:import-default-content"/>
-
-    <replace id="js-mod:import-declarations" ref="typescript-js-mod:import-declarations"/>
+    <replace id="js-mod:_import-declaration-content" ref="typescript-js-mod:import-declaration-content"/>
 
 
     <!-- # Main context -->
 
     <context id="typescript" class="no-spell-check">
       <include>
-        <context ref="_ts-nocheck-comment-pragmas"/>
-        <context ref="_triple-slash-directives"/>
+        <context ref="_ts-nocheck-comment-pragma-comments"/>
+        <context ref="_triple-slash-directive-comments"/>
         <context ref="js:js"/>
       </include>
     </context> <!-- /typescript -->

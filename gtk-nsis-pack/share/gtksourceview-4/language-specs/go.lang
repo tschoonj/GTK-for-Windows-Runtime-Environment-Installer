@@ -142,7 +142,7 @@
     </define-regex>
 
     <context id="imaginary" style-ref="imaginary">
-      <match>(?&lt;![\w\.])(\%{float}|\%{oct}|\%{bin}|\%{hex}|\[0-9]+)[i]\b</match>
+      <match>(?&lt;![\w\.])(\%{float}|\%{oct}|\%{bin}|\%{hex}|\%{dec})[i]\b</match>
     </context>
 
     <context id="float" style-ref="floating-point">

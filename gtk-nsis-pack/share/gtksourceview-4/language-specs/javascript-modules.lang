@@ -8,7 +8,7 @@
  Copyright (C) 2005 Stef Walter (formerly Nate Nielsen) <stef@memberwebs.com>
  Copyright (C) 2005-2007 Marco Barisione <barisione@gmail.com>
  Copyright (C) 2005-2007 Emanuele Aina
- Copyright (C) 2019 Jeffery To <jeffery.to@gmail.com>
+ Copyright (C) 2019-2020 Jeffery To <jeffery.to@gmail.com>
 
  GtkSourceView is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
@@ -26,7 +26,7 @@
 -->
 <language id="js-mod" name="JavaScript Modules" version="2.0" _section="Script" hidden="true">
   <!-- from js:identifier-char -->
-  <keyword-char-class>[\p{L}\p{Nl}\x{1885}-\x{1886}\x{2118}\x{212E}\x{309B}-\x{309C}\p{Mn}\p{Mc}\p{Nd}\p{Pc}\x{00B7}\x{0387}\x{1369}-\x{1371}\x{19DA}$\x{200C}\x{200D}]</keyword-char-class>
+  <keyword-char-class>(?!\x{2E2F})[\p{L}\p{Nl}\x{1885}-\x{1886}\x{2118}\x{212E}\x{309B}-\x{309C}\p{Mn}\p{Mc}\p{Nd}\p{Pc}\x{00B7}\x{0387}\x{1369}-\x{1371}\x{19DA}$\x{200C}\x{200D}]</keyword-char-class>
 
   <definitions>
 
@@ -43,7 +43,7 @@
     -->
 
     <context id="_from-module" once-only="true">
-      <start>\%[from\%]</start>
+      <start>\%{js:from-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -74,7 +74,7 @@
     -->
 
     <context id="_as-namespace" once-only="true">
-      <start>\%[as\%]</start>
+      <start>\%{js:as-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -124,7 +124,7 @@
     -->
 
     <context id="_name-group-identifier" once-only="true">
-      <start>(?=\%{js:identifier-start})</start>
+      <start>\%{js:identifier-container-start}</start>
       <end>\%{def:always-match}</end>
       <include>
         <!-- no embedded-lang-hooks here -->
@@ -136,7 +136,7 @@
           <include>
 
             <context id="_name-group-keywords" style-ref="js:keyword">
-              <keyword>default</keyword>
+              <match>\%{js:default-keyword}</match>
             </context> <!-- /_name-group-keywords -->
 
             <context ref="js:identifier"/>
@@ -147,7 +147,7 @@
     </context> <!-- /_name-group-identifier -->
 
     <context id="_name-group-as-identifier" once-only="true">
-      <start>\%[as\%]</start>
+      <start>\%{js:as-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -226,7 +226,7 @@
     -->
 
     <context id="_choice-export-named" end-parent="true">
-      <start>(?=\{)</start>
+      <start>(?={)</start>
       <end>\%{js:statement-end}</end>
       <include>
         <context ref="js:embedded-lang-hooks"/>
@@ -250,7 +250,7 @@
     -->
 
     <context id="_choice-export-default" end-parent="true">
-      <start>\%[default\%]</start>
+      <start>\%{js:default-keyword}</start>
       <end>\%{js:statement-end}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -279,7 +279,7 @@
 
     <!-- <ExportDeclaration> -->
     <context id="export-declarations" style-ref="js:export-import-declaration">
-      <start>\%[export\%]</start>
+      <start>\%{js:export-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -309,7 +309,7 @@
     -->
 
     <context id="_choice-import-named" end-parent="true">
-      <start>(?=\{)</start>
+      <start>(?={)</start>
       <end>\%{js:statement-end}</end>
       <include>
         <context ref="js:embedded-lang-hooks"/>
@@ -366,7 +366,7 @@
     </context> <!-- /_choice-import-default-only -->
 
     <context id="_choice-import-default" end-parent="true">
-      <start>(?=\%{js:identifier-start})</start>
+      <start>\%{js:identifier-container-start}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context ref="js:embedded-lang-hooks"/>
@@ -392,10 +392,9 @@
     -->
 
     <!-- <ImportDeclaration> -->
+    <!-- also matches import() and import.meta -->
     <context id="import-declarations" style-ref="js:export-import-declaration">
-      <start extended="true">
-        \%[ import \%] (?! \%{js:import-function-keyword-suffix} )
-      </start>
+      <start>\%{js:import-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -404,6 +403,8 @@
 
         <context id="_import-declaration-content">
           <include>
+            <context ref="js-expr:_choice-import-call-expression"/>
+            <context ref="js-expr:_choice-import-meta-expression"/>
             <context ref="_choice-import-named"/>
             <context ref="_choice-all-as-namespace"/>
             <context ref="_choice-import-default"/>

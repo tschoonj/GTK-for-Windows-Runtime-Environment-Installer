@@ -16,7 +16,7 @@
     </key>
     <key name="two-finger-scrolling-enabled" type="b">
       <default>true</default>
-      <summary>Whether edge scrolling is enabled</summary>
+      <summary>Whether two-finger scrolling is enabled</summary>
       <description>When enabled, touchpads that support two-finger scrolling will have that feature enabled.</description>
     </key>
     <key name="disable-while-typing" type="b">
@@ -130,6 +130,16 @@
       <summary>Emulate middle click</summary>
       <description>Set this to TRUE to enable middle click during simultaneous left and right click.</description>
     </key>
+    <key name="double-click" type="i">
+      <default>400</default>
+      <summary>Double click time</summary>
+      <description>Length of a double click in milliseconds.</description>
+    </key>
+    <key name="drag-threshold" type="i">
+      <default>8</default>
+      <summary>Drag threshold</summary>
+      <description>Distance before a drag is started.</description>
+    </key>
   </schema>
   <schema id="org.gnome.desktop.peripherals.tablet">
     <key name="output" type="as">
@@ -209,6 +219,11 @@
       <default>0</default>
       <range min="0" max="24"/>
       <summary>Mouse wheel emulation button. 0 to disable the feature.</summary>
+    </key>
+    <key name="scroll-wheel-emulation-button-lock" type="b">
+      <default>false</default>
+      <summary>Mouse wheel emulation button lock</summary>
+      <description>Set this to TRUE to enable button locking for the wheel emulation button. If enabled, the first click of the button enables scrolling, the second click disables scrolling again.</description>
     </key>
     <key name="accel-profile" enum="org.gnome.desktop.GDesktopPointerAccelProfile">
       <default>'default'</default>

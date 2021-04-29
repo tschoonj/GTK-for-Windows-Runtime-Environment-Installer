@@ -4,7 +4,7 @@
  This file is part of GtkSourceView
 
  Author: Jeffery To <jeffery.to@gmail.com>
- Copyright (C) 2019 Jeffery To <jeffery.to@gmail.com>
+ Copyright (C) 2019-2020 Jeffery To <jeffery.to@gmail.com>
 
  GtkSourceView is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
@@ -22,7 +22,7 @@
 -->
 <language id="typescript-type-expr" name="TypeScript Type Expressions" version="2.0" _section="Script" hidden="true">
   <!-- from js:identifier-char -->
-  <keyword-char-class>[\p{L}\p{Nl}\x{1885}-\x{1886}\x{2118}\x{212E}\x{309B}-\x{309C}\p{Mn}\p{Mc}\p{Nd}\p{Pc}\x{00B7}\x{0387}\x{1369}-\x{1371}\x{19DA}$\x{200C}\x{200D}]</keyword-char-class>
+  <keyword-char-class>(?!\x{2E2F})[\p{L}\p{Nl}\x{1885}-\x{1886}\x{2118}\x{212E}\x{309B}-\x{309C}\p{Mn}\p{Mc}\p{Nd}\p{Pc}\x{00B7}\x{0387}\x{1369}-\x{1371}\x{19DA}$\x{200C}\x{200D}]</keyword-char-class>
 
   <definitions>
 
@@ -41,7 +41,7 @@
     -->
 
     <context id="_choice-infer-declaration" end-parent="true">
-      <start>\%[infer\%]</start>
+      <start>\%{typescript:infer-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="typescript:type-keyword"/>
@@ -71,22 +71,22 @@
         <context ref="typescript:constructor-modifier"/>
         <context ref="typescript-type-gen:type-parameters-list"/>
 
-        <context id="_asserts-type-predicates" style-ref="typescript:type-keyword">
-          <keyword>asserts</keyword>
-        </context> <!-- /_asserts-type-predicates -->
+        <context id="_asserts-type-predicate" style-ref="typescript:type-keyword" once-only="true">
+          <match>\%{typescript:asserts-keyword}</match>
+        </context> <!-- /_asserts-type-predicate -->
 
-        <context id="_indexed-type-queries" style-ref="typescript:type-keyword">
-          <keyword>keyof</keyword>
-        </context> <!-- /_indexed-type-queries -->
+        <context id="_indexed-type-query" style-ref="typescript:type-keyword" once-only="true">
+          <match>\%{typescript:keyof-keyword}</match>
+        </context> <!-- /_indexed-type-query -->
 
-        <context id="_readonly-type-modifier" style-ref="typescript:type-keyword">
-          <keyword>readonly</keyword>
+        <context id="_readonly-type-modifier" style-ref="typescript:type-keyword" once-only="true">
+          <match>\%{typescript:readonly-keyword}</match>
         </context> <!-- /_readonly-type-modifier -->
 
         <!-- for unique symbol subtype, can contain newlines between
              "unique" and "symbol" -->
         <context id="_unique-symbol-subtype" style-ref="typescript:basic-type" once-only="true">
-          <keyword>unique</keyword>
+          <match>\%{typescript:unique-keyword}</match>
         </context> <!-- /_unique-symbol-subtype -->
 
       </include>
@@ -113,41 +113,41 @@
     <!-- ## Type "grouping" -->
 
     <!-- this will only catch simple cases :-( -->
-    <context id="_choice-type-grouping-this-parameter-or-assignment-target" end-parent="true">
+    <context id="_choice-type-grouping-this-parameter-or-binding" end-parent="true">
       <start extended="true">
-        (?:
-          (?&lt;= \.\.\. ) (?= \%{js:identifier} ) |  # adding js:optional-whitespace-or-comments in between doesn't work
-          (?= \%{js:identifier} \%{js:optional-whitespace-or-comments} [?:,] )
-        )
+        (?&lt;= \%{js:rest-syntax} )
+        (?= \%{js:identifier} ) |  # adding js:optional-whitespace-or-comments in between doesn't work
+        (?&lt;! \%{js:identifier-char} )
+        (?= \%{js:identifier} \%{js:optional-whitespace-or-comments} [?:,] )
       </start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context ref="js:comments"/>
 
-        <context id="_type-grouping-this-parameter-or-assignment-target-content">
+        <context id="_type-grouping-this-parameter-or-binding-content">
           <include>
-            <context ref="typescript:ordered-this-parameter-or-assignment-target"/>
+            <context ref="typescript:ordered-this-parameter-or-binding"/>
           </include>
-        </context> <!-- /_type-grouping-this-parameter-or-assignment-target-content -->
+        </context> <!-- /_type-grouping-this-parameter-or-binding-content -->
 
       </include>
-    </context> <!-- /__choice-type-grouping-this-parameter-or-assignment-target -->
+    </context> <!-- /__choice-type-grouping-this-parameter-or-binding -->
 
-    <context id="_type-grouping-type-expression-or-this-parameter-or-assignment-target" once-only="true">
+    <context id="_type-grouping-type-expression-or-this-parameter-or-binding" once-only="true">
       <start>\%{js:before-next-token}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <!-- no comments here -->
 
-        <context id="_type-grouping-type-expression-or-this-parameter-or-assignment-target-content">
+        <context id="_type-grouping-type-expression-or-this-parameter-or-binding-content">
           <include>
-            <context ref="_choice-type-grouping-this-parameter-or-assignment-target"/>
+            <context ref="_choice-type-grouping-this-parameter-or-binding"/>
             <context ref="choice-type-expression"/>
           </include>
-        </context> <!-- /_type-grouping-type-expression-or-this-parameter-or-assignment-target-content -->
+        </context> <!-- /_type-grouping-type-expression-or-this-parameter-or-binding-content -->
 
       </include>
-    </context> <!-- /_type-grouping-type-expression-or-this-parameter-or-assignment-target -->
+    </context> <!-- /_type-grouping-type-expression-or-this-parameter-or-binding -->
 
     <!-- function parameter list allows for accessibility modifiers and
          default value assignment, but these are not allowed in a
@@ -173,7 +173,7 @@
                 <context id="_type-grouping-first-item-content">
                   <include>
                     <context ref="js:ordered-rest-syntax"/>
-                    <context ref="_type-grouping-type-expression-or-this-parameter-or-assignment-target"/>
+                    <context ref="_type-grouping-type-expression-or-this-parameter-or-binding"/>
                     <context ref="typescript:ordered-optional-modifier"/>
                     <context ref="typescript:ordered-type-annotation"/>
                   </include>
@@ -191,7 +191,7 @@
                 <context id="_type-grouping-item-content">
                   <include>
                     <context ref="js:ordered-rest-syntax"/>
-                    <context ref="js:ordered-assignment-target"/>
+                    <context ref="js:ordered-binding"/>
                     <context ref="typescript:ordered-optional-modifier"/>
                     <context ref="typescript:ordered-type-annotation"/>
                   </include>
@@ -281,7 +281,7 @@
 
             <!-- <TypeQuery> -->
             <context id="_choice-type-query" style-ref="typescript:type-query" end-parent="true">
-              <start>\%[typeof\%]</start>
+              <start>\%{js:typeof-keyword}</start>
               <end>\%{js:before-next-token}</end>
               <include>
                 <context sub-pattern="0" where="start" style-ref="typescript:type-keyword"/>
@@ -330,21 +330,21 @@
       <end>\%{def:always-match}</end>
     </context> <!-- /_choice-conditional-type-operator-missing-true-type -->
 
-    <context id="_conditional-type-operator-false-clause" once-only="true">
+    <context id="_conditional-type-operator-false-type" once-only="true">
       <start>:</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="typescript:conditional-type-operator"/>
         <context ref="js:comments"/>
 
-        <context id="_conditional-type-operator-false-clause-content">
+        <context id="_conditional-type-operator-false-type-content">
           <include>
             <context ref="type-expression"/>
           </include>
-        </context> <!-- /_conditional-type-operator-false-clause-content -->
+        </context> <!-- /_conditional-type-operator-false-type-content -->
 
       </include>
-    </context> <!-- /_conditional-type-operator-false-clause -->
+    </context> <!-- /_conditional-type-operator-false-type -->
 
     <context id="_choice-conditional-type-operator-true-type" end-parent="true">
       <start>\%{js:before-next-token}</start>
@@ -355,7 +355,7 @@
         <context id="_conditional-type-operator-true-type-content">
           <include>
             <context ref="type-expression"/>
-            <context ref="_conditional-type-operator-false-clause"/>
+            <context ref="_conditional-type-operator-false-type"/>
           </include>
         </context> <!-- /_conditional-type-operator-true-type-content -->
 
@@ -396,7 +396,7 @@
     </context> <!-- /_choice-conditional-type-operator-super-type -->
 
     <context id="_conditional-type-operators">
-      <start>\%[extends\%]</start>
+      <start>\%{js:extends-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="typescript:type-keyword"/>
@@ -463,7 +463,7 @@
         </context> <!-- /_union-intersection-type-operators -->
 
         <context id="_type-predicate-operators">
-          <start>\%[is\%]</start>
+          <start>\%{typescript:is-keyword}</start>
           <end>\%{js:before-next-token}</end>
           <include>
             <context sub-pattern="0" where="start" style-ref="typescript:type-keyword"/>

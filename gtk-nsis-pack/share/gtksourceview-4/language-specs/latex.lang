@@ -34,6 +34,9 @@
     <style id="inline-math"        name="Inline Math Mode"     map-to="latex:display-math"/>
     <style id="math"               name="Math Mode"            map-to="latex:display-math"/>
     <style id="math-boundary"      name="Math Boundary"        map-to="latex:display-math"/>
+    <style id="class-name"         name="Document class name"  map-to="def:text"/>
+    <style id="pkg-name"           name="Package name"         map-to="def:text"/>
+    <style id="env-name"           name="Environment name"     map-to="def:text"/>
     <style id="include"            name="Include"              map-to="def:keyword"/>
     <style id="common-commands"    name="Command"              map-to="def:keyword"/>
     <style id="command"            name="Command"              map-to="def:keyword"/>
@@ -355,23 +358,26 @@
     <context id="specific-commands">
       <include>
         <context id="documentclass" class="no-spell-check">
-          <match>(\\documentclass)(\[.*\])?(\{.*\})?</match>
+          <match>(\\documentclass)(\[.*\])?(\{(.*)\})?</match>
           <include>
             <context sub-pattern="1" style-ref="common-commands"/>
+            <context sub-pattern="4" style-ref="class-name"/>
           </include>
         </context>
 
         <context id="include" class="no-spell-check">
-          <match>(\\(input|include|includeonly|usepackage))\b(\[.*\])?(\{.*\})?</match>
+          <match>(\\(input|include|includeonly|usepackage))\b(\[.*\])?(\{(.*)\})?</match>
           <include>
             <context sub-pattern="1" style-ref="include"/>
+            <context sub-pattern="5" style-ref="pkg-name"/>
           </include>
         </context>
 
         <context id="begin-end-command" class="no-spell-check">
-          <match>(\\(begin|end))\{.*\}</match>
+          <match>(\\(begin|end))\{(.*?)\}</match>
           <include>
             <context sub-pattern="1" style-ref="common-commands"/>
+            <context sub-pattern="3" style-ref="env-name"/>
           </include>
         </context>
       </include>
@@ -597,7 +603,7 @@
     </context>
 
     <context id="math-env" style-ref="math" style-inside="true" class="no-spell-check">
-      <start>(\\begin)\{(math|displaymath|equation\*?|align\*?|eqnarray\*?)\}</start>
+      <start>(\\begin)\{(math|displaymath|equation\*?|align\*?|eqnarray\*?|multline\*?|gather\*?)\}</start>
       <end>(\\end)\{\%{2@start}\}</end>
       <include>
         <context sub-pattern="1" where="start" style-ref="common-commands"/>

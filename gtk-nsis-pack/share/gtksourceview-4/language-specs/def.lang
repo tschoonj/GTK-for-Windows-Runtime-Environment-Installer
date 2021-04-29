@@ -152,15 +152,31 @@
     <!-- $^ never matches. -->
     <define-regex id="never-match">$^</define-regex>
 
-    <!-- Unicode ID_Start and ID_Continue characters
-         Descriptions from https://www.unicode.org/reports/tr31/#Table_Lexical_Classes_for_Identifiers
-         Other_ID_Start and Other_ID_Continue code points from https://www.unicode.org/Public/12.1.0/ucd/PropList.txt
+    <!-- Unicode lexical classes for identifiers
+
+         Descriptions from:
+         https://www.unicode.org/reports/tr31/#Table_Lexical_Classes_for_Identifiers
+         Code point data from:
+         https://www.unicode.org/Public/13.0.0/ucd/DerivedCoreProperties.txt
+         https://www.unicode.org/Public/13.0.0/ucd/PropList.txt
+
+         U+2E2F VERTICAL TILDE is the only applicable code point in
+         Pattern_Syntax (and Pattern_White_Space) to subtract to form
+         ID_Start and ID_Continue
     -->
     <define-regex id="unicode-id-start" extended="true">
-      [\p{L}\p{Nl}\x{1885}-\x{1886}\x{2118}\x{212E}\x{309B}-\x{309C}]
+      (?!\x{2E2F}) [\p{L}\p{Nl}\x{1885}-\x{1886}\x{2118}\x{212E}\x{309B}-\x{309C}]
     </define-regex>
     <define-regex id="unicode-id-continue" extended="true">
-      [\p{L}\p{Nl}\x{1885}-\x{1886}\x{2118}\x{212E}\x{309B}-\x{309C}\p{Mn}\p{Mc}\p{Nd}\p{Pc}\x{00B7}\x{0387}\x{1369}-\x{1371}\x{19DA}]
+      (?!\x{2E2F}) [\p{L}\p{Nl}\x{1885}-\x{1886}\x{2118}\x{212E}\x{309B}-\x{309C}\p{Mn}\p{Mc}\p{Nd}\p{Pc}\x{00B7}\x{0387}\x{1369}-\x{1371}\x{19DA}]
+    </define-regex>
+    <define-regex id="unicode-xid-start" extended="true">
+      (?![\x{037A}\x{0E33}\x{0EB3}\x{309B}-\x{309C}\x{FC5E}-\x{FC63}\x{FDFA}-\x{FDFB}\x{FE70}\x{FE72}\x{FE74}\x{FE76}\x{FE78}\x{FE7A}\x{FE7C}\x{FE7E}\x{FF9E}-\x{FF9F}])
+      \%{unicode-id-start}
+    </define-regex>
+    <define-regex id="unicode-xid-continue" extended="true">
+      (?![\x{037A}\x{309B}-\x{309C}\x{FC5E}-\x{FC63}\x{FDFA}-\x{FDFB}\x{FE70}\x{FE72}\x{FE74}\x{FE76}\x{FE78}\x{FE7A}\x{FE7C}\x{FE7E}])
+      \%{unicode-id-continue}
     </define-regex>
 
     <define-regex id="decimal" extended="true">

@@ -131,6 +131,7 @@
       <keyword>private</keyword>
       <keyword>protected</keyword>
       <keyword>public</keyword>
+      <keyword>record</keyword>
       <keyword>ref</keyword>
       <keyword>sealed</keyword>
       <keyword>static</keyword>
@@ -157,6 +158,7 @@
       <keyword>goto</keyword>
       <keyword>if</keyword>
       <keyword>in</keyword>
+      <keyword>init</keyword>
       <keyword>is</keyword>
       <keyword>nameof</keyword>
       <keyword>new</keyword>

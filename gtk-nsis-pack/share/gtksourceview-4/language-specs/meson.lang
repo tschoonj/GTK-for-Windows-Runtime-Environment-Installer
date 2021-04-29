@@ -79,6 +79,7 @@
       <keyword>add_project_arguments</keyword>
       <keyword>add_project_link_arguments</keyword>
       <keyword>add_test_setup</keyword>
+      <keyword>alias_target</keyword>
       <keyword>assert</keyword>
       <keyword>benchmark</keyword>
       <keyword>both_libraries</keyword>
@@ -104,12 +105,14 @@
       <keyword>install_headers</keyword>
       <keyword>install_man</keyword>
       <keyword>install_subdir</keyword>
+      <keyword>is_disabler</keyword>
       <keyword>is_variable</keyword>
       <keyword>jar</keyword>
       <keyword>join_paths</keyword>
       <keyword>library</keyword>
       <keyword>message</keyword>
       <keyword>warning</keyword>
+      <keyword>summary</keyword>
       <keyword>project</keyword>
       <keyword>run_command</keyword>
       <keyword>run_target</keyword>
@@ -117,8 +120,8 @@
       <keyword>shared_library</keyword>
       <keyword>shared_module</keyword>
       <keyword>static_library</keyword>
-      <keyword>subdir_done</keyword>
       <keyword>subdir</keyword>
+      <keyword>subdir_done</keyword>
       <keyword>subproject</keyword>
       <keyword>test</keyword>
       <keyword>vcs_tag</keyword>

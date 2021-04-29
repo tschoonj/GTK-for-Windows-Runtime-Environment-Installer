@@ -87,7 +87,7 @@
                     <match extended="true">
                             \%{preproc-start}
                             (include|import)\s*
-                            (".*?"|&lt;.*&gt;)
+                            (".*?"|&lt;.*?&gt;)
                     </match>
                     <include>
                         <context id="included-file" sub-pattern="2" style-ref="included-file"/>

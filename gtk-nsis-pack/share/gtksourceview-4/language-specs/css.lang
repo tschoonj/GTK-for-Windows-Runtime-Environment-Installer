@@ -7,7 +7,7 @@
  Copyright (C) 2004 Scott Martin <scott@coffeeblack.org>
  Copyright (C) 2010 Patryk Zawadzki <patrys@pld-linux.org>
  Copyright (C) 2016 Tobias Schönberg <tobias47n9e@gmail.com>
- Copyright (C) 2018-2019 Jeffery To <jeffery.to@gmail.com>
+ Copyright (C) 2018-2020 Jeffery To <jeffery.to@gmail.com>
 
  GtkSourceView is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
@@ -96,7 +96,8 @@
 
   <default-regex-options case-sensitive="false"/>
 
-  <keyword-char-class>[a-z0-9_\x{80}-\x{10ffff}\\-]</keyword-char-class>
+  <!-- from keyword-code-point -->
+  <keyword-char-class>[^\x{0}-\x{2C}\x{2E}\x{2F}\x{3A}-\x{40}\x{5B}\x{5D}\x{5E}\x{60}\x{7B}-\x{7F}]</keyword-char-class>
 
   <definitions>
 
@@ -125,30 +126,78 @@
       )
     </define-regex>
 
-    <!-- https://drafts.csswg.org/css-syntax/#non-ascii-code-point -->
-    <define-regex id="non-ascii">[\x{80}-\x{10ffff}]</define-regex>
+    <!--
+    https://drafts.csswg.org/css-syntax/#name-start-code-point
+
+    includes:
+    U+0041-U+005A Latin capital letter A to Z (A-Z)
+    U+005F        Low line (_)
+    U+0061-U+007A Latin small letter A to Z (a-z)
+    U+0080-       Non-ASCII
+    -->
+    <define-regex id="identifier-start-code-point" extended="true">
+      [^\x{0}-\x{40}\x{5B}-\x{5E}\x{60}\x{7B}-\x{7F}]
+    </define-regex>
+
+    <!--
+    https://drafts.csswg.org/css-syntax/#name-code-point
+
+    includes:
+    U+002D        Hyphen-minus (-)
+    U+0030-U+0039 Digit zero to nine (0-9)
+    U+0041-U+005A Latin capital letter A to Z (A-Z)
+    U+005F        Low line (_)
+    U+0061-U+007A Latin small letter A to Z (a-z)
+    U+0080-       Non-ASCII
+    -->
+    <define-regex id="identifier-code-point" extended="true">
+      [^\x{0}-\x{2C}\x{2E}\x{2F}\x{3A}-\x{40}\x{5B}-\x{5E}\x{60}\x{7B}-\x{7F}]
+    </define-regex>
+
+    <!--
+    identifier-code-point, excluding hyphen
+
+    includes:
+    U+0030-U+0039 Digit zero to nine (0-9)
+    U+0041-U+005A Latin capital letter A to Z (A-Z)
+    U+005F        Low line (_)
+    U+0061-U+007A Latin small letter A to Z (a-z)
+    U+0080-       Non-ASCII
+    -->
+    <define-regex id="identifier-prefix-code-point" extended="true">
+      [^\x{0}-\x{2F}\x{3A}-\x{40}\x{5B}-\x{5E}\x{60}\x{7B}-\x{7F}]
+    </define-regex>
+
+    <!--
+    identifier-code-point, including backslash
+
+    includes:
+    U+002D        Hyphen-minus (-)
+    U+0030-U+0039 Digit zero to nine (0-9)
+    U+0041-U+005A Latin capital letter A to Z (A-Z)
+    U+005C        Reverse solidus (\)
+    U+005F        Low line (_)
+    U+0061-U+007A Latin small letter A to Z (a-z)
+    U+0080-       Non-ASCII
+    -->
+    <define-regex id="keyword-code-point" extended="true">
+      [^\x{0}-\x{2C}\x{2E}\x{2F}\x{3A}-\x{40}\x{5B}\x{5D}\x{5E}\x{60}\x{7B}-\x{7F}]
+    </define-regex>
 
     <!--
     a combination of name-start code point and escape
-    https://drafts.csswg.org/css-syntax/#name-start-code-point
     https://www.w3.org/TR/selectors-3/#lex
     -->
     <define-regex id="identifier-start-char" extended="true">
-      [a-z_] | \%{non-ascii} | \%{escape}
+      \%{identifier-start-code-point} | \%{escape}
     </define-regex>
 
     <!--
     a combination of name code point and escape
-    https://drafts.csswg.org/css-syntax/#name-code-point
     https://www.w3.org/TR/selectors-3/#lex
     -->
     <define-regex id="identifier-chars" extended="true">
-      (?&gt; (?: [a-z0-9_-]+ | \%{non-ascii}+ | \%{escape}+ )+ )
-    </define-regex>
-
-    <!-- for lookbehinds (and lookaheads) -->
-    <define-regex id="single-identifier-char" extended="true">
-      [a-z0-9_-] | \%{non-ascii}
+      (?&gt; (?: \%{identifier-code-point}+ | \%{escape}+ )+ )
     </define-regex>
 
     <!-- https://drafts.csswg.org/css-syntax/#ident-token-diagram -->
@@ -156,12 +205,22 @@
       (?: -- | -? \%{identifier-start-char} ) \%{identifier-chars}?
     </define-regex>
 
+    <!-- identifier-chars, excluding hyphen -->
+    <define-regex id="identifier-prefix-chars" extended="true">
+      (?&gt; (?: \%{identifier-prefix-code-point}+ | \%{escape}+ )+ )
+    </define-regex>
+
     <!--
     https://www.w3.org/TR/CSS21/syndata.html#vendor-keywords
     https://en.wikipedia.org/wiki/CSS_hack#List_of_prefixes
     -->
     <define-regex id="vendor-specific-prefix" extended="true">
-      (?: [_-] \%{identifier-start-char}+ | mso | prince ) -
+      (?:
+        [_-] \%{identifier-start-char} \%{identifier-prefix-chars}? |
+        mso |
+        prince
+      )
+      -
     </define-regex>
 
     <define-regex id="vendor-specific-identifier" extended="true">
@@ -171,6 +230,14 @@
     <!-- https://drafts.csswg.org/css-variables/#defining-variables -->
     <define-regex id="custom-property-identifier" extended="true">
       -- \%{identifier-chars}+
+    </define-regex>
+
+    <define-regex id="keyword-start" extended="true">
+      (?&lt;! \%{keyword-code-point} )
+    </define-regex>
+
+    <define-regex id="keyword-end" extended="true">
+      (?! \%{keyword-code-point} )
     </define-regex>
 
     <define-regex id="declaration-value-end">(?=[!;}])</define-regex>
@@ -220,15 +287,21 @@
 
     <!-- custom identifier -->
     <context id="name" style-ref="name">
-      <match>\%[\%{identifier}</match>
+      <match extended="true">
+        \%{keyword-start} \%{identifier}
+      </match>
     </context>
 
     <context id="vendor-specific-name" style-ref="vendor-specific">
-      <match>\%[\%{vendor-specific-identifier}</match>
+      <match extended="true">
+        \%{keyword-start} \%{vendor-specific-identifier}
+      </match>
     </context>
 
     <context id="custom-property-name" style-ref="custom-property-name">
-      <match>\%[\%{custom-property-identifier}</match>
+      <match extended="true">
+        \%{keyword-start} \%{custom-property-identifier}
+      </match>
     </context>
 
     <context id="escape" style-ref="escape">
@@ -270,10 +343,15 @@
     </context>
 
     <context id="hexadecimal-color" style-ref="color">
-      <match>#([a-f0-9]{8}|[a-f0-9]{6}|[a-f0-9]{4}|[a-f0-9]{3})\%]</match>
+      <match extended="true">
+        \# (?: [a-f0-9]{8} | [a-f0-9]{6} | [a-f0-9]{4} | [a-f0-9]{3} )
+        \%{keyword-end}
+      </match>
     </context>
 
     <context id="css3-named-color" style-ref="color">
+      <prefix>\%{keyword-start}</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>aliceblue</keyword>
       <keyword>antiquewhite</keyword>
       <keyword>aquamarine</keyword>
@@ -408,6 +486,8 @@
     </context>
 
     <context id="named-color" style-ref="color">
+      <prefix>\%{keyword-start}</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>aqua</keyword>
       <keyword>black</keyword>
       <keyword>blue</keyword>
@@ -452,11 +532,12 @@
     </define-regex>
 
     <define-regex id="non-number-char" extended="true">
-      \%{single-identifier-char} | \.
+      \%{keyword-code-point} | \.
     </define-regex>
 
     <context id="dimension" style-ref="dimension">
       <prefix>(?&lt;!\%{non-number-char})\%{number}</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>ch</keyword>
       <keyword>cm</keyword>
       <keyword>deg</keyword>
@@ -492,6 +573,7 @@
 
     <context id="resolution" style-ref="dimension">
       <prefix>(?&lt;!\%{non-number-char})\%{positive-number}</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>dpcm</keyword>
       <keyword>dpi</keyword>
       <keyword>dppx</keyword>
@@ -534,8 +616,9 @@
 
     <context id="unicode-range" style-ref="unicode-range">
       <match extended="true">
-        \%[ u \+ (?&gt; [a-f0-9?]{1,6} ) (?&gt; - [a-f0-9]{1,6} )?
-        (?! \%{single-identifier-char} )
+        \%{keyword-start}
+        u \+ (?&gt; [a-f0-9?]{1,6} ) (?&gt; - [a-f0-9]{1,6} )?
+        \%{keyword-end}
       </match>
     </context>
 
@@ -543,6 +626,8 @@
     <!-- functions -->
 
     <context id="css3-function-arguments" style-ref="keyword">
+      <prefix>\%{keyword-start}</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>at</keyword>
       <keyword>auto-fill</keyword>
       <keyword>auto-fit</keyword>
@@ -566,7 +651,9 @@
     </context>
 
     <context id="url">
-      <start>url\(</start>
+      <start extended="true">
+        \%{keyword-start} url \(
+      </start>
       <end>\)</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="function"/>
@@ -580,7 +667,9 @@
 
     <!-- https://drafts.csswg.org/css-variables/#using-variables -->
     <context id="var">
-      <start>var\(</start>
+      <start extended="true">
+        \%{keyword-start} var \(
+      </start>
       <end>\)</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="function"/>
@@ -600,7 +689,9 @@
     </context>
 
     <context id="vendor-specific-function">
-      <start>\%[\%{vendor-specific-identifier}\(</start>
+      <start extended="true">
+        \%{keyword-start} \%{vendor-specific-identifier} \(
+      </start>
       <end>\)</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="vendor-specific"/>
@@ -612,7 +703,9 @@
     </context>
 
     <context id="function">
-      <start>\%[\%{identifier}\(</start>
+      <start extended="true">
+        \%{keyword-start} \%{identifier} \(
+      </start>
       <end>\)</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="function"/>
@@ -686,6 +779,8 @@
     <!-- style properties -->
 
     <context id="svg-property-names" style-ref="property-name">
+      <prefix>\%{keyword-start}</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>clip-path</keyword>
       <keyword>clip-rule</keyword>
       <keyword>color-interpolatation-filters</keyword>
@@ -716,6 +811,8 @@
     </context>
 
     <context id="css3-property-names" style-ref="property-name">
+      <prefix>\%{keyword-start}</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>align-content</keyword>
       <keyword>align-items</keyword>
       <keyword>align-self</keyword>
@@ -851,6 +948,8 @@
     </context>
 
     <context id="property-names" style-ref="property-name">
+      <prefix>\%{keyword-start}</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>azimuth</keyword>
       <keyword>background-attachment</keyword>
       <keyword>background-color</keyword>
@@ -981,6 +1080,8 @@
     </context>
 
     <context id="animatable-properties" style-ref="keyword">
+      <prefix>\%{keyword-start}</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>background-color</keyword>
       <keyword>background-position</keyword>
       <keyword>background-size</keyword>
@@ -1075,6 +1176,8 @@
     </context>
 
     <context id="svg-property-values" style-ref="keyword">
+      <prefix>\%{keyword-start}</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>alphabetic</keyword>
       <keyword>bevel</keyword>
       <keyword>butt</keyword>
@@ -1108,6 +1211,8 @@
     </context>
 
     <context id="east-asian-variant-values" style-ref="keyword">
+      <prefix>\%{keyword-start}</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>jis04</keyword>
       <keyword>jis78</keyword>
       <keyword>jis83</keyword>
@@ -1117,6 +1222,8 @@
     </context>
 
     <context id="page-sizes" style-ref="keyword">
+      <prefix>\%{keyword-start}</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>A3</keyword>
       <keyword>A4</keyword>
       <keyword>A5</keyword>
@@ -1130,12 +1237,13 @@
     </context>
 
     <context id="css3-property-values" style-ref="keyword">
+      <prefix>\%{keyword-start}</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>active</keyword>
       <keyword>add</keyword>
       <keyword>allow-end</keyword>
       <keyword>all-petite-caps</keyword>
       <keyword>all-small-caps</keyword>
-      <keyword>all-scroll</keyword> <!-- css2, but needed for regex -->
       <keyword>all</keyword>
       <keyword>alpha</keyword>
       <keyword>alternate-reverse</keyword>
@@ -1209,7 +1317,6 @@
       <keyword>kashida</keyword>
       <keyword>keep-all</keyword>
       <keyword>last</keyword>
-      <keyword>left-side</keyword> <!-- css2, but needed for regex -->
       <keyword>left</keyword>
       <keyword>lighten</keyword>
       <keyword>linear</keyword>
@@ -1287,6 +1394,8 @@
     </context>
 
     <context id="property-values" style-ref="keyword">
+      <prefix>\%{keyword-start}</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>above</keyword>
       <keyword>absolute</keyword>
       <keyword>alias</keyword>
@@ -1546,6 +1655,8 @@
     <!-- modifiers -->
 
     <context id="modifiers" style-ref="modifier">
+      <prefix>\%{keyword-start}</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>important</keyword>
     </context>
 
@@ -1623,12 +1734,16 @@
     <!-- media queries -->
 
     <context id="media-query-operators" style-ref="media-query-operator">
+      <prefix>\%{keyword-start}</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>and</keyword>
       <keyword>not</keyword>
       <keyword>only</keyword>
     </context>
 
     <context id="media-types" style-ref="media-type">
+      <prefix>\%{keyword-start}</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>all</keyword>
       <keyword>print</keyword>
       <keyword>screen</keyword>
@@ -1636,6 +1751,8 @@
     </context>
 
     <context id="css3-media-features" style-ref="media-feature">
+      <prefix>\%{keyword-start}</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>any-hover</keyword>
       <keyword>any-pointer</keyword>
       <keyword>aspect-ratio</keyword>
@@ -1672,6 +1789,8 @@
     </context>
 
     <context id="css3-media-feature-values" style-ref="media-feature-value">
+      <prefix>\%{keyword-start}</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>browser</keyword>
       <keyword>coarse</keyword>
       <keyword>fast</keyword>
@@ -1835,7 +1954,9 @@
     </context>
 
     <context id="at-charset-error" style-ref="error">
-      <start>@charset\%]</start>
+      <start extended="true">
+        @charset \%{keyword-end}
+      </start>
       <include>
         <context ref="embedded-lang-hook"/>
         <!-- no comment here -->
@@ -1844,7 +1965,9 @@
     </context>
 
     <context id="at-charset-no-error">
-      <start>@charset\%]</start>
+      <start extended="true">
+        @charset \%{keyword-end}
+      </start>
       <include>
         <context sub-pattern="0" where="start" style-ref="at-rule"/>
         <context ref="embedded-lang-hook"/>
@@ -1872,7 +1995,9 @@
     -->
 
     <context id="at-font-face">
-      <start>@font-face\%]</start>
+      <start extended="true">
+        @font-face \%{keyword-end}
+      </start>
       <include>
         <context sub-pattern="0" where="start" style-ref="at-rule"/>
         <context ref="embedded-lang-hook"/>
@@ -1891,6 +2016,7 @@
 
     <context id="font-feature-types" style-ref="at-rule-inner-selector">
       <prefix>@</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>annotation</keyword>
       <keyword>character-variant</keyword>
       <keyword>ornaments</keyword>
@@ -1956,7 +2082,9 @@
     </context>
 
     <context id="at-font-feature-values">
-      <start>@font-feature-values\%]</start>
+      <start extended="true">
+        @font-feature-values \%{keyword-end}
+      </start>
       <include>
         <context sub-pattern="0" where="start" style-ref="at-rule"/>
         <context ref="embedded-lang-hook"/>
@@ -1972,7 +2100,9 @@
     -->
 
     <context id="at-import">
-      <start>@import\%]</start>
+      <start extended="true">
+        @import \%{keyword-end}
+      </start>
       <include>
         <context sub-pattern="0" where="start" style-ref="at-rule"/>
         <context ref="embedded-lang-hook"/>
@@ -1991,6 +2121,8 @@
     -->
 
     <context id="keyframe-selector" style-ref="at-rule-inner-selector">
+      <prefix>\%{keyword-start}</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>from</keyword>
       <keyword>to</keyword>
     </context>
@@ -2016,7 +2148,9 @@
     </context>
 
     <context id="vendor-specific-at-keyframes">
-      <start>@\%{vendor-specific-prefix}keyframes\%]</start>
+      <start extended="true">
+        @ \%{vendor-specific-prefix} keyframes \%{keyword-end}
+      </start>
       <include>
         <context sub-pattern="0" where="start" style-ref="vendor-specific"/>
         <context ref="embedded-lang-hook"/>
@@ -2028,7 +2162,9 @@
     </context>
 
     <context id="at-keyframes">
-      <start>@keyframes\%]</start>
+      <start extended="true">
+        @keyframes \%{keyword-end}
+      </start>
       <include>
         <context sub-pattern="0" where="start" style-ref="at-rule"/>
         <context ref="embedded-lang-hook"/>
@@ -2044,7 +2180,9 @@
     -->
 
     <context id="at-media">
-      <start>@media\%]</start>
+      <start extended="true">
+        @media \%{keyword-end}
+      </start>
       <include>
         <context sub-pattern="0" where="start" style-ref="at-rule"/>
         <context ref="embedded-lang-hook"/>
@@ -2065,7 +2203,9 @@
     </context>
 
     <context id="at-namespace">
-      <start>@namespace\%]</start>
+      <start extended="true">
+        @namespace \%{keyword-end}
+      </start>
       <include>
         <context sub-pattern="0" where="start" style-ref="at-rule"/>
         <context ref="embedded-lang-hook"/>
@@ -2086,7 +2226,9 @@
 
     <context id="pseudo-page-names" end-parent="true" style-ref="pseudo-class">
       <start extended="true">
-        \%[ (?: blank | first | left | right ) \%]
+        \%{keyword-start}
+        (?: blank | first | left | right )
+        \%{keyword-end}
       </start>
       <end>\%{def:always-match}</end>
     </context>
@@ -2104,6 +2246,7 @@
 
     <context id="page-margin-box-types" style-ref="at-rule-inner-selector">
       <prefix>@</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>bottom-center</keyword>
       <keyword>bottom-left-corner</keyword>
       <keyword>bottom-left</keyword>
@@ -2137,7 +2280,9 @@
     </context>
 
     <context id="at-page">
-      <start>@page\%]</start>
+      <start extended="true">
+        @page \%{keyword-end}
+      </start>
       <include>
         <context sub-pattern="0" where="start" style-ref="at-rule"/>
         <context ref="embedded-lang-hook"/>
@@ -2154,6 +2299,8 @@
     -->
 
     <context id="at-supports-operators" style-ref="at-rule-operator">
+      <prefix>\%{keyword-start}</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>and</keyword>
       <keyword>not</keyword>
       <keyword>or</keyword>
@@ -2202,7 +2349,9 @@
     </context>
 
     <context id="at-supports">
-      <start>@supports\%]</start>
+      <start extended="true">
+        @supports \%{keyword-end}
+      </start>
       <include>
         <context sub-pattern="0" where="start" style-ref="at-rule"/>
         <context ref="embedded-lang-hook"/>
@@ -2237,7 +2386,9 @@
     <!-- namespace qualifier -->
 
     <context id="namespace-qualifier">
-      <match>(\%[\%{identifier}|\*)?(\|)</match>
+      <match extended="true">
+        ( \%{keyword-start} \%{identifier} | \* )? ( \| )
+      </match>
       <include>
         <context sub-pattern="1" style-ref="namespace"/>
         <context sub-pattern="2" style-ref="namespace-qualifier"/>
@@ -2255,7 +2406,9 @@
     </context>
 
     <context id="type-selector" style-ref="type-selector">
-      <match>\%[\%{identifier}</match>
+      <match extended="true">
+        \%{keyword-start} \%{identifier}
+      </match>
     </context>
 
     <context id="universal-selector" style-ref="universal-selector">
@@ -2263,7 +2416,9 @@
     </context>
 
     <context id="attribute-selector-attribute-name" once-only="true" style-ref="attribute-selector-name">
-      <match>\%[\%{identifier}</match>
+      <match extended="true">
+        \%{keyword-start} \%{identifier}
+      </match>
     </context>
 
     <context id="attribute-selector-operator" once-only="true" style-ref="attribute-selector-operator">
@@ -2311,20 +2466,26 @@
     <!-- pseudo-elements -->
 
     <context id="vendor-specific-pseudo-element-name" end-parent="true" style-ref="vendor-specific">
-      <start>\%[\%{vendor-specific-identifier}</start>
+      <start extended="true">
+        \%{keyword-start} \%{vendor-specific-identifier}
+      </start>
       <end>\%{def:always-match}</end>
     </context>
 
     <context id="single-colon-pseudo-element-names" end-parent="true" style-ref="pseudo-element">
       <start extended="true">
-        \%[ (?: after | before | first-letter | first-line ) \%]
+        \%{keyword-start}
+        (?: after | before | first-letter | first-line )
+        \%{keyword-end}
       </start>
       <end>\%{def:always-match}</end>
     </context>
 
     <context id="pseudo-element-names" end-parent="true" style-ref="pseudo-element">
       <start extended="true">
-        \%[ (?: placeholder | selection ) \%]
+        \%{keyword-start}
+        (?: placeholder | selection )
+        \%{keyword-end}
       </start>
       <end>\%{def:always-match}</end>
     </context>
@@ -2351,13 +2512,15 @@
     <!-- pseudo-classes -->
 
     <context id="vendor-specific-pseudo-class-name" end-parent="true" style-ref="vendor-specific">
-      <start>\%[\%{vendor-specific-identifier}</start>
+      <start extended="true">
+        \%{keyword-start} \%{vendor-specific-identifier}
+      </start>
       <end>\%{def:always-match}</end>
     </context>
 
     <context id="pseudo-class-names" end-parent="true" style-ref="pseudo-class">
       <start extended="true">
-        \%[
+        \%{keyword-start}
         (?:
           active |
           checked |
@@ -2387,7 +2550,7 @@
           valid |
           visited
         )
-        \%]
+        \%{keyword-end}
       </start>
       <end>\%{def:always-match}</end>
     </context>
@@ -2399,7 +2562,9 @@
     </context>
 
     <context id="lang-pseudo-class" end-parent="true">
-      <start>\%[lang\(</start>
+      <start extended="true">
+        \%{keyword-start} lang \(
+      </start>
       <end>\)</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="pseudo-class"/>
@@ -2425,7 +2590,9 @@
     </context>
 
     <context id="not-pseudo-class" end-parent="true">
-      <start>\%[not\(</start>
+      <start extended="true">
+        \%{keyword-start} not \(
+      </start>
       <end>\)</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="pseudo-class"/>
@@ -2441,6 +2608,8 @@
     </context>
 
     <context id="nth-pseudo-class-keywords" once-only="true" style-ref="keyword">
+      <prefix>\%{keyword-start}</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>even</keyword>
       <keyword>odd</keyword>
     </context>
@@ -2497,7 +2666,9 @@
 
     <context id="nth-pseudo-class" end-parent="true">
       <start extended="true">
-        \%[ (nth-child | nth-of-type | nth-last-child | nth-last-of-type) \(
+        \%{keyword-start}
+        (?: nth-child | nth-of-type | nth-last-child | nth-last-of-type )
+        \(
       </start>
       <end>\)</end>
       <include>

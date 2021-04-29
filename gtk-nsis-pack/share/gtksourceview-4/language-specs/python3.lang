@@ -51,10 +51,10 @@
 
   <definitions>
     <!-- https://docs.python.org/3/reference/lexical_analysis.html#identifiers
-         Underscore ('LOW LINE' U+005F) is a member of \p{Pc}, and so included in def:unicode-id-continue
+         Underscore (U+005F LOW LINE) is a member of \p{Pc}, and so included in def:unicode-xid-continue
     -->
     <define-regex id="identifier" extended="true">
-      (?&gt; (?: _ | \%{def:unicode-id-start} ) \%{def:unicode-id-continue}* )
+      (?&gt; (?: _ | \%{def:unicode-xid-start} ) \%{def:unicode-xid-continue}* )
     </define-regex>
     <define-regex id="number">[1-9][0-9]*</define-regex>
 

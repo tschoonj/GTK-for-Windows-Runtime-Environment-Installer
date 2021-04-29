@@ -4,7 +4,7 @@
  This file is part of GtkSourceView
 
  Author: Jeffery To <jeffery.to@gmail.com>
- Copyright (C) 2018-2019 Jeffery To <jeffery.to@gmail.com>
+ Copyright (C) 2018-2020 Jeffery To <jeffery.to@gmail.com>
 
  GtkSourceView is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
@@ -58,7 +58,8 @@
 
   <default-regex-options case-sensitive="false"/>
 
-  <keyword-char-class>[a-z0-9_\x{80}-\x{10ffff}\\-]</keyword-char-class>
+  <!-- from css:keyword-code-point -->
+  <keyword-char-class>[^\x{0}-\x{2C}\x{2E}\x{2F}\x{3A}-\x{40}\x{5B}\x{5D}\x{5E}\x{60}\x{7B}-\x{7F}]</keyword-char-class>
 
   <definitions>
 
@@ -133,12 +134,10 @@
          a division operation -->
     <context id="arithmetic-operator" style-ref="operator-symbol">
       <match extended="true">
-        (
-          [+*%] |
-          (?&lt;! \%{css:single-identifier-char} )
-          -
-          (?! \%{css:single-identifier-char} )
-        )
+        [+*%] |
+        (?&lt;! \%{css:keyword-code-point} )
+        -
+        (?! \%{css:keyword-code-point} )
       </match>
     </context>
 
@@ -147,10 +146,12 @@
     </context>
 
     <context id="comparison-operator" style-ref="operator-symbol">
-      <match>(&lt;=?|&gt;=?|[=!]=)</match>
+      <match>&lt;=?|&gt;=?|[=!]=</match>
     </context>
 
     <context id="logical-operator" style-ref="logical-operator">
+      <prefix>\%{css:keyword-start}</prefix>
+      <suffix>\%{css:keyword-end}</suffix>
       <keyword>and</keyword>
       <keyword>not</keyword>
       <keyword>or</keyword>
@@ -160,11 +161,15 @@
     <!-- Sass data types -->
 
     <context id="boolean" style-ref="boolean">
+      <prefix>\%{css:keyword-start}</prefix>
+      <suffix>\%{css:keyword-end}</suffix>
       <keyword>false</keyword>
       <keyword>true</keyword>
     </context>
 
     <context id="null" style-ref="null">
+      <prefix>\%{css:keyword-start}</prefix>
+      <suffix>\%{css:keyword-end}</suffix>
       <keyword>null</keyword>
     </context>
 
@@ -246,7 +251,9 @@
     </context>
 
     <context id="scss-url">
-      <start>url\(</start>
+      <start extended="true">
+        \%{css:keyword-start} url \(
+      </start>
       <end>\)</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:function"/>
@@ -344,11 +351,15 @@
     <!-- Sass modifiers -->
 
     <context id="variable-assignment-modifiers" style-ref="css:modifier">
+      <prefix>\%{css:keyword-start}</prefix>
+      <suffix>\%{css:keyword-end}</suffix>
       <keyword>default</keyword>
       <keyword>global</keyword>
     </context>
 
     <context id="at-extend-modifiers" style-ref="css:modifier">
+      <prefix>\%{css:keyword-start}</prefix>
+      <suffix>\%{css:keyword-end}</suffix>
       <keyword>optional</keyword>
     </context>
 
@@ -522,13 +533,13 @@
 
         :
         (?:
-          (?!                                 # not the start of a
-            \%{css:single-identifier-char} |  #   pseudo-class
-            [:\\] |                           #   pseudo-element, escape
-            \#{ |                             #   interpolation
-            /\*                               #   comment
-          ) |                                 # or
-          (?=                                 # ends like a normal declaration
+          (?!                              # not the start of a
+            \%{css:keyword-code-point} |   #   pseudo-class
+            [:\\] |                        #   pseudo-element, escape
+            \#{ |                          #   interpolation
+            /\*                            #   comment
+          ) |                              # or
+          (?=                              # ends like a normal declaration
             (?&gt;
               (?:
                 (?&gt;
@@ -549,7 +560,7 @@
                 (?&amp;single_quote_string)
               )*
             )
-            \%{css:declaration-value-end}     #   with a semicolon or at the end of a block
+            \%{css:declaration-value-end}  #   with a semicolon or at the end of a block
           )
         )
       </start>
@@ -614,7 +625,9 @@
     -->
 
     <context id="at-extend">
-      <start>@extend\%]</start>
+      <start extended="true">
+        @extend \%{css:keyword-end}
+      </start>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:at-rule"/>
         <context ref="css:embedded-lang-hook"/>
@@ -630,11 +643,15 @@
     -->
 
     <context id="at-at-root-query-type" style-ref="css:property-name">
+      <prefix>\%{css:keyword-start}</prefix>
+      <suffix>\%{css:keyword-end}</suffix>
       <keyword>without</keyword>
       <keyword>with</keyword>
     </context>
 
     <context id="at-at-root-query-directive" style-ref="css:keyword">
+      <prefix>\%{css:keyword-start}</prefix>
+      <suffix>\%{css:keyword-end}</suffix>
       <keyword>all</keyword>
       <keyword>media</keyword>
       <keyword>rule</keyword>
@@ -670,7 +687,9 @@
     </context>
 
     <context id="at-at-root">
-      <start>@at-root\%]</start>
+      <start extended="true">
+        @at-root \%{css:keyword-end}
+      </start>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:at-rule"/>
         <context ref="css:embedded-lang-hook"/>
@@ -688,7 +707,9 @@
     -->
 
     <context id="at-debug-warn-error">
-      <start>@(debug|warn|error)\%]</start>
+      <start extended="true">
+        @ (?: debug | warn | error ) \%{css:keyword-end}
+      </start>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:at-rule"/>
         <context ref="css:embedded-lang-hook"/>
@@ -705,7 +726,9 @@
     -->
 
     <context id="at-if-else-if">
-      <start>@(if|else\s+if)\%]</start>
+      <start extended="true">
+        @ (?: if | else \s+ if ) \%{css:keyword-end}
+      </start>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:at-rule"/>
         <context ref="css:embedded-lang-hook"/>
@@ -716,7 +739,9 @@
     </context>
 
     <context id="at-else">
-      <start>@else\%]</start>
+      <start extended="true">
+        @else \%{css:keyword-end}
+      </start>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:at-rule"/>
         <context ref="css:embedded-lang-hook"/>
@@ -730,13 +755,17 @@
     -->
 
     <context id="at-for-keyword" style-ref="css:at-rule-operator">
+      <prefix>\%{css:keyword-start}</prefix>
+      <suffix>\%{css:keyword-end}</suffix>
       <keyword>from</keyword>
       <keyword>through</keyword>
       <keyword>to</keyword>
     </context>
 
     <context id="at-for">
-      <start>@for\%]</start>
+      <start extended="true">
+        @for \%{css:keyword-end}
+      </start>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:at-rule"/>
         <context ref="css:embedded-lang-hook"/>
@@ -753,11 +782,15 @@
     -->
 
     <context id="at-each-keyword" style-ref="css:at-rule-operator">
+      <prefix>\%{css:keyword-start}</prefix>
+      <suffix>\%{css:keyword-end}</suffix>
       <keyword>in</keyword>
     </context>
 
     <context id="at-each">
-      <start>@each\%]</start>
+      <start extended="true">
+        @each \%{css:keyword-end}
+      </start>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:at-rule"/>
         <context ref="css:embedded-lang-hook"/>
@@ -775,7 +808,9 @@
     -->
 
     <context id="at-while">
-      <start>@while\%]</start>
+      <start extended="true">
+        @while \%{css:keyword-end}
+      </start>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:at-rule"/>
         <context ref="css:embedded-lang-hook"/>
@@ -802,7 +837,9 @@
     </context>
 
     <context id="at-mixin">
-      <start>@mixin\%]</start>
+      <start extended="true">
+        @mixin \%{css:keyword-end}
+      </start>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:at-rule"/>
         <context ref="css:embedded-lang-hook"/>
@@ -818,7 +855,9 @@
     -->
 
     <context id="at-include">
-      <start>@include\%]</start>
+      <start extended="true">
+        @include \%{css:keyword-end}
+      </start>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:at-rule"/>
         <context ref="css:embedded-lang-hook"/>
@@ -835,7 +874,9 @@
     -->
 
     <context id="at-content">
-      <start>@content\%]</start>
+      <start extended="true">
+        @content \%{css:keyword-end}
+      </start>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:at-rule"/>
         <context ref="css:embedded-lang-hook"/>
@@ -861,7 +902,9 @@
     </context>
 
     <context id="at-function">
-      <start>@function\%]</start>
+      <start extended="true">
+        @function \%{css:keyword-end}
+      </start>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:at-rule"/>
         <context ref="css:embedded-lang-hook"/>
@@ -879,7 +922,9 @@
     -->
 
     <context id="at-return">
-      <start>@return\%]</start>
+      <start extended="true">
+        @return \%{css:keyword-end}
+      </start>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:at-rule"/>
         <context ref="css:embedded-lang-hook"/>
@@ -954,8 +999,8 @@
     <context id="parent-combinator">
       <match>(&amp;)(\%{css:identifier-chars}?)</match>
       <include>
-        <context sub-pattern="1"  style-ref="css:combinator"/>
-        <context sub-pattern="2"  style-ref="selector-fragment"/>
+        <context sub-pattern="1" style-ref="css:combinator"/>
+        <context sub-pattern="2" style-ref="selector-fragment"/>
       </include>
     </context>
 

@@ -8,7 +8,7 @@
  Copyright (C) 2005 Stef Walter (formerly Nate Nielsen) <stef@memberwebs.com>
  Copyright (C) 2005-2007 Marco Barisione <barisione@gmail.com>
  Copyright (C) 2005-2007 Emanuele Aina
- Copyright (C) 2019 Jeffery To <jeffery.to@gmail.com>
+ Copyright (C) 2019-2020 Jeffery To <jeffery.to@gmail.com>
 
  GtkSourceView is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
@@ -26,7 +26,7 @@
 -->
 <language id="js-fn" name="JavaScript Functions and Classes" version="2.0" _section="Script" hidden="true">
   <!-- from js:identifier-char -->
-  <keyword-char-class>[\p{L}\p{Nl}\x{1885}-\x{1886}\x{2118}\x{212E}\x{309B}-\x{309C}\p{Mn}\p{Mc}\p{Nd}\p{Pc}\x{00B7}\x{0387}\x{1369}-\x{1371}\x{19DA}$\x{200C}\x{200D}]</keyword-char-class>
+  <keyword-char-class>(?!\x{2E2F})[\p{L}\p{Nl}\x{1885}-\x{1886}\x{2118}\x{212E}\x{309B}-\x{309C}\p{Mn}\p{Mc}\p{Nd}\p{Pc}\x{00B7}\x{0387}\x{1369}-\x{1371}\x{19DA}$\x{200C}\x{200D}]</keyword-char-class>
 
   <definitions>
 
@@ -43,8 +43,8 @@
 
     <!-- ## Function expression keyword -->
 
-    <context id="_function-expression-async-keyword" style-ref="js:keyword">
-      <keyword>async</keyword>
+    <context id="_function-expression-async-keyword" style-ref="js:keyword" once-only="true">
+      <match>\%{js:async-keyword}</match>
     </context> <!-- /_function-expression-async-keyword -->
 
     <context id="_ordered-function-expression-async-keyword" once-only="true">
@@ -55,8 +55,8 @@
       </include>
     </context> <!-- /_ordered-function-expression-async-keyword -->
 
-    <context id="_function-expression-function-keyword" style-ref="js:keyword">
-      <keyword>function</keyword>
+    <context id="_function-expression-function-keyword" style-ref="js:keyword" once-only="true">
+      <match>\%{js:function-keyword}</match>
     </context> <!-- /_function-expression-function-keyword -->
 
     <context id="_ordered-function-expression-function-keyword" once-only="true">
@@ -72,7 +72,7 @@
     <context id="_function-parameters-content">
       <include>
         <context ref="js:ordered-rest-syntax"/>
-        <context ref="js:ordered-assignment-target"/>
+        <context ref="js:ordered-binding"/>
         <context ref="js:ordered-default-value-assignment"/>
       </include>
     </context> <!-- /_function-parameters-content -->
@@ -227,52 +227,24 @@
          }
     -->
 
-    <context id="_method-definition-modifier" once-only="true">
+    <context id="_property-accessor-keyword" style-ref="js:keyword" once-only="true">
+      <match extended="true">
+        \%{js:get-keyword} | \%{js:set-keyword}
+      </match>
+    </context> <!-- /_property-accessor-keyword -->
+
+    <context id="ordered-property-accessor-keyword" once-only="true">
       <start>\%{js:before-next-token}</start>
       <end>\%{js:before-next-token}</end>
       <include>
-        <context ref="js:embedded-lang-hooks"/>
-        <context ref="js:comments"/>
-
-        <context id="_method-definition-modifier-content">
-          <include>
-
-            <context id="_choice-method-definition-modifier-keyword" style-ref="js:keyword" end-parent="true">
-              <keyword>get</keyword>
-              <keyword>set</keyword>
-            </context> <!-- /_choice-method-definition-modifier-keyword -->
-
-            <!-- ES2017, cannot be followed by line terminator -->
-            <context id="_choice-async-method-definition-modifier-keyword" style-ref="js:keyword" end-parent="true">
-              <match extended="true">
-                \%[ async \%]
-                (?=
-                  \%{js:optional-whitespace-or-comments}
-                  (?:
-                    \%{js:identifier-start} |
-                    \%{js:generator-modifier}
-                  )
-                )
-              </match>
-            </context> <!-- /_choice-async-method-definition-modifier-keyword -->
-
-          </include>
-        </context> <!-- /_method-definition-modifier-content -->
-
+        <context ref="_property-accessor-keyword"/>
       </include>
-    </context> <!-- /_method-definition-modifier -->
+    </context> <!-- /ordered-property-accessor-keyword -->
 
-    <context id="_ordered-method-definition-modifier" once-only="true">
-      <start>\%{js:before-next-token}</start>
-      <end>\%{js:before-next-token}</end>
-      <include>
-        <context ref="_method-definition-modifier"/>
-      </include>
-    </context> <!-- /_ordered-method-definition-modifier -->
-
-    <!-- <MethodDefinition> -->
-    <context id="_method-definition" once-only="true">
-      <start>\%{js:before-next-token}</start>
+    <!-- <MethodDefinition> (part of) -->
+    <!-- note that this does not include js-lit:ordered-property-name -->
+    <context id="choice-method-definition" style-ref="js:function-expression" end-parent="true">
+      <start>(?=\()</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context ref="js:embedded-lang-hooks"/>
@@ -280,24 +252,33 @@
 
         <context id="_method-definition-content">
           <include>
-            <context ref="_ordered-method-definition-modifier"/>
-            <context ref="js:ordered-generator-modifier"/>
-            <context ref="js-lit:ordered-property-name"/>
-            <context ref="_ordered-function-parameters-list" style-ref="js:function-expression"/>
-            <context ref="_last-function-body" style-ref="js:function-expression"/>
+            <context ref="_ordered-function-parameters-list"/>
+            <context ref="_last-function-body"/>
           </include>
         </context> <!-- /_method-definition-content -->
 
       </include>
-    </context> <!-- /_method-definition -->
+    </context> <!-- /choice-method-definition -->
 
-    <context id="ordered-method-definition" once-only="true">
-      <start>\%{js:before-next-token}</start>
+    <!-- <MethodDefinition> (part of) -->
+    <context id="choice-method-keyword-method-definition" style-ref="js:function-expression" end-parent="true">
+      <start>\%{js:method-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
-        <context ref="_method-definition"/>
+        <context sub-pattern="0" where="start" style-ref="js:keyword"/>
+        <context ref="js:embedded-lang-hooks"/>
+        <context ref="js:comments"/>
+
+        <context id="_method-keyword-method-definition-content">
+          <include>
+            <context ref="js:ordered-generator-modifier"/>
+            <context ref="js-lit:ordered-property-name"/>
+            <context ref="choice-method-definition"/>
+          </include>
+        </context> <!-- /_method-keyword-method-definition-content -->
+
       </include>
-    </context> <!-- /ordered-method-definition -->
+    </context> <!-- /choice-method-keyword-method-definition -->
 
 
     <!-- # Class expression
@@ -322,7 +303,7 @@
           <include>
 
             <context id="_choice-class-optional-name-ignore-extends" end-parent="true">
-              <start>(?=\%[extends\%])</start>
+              <start>(?=\%{js:extends-keyword})</start>
               <end>\%{def:always-match}</end>
             </context> <!-- /_choice-class-optional-name-ignore-extends -->
 
@@ -344,7 +325,7 @@
     <!-- ## Class extends clause -->
 
     <context id="_class-extends-clause" once-only="true">
-      <start>\%[extends\%]</start>
+      <start>\%{js:extends-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -370,24 +351,8 @@
 
     <!-- ## Class body -->
 
-    <context id="_class-body-member-modifier" once-only="true">
-      <start>\%{js:before-next-token}</start>
-      <end>\%{js:before-next-token}</end>
-      <include>
-        <context ref="js:embedded-lang-hooks"/>
-        <context ref="js:comments"/>
-
-        <context id="_class-body-member-modifier-content">
-          <include>
-
-            <context id="_choice-class-body-member-modifier-keyword" style-ref="js:keyword" end-parent="true">
-              <keyword>static</keyword>
-            </context> <!-- /_choice-class-body-member-modifier-keyword -->
-
-          </include>
-        </context> <!-- /_class-body-member-modifier-content -->
-
-      </include>
+    <context id="_class-body-member-modifier" style-ref="js:keyword" once-only="true">
+      <match>\%{js:static-keyword}</match>
     </context> <!-- /_class-body-member-modifier -->
 
     <context id="_ordered-class-body-member-modifier" once-only="true">
@@ -398,6 +363,45 @@
       </include>
     </context> <!-- /_ordered-class-body-member-modifier -->
 
+    <context id="_choice-class-body-keyword-named-method-member" style-ref="js:function-expression" end-parent="true">
+      <start extended="true">
+        (?: \%{js:get-keyword} | \%{js:set-keyword} | \%{js:static-keyword} )
+        (?= \%{js:optional-whitespace-or-comments} \( )
+      </start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="js:identifier"/>
+        <context ref="js:embedded-lang-hooks"/>
+        <context ref="js:comments"/>
+
+        <context id="_class-body-keyword-named-method-member-content">
+          <include>
+            <context ref="choice-method-definition"/>
+          </include>
+        </context> <!-- /_class-body-keyword-named-method-member-content -->
+
+      </include>
+    </context> <!-- /_choice-class-body-keyword-named-method-member -->
+
+    <context id="_choice-class-body-constructor-member" style-ref="js:function-expression" end-parent="true">
+      <start extended="true">
+        \%{js:keyword-start} constructor \%{js:keyword-end}
+      </start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="js:built-in-method"/>
+        <context ref="js:embedded-lang-hooks"/>
+        <context ref="js:comments"/>
+
+        <context id="_class-body-constructor-member-content">
+          <include>
+            <context ref="choice-method-definition"/>
+          </include>
+        </context> <!-- /_class-body-constructor-member-content -->
+
+      </include>
+    </context> <!-- /_choice-class-body-constructor-member -->
+
     <context id="_class-body-members">
       <start>\%{js:before-next-token}</start>
       <end>\%{js:before-next-token}</end>
@@ -407,8 +411,20 @@
 
         <context id="_class-body-member-content">
           <include>
+            <!-- try to match before and after modifier -->
+            <context ref="_choice-class-body-keyword-named-method-member"/>
+
+            <!-- should not be combined with modifier, but cannot prevent it -->
+            <context ref="_choice-class-body-constructor-member"/>
+
             <context ref="_ordered-class-body-member-modifier"/>
-            <context ref="ordered-method-definition"/>
+
+            <context ref="choice-method-keyword-method-definition"/>
+
+            <context ref="ordered-property-accessor-keyword"/>
+            <context ref="js-lit:ordered-property-name"/>
+
+            <context ref="choice-method-definition"/>
           </include>
         </context> <!-- /_class-body-member-content -->
 
@@ -443,7 +459,7 @@
 
     <!-- <ClassExpression> / <ClassDeclaration> -->
     <context id="choice-class-expression" style-ref="js:class-expression" end-parent="true">
-      <start>\%{js:class-expression-keyword}</start>
+      <start>\%{js:class-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -463,7 +479,7 @@
 
     <!-- <ClassExpression> / <ClassDeclaration> -->
     <context id="choice-class-expression-required-name" style-ref="js:class-expression" end-parent="true">
-      <start>\%{js:class-expression-keyword}</start>
+      <start>\%{js:class-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>

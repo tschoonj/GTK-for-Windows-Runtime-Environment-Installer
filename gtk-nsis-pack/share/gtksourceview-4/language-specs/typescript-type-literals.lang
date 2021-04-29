@@ -4,7 +4,7 @@
  This file is part of GtkSourceView
 
  Author: Jeffery To <jeffery.to@gmail.com>
- Copyright (C) 2019 Jeffery To <jeffery.to@gmail.com>
+ Copyright (C) 2019-2020 Jeffery To <jeffery.to@gmail.com>
 
  GtkSourceView is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
@@ -22,7 +22,7 @@
 -->
 <language id="typescript-type-lit" name="TypeScript Type Literals" version="2.0" _section="Script" hidden="true">
   <!-- from js:identifier-char -->
-  <keyword-char-class>[\p{L}\p{Nl}\x{1885}-\x{1886}\x{2118}\x{212E}\x{309B}-\x{309C}\p{Mn}\p{Mc}\p{Nd}\p{Pc}\x{00B7}\x{0387}\x{1369}-\x{1371}\x{19DA}$\x{200C}\x{200D}]</keyword-char-class>
+  <keyword-char-class>(?!\x{2E2F})[\p{L}\p{Nl}\x{1885}-\x{1886}\x{2118}\x{212E}\x{309B}-\x{309C}\p{Mn}\p{Mc}\p{Nd}\p{Pc}\x{00B7}\x{0387}\x{1369}-\x{1371}\x{19DA}$\x{200C}\x{200D}]</keyword-char-class>
 
   <definitions>
 
@@ -38,24 +38,18 @@
     -->
 
     <define-regex id="_basic-types" extended="true">
-      (?:
-        \%[
-        (?:
-          any |
-          bigint |
-          boolean |
-          never |
-          null |
-          number |
-          object |
-          string |
-          symbol |
-          undefined |
-          unknown |
-          void
-        )
-        \%]
-      )
+      \%{typescript:any-keyword} |
+      \%{typescript:bigint-keyword} |
+      \%{typescript:boolean-keyword} |
+      \%{typescript:never-keyword} |
+      \%{js:null-keyword} |
+      \%{typescript:number-keyword} |
+      \%{typescript:object-keyword} |
+      \%{typescript:string-keyword} |
+      \%{typescript:symbol-keyword} |
+      \%{typescript:undefined-keyword} |
+      \%{typescript:unknown-keyword} |
+      \%{js:void-keyword}
     </define-regex> <!-- /_basic-types -->
 
     <!-- <PredefinedType> -->
@@ -71,14 +65,14 @@
          false
     -->
 
-    <define-regex id="_boolean-types" extended="true">
-      (?: \%[ (?: false | true ) \%] )
-    </define-regex> <!-- /_boolean-literal-types -->
-
     <!-- <PredefinedType> -->
     <context id="choice-boolean-type" style-ref="typescript:boolean-type" end-parent="true">
-      <start>(?=\%{_boolean-types})</start>
-      <end>\%{_boolean-types}</end>
+      <start extended="true">
+        (?= \%{js:false-keyword} | \%{js:true-keyword} )
+      </start>
+      <end extended="true">
+        \%{js:false-keyword} | \%{js:true-keyword}
+      </end>
     </context> <!-- /choice-boolean-type -->
 
 
@@ -109,8 +103,8 @@
 
     <!-- <ThisType> -->
     <context id="choice-this-type" style-ref="typescript:basic-type" end-parent="true">
-      <start>(?=\%[this\%])</start>
-      <end>this</end>
+      <start>(?=\%{js:this-keyword})</start>
+      <end>\%{js:this-keyword}</end>
     </context> <!-- /choice-this-type -->
 
 
@@ -203,7 +197,8 @@
           <include>
 
             <context id="_choice-object-type-literal-modifier-keyword" style-ref="typescript:type-keyword" end-parent="true">
-              <keyword>readonly</keyword>
+              <start>(?=\%{typescript:readonly-keyword})</start>
+              <end>\%{typescript:readonly-keyword}</end>
             </context> <!-- /_choice-object-type-literal-modifier-keyword -->
 
           </include>
@@ -237,7 +232,7 @@
             <context ref="typescript:choice-type-annotation"/>
 
             <context id="_choice-mapped-type" end-parent="true">
-              <start>\%[in\%]</start>
+              <start>\%{js:in-keyword}</start>
               <end>\%{js:before-next-token}</end>
               <include>
                 <context sub-pattern="0" where="start" style-ref="typescript:type-keyword"/>

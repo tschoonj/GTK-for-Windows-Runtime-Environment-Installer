@@ -52,19 +52,19 @@
       <summary>Switch to workspace 12</summary>
     </key>
     <key name="switch-to-workspace-left" type="as">
-      <default><![CDATA[['<Control><Alt>Left']]]></default>
+      <default><![CDATA[['<Super>Page_Up','<Super><Alt>Left','<Control><Alt>Left']]]></default>
       <summary>Switch to workspace left</summary>
     </key>
     <key name="switch-to-workspace-right" type="as">
-      <default><![CDATA[['<Control><Alt>Right']]]></default>
+      <default><![CDATA[['<Super>Page_Down','<Super><Alt>Right','<Control><Alt>Right']]]></default>
       <summary>Switch to workspace right</summary>
     </key>
     <key name="switch-to-workspace-up" type="as">
-      <default><![CDATA[['<Super>Page_Up','<Control><Alt>Up']]]></default>
+      <default><![CDATA[['<Control><Alt>Up']]]></default>
       <summary>Switch to workspace above</summary>
     </key>
     <key name="switch-to-workspace-down" type="as">
-      <default><![CDATA[['<Super>Page_Down','<Control><Alt>Down']]]></default>
+      <default><![CDATA[['<Control><Alt>Down']]]></default>
       <summary>Switch to workspace below</summary>
     </key>
     <key name="switch-to-workspace-last" type="as">
@@ -244,19 +244,19 @@
       <summary>Move window to last workspace</summary>
     </key>
     <key name="move-to-workspace-left" type="as">
-      <default><![CDATA[['<Control><Shift><Alt>Left']]]></default>
+      <default><![CDATA[['<Super><Shift>Page_Up','<Super><Shift><Alt>Left','<Control><Shift><Alt>Left']]]></default>
       <summary>Move window one workspace to the left</summary>
     </key>
     <key name="move-to-workspace-right" type="as">
-      <default><![CDATA[['<Control><Shift><Alt>Right']]]></default>
+      <default><![CDATA[['<Super><Shift>Page_Down','<Super><Shift><Alt>Right','<Control><Shift><Alt>Right']]]></default>
       <summary>Move window one workspace to the right</summary>
     </key>
     <key name="move-to-workspace-up" type="as">
-      <default><![CDATA[['<Super><Shift>Page_Up','<Control><Shift><Alt>Up']]]></default>
+      <default><![CDATA[['<Control><Shift><Alt>Up']]]></default>
       <summary>Move window one workspace up</summary>
     </key>
     <key name="move-to-workspace-down" type="as">
-      <default><![CDATA[['<Super><Shift>Page_Down','<Control><Shift><Alt>Down']]]></default>
+      <default><![CDATA[['<Control><Shift><Alt>Down']]]></default>
       <summary>Move window one workspace down</summary>
     </key>
     <key name="move-to-monitor-left" type="as">

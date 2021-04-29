@@ -8,7 +8,7 @@
  Copyright (C) 2005 Stef Walter (formerly Nate Nielsen) <stef@memberwebs.com>
  Copyright (C) 2005-2007 Marco Barisione <barisione@gmail.com>
  Copyright (C) 2005-2007 Emanuele Aina
- Copyright (C) 2019 Jeffery To <jeffery.to@gmail.com>
+ Copyright (C) 2019-2020 Jeffery To <jeffery.to@gmail.com>
 
  GtkSourceView is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
@@ -27,7 +27,7 @@
 <language id="js" name="JavaScript" version="2.0" _section="Script">
   <metadata>
     <property name="mimetypes">application/javascript;application/x-javascript;text/x-javascript;text/javascript;text/x-js</property>
-    <property name="globs">*.js</property>
+    <property name="globs">*.js;*.mjs</property>
     <property name="line-comment-start">//</property>
     <property name="block-comment-start">/*</property>
     <property name="block-comment-end">*/</property>
@@ -75,8 +75,8 @@
     <style id="identifier"                    name="Identifier"/>
     <style id="rest-syntax"                   name="Rest syntax"/>
     <style id="spread-syntax"                 name="Spread syntax"/>
-    <style id="array-destructuring"           name="Array destructuring"/>
-    <style id="object-destructuring"          name="Object destructuring"/>
+    <style id="array-binding-pattern"         name="Array binding pattern"/>
+    <style id="object-binding-pattern"        name="Object binding pattern"/>
 
     <!-- Literals -->
     <style id="array-literal"                 name="Array literal"/>
@@ -120,7 +120,7 @@
   </styles>
 
   <!-- from identifier-char -->
-  <keyword-char-class>[\p{L}\p{Nl}\x{1885}-\x{1886}\x{2118}\x{212E}\x{309B}-\x{309C}\p{Mn}\p{Mc}\p{Nd}\p{Pc}\x{00B7}\x{0387}\x{1369}-\x{1371}\x{19DA}$\x{200C}\x{200D}]</keyword-char-class>
+  <keyword-char-class>(?!\x{2E2F})[\p{L}\p{Nl}\x{1885}-\x{1886}\x{2118}\x{212E}\x{309B}-\x{309C}\p{Mn}\p{Mc}\p{Nd}\p{Pc}\x{00B7}\x{0387}\x{1369}-\x{1371}\x{19DA}$\x{200C}\x{200D}]</keyword-char-class>
 
   <definitions>
 
@@ -134,7 +134,7 @@
          Supported level: ES2020
 
          Supported ES2021 proposals:
-         * (none yet)
+         * String.prototype.replaceAll
 
          Features from Annex B of the spec are not highlighted to
          discourage their use, except:
@@ -191,12 +191,12 @@
 
     <!-- <UnicodeEscapeSequence> -->
     <define-regex id="unicode-escape" extended="true">
-      (?: \\u (?: [0-9a-fA-F]{4} | \{ [0-9a-fA-F]{1,} \} ) )
+      \\u (?: [0-9a-fA-F]{4} | { [0-9a-fA-F]{1,} } )
     </define-regex> <!-- /unicode-escape -->
 
     <!-- <IdentifierStart> -->
     <define-regex id="identifier-start" extended="true">
-      (?: \%{def:unicode-id-start} | [$_] | \%{unicode-escape} )
+      \%{def:unicode-id-start} | [$_] | \%{unicode-escape}
     </define-regex> <!-- /identifier-start -->
 
     <!-- for lookbehinds
@@ -205,18 +205,30 @@
          U+200D Zero-width joiner <ZWJ>
     -->
     <define-regex id="identifier-char" extended="true">
-      (?: \%{def:unicode-id-continue} | [$\x{200C}\x{200D}] )
+      \%{def:unicode-id-continue} | [$\x{200C}\x{200D}]
     </define-regex> <!-- /identifier-char -->
 
     <!-- <IdentifierPart> -->
     <define-regex id="identifier-part" extended="true">
-      (?: \%{identifier-char} | \%{unicode-escape} )
+      \%{identifier-char} | \%{unicode-escape}
     </define-regex> <!-- /identifier-part -->
 
     <!-- <IdentifierName> -->
     <define-regex id="identifier" extended="true">
-      (?: \%{identifier-start} \%{identifier-part}* )
+      \%{identifier-start} \%{identifier-part}*
     </define-regex> <!-- /identifier-->
+
+    <define-regex id="identifier-container-start" extended="true">
+      (?&lt;! \%{identifier-char} ) (?= \%{identifier-start} )
+    </define-regex> <!-- /identifier-container-start -->
+
+    <define-regex id="keyword-start" extended="true">
+      (?&lt;! \%{identifier-char} )
+    </define-regex> <!-- /keyword-start -->
+
+    <define-regex id="keyword-end" extended="true">
+      (?! \%{identifier-char} )
+    </define-regex> <!-- /keyword-end -->
 
     <!-- <WhiteSpace> -->
     <!-- does not include characters from <LineTerminator>,
@@ -253,11 +265,11 @@
     </define-regex> <!-- /before-next-token -->
 
     <define-regex id="statement-end" extended="true">
-      (?: ; | \%{before-next-token} )
+      ; | \%{before-next-token}
     </define-regex> <!-- /statement-end -->
 
     <define-regex id="statement-end-or-end-of-line" extended="true">
-      (?: \%{statement-end} | $ )
+      \%{statement-end} | $
     </define-regex> <!-- /statement-end-or-end-of-line -->
 
     <!-- wherever this is used, the highlighting will be more brittle,
@@ -268,6 +280,10 @@
 
     <define-regex id="generator-modifier">\*</define-regex>
 
+    <define-regex id="rest-syntax">\.\.\.</define-regex>
+
+    <define-regex id="spread-syntax">\.\.\.</define-regex>
+
     <!-- "unknown id" errors can occur when using a regex defined in one
           component file in another component file
           https://gitlab.gnome.org/GNOME/gtksourceview/issues/67
@@ -275,39 +291,235 @@
           so we move the definitions of these regexes here
     -->
 
-    <define-regex id="import-function-keyword-suffix" extended="true">
-      (?:
-        \%{optional-whitespace-or-comments}
-        \(
-      )
-    </define-regex> <!-- /import-function-keyword-suffix -->
+    <define-regex id="number-start" extended="true">
+      (?&lt;! \%{identifier-char} | \. )
+    </define-regex> <!-- /number-start -->
 
-    <define-regex id="new-target-object-keyword-suffix" extended="true">
-      (?:
-        \%{optional-whitespace-or-comments}
-        \.
-        \%{optional-whitespace-or-comments}
-        target \%]
-      )
-    </define-regex> <!-- /new-target-object-keyword-suffix -->
+    <define-regex id="number-end" extended="true">
+      (?! \%{identifier-part} | \. )
+    </define-regex> <!-- /number-end -->
 
-    <!-- async function (ES2017)
+    <!-- these regexes are keywords that appear as literals in the
+         grammar -->
+
+    <define-regex id="as-keyword" extended="true">
+      \%{keyword-start} as \%{keyword-end}
+    </define-regex> <!-- /as-keyword -->
+
+    <define-regex id="async-keyword" extended="true">
+      \%{keyword-start} async \%{keyword-end}
+    </define-regex> <!-- /async-keyword -->
+
+    <define-regex id="await-keyword" extended="true">
+      \%{keyword-start} await \%{keyword-end}
+    </define-regex> <!-- /await-keyword -->
+
+    <define-regex id="break-keyword" extended="true">
+      \%{keyword-start} break \%{keyword-end}
+    </define-regex> <!-- /break-keyword -->
+
+    <define-regex id="case-keyword" extended="true">
+      \%{keyword-start} case \%{keyword-end}
+    </define-regex> <!-- /case-keyword -->
+
+    <define-regex id="catch-keyword" extended="true">
+      \%{keyword-start} catch \%{keyword-end}
+    </define-regex> <!-- /catch-keyword -->
+
+    <define-regex id="class-keyword" extended="true">
+      \%{keyword-start} class \%{keyword-end}
+    </define-regex> <!-- /class-keyword -->
+
+    <define-regex id="const-keyword" extended="true">
+      \%{keyword-start} const \%{keyword-end}
+    </define-regex> <!-- /const-keyword -->
+
+    <define-regex id="continue-keyword" extended="true">
+      \%{keyword-start} continue \%{keyword-end}
+    </define-regex> <!-- /continue-keyword -->
+
+    <define-regex id="debugger-keyword" extended="true">
+      \%{keyword-start} debugger \%{keyword-end}
+    </define-regex> <!-- /debugger-keyword -->
+
+    <define-regex id="default-keyword" extended="true">
+      \%{keyword-start} default \%{keyword-end}
+    </define-regex> <!-- /default-keyword -->
+
+    <define-regex id="delete-keyword" extended="true">
+      \%{keyword-start} delete \%{keyword-end}
+    </define-regex> <!-- /delete-keyword -->
+
+    <define-regex id="do-keyword" extended="true">
+      \%{keyword-start} do \%{keyword-end}
+    </define-regex> <!-- /do-keyword -->
+
+    <define-regex id="else-keyword" extended="true">
+      \%{keyword-start} else \%{keyword-end}
+    </define-regex> <!-- /else-keyword -->
+
+    <define-regex id="export-keyword" extended="true">
+      \%{keyword-start} export \%{keyword-end}
+    </define-regex> <!-- /export-keyword -->
+
+    <define-regex id="extends-keyword" extended="true">
+      \%{keyword-start} extends \%{keyword-end}
+    </define-regex> <!-- /extends-keyword -->
+
+    <define-regex id="false-keyword" extended="true">
+      \%{keyword-start} false \%{keyword-end}
+    </define-regex> <!-- /false-keyword -->
+
+    <define-regex id="finally-keyword" extended="true">
+      \%{keyword-start} finally \%{keyword-end}
+    </define-regex> <!-- /finally-keyword -->
+
+    <define-regex id="for-keyword" extended="true">
+      \%{keyword-start} for \%{keyword-end}
+    </define-regex> <!-- /for-keyword -->
+
+    <define-regex id="from-keyword" extended="true">
+      \%{keyword-start} from \%{keyword-end}
+    </define-regex> <!-- /from-keyword -->
+
+    <define-regex id="function-keyword" extended="true">
+      \%{keyword-start} function \%{keyword-end}
+    </define-regex> <!-- /function-keyword -->
+
+    <define-regex id="get-keyword" extended="true">
+      \%{keyword-start} get \%{keyword-end}
+    </define-regex> <!-- /get-keyword -->
+
+    <define-regex id="if-keyword" extended="true">
+      \%{keyword-start} if \%{keyword-end}
+    </define-regex> <!-- /if-keyword -->
+
+    <define-regex id="import-keyword" extended="true">
+      \%{keyword-start} import \%{keyword-end}
+    </define-regex> <!-- /import-keyword -->
+
+    <define-regex id="in-keyword" extended="true">
+      \%{keyword-start} in \%{keyword-end}
+    </define-regex> <!-- /in-keyword -->
+
+    <define-regex id="instanceof-keyword" extended="true">
+      \%{keyword-start} instanceof \%{keyword-end}
+    </define-regex> <!-- /instanceof-keyword -->
+
+    <define-regex id="let-keyword" extended="true">
+      \%{keyword-start} let \%{keyword-end}
+    </define-regex> <!-- /let-keyword -->
+
+    <define-regex id="meta-keyword" extended="true">
+      \%{keyword-start} meta \%{keyword-end}
+    </define-regex> <!-- /meta-keyword -->
+
+    <define-regex id="new-keyword" extended="true">
+      \%{keyword-start} new \%{keyword-end}
+    </define-regex> <!-- /new-keyword -->
+
+    <define-regex id="null-keyword" extended="true">
+      \%{keyword-start} null \%{keyword-end}
+    </define-regex> <!-- /null-keyword -->
+
+    <define-regex id="of-keyword" extended="true">
+      \%{keyword-start} of \%{keyword-end}
+    </define-regex> <!-- /of-keyword -->
+
+    <define-regex id="return-keyword" extended="true">
+      \%{keyword-start} return \%{keyword-end}
+    </define-regex> <!-- /return-keyword -->
+
+    <define-regex id="set-keyword" extended="true">
+      \%{keyword-start} set \%{keyword-end}
+    </define-regex> <!-- /set-keyword -->
+
+    <define-regex id="static-keyword" extended="true">
+      \%{keyword-start} static \%{keyword-end}
+    </define-regex> <!-- /static-keyword -->
+
+    <define-regex id="super-keyword" extended="true">
+      \%{keyword-start} super \%{keyword-end}
+    </define-regex> <!-- /super-keyword -->
+
+    <define-regex id="switch-keyword" extended="true">
+      \%{keyword-start} switch \%{keyword-end}
+    </define-regex> <!-- /switch-keyword -->
+
+    <define-regex id="target-keyword" extended="true">
+      \%{keyword-start} target \%{keyword-end}
+    </define-regex> <!-- /target-keyword -->
+
+    <define-regex id="this-keyword" extended="true">
+      \%{keyword-start} this \%{keyword-end}
+    </define-regex> <!-- /this-keyword -->
+
+    <define-regex id="throw-keyword" extended="true">
+      \%{keyword-start} throw \%{keyword-end}
+    </define-regex> <!-- /throw-keyword -->
+
+    <define-regex id="true-keyword" extended="true">
+      \%{keyword-start} true \%{keyword-end}
+    </define-regex> <!-- /true-keyword -->
+
+    <define-regex id="try-keyword" extended="true">
+      \%{keyword-start} try \%{keyword-end}
+    </define-regex> <!-- /try-keyword -->
+
+    <define-regex id="typeof-keyword" extended="true">
+      \%{keyword-start} typeof \%{keyword-end}
+    </define-regex> <!-- /typeof-keyword -->
+
+    <define-regex id="var-keyword" extended="true">
+      \%{keyword-start} var \%{keyword-end}
+    </define-regex> <!-- /var-keyword -->
+
+    <define-regex id="void-keyword" extended="true">
+      \%{keyword-start} void \%{keyword-end}
+    </define-regex> <!-- /void-keyword -->
+
+    <define-regex id="while-keyword" extended="true">
+      \%{keyword-start} while \%{keyword-end}
+    </define-regex> <!-- /while-keyword -->
+
+    <define-regex id="with-keyword" extended="true">
+      \%{keyword-start} with \%{keyword-end}
+    </define-regex> <!-- /with-keyword -->
+
+    <define-regex id="yield-keyword" extended="true">
+      \%{keyword-start} yield \%{keyword-end}
+    </define-regex> <!-- /yield-keyword -->
+
+    <!-- async function: ES2017
          no line terminator allowed between "async" and "function" -->
     <define-regex id="function-expression-keyword" extended="true">
-      (?:
-        (?:
-          \%[ async \%]
-          \%{optional-whitespace-or-comments}
-        )?
-        \%[ function \%]
-      )
+      (?: \%{async-keyword} \%{optional-whitespace-or-comments} )?
+      \%{function-keyword}
     </define-regex> <!-- /function-expression-keyword -->
 
-    <define-regex id="class-expression-keyword" extended="true">
-      (?: \%[ class \%] )
-    </define-regex> <!-- /class-expression-keyword -->
+    <!-- async function: ES2017
+         "async" cannot be followed by line terminator -->
+    <define-regex id="method-keyword" extended="true">
+      # get property() / set property()
+      (?: \%{js:get-keyword} | \%{js:set-keyword} )
+      (?=
+        \%{js:optional-whitespace-or-comments}
+        \%{js:identifier-start}
+      ) |
+
+      # async method() / async * generator()
+      \%{js:async-keyword}
+      (?=
+        \%{js:optional-whitespace-or-comments}
+        (?: \%{js:identifier-start} | \%{js:generator-modifier} )
+      ) |
+
+      # * generator()
+      (?= \%{js:generator-modifier} )
+    </define-regex> <!-- /method-keyword -->
 
     <!-- ## Embedded lang hooks
+
          a placeholder context where an embedding language (e.g. html)
          can <replace>
     -->
@@ -323,11 +535,23 @@
       </include>
     </context> <!-- /_comment-content -->
 
+    <context id="_single-line-comment-content">
+      <include>
+        <context ref="_comment-content"/>
+      </include>
+    </context> <!-- /_single-line-comment-content -->
+
+    <context id="_multiline-comment-content">
+      <include>
+        <context ref="_comment-content"/>
+      </include>
+    </context> <!-- /_multiline-comment-content -->
+
     <!-- line continuations are not allowed inside single-line comments -->
     <context id="_single-line-comments" style-ref="comment" end-at-line-end="true" class-disabled="no-spell-check" class="comment">
       <start>//</start>
       <include>
-        <context ref="_comment-content"/>
+        <context ref="_single-line-comment-content"/>
       </include>
     </context> <!-- /_single-line-comments -->
 
@@ -335,14 +559,14 @@
       <start>/\*</start>
       <end>\*/</end>
       <include>
-        <context ref="_comment-content"/>
+        <context ref="_multiline-comment-content"/>
       </include>
     </context> <!-- /_multiline-comments -->
 
     <context id="_single-line-comments-no-extend-parent" style-ref="comment" end-at-line-end="true" class-disabled="no-spell-check" class="comment" extend-parent="false">
       <start>//</start>
       <include>
-        <context ref="_comment-content"/>
+        <context ref="_single-line-comment-content"/>
       </include>
     </context> <!-- /_single-line-comments-no-extend-parent -->
 
@@ -350,7 +574,7 @@
       <start>/\*</start>
       <end>\*/</end>
       <include>
-        <context ref="_comment-content"/>
+        <context ref="_multiline-comment-content"/>
       </include>
     </context> <!-- /_multiline-comments-no-extend-parent -->
 
@@ -371,7 +595,7 @@
 
     <context id="_doc-comment-content">
       <include>
-        <context ref="_comment-content"/>
+        <context ref="_multiline-comment-content"/>
         <context ref="jsdoc:jsdoc"/>
       </include>
     </context> <!-- /_doc-comment-content -->
@@ -419,6 +643,8 @@
 
         <!-- <Keyword> -->
         <context id="_keywords" style-ref="reserved-word">
+          <prefix>\%{keyword-start}</prefix>
+          <suffix>\%{keyword-end}</suffix>
           <keyword>await</keyword> <!-- ES2017 -->
           <keyword>break</keyword>
           <keyword>case</keyword>
@@ -459,12 +685,16 @@
              restrictions"
              https://tc39.github.io/ecma262/#sec-keywords -->
         <context id="_strict-mode-keywords" style-ref="reserved-word">
+          <prefix>\%{keyword-start}</prefix>
+          <suffix>\%{keyword-end}</suffix>
           <keyword>let</keyword>
           <keyword>static</keyword>
         </context> <!-- /_strict-mode-keywords -->
 
         <!-- <FutureReservedWord> -->
         <context id="_future-reserved-words" style-ref="reserved-word">
+          <prefix>\%{keyword-start}</prefix>
+          <suffix>\%{keyword-end}</suffix>
           <keyword>enum</keyword>
         </context> <!-- /_future-reserved-words -->
 
@@ -472,6 +702,8 @@
              restrictions"
              https://tc39.github.io/ecma262/#sec-future-reserved-words -->
         <context id="_strict-mode-future-reserved-words" style-ref="reserved-word">
+          <prefix>\%{keyword-start}</prefix>
+          <suffix>\%{keyword-end}</suffix>
           <keyword>implements</keyword>
           <keyword>interface</keyword>
           <keyword>package</keyword>
@@ -496,7 +728,7 @@
     </context> <!-- /_identifier-name-content -->
 
     <context id="identifier-name" once-only="true">
-      <start>(?=\%{identifier-start})</start>
+      <start>\%{identifier-container-start}</start>
       <end>\%{def:always-match}</end>
       <include>
         <!-- no embedded-lang-hooks here -->
@@ -508,7 +740,7 @@
     </context> <!-- /choice-identifier-name -->
 
     <context id="choice-identifier-name" end-parent="true">
-      <start>(?=\%{identifier-start})</start>
+      <start>\%{identifier-container-start}</start>
       <end>\%{def:always-match}</end>
       <include>
         <!-- no embedded-lang-hooks here -->
@@ -527,7 +759,7 @@
     </context> <!-- /_identifier-content -->
 
     <context id="identifier" once-only="true">
-      <start>(?=\%{identifier-start})</start>
+      <start>\%{identifier-container-start}</start>
       <end>\%{def:always-match}</end>
       <include>
         <!-- no embedded-lang-hooks here -->
@@ -539,7 +771,7 @@
     </context> <!-- /identifier -->
 
     <context id="choice-identifier" end-parent="true">
-      <start>(?=\%{identifier-start})</start>
+      <start>\%{identifier-container-start}</start>
       <end>\%{def:always-match}</end>
       <include>
         <!-- no embedded-lang-hooks here -->
@@ -587,20 +819,8 @@
 
     <!-- ## Misc syntax -->
 
-    <context id="_keyword-dot" style-ref="keyword" once-only="true">
-      <match>\.</match>
-    </context> <!-- /_keyword-dot -->
-
-    <context id="ordered-keyword-dot" once-only="true">
-      <start>\%{before-next-token}</start>
-      <end>\%{before-next-token}</end>
-      <include>
-        <context ref="_keyword-dot"/>
-      </include>
-    </context> <!-- /ordered-keyword-dot -->
-
     <context id="_rest-syntax" style-ref="rest-syntax" once-only="true">
-      <match>\.\.\.</match>
+      <match>\%{rest-syntax}</match>
     </context> <!-- /_rest-syntax -->
 
     <context id="ordered-rest-syntax" once-only="true">
@@ -612,7 +832,7 @@
     </context> <!-- /ordered-rest-syntax -->
 
     <context id="_spread-syntax" style-ref="spread-syntax" once-only="true">
-      <match>\.\.\.</match>
+      <match>\%{spread-syntax}</match>
     </context> <!-- /_spread-syntax -->
 
     <context id="ordered-spread-syntax" once-only="true">
@@ -636,170 +856,171 @@
     </context> <!-- /ordered-generator-modifier -->
 
 
-    <!-- # Assignment target -->
+    <!-- # Binding
 
-    <!-- ## Array destructuring
+         Patterns for where variable names are bound/created:
+         * Variable declarations
+         * Function parameters
 
-         [ a, b, ...rest ] = [ 1, 2, 3, 4 ]
-         [ a = 1, b = 2, c = 3 ] = [ 11, 12 ]
+         This is not used in assignment expressions; array/object
+         literals will match for array/object destructuring.
     -->
 
-    <context id="_array-destructuring-element-content">
+    <!-- ## Array binding pattern (destructuring)
+
+         var [ a, b, ...rest ] = [ 1, 2, 3, 4 ];
+         function fn([ a = 1, b = 2, c = 3 ]) { ... }
+    -->
+
+    <context id="_array-binding-pattern-element-content">
       <include>
         <context ref="ordered-rest-syntax"/>
-        <context ref="ordered-assignment-target"/>
+        <context ref="ordered-binding"/>
         <context ref="ordered-default-value-assignment"/>
       </include>
-    </context> <!-- /_array-destructuring-element-content -->
+    </context> <!-- /_array-binding-pattern-element-content -->
 
     <!-- <ArrayBindingPattern> -->
-    <context id="_choice-array-destructuring" style-ref="array-destructuring" end-parent="true">
+    <context id="_choice-array-binding-pattern" style-ref="array-binding-pattern" end-parent="true">
       <start>\[</start>
       <end>]</end>
       <include>
         <context ref="embedded-lang-hooks"/>
         <context ref="comments"/>
 
-        <context id="_array-destructuring-content">
+        <context id="_array-binding-pattern-content">
           <include>
 
-            <context id="_array-destructuring-first-element" once-only="true">
+            <context id="_array-binding-pattern-first-element" once-only="true">
               <start>\%{before-next-token}</start>
               <end>\%{before-next-token}</end>
               <include>
                 <context ref="embedded-lang-hooks"/>
                 <context ref="comments"/>
-                <context ref="_array-destructuring-element-content"/>
+                <context ref="_array-binding-pattern-element-content"/>
               </include>
-            </context> <!-- /_array-destructuring-first-element -->
+            </context> <!-- /_array-binding-pattern-first-element -->
 
-            <context id="_array-destructuring-elements">
+            <context id="_array-binding-pattern-elements">
               <start>,</start>
               <end>\%{before-next-token}</end>
               <include>
                 <context ref="embedded-lang-hooks"/>
                 <context ref="comments"/>
-                <context ref="_array-destructuring-element-content"/>
+                <context ref="_array-binding-pattern-element-content"/>
               </include>
-            </context> <!-- /_array-destructuring-elements -->
+            </context> <!-- /_array-binding-pattern-elements -->
 
           </include>
-        </context> <!-- /_array-destructuring-content -->
+        </context> <!-- /_array-binding-pattern-content -->
 
       </include>
-    </context> <!-- /_choice-array-destructuring -->
+    </context> <!-- /_choice-array-binding-pattern -->
 
-    <!-- ## Object destructuring
+    <!-- ## Object binding pattern (destructuring)
 
-         { a, y: b, ...rest } = { a: 1, y: 2, i: 3, y: 4 }
-         { a = 1, y: b = 2, c = 3 } = { a: 11, y: 12 }
+         var { a, y: b, ...rest } = { a: 1, y: 2, i: 3, y: 4 };
+         function fn({ a = 1, y: b = 2, c = 3 }) { ... }
     -->
 
-    <context id="_object-destructuring-assignment-target" once-only="true">
+    <context id="_object-binding-pattern-inner-binding" once-only="true">
       <start>:</start>
       <end>\%{before-next-token}</end>
       <include>
         <context ref="embedded-lang-hooks"/>
         <context ref="comments"/>
 
-        <context id="_object-destructuring-assignment-target-content">
+        <context id="_object-binding-pattern-inner-binding-content">
           <include>
-            <context ref="ordered-assignment-target"/>
+            <context ref="ordered-binding"/>
           </include>
-        </context> <!-- /_object-destructuring-assignment-target-content -->
+        </context> <!-- /_object-binding-pattern-inner-binding-content -->
 
       </include>
-    </context> <!-- /_object-destructuring-assignment-target -->
+    </context> <!-- /_object-binding-pattern-inner-binding -->
 
-    <context id="_ordered-object-destructuring-assignment-target" once-only="true">
+    <context id="_ordered-object-binding-pattern-inner-binding" once-only="true">
       <start>\%{before-next-token}</start>
       <end>\%{before-next-token}</end>
       <include>
-        <context ref="_object-destructuring-assignment-target"/>
+        <context ref="_object-binding-pattern-inner-binding"/>
       </include>
-    </context> <!-- /_ordered-object-destructuring-assignment-target -->
+    </context> <!-- /_ordered-object-binding-pattern-inner-binding -->
 
-    <context id="_object-destructuring-property-content">
+    <context id="_object-binding-pattern-property-content">
       <include>
         <context ref="ordered-rest-syntax"/> <!-- ES2018 -->
         <context ref="js-lit:ordered-property-name"/>
-        <context ref="_ordered-object-destructuring-assignment-target"/>
+        <context ref="_ordered-object-binding-pattern-inner-binding"/>
         <context ref="ordered-default-value-assignment"/>
       </include>
-    </context> <!-- /_object-destructuring-property-content -->
+    </context> <!-- /_object-binding-pattern-property-content -->
 
     <!-- <ObjectBindingPattern> -->
-    <context id="_choice-object-destructuring" style-ref="object-destructuring" end-parent="true">
+    <context id="_choice-object-binding-pattern" style-ref="object-binding-pattern" end-parent="true">
       <start>{</start>
       <end>}</end>
       <include>
         <context ref="embedded-lang-hooks"/>
         <context ref="comments"/>
 
-        <context id="_object-destructuring-content">
+        <context id="_object-binding-pattern-content">
           <include>
 
-            <context id="_object-destructuring-first-property" once-only="true">
+            <context id="_object-binding-pattern-first-property" once-only="true">
               <start>\%{before-next-token}</start>
               <end>\%{before-next-token}</end>
               <include>
                 <context ref="embedded-lang-hooks"/>
                 <context ref="comments"/>
-                <context ref="_object-destructuring-property-content"/>
+                <context ref="_object-binding-pattern-property-content"/>
               </include>
-            </context> <!-- /_object-destructuring-properties -->
+            </context> <!-- /_object-binding-pattern-properties -->
 
-            <context id="_object-destructuring-properties">
+            <context id="_object-binding-pattern-properties">
               <start>,</start>
               <end>\%{before-next-token}</end>
               <include>
                 <context ref="embedded-lang-hooks"/>
                 <context ref="comments"/>
-                <context ref="_object-destructuring-property-content"/>
+                <context ref="_object-binding-pattern-property-content"/>
               </include>
-            </context> <!-- /_object-destructuring-properties -->
+            </context> <!-- /_object-binding-pattern-properties -->
 
           </include>
-        </context> <!-- /_object-destructuring-content -->
+        </context> <!-- /_object-binding-pattern-content -->
 
       </include>
-    </context> <!-- /_choice-object-destructuring -->
+    </context> <!-- /_choice-object-binding-pattern -->
 
-    <!-- ## Assignment target
-
-         Things that can appear on the left side of an equals sign
-         (identifier or array/object destructuring assignment), in all
-         places (function parameters, variable declaration) *except* in
-         assignment expressions (array/object literals will match for
-         array/object destructuring)
-    -->
+    <!-- ## Binding -->
 
     <!-- <VariableDeclaration> / <LexicalBinding> -->
-    <context id="_assignment-target" once-only="true">
+    <context id="_binding" once-only="true">
       <start>\%{before-next-token}</start>
       <end>\%{before-next-token}</end>
       <include>
         <context ref="embedded-lang-hooks"/>
         <context ref="comments"/>
 
-        <context id="_assignment-target-content">
+        <context id="_binding-content">
           <include>
-            <context ref="_choice-array-destructuring"/>
-            <context ref="_choice-object-destructuring"/>
+            <context ref="_choice-array-binding-pattern"/>
+            <context ref="_choice-object-binding-pattern"/>
             <context ref="choice-identifier"/>
           </include>
-        </context> <!-- /_assignment-target-content -->
+        </context> <!-- /_binding-content -->
 
       </include>
-    </context> <!-- /_assignment-target -->
+    </context> <!-- /_binding -->
 
-    <context id="ordered-assignment-target" once-only="true">
+    <context id="ordered-binding" once-only="true">
       <start>\%{before-next-token}</start>
       <end>\%{before-next-token}</end>
       <include>
-        <context ref="_assignment-target"/>
+        <context ref="_binding"/>
       </include>
-    </context> <!-- /ordered-assignment-target -->
+    </context> <!-- /ordered-binding -->
 
 
     <!-- Approximate code order for component files:

@@ -4,7 +4,7 @@
  This file is part of GtkSourceView
 
  Author: Jeffery To <jeffery.to@gmail.com>
- Copyright (C) 2018-2019 Jeffery To <jeffery.to@gmail.com>
+ Copyright (C) 2018-2020 Jeffery To <jeffery.to@gmail.com>
 
  GtkSourceView is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
@@ -55,14 +55,15 @@
 
   <default-regex-options case-sensitive="false"/>
 
-  <keyword-char-class>[a-z0-9_\x{80}-\x{10ffff}\\-]</keyword-char-class>
+  <!-- from css:keyword-code-point -->
+  <keyword-char-class>[^\x{0}-\x{2C}\x{2E}\x{2F}\x{3A}-\x{40}\x{5B}\x{5D}\x{5E}\x{60}\x{7B}-\x{7F}]</keyword-char-class>
 
   <definitions>
 
     <!-- global -->
 
     <define-regex id="identifier">[\w-]+</define-regex>
-    <define-regex id="statement-end" extended="true">;|(?=})</define-regex>
+    <define-regex id="statement-end">;|(?=})</define-regex>
 
     <context id="embedded-lang-hook"/>
 
@@ -120,7 +121,9 @@
     </context>
 
     <context id="arguments-variable" style-ref="built-in-variable">
-      <match>@arguments\%]</match>
+      <match extended="true">
+        @arguments \%{css:keyword-end}
+      </match>
     </context>
 
     <context id="arguments-variable-interpolation" style-ref="built-in-variable">
@@ -152,12 +155,10 @@
          also not sure what are Less' rules regarding hyphen vs subtraction -->
     <context id="arithmetic-operator" style-ref="operator-symbol">
       <match extended="true">
-        (
-          [+*/] |
-          (?&lt;! \%{css:single-identifier-char} )
-          -
-          (?! \%{css:single-identifier-char} )
-        )
+        [+*/] |
+        (?&lt;! \%{css:keyword-code-point} )
+        -
+        (?! \%{css:keyword-code-point} )
       </match>
     </context>
 
@@ -165,6 +166,8 @@
     <!-- Less data types -->
 
     <context id="boolean" style-ref="boolean">
+      <prefix>\%{css:keyword-start}</prefix>
+      <suffix>\%{css:keyword-end}</suffix>
       <keyword>true</keyword>
     </context>
 
@@ -279,7 +282,9 @@
     <!-- functions -->
 
     <context id="less-url">
-      <start>url\(</start>
+      <start extended="true">
+        \%{css:keyword-start} url \(
+      </start>
       <end>\)</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:function"/>
@@ -495,17 +500,17 @@
           )
         )
 
-        (
+        (?:
           \+_?: |  # property merge
           :
           (?:
-            (?!                                 # not the start of a
-              \%{css:single-identifier-char} |  #   pseudo-class
-              [:\\] |                           #   pseudo-element, escape
-              @{ |                              #   variable interpolation
-              /\*                               #   comment
-            ) |                                 # or
-            (?=                                 # ends like a normal declaration
+            (?!                              # not the start of a
+              \%{css:keyword-code-point} |   #   pseudo-class
+              [:\\] |                        #   pseudo-element, escape
+              @{ |                           #   variable interpolation
+              /\*                            #   comment
+            ) |                              # or
+            (?=                              # ends like a normal declaration
               (?:
                 (?&gt;
                   (?:
@@ -521,7 +526,7 @@
                 (?&amp;double_quote_string) |
                 (?&amp;single_quote_string)
               )*
-              \%{css:declaration-value-end}     #   with a semicolon or at the end of a block
+              \%{css:declaration-value-end}  #   with a semicolon or at the end of a block
             )
           )
         )
@@ -540,6 +545,7 @@
         <context ref="css:at-rule"/> <!-- because Less variables look like at-rules -->
         <context ref="detached-ruleset-call"/>
         <context ref="standalone-plugin-function-call"/>
+        <context ref="inside-ruleset-extend"/>
         <context ref="css:style-block-content" original="true"/>
         <context ref="css:selector"/>
         <context ref="css:style-block"/>
@@ -587,7 +593,9 @@
     </context>
 
     <context id="at-plugin">
-      <start>@plugin\%]</start>
+      <start extended="true">
+        @plugin \%{css:keyword-end}
+      </start>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:at-rule"/>
         <context ref="css:embedded-lang-hook"/>
@@ -602,7 +610,9 @@
     </context>
 
     <context id="standalone-plugin-function-call">
-      <start>(?=\%{identifier}\()</start>
+      <start extended="true">
+        \%{css:keyword-start} (?= \%{identifier} \( )
+      </start>
       <end>\%{statement-end}</end>
       <include>
         <context sub-pattern="0" where="end" style-ref="css:delimiter"/>
@@ -616,7 +626,9 @@
     <!-- at-rules -->
 
     <context id="less-at-charset">
-      <start case-sensitive="true">@charset\%]</start>
+      <start case-sensitive="true" extended="true">
+        @charset \%{css:keyword-end}
+      </start>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:at-rule"/>
         <context ref="css:embedded-lang-hook"/>
@@ -653,6 +665,8 @@
     -->
 
     <context id="less-at-import-options-keyword" style-ref="css:keyword">
+      <prefix>\%{css:keyword-start}</prefix>
+      <suffix>\%{css:keyword-end}</suffix>
       <keyword>css</keyword>
       <keyword>inline</keyword>
       <keyword>less</keyword>
@@ -676,7 +690,9 @@
     </context>
 
     <context id="less-at-import">
-      <start>@import\%]</start>
+      <start extended="true">
+        @import \%{css:keyword-end}
+      </start>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:at-rule"/>
         <context ref="css:embedded-lang-hook"/>
@@ -744,13 +760,15 @@
     <!-- guards -->
 
     <context id="guard-logical-operator" style-ref="guard-operator">
+      <prefix>\%{css:keyword-start}</prefix>
+      <suffix>\%{css:keyword-end}</suffix>
       <keyword>and</keyword>
       <keyword>not</keyword>
       <keyword>or</keyword>
     </context>
 
     <context id="guard-comparison-operator" style-ref="operator-symbol">
-      <match>(&gt;=?|=&lt;?|&lt;)</match>
+      <match>&gt;=?|=&lt;?|&lt;</match>
     </context>
 
     <context id="guard-test">
@@ -767,7 +785,9 @@
     </context>
 
     <context id="guard">
-      <start>\%[when\%]</start>
+      <start extended="true">
+        \%{css:keyword-start} when \%{css:keyword-end}
+      </start>
       <end>(?={)</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="guard-operator"/>
@@ -782,6 +802,9 @@
 
     <!-- Less selectors -->
 
+    <!-- Less does not appear to allow comments between the colon(s) and
+         pseudo-element/class name -->
+
     <context id="parent-combinator">
       <match>(&amp;)(\%{css:identifier-chars}?)</match>
       <include>
@@ -795,11 +818,15 @@
     </context>
 
     <context id="extend-pseudo-class-keyword" once-only="true" style-ref="css:keyword">
+      <prefix>\%{css:keyword-start}</prefix>
+      <suffix>\%{css:keyword-end}</suffix>
       <keyword>all</keyword>
     </context>
 
     <context id="extend-pseudo-class" end-parent="true">
-      <start>\%[extend\(</start>
+      <start extended="true">
+        \%{css:keyword-start} extend \(
+      </start>
       <end>\)</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:pseudo-class"/>
@@ -807,6 +834,17 @@
         <context ref="css:embedded-lang-hook"/>
         <context ref="css:comment"/>
         <context ref="extend-pseudo-class-keyword"/>
+        <context ref="css:selector"/>
+      </include>
+    </context>
+
+    <context id="inside-ruleset-extend">
+      <start>(?=&amp;:extend\()</start>
+      <end>\%{statement-end}</end>
+      <include>
+        <context sub-pattern="0" where="end" style-ref="css:delimiter"/>
+        <context ref="css:embedded-lang-hook"/>
+        <context ref="css:comment"/>
         <context ref="css:selector"/>
       </include>
     </context>

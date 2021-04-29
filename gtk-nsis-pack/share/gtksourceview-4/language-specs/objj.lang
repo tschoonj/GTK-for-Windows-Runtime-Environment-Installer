@@ -7,7 +7,7 @@
  Author: Patryk Zawadzki <patrys@pld-linux.org>
  Copyright (C) 2007 Yevgen Muntyan <muntyan@math.tamu.edu>
  Copyright (C) 2010 Patryk Zawadzki <patrys@pld-linux.org>
- Copyright (C) 2019 Jeffery To <jeffery.to@gmail.com>
+ Copyright (C) 2019-2020 Jeffery To <jeffery.to@gmail.com>
 
  GtkSourceView is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
@@ -37,7 +37,7 @@
   </styles>
 
   <!-- from js:identifier-char -->
-  <keyword-char-class>[\p{L}\p{Nl}\x{1885}-\x{1886}\x{2118}\x{212E}\x{309B}-\x{309C}\p{Mn}\p{Mc}\p{Nd}\p{Pc}\x{00B7}\x{0387}\x{1369}-\x{1371}\x{19DA}$\x{200C}\x{200D}]</keyword-char-class>
+  <keyword-char-class>(?!\x{2E2F})[\p{L}\p{Nl}\x{1885}-\x{1886}\x{2118}\x{212E}\x{309B}-\x{309C}\p{Mn}\p{Mc}\p{Nd}\p{Pc}\x{00B7}\x{0387}\x{1369}-\x{1371}\x{19DA}$\x{200C}\x{200D}]</keyword-char-class>
 
   <definitions>
 
@@ -84,7 +84,7 @@
           undef |
           warning
         )
-        \%]
+        \%{js:keyword-end}
       </start>
       <include>
         <context ref="def:line-continue"/>
@@ -94,6 +94,8 @@
     <!-- ## Objective-J types -->
 
     <context id="_common-types" style-ref="type">
+      <prefix>\%{js:keyword-start}</prefix>
+      <suffix>\%{js:keyword-end}</suffix>
       <keyword>BOOL</keyword>
       <keyword>byte</keyword>
       <keyword>char</keyword>
@@ -112,11 +114,14 @@
       <include>
 
         <context id="_variable-only-type-keywords" style-ref="type">
+          <prefix>\%{js:keyword-start}</prefix>
+          <suffix>\%{js:keyword-end}</suffix>
           <keyword>IBOutlet</keyword>
         </context> <!-- /_variable-only-type-keywords -->
 
         <context id="_variable-only-at-type-keywords" style-ref="type">
           <prefix>@</prefix>
+          <suffix>\%{js:keyword-end}</suffix>
           <keyword>outlet</keyword>
         </context> <!-- /_variable-only-at-type-keywords -->
 
@@ -127,12 +132,15 @@
       <include>
 
         <context id="_method-return-only-type-keywords" style-ref="type">
+          <prefix>\%{js:keyword-start}</prefix>
+          <suffix>\%{js:keyword-end}</suffix>
           <keyword>IBAction</keyword>
           <keyword>void</keyword>
         </context> <!-- /_method-return-only-type-keywords -->
 
         <context id="_method-return-only-at-type-keywords" style-ref="type">
           <prefix>@</prefix>
+          <suffix>\%{js:keyword-end}</suffix>
           <keyword>action</keyword>
         </context> <!-- /_method-return-only-at-type-keywords -->
 
@@ -143,7 +151,9 @@
     <!-- # @class statement -->
 
     <context id="at-class-statements">
-      <start>@class\%]</start>
+      <start extended="true">
+        @class \%{js:keyword-end}
+      </start>
       <end>\%{js:identifier}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -157,7 +167,9 @@
     <!-- # @global statement -->
 
     <context id="at-global-statements">
-      <start>@global\%]</start>
+      <start extended="true">
+        @global \%{js:keyword-end}
+      </start>
       <end>\%{js:identifier}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -183,6 +195,8 @@
           <include>
 
             <context id="_at-implementation-variable-declaration-accessor-modifier-keywords" style-ref="js:keyword">
+              <prefix>\%{js:keyword-start}</prefix>
+              <suffix>\%{js:keyword-end}</suffix>
               <keyword>copy</keyword>
               <keyword>getter</keyword>
               <keyword>property</keyword>
@@ -198,7 +212,9 @@
     </context> <!-- /_at-implementation-variable-declaration-accessor-modifiers-end-parent -->
 
     <context id="_at-implementation-variable-declaration-accessors">
-      <start>@accessors\%]</start>
+      <start extended="true">
+        @accessors \%{js:keyword-end}
+      </start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -264,8 +280,12 @@
     <!-- ## @implementation declaration -->
 
     <context id="at-implementation-declarations">
-      <start>@implementation\%]</start>
-      <end>@end\%]</end>
+      <start extended="true">
+        @implementation \%{js:keyword-end}
+      </start>
+      <end extended="true">
+        @end \%{js:keyword-end}
+      </end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
         <context sub-pattern="0" where="end" style-ref="js:keyword"/>
@@ -286,7 +306,9 @@
     <!-- # @import statement -->
 
     <context id="at-import-statements" style-ref="js:directive">
-      <start>@import\%]</start>
+      <start extended="true">
+        @import \%{js:keyword-end}
+      </start>
       <include>
         <context ref="js:embedded-lang-hooks"/>
         <context ref="js:comments"/>
@@ -310,8 +332,12 @@
     <!-- # @protocol declaration -->
 
     <context id="at-protocol-declarations">
-      <start>@protocol\%]</start>
-      <end>@end\%]</end>
+      <start extended="true">
+        @protocol \%{js:keyword-end}
+      </start>
+      <end extended="true">
+        @end \%{js:keyword-end}
+      </end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
         <context sub-pattern="0" where="end" style-ref="js:keyword"/>
@@ -323,6 +349,7 @@
 
             <context id="_at-protocol-at-keywords" style-ref="js:keyword">
               <prefix>@</prefix>
+              <suffix>\%{js:keyword-end}</suffix>
               <keyword>optional</keyword>
               <keyword>required</keyword>
             </context> <!-- /_at-protocol-at-keywords -->
@@ -343,7 +370,9 @@
     <!-- # @typedef statements -->
 
     <context id="at-typedef-statements">
-      <start>@typedef\%]</start>
+      <start extended="true">
+        @typedef \%{js:keyword-end}
+      </start>
       <end>\%{js:identifier}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -400,7 +429,7 @@
     <!-- ## Literals -->
 
     <define-regex id="_at-function-keyword" extended="true">
-      (?: @ (?: deref | ref ) \%] )
+      @ (?: deref | ref ) \%{js:keyword-end}
     </define-regex> <!-- /_at-function-keyword -->
 
     <context id="_choice-at-function-keyword" style-ref="js:keyword" end-parent="true">
@@ -409,7 +438,9 @@
     </context> <!-- /_choice-at-function-keyword -->
 
     <context id="_choice-at-selector-literal" end-parent="true">
-      <start>@selector\%]</start>
+      <start extended="true">
+        @selector \%{js:keyword-end}
+      </start>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
         <context ref="js:embedded-lang-hooks"/>
@@ -460,7 +491,7 @@
         <context ref="js-lit:_array-literal-content" original="true"/>
         <context ref="_message-parameter-data"/>
       </include>
-    </context>
+    </context> <!-- /_array-literal-content -->
 
     <replace id="js-lit:_array-literal-content" ref="_array-literal-content"/>
 
@@ -482,17 +513,23 @@
       <include>
 
         <context id="_boolean-constants" style-ref="js:boolean">
+          <prefix>\%{js:keyword-start}</prefix>
+          <suffix>\%{js:keyword-end}</suffix>
           <keyword>NO</keyword>
           <keyword>YES</keyword>
-        </context>
+        </context> <!-- /_boolean-constants -->
 
         <context id="_null-constants" style-ref="js:null-value">
+          <prefix>\%{js:keyword-start}</prefix>
+          <suffix>\%{js:keyword-end}</suffix>
           <keyword>nil</keyword>
           <keyword>Nil</keyword>
           <keyword>NULL</keyword>
-        </context>
+        </context> <!-- /_null-constants -->
 
         <context id="_math-constants" style-ref="js:built-in-value">
+          <prefix>\%{js:keyword-start}</prefix>
+          <suffix>\%{js:keyword-end}</suffix>
           <keyword>E</keyword>
           <keyword>LOG10E</keyword>
           <keyword>LOG2E</keyword>
@@ -503,9 +540,11 @@
           <keyword>PI_2</keyword>
           <keyword>SQRT1_2</keyword>
           <keyword>SQRT2</keyword>
-        </context>
+        </context> <!-- /_math-constants -->
 
         <context id="_math-functions" style-ref="js:built-in-function">
+          <prefix>\%{js:keyword-start}</prefix>
+          <suffix>\%{js:keyword-end}</suffix>
           <keyword>ABS</keyword>
           <keyword>ACOS</keyword>
           <keyword>ASIN</keyword>
@@ -524,13 +563,15 @@
           <keyword>SIN</keyword>
           <keyword>SQRT</keyword>
           <keyword>TAN</keyword>
-        </context>
+        </context> <!-- /_math-functions -->
 
         <!-- "super" is already highlighted by default -->
         <context id="_object-keywords" style-ref="js:keyword">
+          <prefix>\%{js:keyword-start}</prefix>
+          <suffix>\%{js:keyword-end}</suffix>
           <keyword>_cmd</keyword>
           <keyword>self</keyword>
-        </context>
+        </context> <!-- /_object-keywords -->
 
         <context ref="js-val:global-values" original="true"/>
       </include>

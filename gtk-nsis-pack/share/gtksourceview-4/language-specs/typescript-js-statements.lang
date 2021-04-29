@@ -4,7 +4,7 @@
  This file is part of GtkSourceView
 
  Author: Jeffery To <jeffery.to@gmail.com>
- Copyright (C) 2019 Jeffery To <jeffery.to@gmail.com>
+ Copyright (C) 2019-2020 Jeffery To <jeffery.to@gmail.com>
 
  GtkSourceView is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
@@ -22,7 +22,7 @@
 -->
 <language id="typescript-js-st" name="TypeScript JavaScript Statement Additions" version="2.0" _section="Script" hidden="true">
   <!-- from js:identifier-char -->
-  <keyword-char-class>[\p{L}\p{Nl}\x{1885}-\x{1886}\x{2118}\x{212E}\x{309B}-\x{309C}\p{Mn}\p{Mc}\p{Nd}\p{Pc}\x{00B7}\x{0387}\x{1369}-\x{1371}\x{19DA}$\x{200C}\x{200D}]</keyword-char-class>
+  <keyword-char-class>(?!\x{2E2F})[\p{L}\p{Nl}\x{1885}-\x{1886}\x{2118}\x{212E}\x{309B}-\x{309C}\p{Mn}\p{Mc}\p{Nd}\p{Pc}\x{00B7}\x{0387}\x{1369}-\x{1371}\x{19DA}$\x{200C}\x{200D}]</keyword-char-class>
 
   <definitions>
 
@@ -50,7 +50,7 @@
     <!-- replaces js-st:_variable-declaration-item-content -->
     <context id="variable-declaration-item-content">
       <include>
-        <context ref="js:ordered-assignment-target"/>
+        <context ref="js:ordered-binding"/>
         <context ref="typescript:ordered-definite-assignment-assertion"/>
         <context ref="typescript:ordered-type-annotation"/>
         <context ref="js:ordered-default-value-assignment"/>
@@ -71,12 +71,8 @@
          declare global { ... }
     -->
 
-    <define-regex id="_ambient-declaration-keyword" extended="true">
-      (?: \%[ declare \%] )
-    </define-regex> <!-- /_ambient-declaration-keyword -->
-
     <context id="_choice-global-augmentation" style-ref="typescript:global-augmentation" end-parent="true">
-      <start>\%[global\%]</start>
+      <start>\%{typescript:global-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -106,7 +102,7 @@
 
     <!-- <AmbientDeclaration> -->
     <context id="_ambient-declarations" style-ref="typescript:ambient-declaration">
-      <start>\%{_ambient-declaration-keyword}</start>
+      <start>\%{typescript:declare-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="typescript:type-keyword"/>
@@ -117,7 +113,7 @@
 
     <!-- <AmbientDeclaration> -->
     <context id="choice-ambient-declaration" style-ref="typescript:ambient-declaration" end-parent="true">
-      <start>\%{_ambient-declaration-keyword}</start>
+      <start>\%{typescript:declare-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="typescript:type-keyword"/>
@@ -134,10 +130,6 @@
 
          we need a custom const declaration to handle "const enum"
     -->
-
-    <define-regex id="_const-declaration-keyword" extended="true">
-      (?: \%[ const \%] )
-    </define-regex> <!-- /_const-declaration-keyword -->
 
     <context id="_const-declaration-content">
       <include>
@@ -156,7 +148,7 @@
     </context> <!-- /_const-declaration-content -->
 
     <context id="_const-declarations" style-ref="js:variable-declaration">
-      <start>\%{_const-declaration-keyword}</start>
+      <start>\%{js:const-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -166,7 +158,7 @@
     </context> <!-- /_const-declarations -->
 
     <context id="choice-const-declaration" style-ref="js:variable-declaration" end-parent="true">
-      <start>\%{_const-declaration-keyword}</start>
+      <start>\%{js:const-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -180,10 +172,6 @@
 
          enum Foo { A = 1, B, C }
     -->
-
-    <define-regex id="_enum-declaration-keyword" extended="true">
-      (?: \%[ enum \%] )
-    </define-regex> <!-- /_enum-declaration-keyword -->
 
     <context id="_enum-member-content">
       <include>
@@ -242,7 +230,7 @@
 
     <!-- <EnumDeclaration> -->
     <context id="_enum-declarations" style-ref="typescript:enum-declaration">
-      <start>\%{_enum-declaration-keyword}</start>
+      <start>\%{typescript:enum-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -253,7 +241,7 @@
 
     <!-- <EnumDeclaration> -->
     <context id="choice-enum-declaration" style-ref="typescript:enum-declaration" end-parent="true">
-      <start>\%{_enum-declaration-keyword}</start>
+      <start>\%{typescript:enum-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -270,12 +258,8 @@
            AnotherThing<string, number> { ... }
     -->
 
-    <define-regex id="_interface-declaration-keyword" extended="true">
-      (?: \%[ interface \%] )
-    </define-regex> <!-- /_interface-declaration-keyword -->
-
     <context id="_interface-extends-clause" once-only="true">
-      <start>\%[extends\%]</start>
+      <start>\%{js:extends-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="typescript:type-keyword"/>
@@ -309,7 +293,7 @@
 
     <!-- <InterfaceDeclaration> -->
     <context id="_interface-declarations" style-ref="typescript:interface-declaration">
-      <start>\%{_interface-declaration-keyword}</start>
+      <start>\%{typescript:interface-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="typescript:type-keyword"/>
@@ -320,7 +304,7 @@
 
     <!-- <InterfaceDeclaration> -->
     <context id="choice-interface-declaration" style-ref="typescript:interface-declaration" end-parent="true">
-      <start>\%{_interface-declaration-keyword}</start>
+      <start>\%{typescript:interface-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="typescript:type-keyword"/>
@@ -336,10 +320,6 @@
                                 // ("internal module")
          module "foo.bar" { ... } // "external module" for d.ts files
     -->
-
-    <define-regex id="_module-declaration-keyword" extended="true">
-      (?: \%[ module \%] )
-    </define-regex> <!-- /_module-declaration-keyword -->
 
     <context id="_module-identifier-or-string" once-only="true">
       <start>\%{js:before-next-token}</start>
@@ -374,7 +354,7 @@
 
     <!-- <NamespaceDeclaration> -->
     <context id="_module-declarations" style-ref="typescript:module-declaration">
-      <start>\%{_module-declaration-keyword}</start>
+      <start>\%{typescript:module-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -385,7 +365,7 @@
 
     <!-- <NamespaceDeclaration> -->
     <context id="choice-module-declaration" style-ref="typescript:module-declaration" end-parent="true">
-      <start>\%{_module-declaration-keyword}</start>
+      <start>\%{typescript:module-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -399,10 +379,6 @@
 
          namespace Foo.Bar { ... }
     -->
-
-    <define-regex id="_namespace-declaration-keyword" extended="true">
-      (?: \%[ namespace \%] )
-    </define-regex> <!-- /_namespace-declaration-keyword -->
 
     <context id="_namespace-body" once-only="true">
       <start>{</start>
@@ -438,7 +414,7 @@
 
     <!-- <NamespaceDeclaration> -->
     <context id="_namespace-declarations" style-ref="typescript:namespace-declaration">
-      <start>\%{_namespace-declaration-keyword}</start>
+      <start>\%{typescript:namespace-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -449,7 +425,7 @@
 
     <!-- <NamespaceDeclaration> -->
     <context id="choice-namespace-declaration" style-ref="typescript:namespace-declaration" end-parent="true">
-      <start>\%{_namespace-declaration-keyword}</start>
+      <start>\%{typescript:namespace-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -466,10 +442,6 @@
          type NameOrResolver = Name | NameResolver;
          type Container<T> = { value: T };
     -->
-
-    <define-regex id="_type-alias-declaration-keyword" extended="true">
-      (?: \%[ type \%] )
-    </define-regex> <!-- /_type-alias-declaration-keyword -->
 
     <context id="_type-alias-value" once-only="true">
       <start>=</start>
@@ -494,35 +466,24 @@
       </include>
     </context> <!-- /_ordered-type-alias-value -->
 
-    <context id="_type-alias-declaration-content">
-      <include>
-        <context ref="js:ordered-identifier"/>
-        <context ref="typescript-type-gen:ordered-type-parameters-list"/>
-        <context ref="_ordered-type-alias-value"/>
-      </include>
-    </context> <!-- /_type-alias-declaration-content -->
-
     <!-- <TypeAliasDeclaration> -->
     <context id="_type-alias-declarations" style-ref="typescript:type-alias-declaration">
-      <start>\%{_type-alias-declaration-keyword}</start>
+      <start>\%{typescript:type-keyword}</start>
       <end>\%{js:statement-end}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="typescript:type-keyword"/>
         <context ref="js:comments"/>
-        <context ref="_type-alias-declaration-content"/>
+
+        <context id="_type-alias-declaration-content">
+          <include>
+            <context ref="js:ordered-identifier"/>
+            <context ref="typescript-type-gen:ordered-type-parameters-list"/>
+            <context ref="_ordered-type-alias-value"/>
+          </include>
+        </context> <!-- /_type-alias-declaration-content -->
+
       </include>
     </context> <!-- /_type-alias-declarations -->
-
-    <!-- <TypeAliasDeclaration> -->
-    <context id="choice-type-alias-declaration" style-ref="typescript:type-alias-declaration" end-parent="true">
-      <start>\%{_type-alias-declaration-keyword}</start>
-      <end>\%{js:statement-end}</end>
-      <include>
-        <context sub-pattern="0" where="start" style-ref="typescript:type-keyword"/>
-        <context ref="js:comments"/>
-        <context ref="_type-alias-declaration-content"/>
-      </include>
-    </context> <!-- /choice-type-alias-declaration -->
 
 
     <!-- # Statements -->

@@ -267,6 +267,10 @@
       <keyword>print_r</keyword>
       <keyword>serialize</keyword>
       <keyword>settype</keyword>
+      <keyword>str_contains</keyword>
+      <keyword>str_replace</keyword>
+      <keyword>strip_tags</keyword>
+      <keyword>strpos</keyword>
       <keyword>strval</keyword>
       <keyword>unserialize</keyword>
       <keyword>var_dump</keyword>

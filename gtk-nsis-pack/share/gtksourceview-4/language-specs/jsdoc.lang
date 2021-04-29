@@ -4,7 +4,7 @@
  This file is part of GtkSourceView
 
  Author: Jeffery To <jeffery.to@gmail.com>
- Copyright (C) 2019 Jeffery To <jeffery.to@gmail.com>
+ Copyright (C) 2019-2020 Jeffery To <jeffery.to@gmail.com>
 
  GtkSourceView is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
@@ -35,7 +35,7 @@
   </styles>
 
   <!-- from js:identifier-char -->
-  <keyword-char-class>[\p{L}\p{Nl}\x{1885}-\x{1886}\x{2118}\x{212E}\x{309B}-\x{309C}\p{Mn}\p{Mc}\p{Nd}\p{Pc}\x{00B7}\x{0387}\x{1369}-\x{1371}\x{19DA}$\x{200C}\x{200D}]</keyword-char-class>
+  <keyword-char-class>(?!\x{2E2F})[\p{L}\p{Nl}\x{1885}-\x{1886}\x{2118}\x{212E}\x{309B}-\x{309C}\p{Mn}\p{Mc}\p{Nd}\p{Pc}\x{00B7}\x{0387}\x{1369}-\x{1371}\x{19DA}$\x{200C}\x{200D}]</keyword-char-class>
 
   <definitions>
 
@@ -57,8 +57,8 @@
     </context>
 
     <context id="inline-tag" style-ref="inline-tag" end-at-line-end="true">
-      <start>\{@</start>
-      <end>\}</end>
+      <start>{@</start>
+      <end>}</end>
       <include>
         <context ref="embedded-lang-hooks"/>
         <context ref="escape"/>
@@ -67,8 +67,8 @@
     </context>
 
     <context id="type" style-ref="type" end-at-line-end="true">
-      <start>\{</start>
-      <end>\}</end>
+      <start>{</start>
+      <end>}</end>
       <include>
         <context ref="embedded-lang-hooks"/>
         <context ref="escape"/>
@@ -94,7 +94,7 @@
           tutorial |
           variation
         )
-        \%]
+        \%{js:keyword-end}
       </start>
       <end>(?=\S)</end>
       <include>
@@ -113,7 +113,7 @@
           fires |
           listens
         )
-        \%]
+        \%{js:keyword-end}
       </start>
       <end>(?=\S)</end>
       <include>
@@ -130,7 +130,7 @@
           access |
           kind
         )
-        \%]
+        \%{js:keyword-end}
       </start>
       <end>(?=\S)</end>
       <include>
@@ -168,7 +168,7 @@
             typeParam |  # tsdoc
             this
           )
-          \%]
+          \%{js:keyword-end}
         )
       </start>
       <end>(?=\S)</end>
@@ -198,7 +198,7 @@
           typedef |
           var
         )
-        \%]
+        \%{js:keyword-end}
       </start>
       <end>(?=\S)</end>
       <include>
@@ -210,7 +210,9 @@
     </context>
 
     <context id="borrows-block-tag" end-at-line-end="true">
-      <start>@borrows\%]</start>
+      <start extended="true">
+        @borrows \%{js:keyword-end}
+      </start>
       <end>(?=\S)</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="block-tag"/>
@@ -221,7 +223,9 @@
         </context>
 
         <context end-parent="true">
-          <start>\%[as\%]</start>
+          <start extended="true">
+            \%{js:keyword-start} as \%{js:keyword-end}
+          </start>
           <end>(?=\S)</end>
           <include>
             <context ref="argument" style-ref="namepath"/>
@@ -232,7 +236,9 @@
     </context>
 
     <context id="note-block-tag" style-ref="block-tag">
-      <match>@todo\%]</match>
+      <match extended="true">
+        @todo \%{js:keyword-end}
+      </match>
       <include>
         <context sub-pattern="0" style-ref="note"/>
       </include>

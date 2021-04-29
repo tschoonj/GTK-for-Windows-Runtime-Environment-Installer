@@ -273,5 +273,26 @@
         If true, pressing a key will highlight the current pointer location on screen.
       </description>
     </key>
+    <key name="font-antialiasing" enum="org.gnome.desktop.GDesktopFontAntialiasingMode">
+      <default>'grayscale'</default>
+      <summary>Antialiasing</summary>
+      <description>
+        The type of antialiasing to use when rendering fonts. Possible values are: “none” for no antialiasing, “grayscale” for standard grayscale antialiasing, and “rgba” for subpixel antialiasing (LCD screens only).
+      </description>
+    </key>
+    <key name="font-hinting" enum="org.gnome.desktop.GDesktopFontHinting">
+      <default>'slight'</default>
+      <summary>Hinting</summary>
+      <description>
+	The type of hinting to use when rendering fonts. Possible values are: “none” for no hinting and “slight” for fitting only to the Y-axis like Microsoft’s ClearType, DirectWrite and Adobe’s proprietary font rendering engine. Ignores native hinting within the font, generates hints algorithmically. Used on Ubuntu by default. Recommended. The meaning of “medium” and “full” depends on the font format (.ttf, .otf, .pfa/.pfb) and the installed version of FreeType. They usually try to fit glyphs to both the X and the Y axis (except for .otf: Y-only). This can lead to distortion and/or inconsistent rendering depending on the quality of the font, the font format and the state of FreeType’s font engines.
+      </description>
+    </key>
+    <key name="font-rgba-order" enum="org.gnome.desktop.GDesktopFontRgbaOrder">
+      <default>'rgb'</default>
+      <summary>RGBA order</summary>
+      <description>
+	The order of subpixel elements on an LCD screen; only used when antialiasing is set to “rgba”. Possible values are: “rgb” for red on left (most common), “bgr” for blue on left, “vrgb” for red on top, “vbgr” for red on bottom.
+      </description>
+    </key>
   </schema>
 </schemalist>

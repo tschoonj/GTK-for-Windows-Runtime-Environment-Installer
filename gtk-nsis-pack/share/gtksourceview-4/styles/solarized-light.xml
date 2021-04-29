@@ -33,6 +33,7 @@
   <color name="base1"   value="#93A1A1"/>
   <color name="base2"   value="#EEE8D5"/>
   <color name="base3"   value="#FDF6E3"/>
+  <color name="base4"   value="#C8CCC2"/>
   <color name="yellow"  value="#B58900"/>
   <color name="orange"  value="#CB4B16"/>
   <color name="red"     value="#DC322F"/>
@@ -51,6 +52,7 @@
   <style name="current-line"                background="base2"/>
   <style name="line-numbers"                foreground="base1" background="base2"/>
   <style name="background-pattern"          background="base3-2-blend"/>
+  <style name="draw-spaces"                 foreground="base4"/>
 
   <!-- Bracket Matching -->
   <style name="bracket-match"               foreground="base3" background="base1"/>

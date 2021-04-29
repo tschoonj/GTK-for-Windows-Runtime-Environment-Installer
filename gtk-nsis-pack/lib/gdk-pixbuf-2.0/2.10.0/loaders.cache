@@ -1,9 +1,16 @@
 # GdkPixbuf Image Loader Modules file
 # Automatically generated file, do not edit
-# Created by gdk-pixbuf-query-loaders from gdk-pixbuf-2.42.2
+# Created by gdk-pixbuf-query-loaders from gdk-pixbuf-2.42.4
 #
 # LoaderDir = C:\msys64\mingw64\lib\gdk-pixbuf-2.0\2.10.0\loaders
 #
+"lib\\gdk-pixbuf-2.0\\2.10.0\\loaders\\io-wmf.dll"
+"wmf" 0 "gdk-pixbuf" "Windows Metafile" ""
+"image/x-wmf" ""
+"wmf" "apm" ""
+"\327\315\306\232" "" 100
+"\001" "" 100
+
 "lib\\gdk-pixbuf-2.0\\2.10.0\\loaders\\libpixbufloader-ani.dll"
 "ani" 4 "gdk-pixbuf" "Windows animated cursor" "LGPL"
 "application/x-navi-animation" ""
