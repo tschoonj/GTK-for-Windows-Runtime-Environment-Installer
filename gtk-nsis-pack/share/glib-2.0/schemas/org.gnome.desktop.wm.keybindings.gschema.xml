@@ -132,8 +132,8 @@
       <summary>Hide all normal windows</summary>
     </key>
     <key name="panel-main-menu" type="as">
-      <default><![CDATA[['<Alt>F1']]]></default>
-      <summary>Show the activities overview</summary>
+      <default>[]</default>
+      <summary>DEPRECATED: This key is deprecated and ignored.</summary>
     </key>
     <key name="panel-run-dialog" type="as">
       <default><![CDATA[['<Alt>F2']]]></default>

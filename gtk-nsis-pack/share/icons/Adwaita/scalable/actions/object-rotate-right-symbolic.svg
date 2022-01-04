@@ -1,1 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><g font-weight="400" fill="#474747"><path d="M3 3v2h4.5C8.34 5 9 5.66 9 6.5V12h2V6.5C11 4.579 9.421 3 7.5 3z" style="line-height:normal;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000;text-transform:none;text-orientation:mixed;shape-padding:0;isolation:auto;mix-blend-mode:normal;marker:none" color="#000" font-family="sans-serif" overflow="visible"/><path d="M6 9h1c.257 0 .529.13.719.313L10 11.592l2.281-2.28C12.471 9.13 12.743 9 13 9h1v1c0 .31-.09.552-.281.75L10 14.406 6.281 10.75C6.091 10.552 6 10.31 6 10z" style="line-height:normal;-inkscape-font-specification:'Bitstream Vera Sans';text-indent:0;text-align:start;text-decoration-line:none;text-transform:none;marker:none" color="#bebebe" font-family="Bitstream Vera Sans" overflow="visible"/></g></svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg height="16px" viewBox="0 0 16 16" width="16px" xmlns="http://www.w3.org/2000/svg">
+    <g fill="#2e3436">
+        <path d="m 13.976562 9 h -1 c -0.253906 0 -0.527343 0.128906 -0.71875 0.3125 l -3.28125 3.28125 l -3.28125 -3.28125 c -0.1875 -0.183594 -0.460937 -0.3125 -0.71875 -0.3125 h -1 v 1 c 0 0.308594 0.089844 0.550781 0.28125 0.75 l 4.71875 4.65625 l 4.71875 -4.65625 c 0.191407 -0.199219 0.28125 -0.441406 0.28125 -0.75 z m 0 0"/>
+        <path d="m 10 13 v -6 h -2 v 6 z m 0 0"/>
+        <path d="m 4 3 v -2 h -2 v 2 z m 0 0"/>
+        <path d="m 4 1 v 2 c 2.21875 0 4 1.777344 4 4 h 2 c 0 -3.300781 -2.699219 -6 -6 -6 z m 0 0"/>
+    </g>
+</svg>

@@ -24,7 +24,7 @@
  along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-<language id="python" name="Python" version="2.0" _section="Script">
+<language id="python" name="Python 2" version="2.0" _section="Script">
   <metadata>
     <property name="mimetypes">text/x-python;application/x-python</property>
     <property name="globs">*.py</property>

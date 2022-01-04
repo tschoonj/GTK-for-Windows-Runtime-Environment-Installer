@@ -23,6 +23,7 @@
 -->
 <language id="groovy" name="Groovy" version="2.0" _section="Source">
   <metadata>
+    <property name="mimetypes">text/x-groovy</property>
     <property name="globs">*.groovy</property>
     <property name="line-comment-start">//</property>
     <property name="block-comment-start">/*</property>

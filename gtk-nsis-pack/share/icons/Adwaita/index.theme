@@ -2,6 +2,7 @@
 Name=Adwaita
 Comment=The Only One
 Example=folder
+Inherits=hicolor
 
 # KDE Specific Stuff
 DisplayDepth=32
@@ -20,7 +21,7 @@ PanelDefault=32
 PanelSizes=16,22,32,48,64,72,96,128
 
 # Directory list
-Directories=8x8/emblems,8x8/legacy,16x16/actions,16x16/apps,16x16/categories,16x16/devices,16x16/emblems,16x16/emotes,16x16/legacy,16x16/mimetypes,16x16/places,16x16/status,16x16/ui,22x22/devices,22x22/emblems,22x22/legacy,22x22/mimetypes,22x22/places,22x22/status,22x22/ui,24x24/actions,24x24/apps,24x24/categories,24x24/devices,24x24/emblems,24x24/emotes,24x24/legacy,24x24/mimetypes,24x24/places,24x24/status,24x24/ui,32x32/actions,32x32/apps,32x32/categories,32x32/devices,32x32/emblems,32x32/emotes,32x32/legacy,32x32/mimetypes,32x32/places,32x32/status,32x32/ui,48x48/actions,48x48/apps,48x48/categories,48x48/devices,48x48/emblems,48x48/emotes,48x48/legacy,48x48/mimetypes,48x48/places,48x48/status,48x48/ui,64x64/actions,64x64/apps,64x64/categories,64x64/devices,64x64/emblems,64x64/emotes,64x64/legacy,64x64/mimetypes,64x64/places,64x64/status,64x64/ui,96x96/actions,96x96/apps,96x96/categories,96x96/devices,96x96/emblems,96x96/emotes,96x96/legacy,96x96/mimetypes,96x96/places,96x96/status,96x96/ui,256x256/legacy,256x256/mimetypes,256x256/places,256x256/status,512x512/devices,512x512/emblems,512x512/legacy,512x512/mimetypes,512x512/places,512x512/status,scalable/actions,scalable/apps,scalable/categories,scalable/devices,scalable/emblems,scalable/emotes,scalable/mimetypes,scalable/places,scalable/status,scalable/legacy,scalable/ui,scalable-up-to-32/status,
+Directories=8x8/emblems,8x8/legacy,16x16/actions,16x16/apps,16x16/categories,16x16/devices,16x16/emblems,16x16/emotes,16x16/legacy,16x16/mimetypes,16x16/places,16x16/status,16x16/ui,22x22/devices,22x22/emblems,22x22/legacy,22x22/mimetypes,22x22/places,22x22/status,22x22/ui,24x24/actions,24x24/apps,24x24/categories,24x24/devices,24x24/emblems,24x24/emotes,24x24/legacy,24x24/mimetypes,24x24/places,24x24/status,24x24/ui,32x32/actions,32x32/apps,32x32/categories,32x32/devices,32x32/emblems,32x32/emotes,32x32/legacy,32x32/mimetypes,32x32/places,32x32/status,32x32/ui,48x48/actions,48x48/apps,48x48/categories,48x48/devices,48x48/emblems,48x48/emotes,48x48/legacy,48x48/mimetypes,48x48/places,48x48/status,48x48/ui,64x64/actions,64x64/apps,64x64/categories,64x64/devices,64x64/emblems,64x64/emotes,64x64/legacy,64x64/mimetypes,64x64/places,64x64/status,64x64/ui,96x96/actions,96x96/apps,96x96/categories,96x96/devices,96x96/emblems,96x96/emotes,96x96/legacy,96x96/mimetypes,96x96/places,96x96/status,96x96/ui,256x256/devices,256x256/legacy,256x256/mimetypes,256x256/places,256x256/status,512x512/devices,512x512/emblems,512x512/legacy,512x512/mimetypes,512x512/places,512x512/status,scalable/actions,scalable/apps,scalable/categories,scalable/devices,scalable/emblems,scalable/emotes,scalable/mimetypes,scalable/places,scalable/status,scalable/legacy,scalable/ui,scalable-up-to-32/status,
 
 [8x8/emblems]
 Context=Emblems
@@ -396,6 +397,13 @@ Type=Fixed
 Context=UI
 Size=96
 Type=Fixed
+
+[256x256/devices]
+Context=Devices
+Size=256
+MinSize=56
+MaxSize=256
+Type=Scalable
 
 [256x256/legacy]
 Context=Legacy

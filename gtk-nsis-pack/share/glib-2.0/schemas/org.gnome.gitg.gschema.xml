@@ -18,6 +18,7 @@
   <schema gettext-domain="gitg" id="org.gnome.gitg.preferences" path="/org/gnome/gitg/preferences/">
     <child name="main" schema="org.gnome.gitg.preferences.main" />
     <child name="history" schema="org.gnome.gitg.preferences.history" />
+    <child name="branch" schema="org.gnome.gitg.preferences.branch" />
     <child name="commit" schema="org.gnome.gitg.preferences.commit" />
     <child name="diff" schema="org.gnome.gitg.preferences.diff" />
   </schema>
@@ -45,6 +46,17 @@
       <description>
         The activity which gitg activates by default when first launched.
       </description>
+    </key>
+    <key name="use-default-font" type="b">
+      <default>true</default>
+      <summary>Use Default Font</summary>
+      <description>Whether to use the system’s default fixed width font for widget's text instead of a font specific. If this option is turned off, then the font named in the “Editor Font” option will be used instead of the system font.</description>
+    </key>
+    <key name="monospace-font-name" type="s">
+      <!-- Translators: This is a GSettings default value. Do NOT change or localize the quotation marks! -->
+      <default l10n="messages">'Monospace 12'</default>
+      <summary>Editor Font</summary>
+      <description>A custom font that will be used for the text widgets. This will only take effect if the “Use Default Font” option is turned off.</description>
     </key>
     <key name="use-gravatar" type="b">
       <default>false</default>
@@ -154,6 +166,15 @@
       </description>
     </key>
   </schema>
+  <schema gettext-domain="gitg" id="org.gnome.gitg.preferences.branch" path="/org/gnome/gitg/preferences/branch/">
+    <key name="checkout-created-branch" type="b">
+      <default>true</default>
+      <summary>Switch to the new branch on creation</summary>
+      <description>
+        Setting that controls whether the newly created branch is checked out automatically.
+      </description>
+    </key>
+  </schema>
   <schema gettext-domain="gitg" id="org.gnome.gitg.preferences.commit" path="/org/gnome/gitg/preferences/commit/">
     <child name="message" schema="org.gnome.gitg.preferences.commit.message" />
     <child name="diff" schema="org.gnome.gitg.preferences.commit.diff" />
@@ -210,6 +231,16 @@
         The language to use when spell checking is enabled for writing a
         commit message.
       </description>
+    </key>
+    <key name="max-number-commit-messages" type="i">
+      <default>10</default>
+      <summary>Maximum number of previous commit messages</summary>
+      <description>Maximum number of previous commit messages to store for commit message history.</description>
+    </key>
+    <key name="max-number-days-commit-messages" type="i">
+      <default>30</default>
+      <summary>Maximum number of days to store previous commit messages</summary>
+      <description>Maximum number of days to store previous commit messages for commit message history.</description>
     </key>
   </schema>
   <schema gettext-domain="gitg" id="org.gnome.gitg.preferences.diff" path="/org/gnome/gitg/preferences/diff/">

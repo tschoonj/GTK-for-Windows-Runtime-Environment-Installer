@@ -31,7 +31,7 @@
     <style id="keyword"     name="Keyword"       map-to="def:keyword"/>
     <style id="function"    name="Function"      map-to="def:function"/>
     <style id="constant"    name="Constants"     map-to="def:constant"/>
-    <style id="variable"    name="Variable"      map-to="def:variable"/>
+    <style id="variable"    name="Variable"      map-to="def:identifier"/>
     <style id="identifier"  name="Identifier"    map-to="def:identifier"/>
     <style id="type"        name="Data Type"     map-to="def:type"/>
     <style id="boolean"     name="Boolean value" map-to="def:boolean"/>

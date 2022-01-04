@@ -206,11 +206,9 @@
       <match>\.[a-zA-Z0-9_-]+</match>
     </context>
 
-    <context id="line-comment" style-ref="comment" end-at-line-end="true" class="comment" class-disabled="no-spell-check">
-      <start>//</start>
-      <include>
-        <context ref="def:in-line-comment"/>
-      </include>
+    <context id="block-comment" style-ref="comment" class="comment" end-parent="true" class-disabled="no-spell-check">
+      <start>^(?'indent'\s*)\/\/</start>
+      <end>^(?!\%{indent@start}\s+)</end>
     </context>
 
     <context id="jade-executable">
@@ -238,7 +236,7 @@
         <context ref="attribute-id"/>
         <context ref="attribute-class"/>
         <context ref="tags"/>
-        <context ref="line-comment"/>
+        <context ref="block-comment"/>
         <context ref="jade-executable"/>
         <context ref="interpolated" />
         <context ref="jade-filter"/>

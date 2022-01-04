@@ -79,5 +79,12 @@
         devices (i.e. flash disks, mobile phones, cameras).
       </description>
     </key>
+    <key name="disable-show-password" type="b">
+      <default>false</default>
+      <summary>Disable password showing</summary>
+      <description>
+        Disable the "Show Password" menu item in password entries.
+      </description>
+    </key>
   </schema>
 </schemalist>

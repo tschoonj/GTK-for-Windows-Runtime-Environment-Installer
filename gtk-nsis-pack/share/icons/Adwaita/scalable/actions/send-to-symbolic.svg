@@ -1,1 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><g color="#000" fill="#2e3436"><path style="marker:none" d="M5.969 7.969A2.969 2.969 0 013 10.937 2.969 2.969 0 01.031 7.97 2.969 2.969 0 013.001 5a2.969 2.969 0 012.968 2.969zM15.937 12.969a2.969 2.969 0 01-2.968 2.969A2.969 2.969 0 0110 12.967 2.969 2.969 0 0112.969 10a2.969 2.969 0 012.968 2.969zM15.937 2.969a2.969 2.969 0 01-2.968 2.969A2.969 2.969 0 0110 2.967 2.969 2.969 0 0112.969 0a2.969 2.969 0 012.968 2.969z" overflow="visible"/><path d="M12.613 2.146L.748 7.924l11.854 5.969.9-1.788-8.248-4.15 8.236-4.012z" style="line-height:normal;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000;text-transform:none;text-orientation:mixed;white-space:normal;shape-padding:0;isolation:auto;mix-blend-mode:normal;solid-color:#000;solid-opacity:1;marker:none" font-weight="400" font-family="sans-serif" overflow="visible"/></g></svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg height="16px" viewBox="0 0 16 16" width="16px" xmlns="http://www.w3.org/2000/svg">
+    <g fill="#2e3436">
+        <path d="m 5.96875 7.96875 c 0 1.640625 -1.328125 2.96875 -2.96875 2.96875 s -2.96875 -1.328125 -2.96875 -2.96875 s 1.328125 -2.96875 2.96875 -2.96875 s 2.96875 1.328125 2.96875 2.96875 z m 0 0"/>
+        <path d="m 15.9375 12.96875 c 0 1.640625 -1.328125 2.96875 -2.96875 2.96875 s -2.96875 -1.328125 -2.96875 -2.96875 s 1.328125 -2.96875 2.96875 -2.96875 s 2.96875 1.328125 2.96875 2.96875 z m 0 0"/>
+        <path d="m 15.9375 2.96875 c 0 1.640625 -1.328125 2.96875 -2.96875 2.96875 s -2.96875 -1.328125 -2.96875 -2.96875 s 1.328125 -2.96875 2.96875 -2.96875 s 2.96875 1.328125 2.96875 2.96875 z m 0 0"/>
+        <path d="m 12.613281 2.144531 l -11.863281 5.78125 l 11.851562 5.964844 l 0.898438 -1.785156 l -8.246094 -4.152344 l 8.234375 -4.011719 z m 0 0"/>
+    </g>
+</svg>

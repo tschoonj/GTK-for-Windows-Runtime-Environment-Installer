@@ -1,1 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><path d="M4 3h8v2H4zM3 7h10v2H3zm3 4h4v2H6z" style="marker:none" overflow="visible" color="#bebebe" fill="#474747"/></svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg height="16px" viewBox="0 0 16 16" width="16px" xmlns="http://www.w3.org/2000/svg">
+    <g fill="#2e3436">
+        <path d="m 3 2 h 10 v 2 h -10 z m 0 0"/>
+        <path d="m 1.003906 7 h 14 v 2 h -14 z m 0 0"/>
+        <path d="m 5 12 h 6 v 2 h -6 z m 0 0"/>
+    </g>
+</svg>

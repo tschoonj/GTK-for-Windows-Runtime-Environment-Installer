@@ -427,7 +427,7 @@
     </context>
 
     <context id="short-parameter-expansion" style-ref="variable" class="no-spell-check">
-      <match>\$(\%{special-parameter}|\%{identifier})</match>
+      <match>\$(\%{identifier}|\%{special-parameter})</match>
     </context>
 
     <context id="parameter-expansion" style-ref="def:statement" style-inside="true" class="no-spell-check">
